@@ -9,8 +9,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://martijnbokma.github.io/',
-	base: 'couch-docs/',
+	site: 'https://martijnbokma.github.io',
+	base: '/couch-docs',
 	integrations: [
 		starlight({
 			// plugins: [starlightThemeObsidian()],
