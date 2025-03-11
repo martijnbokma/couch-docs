@@ -10,7 +10,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://couch-docs.github.io',
-	base: '/couch-docs',
+	base: '/',
 	integrations: [
 		starlight({
 			// plugins: [starlightThemeObsidian()],
