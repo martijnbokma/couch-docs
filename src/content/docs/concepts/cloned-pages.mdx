@@ -15,7 +15,7 @@ We'll take the example of _blog.php_ to illustrate the point we are trying to ma
 Suppose we created three editable regions, named *my_blog_text*, *my_blog_image* and *my_blog_author*, within _blog.php_ template.
 The user edits the contents within these areas and after saving his changes visits the template in his browser -
 
-```url
+```txt
 https://www.yoursite.com/blog.php
 ```
 
@@ -56,7 +56,7 @@ Scroll to the bottom of the page and you'll find the 'View' button adjacent to t
 Clicking it will bring up the new page in the browser. It should be IDENTICAL to what we used to see on visiting blog.php before it became clonable.
 Take a look at the URL displayed in the address-bar of the browser. It should be something like -
 
-```url "?p="
+```txt "?p="
 https://www.yoursite.com/blog.php?p=12
 ```
 Notice the addition of the `?p=` followed by a number after blog.php.
@@ -66,7 +66,7 @@ Going back to the dashboard, create a new page from _blog.php_ and we'll be show
 Edit and place new contents within all regions. Name this page as 'My Second Page' and save it.
 Click 'View' to visit this page. You should see a new page with the data we entered into it. The URL should be something like -
 
-```url "?p="
+```txt "?p="
 https://www.yoursite.com/blog.php?p=13
 ```
 Notice how the number after `?p=` is different from the first page.
@@ -75,7 +75,7 @@ So now we have two blog pages. One was created by default and contained the data
 
 Finally, visit one more time the blog.php page as we used to do before making it clonable -
 
-```url
+```txt
 https://www.yoursite.com/blog.php
 ```
 
@@ -87,7 +87,7 @@ And this brings us to the important concept we mentioned above.
 When a template is non-clonable (the default), it represents one single page of the website and so all the data that is entered in its editable regions belongs to it.
 Thus a non-clonable template like _about-us.php_, when visited like this -
 
-```url
+```txt
 https://www.yoursite.com/about-us.php
 ```
 
@@ -95,13 +95,13 @@ https://www.yoursite.com/about-us.php
 
 In contrast, as in the case with _blog.php_ above, once a template is declared clonable, it can now represent one to any number of pages that might be cloned out of it. Thus
 
-```url
+```txt
 https://www.yoursite.com/blog.php?p=12
 ```
 
 is one page while
 
-```url
+```txt
 https://www.yoursite.com/blog.php?p=13
 ```
 
@@ -111,7 +111,7 @@ is a totally different page.
 It becomes even more distinct when we use pretty urls (see [**Pretty URLs**](../pretty-urls.html)).
 Then the URLs for the above two pages will become -
 
-```url
+```txt
 https://www.yoursite.com/blog/my-first-page.html
 https://www.yoursite.com/blog/my-second-page.html
 ```
