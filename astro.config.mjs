@@ -24,7 +24,7 @@ export default defineConfig({
 				replacesTitle: true,
 			},
 			social: {
-				github: 'https://github.com/withastro/starlight',
+				github: 'https://martijnbokma.github.io/couch-docs/',
 			},
 			sidebar: [
 				{
