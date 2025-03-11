@@ -61,7 +61,7 @@ Couch version 1.2 introduces 'Nested Pages' feature to provide such a way.
 A nested-page, internally, is just a variation of the regular cloned-page in Couch that you are already familiar with.
 
 :::danger[Important]
-If not, please first take a look at the '[Cloned Pages](../cloned-pages.html)' documentation. Much of the current discussion will not make much sense unless you are familiar with the regular cloned pages in Couch.
+If not, please first take a look at the '[Cloned Pages](../cloned-pages/)' documentation. Much of the current discussion will not make much sense unless you are familiar with the regular cloned pages in Couch.
 :::
 
 It is almost identical to the regular cloned page except for the following characteristics:
@@ -83,7 +83,7 @@ It is almost identical to the regular cloned page except for the following chara
     ```txt
     https://www.yoursite.com/one/two/three/
     ```
-    you'll notice that had this URL been of a regular cloned template (i.e. non-nested), it would represent a folder-view - with 'one', 'two' and 'three' being folders of the template. For a nested-page, the 'three' becomes the name of the page (notice that unlike regular cloned pages, there is no '.html' extension).
+    you'll notice that had this URL been of a regular cloned template (i.e. non-nested), it would represent a folder-view - with 'one', 'two' and 'three' being folders of the template. For a nested-page, the 'three' becomes the name of the page (notice that unlike regular cloned pages, there is no `.html` extension).
 
 </Steps>
 
@@ -183,7 +183,7 @@ As we already mentioned, the blog and portfolio sections can be implemented usin
 Get them done first using clonable templates e.g. `blog.php` and `portfolio.php`.
 
 :::note
-We assume you already know how to create regular cloned pages. [Please see the documentation](../cloned-pages.html) if you need a refresher.
+We assume you already know how to create regular cloned pages. [Please see the documentation](../cloned-pages/) if you need a refresher.
 :::
 
 With those sections done we can move on to the isolated standalone pages.
@@ -234,7 +234,7 @@ However which page do you think will get loaded for this URL? -
 https://www.yoursite.com/
 ```
 
-If you are familiar with the regular cloned pages, you'll recognize that this is the 'list-view' \[see [cloned-pages](../cloned-pages.html) and [views](../views.html)\].
+If you are familiar with the regular cloned pages, you'll recognize that this is the 'list-view' \[see [cloned-pages](../cloned-pages/) and [views](../views/)\].
 Since no page is indicated, none gets loaded. Only the empty template will show up (i.e. the HTML will appear but the editable regions will be empty).
 We also know that in 'list-view', we usually list all the cloned pages of the template (we can choose to do any other thing we want to - point is we'll have to handle the view ourselves).
 As with any other clonable template, we'll add the following logic to the index.php template -
@@ -349,7 +349,7 @@ Masquerading is a very powerful method that can be used to **make the pointer pa
 By using this option we can virtually move an entire section anywhere within the nested-pages hierarchy, thus being able to choose any arbitrary URL for that section.
 
 :::note
-Masquerading requires prettyURLs to be enabled. This is understandable because the whole purpose of masquerading is to impose a new URL structure (established by the pointer page's hierarchy) upon the section being masqueraded. Please see [Pretty URLS](../pretty-urls.html) section in documentation if you require information on how to enable this feature.
+Masquerading requires prettyURLs to be enabled. This is understandable because the whole purpose of masquerading is to impose a new URL structure (established by the pointer page's hierarchy) upon the section being masqueraded. Please see [Pretty URLS](../pretty-urls/) section in documentation if you require information on how to enable this feature.
 :::
 
 A slight modification to the previous example should make the concept of masquerading clear.
@@ -479,7 +479,7 @@ What remains now is to make Couch automatically generate a menu for the site tha
 
 Typically, menu and breadcrumbs are the two elements on a web page that reflect the hierarchical structure of the website.
 The tree we created above using nested-pages contains all the information that is needed to create such menus and breadcrumbs.
-To help us with this task, Couch now has three new tags - '[nested_pages](../../tags-reference/nested_pages.html)', '[menu](../../tags-reference/menu.html)' and '[nested_crumbs](../../tags-reference/nested_crumbs.html)' that can iterate through our tree and output the desired markup.
+To help us with this task, Couch now has three new tags - '[nested_pages](../../tags-reference/nested_pages/)', '[menu](../../tags-reference/menu/)' and '[nested_crumbs](../../tags-reference/nested_crumbs/)' that can iterate through our tree and output the desired markup.
 'nested_pages' is a rather low-level (but very powerful) tag that can be used to iterate through the hierarchy of nested-pages and output just about any kind of markup. The 'menu' and 'nested_crumbs' are actually just thin veneers around the 'nested_pages' tag but can be used to very quickly generate the typical markup associated with menus and breadcrumbs respectively.
 
 More often than not, you'll find the 'menu' and 'nested_crumbs' tags more than sufficient for working with typical menus and breadcrumbs of a website and will rarely need to resort to using 'nested_pages' tag directly.
@@ -719,11 +719,11 @@ Please see the tag's documentation for a full list of the parameters and their u
 
 Another element on a typical web page that reflects the hierarchy of pages is the breadcrumb where the parent pages of the page being visited show up as crumbs.
 
-The Couch tag that can be used to easily create breadcrumbs is the '[nested_crumbs](../../tags-reference/nested_crumbs.html)' tag.
+The Couch tag that can be used to easily create breadcrumbs is the '[nested_crumbs](../../tags-reference/nested_crumbs/)' tag.
 
 :::note
-There already is an existing tag named '[breadcrumbs](../../tags-reference/breadcrumbs.html)' which is used with the folder hierarchy associated with normal cloned pages.
-'[nested_crumbs](../../tags-reference/nested_crumbs.html)' on the other hand works with nested-pages only.
+There already is an existing tag named '[breadcrumbs](../../tags-reference/breadcrumbs/)' which is used with the folder hierarchy associated with normal cloned pages.
+'[nested_crumbs](../../tags-reference/nested_crumbs/)' on the other hand works with nested-pages only.
 :::
 
 #### Usage
@@ -748,4 +748,4 @@ There already is an existing tag named '[breadcrumbs](../../tags-reference/bread
 
 </Steps>
 
-Please see the '[nested_crumbs](../../tags-reference/nested_crumbs.html)' tag's documentation for a full list of the parameters and their use.
+Please see the '[nested_crumbs](../../tags-reference/nested_crumbs/)' tag's documentation for a full list of the parameters and their use.

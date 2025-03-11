@@ -22,7 +22,7 @@ Some example scenarios where this feature will come in handy:
 
 Any relationship, necessarily, will involve two parties (actually the templates representing them). Taking the second example mentioned above, 'artists' and 'albums' are the two parties that are involved in the relationship (we'll assume the name of their respective templates to be `artists.php` and `albums.php`).
 
-To define a relationship between the two templates, we use a new type of editable region introduced by Couch v1.3 - [**relation**](../../tags-reference/editable/relation.html).
+To define a relationship between the two templates, we use a new type of editable region introduced by Couch v1.3 - [**relation**](../../tags-reference/editable/relation/).
 Place the following code snippet in the `artists.php` template:
 
 ```php title="artists.php"
@@ -37,12 +37,12 @@ As can be seen, Couch shows us a list of all the cloned pages of `albums.php`.
 We can choose all the albums from this list that are related to the artist being edited.
 
 :::tip
-By default, all the pages of the related template are shown in the list. We can exert some control over which pages get listed (and how) by using the following parameters of the 'editable' tag of type [**relation**](../../tags-reference/editable/relation.html):
+By default, all the pages of the related template are shown in the list. We can exert some control over which pages get listed (and how) by using the following parameters of the 'editable' tag of type [**relation**](../../tags-reference/editable/relation/):
 
-- [**folder**](../../tags-reference/editable/relation.html#parameters)
-- [**include_subfolders**](../../tags-reference/editable/relation.html#parameters)
-- [**orderby**](../../tags-reference/editable/relation.html#parameters)
-- [**order_dir**](../../tags-reference/editable/relation.html#parameters)
+- [**folder**](../../tags-reference/editable/relation/#parameters)
+- [**include_subfolders**](../../tags-reference/editable/relation/#parameters)
+- [**orderby**](../../tags-reference/editable/relation/#parameters)
+- [**order_dir**](../../tags-reference/editable/relation/#parameters)
 :::
 
 Important points to note in the code above:
@@ -150,8 +150,8 @@ while showing an 'album' page, display all the artists associated with this albu
 
 Couch provides two different tags to do this enumeration for us:
 
-- [**related_pages**](../../tags-reference/related_pages.html)
-- [**reverse_related_pages**](../../tags-reference/reverse_related_pages.html)
+- [**related_pages**](../../tags-reference/related_pages/)
+- [**reverse_related_pages**](../../tags-reference/reverse_related_pages/)
 
 ### related_pages
 
@@ -216,4 +216,4 @@ For example, the following code will get all related albums of John Lennon:
 </cms:pages>
 ```
 
-The 'related_pages' and 'reverse_related_pages' tags are almost identical to the [**pages**](../../tags-reference/pages.html) tag we know so well. Just like the [**pages**](../../tags-reference/pages.html) tag, these two tags also make available all the variables associated with the (related) page being iterated. They also support almost [all the parameters](../../tags-reference/pages.html#parameters) that the [**pages**](../../tags-reference/pages.html) tag supports.
+The 'related_pages' and 'reverse_related_pages' tags are almost identical to the [**pages**](../../tags-reference/pages/) tag we know so well. Just like the [**pages**](../../tags-reference/pages/) tag, these two tags also make available all the variables associated with the (related) page being iterated. They also support almost [all the parameters](../../tags-reference/pages/#parameters) that the [**pages**](../../tags-reference/pages/) tag supports.

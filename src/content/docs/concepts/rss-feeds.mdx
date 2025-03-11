@@ -75,7 +75,7 @@ This conversion of the xml file to a php file is essential for Couch but it will
 </Steps>
 
 The first problem can be rectified by breaking up the XML statement in a way that it does not confuse PHP.
-The following snippet using Couch's [**concat**](../../tags-reference/concat.html) tag will output exactly the same statement but because the `<?` characters are now split up, PHP will have no problems:
+The following snippet using Couch's [**concat**](../../tags-reference/concat/) tag will output exactly the same statement but because the `<?` characters are now split up, PHP will have no problems:
 
 ```php
 <cms:concat '<' '?xml version="1.0" encoding="' k_site_charset '"?' '>' />
@@ -85,7 +85,7 @@ The following snippet using Couch's [**concat**](../../tags-reference/concat.htm
 The *k_site_charset* variable contains the value set in `config.php` for the character set used by your web-site.
 :::
 
-The second problem can be rectified by using Couch's [**content_type**](../../tags-reference/content_type.html) tag. This tag instructs the web server to output the desired mime-type. We'll use it to output `text/xml`.
+The second problem can be rectified by using Couch's [**content_type**](../../tags-reference/content_type/) tag. This tag instructs the web server to output the desired mime-type. We'll use it to output `text/xml`.
 
 The modified snippet should now look like this:
 
@@ -119,10 +119,10 @@ The modified snippet should now look like this:
 ```
 
 :::danger[Important]
-Do not split the [**content_type**](../../tags-reference/content_type.html) statement and the [**concat**](../../tags-reference/concat.html) statement into separate lines. This will cause an empty line to be output before the xml declaration and will invalidate the feed.
+Do not split the [**content_type**](../../tags-reference/content_type/) statement and the [**concat**](../../tags-reference/concat/) statement into separate lines. This will cause an empty line to be output before the xml declaration and will invalidate the feed.
 :::
 
-We can now fetch the news items from the `news.php` template by using [**pages**](../../tags-reference/pages.html) tag and add it to our feed to make it dynamic:
+We can now fetch the news items from the `news.php` template by using [**pages**](../../tags-reference/pages/) tag and add it to our feed to make it dynamic:
 
 ```php
 <?php require_once( 'couch/cms.php' ); ?>
@@ -155,8 +155,8 @@ We can now fetch the news items from the `news.php` template by using [**pages**
 ```
 
 We are assuming that an editable field named *my_news_text* contains the news text.
-The [__*excerptHTML*__](../../tags-reference/excerpthtml.html) tag can be used to output only an excerpt of your page.
-We need to wrap the output within [__*html_encode*__](../../tags-reference/html_encode.html) to encode certain characters that are not valid in XML.
+The [__*excerptHTML*__](../../tags-reference/excerpthtml/) tag can be used to output only an excerpt of your page.
+We need to wrap the output within [__*html_encode*__](../../tags-reference/html_encode/) to encode certain characters that are not valid in XML.
 
 And that is it. Your automated RSS feed is ready.
 Modify the snippet to suit your web-site's needs.

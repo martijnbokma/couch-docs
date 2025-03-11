@@ -69,7 +69,7 @@ Setup a test environment (sandbox) at https://developer.paypal.com/. Generate an
 
 For the next step, it is necessary to understand that each saleable item in Couch is represented by a separate cloned page.
 For our example, let us say we use a template named `product.php` for this purpose.
-Make this template clonable and define in it all [**editable regions**](../editable-regions.html) that are relevant to your products (e.g. ISBN number, Author, Link to the downloadable file etc.)
+Make this template clonable and define in it all [**editable regions**](../editable-regions/) that are relevant to your products (e.g. ISBN number, Author, Link to the downloadable file etc.)
 
 Two fields are mandatory and need your special attention:
 
@@ -102,7 +102,7 @@ To create the PayPal 'Buy Button' simply place the following Couch tag in your `
 <cms:paypal_button />
 ```
 
-The image used as the button can be changed by setting the _image_ parameter of the tag (See [**Tags Reference - PayPal Button**](../../tags-reference/paypal_button.html)).
+The image used as the button can be changed by setting the _image_ parameter of the tag (See [**Tags Reference - PayPal Button**](../../tags-reference/paypal_button/)).
 
 :::danger[Remember]
 If the **paypal_button** tag fails to find a variable named *pp_price*, that we mentioned in the previous section, it will not display any button at all.
@@ -116,7 +116,7 @@ Now we only need to handle the incoming IPN notification.
 
 #### Processing Paypal IPN
 
-[__*paypal_processor*__](../../tags-reference/paypal_processor.html) is the tag that will handle IPNs for you.
+[__*paypal_processor*__](../../tags-reference/paypal_processor/) is the tag that will handle IPNs for you.
 
 To see how it works, place the following snippet somewhere at the top of your _product.php_ template -
 
@@ -204,9 +204,9 @@ Exiting
 The snippet above shows a successful transaction. If you find any error being reported in the log, you'll need to investigate it further.
 This should give you a fair idea as to what PayPal sends back as details of the transaction and what goes on while processing an IPN.
 
-Once we are sure that the IPN is being handled properly, we can now go ahead and make [__*paypal_processor*__](../../tags-reference/paypal_processor.html) do whatever is supposed to be done on successfully getting paid for a product. We'll assume we are to send the buyer an email with a link to the item he bought.
+Once we are sure that the IPN is being handled properly, we can now go ahead and make [__*paypal_processor*__](../../tags-reference/paypal_processor/) do whatever is supposed to be done on successfully getting paid for a product. We'll assume we are to send the buyer an email with a link to the item he bought.
 
-Once [__*paypal_processor*__](../../tags-reference/paypal_processor.html) verifies that the IPN is indeed from PayPal, it sets the following variables for use in your script -
+Once [__*paypal_processor*__](../../tags-reference/paypal_processor/) verifies that the IPN is indeed from PayPal, it sets the following variables for use in your script -
 
 *   pp_item_name
 *   pp_item_number
@@ -224,7 +224,7 @@ Once [__*paypal_processor*__](../../tags-reference/paypal_processor.html) verifi
 As should be obvious, these variables represent the values that PayPal provided through the IPN. We can use these values to take further actions.
 :::
 
-[__*paypal_processor*__](../../tags-reference/paypal_processor.html) then validates if the transaction was valid by using the IPN values and comparing them with the values stored in Couch's database. Thus it makes sure that the amount paid is not less than the item's price multiplied by the bought quantity, that the payment has been made in the right currency and that the payment has been made into the right account.
+[__*paypal_processor*__](../../tags-reference/paypal_processor/) then validates if the transaction was valid by using the IPN values and comparing them with the values stored in Couch's database. Thus it makes sure that the amount paid is not less than the item's price multiplied by the bought quantity, that the payment has been made in the right currency and that the payment has been made into the right account.
 If the transaction is valid, it sets another variable named *k_paypal_success* else it sets a variable named *k_paypal_error* and places the error message into it. Additionaly, it also makes available all the variables associated with the page representing the item.
 
 A skeletal snippet will look like the following:
@@ -268,6 +268,6 @@ A real world example could be:
 </cms:paypal_processor>
 ```
 
-In the snippet above, we are sending an email to the buyer on a successful transaction. Note how the variables set by [__*paypal_processor*__](../../tags-reference/paypal_processor.html) are being used in the [__*send_mail*__](../../tags-reference/send_mail.html) tag.
+In the snippet above, we are sending an email to the buyer on a successful transaction. Note how the variables set by [__*paypal_processor*__](../../tags-reference/paypal_processor/) are being used in the [__*send_mail*__](../../tags-reference/send_mail/) tag.
 The email contains a link to the downloadable item (the variable *downloadable_file* is an editable region of type file within the template and contains the item's link).
-The [__*cloak_url*__](../../tags-reference/cloak_url.html) tag is used to conceal the real path of the item.
+The [__*cloak_url*__](../../tags-reference/cloak_url/) tag is used to conceal the real path of the item.

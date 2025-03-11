@@ -24,7 +24,7 @@ An editable region of _richtext_ type can be defined this way -
 
 The code above will result in -
 
-![](../../../../assets/img/contents/editable-richtext-1.jpg)
+![Editable richtext 1](../../../../assets/img/contents/editable-richtext-1.jpg)
 
 :::note
 Any text enclosed between the opening and the closing tags will appear as the default text within the editor. If you do not wish to have any default text, simply make the **Editable** tag self-closing e.g.
@@ -159,7 +159,7 @@ Similarly, if the CSS rules are applicable to an element of a certain **class**,
 
 The toolbar above the editor contains a drop-down list that allows the user to apply some very generic formats to his content -
 
-![](../../../../assets/img/contents/editable-richtext-2.gif)
+![Editable richtext 2](../../../../assets/img/contents/editable-richtext-2.gif)
 
 [CKEditor](http://ckeditor.com/) provides a method to display **your** custom styles in a similar drop-down list.
 
@@ -204,7 +204,7 @@ Notice how we have provided the value of *custom_styles* in two parts - name giv
 
 The resulting drop-down list -
 
-![](../../../../assets/img/contents/editable-richtext-3.gif)
+![Editable richtext 3](../../../../assets/img/contents/editable-richtext-3.gif)
 
 :::tip
 Everytime you modify the JavaScript file, you might need to clear your browser's cache to make the editor pickup the changed file.
@@ -232,7 +232,7 @@ This parameter can take one of the following four values
 
 results in -
 
-![](../../../../assets/img/contents/editable-richtext-4.gif)
+![Editable richtext 4](../../../../assets/img/contents/editable-richtext-4.gif)
 
 #### medium
 
@@ -245,7 +245,7 @@ results in -
 
 results in -
 
-![](../../../../assets/img/contents/editable-richtext-5.gif)
+![Editable richtext 5](../../../../assets/img/contents/editable-richtext-5.gif)
 
 :::note
 _Medium_ is the default value and hence if _toolbar_ parameter is omitted, this is what is used.
@@ -262,7 +262,7 @@ _Medium_ is the default value and hence if _toolbar_ parameter is omitted, this 
 
 results in -
 
-![](../../../../assets/img/contents/editable-richtext-6.gif)
+![Editable richtext 6](../../../../assets/img/contents/editable-richtext-6.gif)
 
 #### custom
 
@@ -343,7 +343,7 @@ As a very simple (and unrealistic) example, here is a toolbar containing only tw
     type='richtext'/>
 ```
 
-![](../../../../assets/img/contents/editable-richtext-7.gif)
+![Editable richtext 7](../../../../assets/img/contents/editable-richtext-7.gif)
 
 A more practical example - here is how you can mimic the _medium_ type of toolbar discussed above.
 
@@ -364,7 +364,7 @@ A more practical example - here is how you can mimic the _medium_ type of toolba
     type='richtext' />
 ```
 
-![](../../../../assets/img/contents/editable-richtext-8.gif)
+![Editable richtext 8](../../../../assets/img/contents/editable-richtext-8.gif)
 
 **Points to note in the example above -**
 
@@ -374,7 +374,7 @@ Visually both might appear to be the same but when the toolbar needs to be broke
 Also note that you can force the toolbar to be break into a new row by specifying '|' twice (i.e. no buttons between two pipes - see how the group begining with the **cut** button has been forced into a new row).
 
 :::tip
-If you find yourself reusing a custom toolbar at many places, instead of repeating the quite large chunk of code everywhere, use the [**Embed**](../../embed.html) tag. Cut and paste the _value_ of the *custom_toolbar* parameter (everything between the quotes) and save it in a file named, say, *my_toolbar.inc*. Instruct the [**Embed**](../../embed.html) tag to use this file.
+If you find yourself reusing a custom toolbar at many places, instead of repeating the quite large chunk of code everywhere, use the [**Embed**](../../embed/) tag. Cut and paste the _value_ of the *custom_toolbar* parameter (everything between the quotes) and save it in a file named, say, *my_toolbar.inc*. Instruct the [**Embed**](../../embed/) tag to use this file.
 
 ```php
 <cms:editable name='desc' label='Description'
@@ -387,18 +387,18 @@ If you find yourself reusing a custom toolbar at many places, instead of repeati
 
 ## Related Tags
 
-*   [editable](../../editable.html)
-*   [editable (checkbox)](../checkbox.html)
-*   [editable (dropdown)](../dropdown.html)
-*   [editable (file)](../file.html)
-*   [editable (group)](../group.html)
-*   [editable (image)](../image.html)
-*   [editable (message)](../message.html)
-*   [editable (nicedit)](../nicedit.html)
-*   [editable (password)](../password.html)
-*   [editable (radio)](../radio.html)
-*   [editable (relation)](../relation.html)
-*   [editable (richtext)](../richtext.html)
-*   [editable (text)](../text.html)
-*   [editable (textarea)](../textarea.html)
-*   [editable (thumbnail)](../thumbnail.html)
+*   [editable](../../editable/)
+*   [editable (checkbox)](../checkbox/)
+*   [editable (dropdown)](../dropdown/)
+*   [editable (file)](../file/)
+*   [editable (group)](../group/)
+*   [editable (image)](../image/)
+*   [editable (message)](../message/)
+*   [editable (nicedit)](../nicedit/)
+*   [editable (password)](../password/)
+*   [editable (radio)](../radio/)
+*   [editable (relation)](../relation/)
+*   [editable (richtext)](../richtext/)
+*   [editable (text)](../text/)
+*   [editable (textarea)](../textarea/)
+*   [editable (thumbnail)](../thumbnail/)

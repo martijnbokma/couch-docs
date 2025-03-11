@@ -31,7 +31,7 @@ Beginning with Couch v1.3, we can tackle the problem this way:
    <cms:editable type='image' name='my_image' label='Photo' />
    ```
 
-2. Enclose the editable region defined above with a newly introduced tag - [**repeatable**](../../tags-reference/repeatable.html):
+2. Enclose the editable region defined above with a newly introduced tag - [**repeatable**](../../tags-reference/repeatable/):
 
    ```php
    <cms:repeatable name='my_multiple_images' >
@@ -60,7 +60,7 @@ This was the 'Repeatable regions' feature in action and I'm sure you'll agree th
 
 :::note[Supported Region Types]
 At this point you might want to ask if 'image' is the only type of editable region that can be repeated.
-Well, no! Of the 12 native types of editable regions in Couch, the [**repeatable**](../../tags-reference/repeatable.html) tag supports the following 8:
+Well, no! Of the 12 native types of editable regions in Couch, the [**repeatable**](../../tags-reference/repeatable/) tag supports the following 8:
 
 - **text**
 - **password**
@@ -75,12 +75,12 @@ Out of the remaining 4 types that are unsupported, the 'message' and 'group' typ
 However the 'richtext' and 'thumbnail' types are really far too important to be left out.
 The reason for the two being left out is rather technical however considering the importance that 'richtext' and 'thumbnail' types carry, Couch v1.3 offers us alternatives for both.
 
-Instead of using the 'richtext' type we can now use a new type of editable region named [**nicedit**](../../tags-reference/editable/nicedit.html).
+Instead of using the 'richtext' type we can now use a new type of editable region named [**nicedit**](../../tags-reference/editable/nicedit/).
 'nicedit' uses a very light-weight wysiwyg editor of the same name. It is not as full-featured as the CKEditor that 'richtext' uses however it gets the job done well and is light enough to be repeated any number of times on a single page (we'll find an example of its use below).
 
 **We can also use 'nicedit' type as a regular editable region (i.e. as the usual non-repeatable regions)**.
 
-As for the 'thumbnail' type, we do not have any substitute editable region for it but v1.3 has a new tag named [**thumbnail**](../../tags-reference/thumbnail.html) that does an identical job. Please see [**thumbnail**](../../tags-reference/thumbnail.html) documentation for this tag's use.
+As for the 'thumbnail' type, we do not have any substitute editable region for it but v1.3 has a new tag named [**thumbnail**](../../tags-reference/thumbnail/) that does an identical job. Please see [**thumbnail**](../../tags-reference/thumbnail/) documentation for this tag's use.
 :::
 
 ## Repeating Multiple Regions Together
@@ -106,7 +106,7 @@ This is ideal for inputting tabular data where each row can represent a table's 
 :::note[Column Width Control]
 Since all the editable regions forming the 'repeatable unit' appear side-by-side in a single row, you'll want to have more control over how wide individual region appears in a row.
 
-For this purpose, all editable regions in Couch v1.3 (when being used within the [**repeatable**](../../tags-reference/repeatable.html) tag) now support a `col_width` parameter that sets how wide the containing column of the region will be.
+For this purpose, all editable regions in Couch v1.3 (when being used within the [**repeatable**](../../tags-reference/repeatable/) tag) now support a `col_width` parameter that sets how wide the containing column of the region will be.
 Additionally, the 'image' as well as the 'file' types also support an `input_width` parameter that sets the width of the textbox the two regions display.
 
 Please take a look at the definition of the 'nicedit' type in the code above for an example of the use of these new parameters.
@@ -116,7 +116,7 @@ Please take a look at the definition of the 'nicedit' type in the code above for
 
 With the definition and data entry of the repeatable regions completed, now comes the time to display the inputted data on the front-end of our site.
 
-Since the repeatable editable regions now actually form a 'composite' entry (i.e. do not have a single value), we have to use a new tag named [**show_repeatable**](../../tags-reference/show_repeatable.html) as a helper to make the individual values available to us.
+Since the repeatable editable regions now actually form a 'composite' entry (i.e. do not have a single value), we have to use a new tag named [**show_repeatable**](../../tags-reference/show_repeatable/) as a helper to make the individual values available to us.
 
 The following snippet placed in the page_view of our template will display the data contained within each 'cell' of each 'row' of our repeatable regions defined above:
 
@@ -128,8 +128,8 @@ The following snippet placed in the page_view of our template will display the d
 </cms:show_repeatable>
 ```
 
-Please note that the [**show_repeatable**](../../tags-reference/show_repeatable.html) tag has to be given the name associated with a [**repeatable**](../../tags-reference/repeatable.html) tag (take care of using the quotes).
-It iterates through each row of regions in the set making available the values within each constituent region. These values then can be displayed using the regular [**show**](../../tags-reference/show.html) tag.
+Please note that the [**show_repeatable**](../../tags-reference/show_repeatable/) tag has to be given the name associated with a [**repeatable**](../../tags-reference/repeatable/) tag (take care of using the quotes).
+It iterates through each row of regions in the set making available the values within each constituent region. These values then can be displayed using the regular [**show**](../../tags-reference/show/) tag.
 
 Tag 'show_repeatable' sets two variables of its own - 'k_count' and 'k_total_records' as it iterates through the rows. It accepts a parameter named 'startcount' that can be set to specify the start value of 'k_count' (default value being '1'). Following is the same snippet as above with the parameters and variables used.
 

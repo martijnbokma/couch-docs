@@ -11,18 +11,18 @@ In such cases, you'd additionally also wish to make this access temporary i.e. t
 
 A similar requirement is as follows - You have a eBay affiliate website which lists several eBay products. A visitor upon clicking a product link is redirected to the eBay site. However, you do not wish the links displayed on your website to reveal to anyone, prima-facie, that they'll lead to eBay.
 
-You can use Couch's [__*cloak_url*__](../../tags-reference/cloak_url.html) tag to do all the above very easily.
+You can use Couch's [__*cloak_url*__](../../tags-reference/cloak_url/) tag to do all the above very easily.
 
 :::note
-This feature was added to augment the [**PayPal button**](../paypal.html) functionality by providing secure and controlled access to the downloadable digital products being sold. However it can be used with any other links that have similar needs.
+This feature was added to augment the [**PayPal button**](../paypal/) functionality by providing secure and controlled access to the downloadable digital products being sold. However it can be used with any other links that have similar needs.
 :::
 
 ## Cloaking Links to Webpages
 
-To get a gist of [__*cloak_url*__](../../tags-reference/cloak_url.html), suppose following is a link in your template:
+To get a gist of [__*cloak_url*__](../../tags-reference/cloak_url/), suppose following is a link in your template:
 
 ```html
-    <a href="http://www.google.com">Visit Site</a>
+    <a href="https://www.google.com">Visit Site</a>
 ```
 
 A visitor to your site will only see 'Visit Site' displayed but it cannot be made hidden from him that this link leads to Google (hovering over the link will show Google in the status bar, the source code will have Google's link etc.)
@@ -30,7 +30,7 @@ A visitor to your site will only see 'Visit Site' displayed but it cannot be mad
 Now consider the following modification made to the link above:
 
 ```php
-<a href="<cms:cloak_url link='http://www.google.com' redirect='1' />" >Visit Site</a>
+<a href="<cms:cloak_url link='https://www.google.com' redirect='1' />" >Visit Site</a>
 ```
 
 Take a look at the generated URL and how clicking it still leads to Google. This is classic 'URL cloaking'.
@@ -39,10 +39,10 @@ In the snippet above we set the _redirect_ parameter to '1' because the link bei
 
 ## Cloaking Links of Files
 
-Let us now see how to make [__*cloak_url*__](../../tags-reference/cloak_url.html) work with physical files.
+Let us now see how to make [__*cloak_url*__](../../tags-reference/cloak_url/) work with physical files.
 
 :::danger[Important]
-While the use of [__*cloak_url*__](../../tags-reference/cloak_url.html) with files will hide their real locations by obfuscating the links, you'll also want to ensure that the files are not directly accessible to anyone who happens to know their real locations (e.g. by intelligent guesswork). One way of doing this would be by using the `.htaccess` file.
+While the use of [__*cloak_url*__](../../tags-reference/cloak_url/) with files will hide their real locations by obfuscating the links, you'll also want to ensure that the files are not directly accessible to anyone who happens to know their real locations (e.g. by intelligent guesswork). One way of doing this would be by using the `.htaccess` file.
 
 Create a file named `.htaccess`, put the following lines into it and place it within the folder that will house the protected files:
 
@@ -75,7 +75,7 @@ It is always a good idea to use `<cms:show k_admin_link/>` to output the full UR
 ## Forcing Download
 
 If the file cloaked above was a zip file, the browser would have displayed the familiar dialog-box prompting for the download location.
-This is because [__*cloak_url*__](../../tags-reference/cloak_url.html) tries to figure out the mime type of the linked file and accordingly asks the browser to either display the file directly or prompt for download.
+This is because [__*cloak_url*__](../../tags-reference/cloak_url/) tries to figure out the mime type of the linked file and accordingly asks the browser to either display the file directly or prompt for download.
 
 If you'd rather have the download box shown for all types of files, set the _force_download_ parameter to '1'.
 Thus the following link will always force the user to download the image file:
@@ -83,7 +83,7 @@ Thus the following link will always force the user to download the image file:
 ```php
 <a href="
     <cms:cloak_url
-    link='http://yoursite.com/couch/uploads/file/secure/test.jpg'
+    link='https://yoursite.com/couch/uploads/file/secure/test.jpg'
     force_download='1'
     />
 ">Test Link</a>
@@ -97,7 +97,7 @@ Thus to allow a link to be valid for only 24 hours, the following snippet can be
 ```php
 <a href="
     <cms:cloak_url
-    link="http://yoursite.com/couch/uploads/file/secure/test.jpg"
+    link='https://yoursite.com/couch/uploads/file/secure/test.jpg'
     force_download='1'
     expiry='86400'
     />
@@ -108,14 +108,14 @@ Where 86400 is, of course, the number of seconds in 24 hours (24 * 60 * 60).
 
 ## Allowing Only Registered Users to Access Links
 
-If you have gone through the [**Users and Access Control**](../users.html) section, you'll recall that Couch allots every visitor a numeric value denoting his access level. This depends on the group the user belongs to - thus an _Administrator_ will have an access level of 7 while an _Authenticated User (Special)_ will have a value of 4. Users not logged-in have an access level of 0.
+If you have gone through the [**Users and Access Control**](../users/) section, you'll recall that Couch allots every visitor a numeric value denoting his access level. This depends on the group the user belongs to - thus an _Administrator_ will have an access level of 7 while an _Authenticated User (Special)_ will have a value of 4. Users not logged-in have an access level of 0.
 
 Links can be configured to be accessible by only users of at least a particular level by setting the _access_level_ parameter:
 
 ```php
 <a href="
     <cms:cloak_url
-    link="http://yoursite.com/couch/uploads/file/secure/test.jpg"
+    link='https://yoursite.com/couch/uploads/file/secure/test.jpg'
     force_download='1'
     access_level='4'
     />
@@ -129,7 +129,7 @@ To prompt them to login to download the file, set the _prompt_login_ parameter t
 ```php
 <a href="
     <cms:cloak_url
-    link="http://yoursite.com/couch/uploads/file/secure/test.jpg"
+    link='https://yoursite.com/couch/uploads/file/secure/test.jpg'
     force_download='1'
     access_level='4'
     prompt_login='1'

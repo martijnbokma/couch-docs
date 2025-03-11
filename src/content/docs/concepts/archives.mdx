@@ -6,7 +6,7 @@ keywords: [archives, time periods, archive view, archive dates, CouchCMS archive
 ---
 
 For some types of templates, like _blog_ and _news_, it is useful to archive the cloned pages by certain time periods e.g. group together pages by years, months or days.
-[__*Archives*__](../../tags-reference/archives.html) tag is used to find out all the past time periods (years, months and days) during which atleast one page has been published.
+[__*Archives*__](../../tags-reference/archives/) tag is used to find out all the past time periods (years, months and days) during which atleast one page has been published.
 
 The following snippet will simply list all the monthly periods that contain at least one published page:
 
@@ -18,7 +18,7 @@ The following snippet will simply list all the monthly periods that contain at l
 
 :::note
 The *k_archive_date* variable is set in a machine readable format.
-The [__*date*__](../../tags-reference/date.html) tag converts it into a displayable format.
+The [__*date*__](../../tags-reference/date/) tag converts it into a displayable format.
 :::
 
 By default the archives tag will group together pages by month. You can set the _type_ parameter to either _yearly_, _monthly_ or _daily_ to specify the desired grouping. For example, the following snippet will create yearly archives of pages:
@@ -117,6 +117,6 @@ While for a daily period, the link would be:
 https://www.yoursite.com/blog/2010/07/31/
 ```
 
-By pointing your browser to these urls, you'll be accessing your _blog.php_ template in _archive-view_ (see: [**Views**](./views.html)).
-In this view, apart from other variables that you normally find set, Couch sets the *k_archive_date* and *k_next_archive_date* variables (see: [**Variables available in Views**](./variables-in-views.html)).
-It shouldn't be difficult to set up the [__*pages*__](../../tags-reference/pages.html) tag to list pages belonging the archive period by using these variables (see: [**Listing Pages**](./listing-pages.html)).
+By pointing your browser to these urls, you'll be accessing your _blog.php_ template in _archive-view_ (see: [**Views**](../views/)).
+In this view, apart from other variables that you normally find set, Couch sets the *k_archive_date* and *k_next_archive_date* variables (see: [**Variables available in Views**](../variables-in-views/)).
+It shouldn't be difficult to set up the [__*pages*__](../../tags-reference/pages/) tag to list pages belonging the archive period by using these variables (see: [**Listing Pages**](../listing-pages/)).

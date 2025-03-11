@@ -32,7 +32,7 @@ The only little difference in each is the part highlighted above. The `class="cu
 We can easily replace the static links in the menu by those of our new templates by using the Couch link tag.
 We have already encountered the link tag while configuring a previous section and know that we should always use this instead of hard coding links ourselves because it takes into account the prettyurls setting of the site and outputs links accordingly.
 
-Thus the modified code of the menu (we are modifying `blog.php`) will become -
+Thus the modified code of the menu (we are modifying `blog.php`) will become:
 
 ```diff lang="php" "<cms:link 'contact.php' />" "<cms:link 'blog.php' />" "<cms:link 'portfolio.php' />" "<cms:link 'about.php' />" "<cms:link 'index.php' />"
 <!-- Text Logo -->
@@ -320,6 +320,6 @@ With these changes, the CSS files should now load properly in all the templates.
 This brings us finally to the end of this tutorial ([Download the finished code](https://www.couchcms.com/docs/code/final.zip)).
 We started with a plain HTML template and transformed it into a dynamic, fully CMS enabled site that even the most tech-challenged client should be able to manage easily.
 The real beauty of all this was that we were able to accomplish it without writing any PHP at all (except for the two lines that remain the same for every template).
-There is a lot more that you can do with Couch. It is a highly flexible system and there are several ways of accomplishing the same thing in it. Please take a look at the [documentation](../../../../index.html) for a fuller treatment of all its features.
+There is a lot more that you can do with Couch. It is a highly flexible system and there are several ways of accomplishing the same thing in it. Please take a look at the [documentation](../../../) for a fuller treatment of all its features.
 
 Good-bye and relax! You are on the Couch now!

@@ -227,8 +227,8 @@ So if no page's data is associated with the address `http://www.mytestsite.com/b
 Not at all. We can use it to show a listing of all the pages cloned from the template or display information about this section or do whatever you wish.
 Couch, on its part, will signal to you whether or not a cloned page's data is available. This it does by setting up certain variables that you can test and take action accordingly.
 
-URLs of clonable templates that have the '`?p=n`' appended are considered by Couch to be the '`page-views`' (i.e. displaying cloned pages) while the URLs without this information are considered as being the '`list-views`' \[see [Views](../../../../concepts/views.html) in documentation\].
-In page-view, you'll find set a variable named `k_is_page` while in list-view a variable named `k_is_list` will be found set (see [Variables available in Views](../../../../concepts/variables-in-views.html)).
+URLs of clonable templates that have the '`?p=n`' appended are considered by Couch to be the '`page-views`' (i.e. displaying cloned pages) while the URLs without this information are considered as being the '`list-views`' [see [Views](../../../../concepts/views/) in documentation].
+In page-view, you'll find set a variable named `k_is_page` while in list-view a variable named `k_is_list` will be found set (see [Variables available in Views](../../../../concepts/variables-in-views/)).
 
 ### Using the conditionals
 
@@ -268,7 +268,7 @@ Couch has a very powerful feature that allows us to keep chunks of HTML code (al
 
 We'll use the embed tag to display `blog_list.html` in the list-view.
 Move `blog_list.html` into the snippets folder found within the couch folder (this is not mandatory, but files kept in this folder are kept safe from being accessed directly by the `.htaccess` file present within the folder and hence is desirable).
-See [embed](../../../../tags-reference/embed.html) tag for snippets folder customization instructions.
+See [embed](../../../../tags-reference/embed/) tag for snippets folder customization instructions.
 Now replace the silly message we were displaying in list-view with the following embed tag -
 
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-47.png)
@@ -288,7 +288,7 @@ The blog entry's title, the categories, date and number of comments need to be h
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-49.png)
 
 In the step where we decided on the number of editable regions to create, we had discussed that these items are present in other ways within a page and do not need the creation of editable regions to capture them.
-Take a look at the '[Variables available in Views](../../../../concepts/variables-in-views.html)' in the documentation for a list of variables that become available in the various views.
+Take a look at the '[Variables available in Views](../../../../concepts/variables-in-views/)' in the documentation for a list of variables that become available in the various views.
 
 :::tip
 You can use `<cms:dump_all />` or `<cms:dump />` to get a quick list of all the variables that are available for use at any particular place.
@@ -402,7 +402,7 @@ It will expand to reveal several advanced settings. A list of the virtual folder
 Select one, let us say '`clients`', and save.
 
 Now to display this folder in the blog entry -
-As you know, Couch provides information about the page being accessed by setting up variables. `k_page_foldertitle` is the variable that contains the title of the folder a cloned page resides in (remains blank if the page does not reside in any folder) \[see [Variables available in Views](../../../../concepts/variables-in-views.html)\].
+As you know, Couch provides information about the page being accessed by setting up variables. `k_page_foldertitle` is the variable that contains the title of the folder a cloned page resides in (remains blank if the page does not reside in any folder) [see [Variables available in Views](../../../../concepts/variables-in-views/)].
 
 :::tip
 Once again, when in any doubt about which variables are available for use, place `<cms:dump />` or `<cms:dump_all />` temporarily within the template. On accessing a page, these tags will spill out all the variables (along with their values) that are available.
@@ -432,7 +432,7 @@ We'd like to display '`Uncategorised`' for such pages that do not reside in any 
 To do so, instead of directly using the `k_page_foldertitle`, we'll use a variable of our own to display the folder title.
 
 :::note
-You might recall from the documentation that apart from the variables set up by Couch (the system variables that are all prefixed by a 'k\_'), we can define our own variables. \[see [Variables](../../../../concepts/variables.html)\]
+You might recall from the documentation that apart from the variables set up by Couch (the system variables that are all prefixed by a 'k\_'), we can define our own variables. [see [Variables](../../../../concepts/variables/)].
 :::
 
 If `k_page_foldertitle` is not blank, we'll set our variable to the folder title but if `k_page_foldertitle` is blank, we'll set it to '`Uncategorised`'. This is how it can be done -
@@ -449,4 +449,4 @@ That about wraps up the page-view part of `blog.php` (one that displays a single
 A few minor points still remain unattended but we'll get back to them after we configure the other parts.
 Let us now move on to the list-view of `blog.php` - where we display a paginated list of all cloned pages i.e. blog entries.
 
-[Diving deep - the Blog (Part 2)](../blog-2.html)
+[Diving deep - the Blog (Part 2)](../blog-2/)

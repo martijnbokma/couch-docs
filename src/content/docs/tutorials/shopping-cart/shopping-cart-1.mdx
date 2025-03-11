@@ -5,12 +5,12 @@ description: A comprehensive tutorial on implementing a shopping cart in CouchCM
 keywords: [shopping cart, CouchCMS, e-commerce, PayPal, products, variants, AJAX, tutorial]
 ---
 
-import { Steps } from '@astrojs/starlight/components';
+import { Steps, Card } from '@astrojs/starlight/components';
 
 ## Table of Contents
 
 *   [Creating products](#creating-the-products)
-*   [Creating product variants (or Options)](#product-options-or-variants-)
+*   [Creating product variants (or Options)](#creating-the-products)
 *   [Listing products](#listing-products)
 *   [The Cart](#core-actions-of-cart)
     *   [Adding item to cart](#add-item-to-cart)
@@ -20,11 +20,12 @@ import { Steps } from '@astrojs/starlight/components';
     *   [Displaying global cart values](#displaying-global-cart-values)
     *   [Checking out](#checkout)
 *   [AJAXifying the cart](#ajaxifying-the-cart)
-*   [List of all tags](#appendix)
 
 --------------------------------
 
-Please refer to [Core Concepts - CouchCart](../../../concepts/couchcart.html) for additional information regarding CouchCart.
+<Card icon="star" title="CouchCart">
+Please refer to [Core Concepts - CouchCart](../../../concepts/couchcart/) for additional information regarding **CouchCart**.
+</Card>
 
 As more and more people turn to the Internet for buying things, even simpler sites now regularly require some kind of e-commerce facility built into them.
 
@@ -42,7 +43,7 @@ Before commencing, you might want to take a look at what our finished site would
 Please keep in mind that the design has been kept intentionally simple to focus only on the specific functionality added by the cart component to CouchCMS. Coupled with the existing features of Couch (e.g. Categories, menus, Related Pages etc.) a much more full-featured site can easily be created.
 
 :::note
-CouchCart builds upon the existing features of Couch, as such a basic familiarity with Couch's core concepts is assumed for one to understand fully the discussion that follows. If you are new to Couch, please first take some time to explore how things work in Couch. Our [**step-by-step tutorial**](../../building-a-real-world-site/getting-started.html) showing how to build a site from scratch using Couch is a good place to begin with.
+CouchCart builds upon the existing features of Couch, as such a basic familiarity with Couch's core concepts is assumed for one to understand fully the discussion that follows. If you are new to Couch, please first take some time to explore how things work in Couch. Our [**step-by-step tutorial**](../../building-a-real-world-site/getting-started/) showing how to build a site from scratch using Couch is a good place to begin with.
 :::
 
 Before we dive right into the thick of action, a couple of things need your special consideration:
@@ -980,6 +981,9 @@ So, there we have it. A fully functional shopping cart that required only minima
 
 Of course, there is more to an e-commerce site than just a shopping cart :-)
 No e-commerce site can do without functions like discounts, shipping charges and taxes.
-We'll get all that done in [**part II of this topic**](shopping-cart-2.html).
+We'll get all that done in [**part II of this topic**](../shopping-cart-2/).
 
-Please refer to [Core Concepts - CouchCart](../../../concepts/couchcart.html) for additional information regarding CouchCart.
+
+<Card icon="star" title="CouchCart">
+Please refer to [Core Concepts - CouchCart](../../../concepts/couchcart/) for additional information regarding **CouchCart**.
+</Card>

@@ -29,7 +29,7 @@ Couch's answer is to 'clone' the new page out of the original _blog.php_ templat
 
 To create cloned pages out of a template, the template first needs to be marked as being _clonable_.
 
-A template can be marked as being clonable by using the [**template**](../../tags-reference/template.html) tag somewhere within it and setting its _clonable_ parameter to '1'.
+A template can be marked as being clonable by using the [**template**](../../tags-reference/template/) tag somewhere within it and setting its _clonable_ parameter to '1'.
 Place the following snippet somewhere at the beginning of the template (within the HEAD tag will do just fine) -
 
 ```php
@@ -108,7 +108,7 @@ https://www.yoursite.com/blog.php?p=13
 is a totally different page.
 
 :::note
-It becomes even more distinct when we use pretty urls (see [**Pretty URLs**](../pretty-urls.html)).
+It becomes even more distinct when we use pretty urls (see [**Pretty URLs**](../pretty-urls/)).
 Then the URLs for the above two pages will become -
 
 ```txt
@@ -170,6 +170,6 @@ Couch indicates to your template which 'view' it is executing in by setting cert
 Your template can test these variables and display whatever you wish accordingly (see [**Variables available in Views**](../variables-in-views.html)).
 
 :::danger[Important]
-If you have turned on the [**Pretty URLs**](../pretty-urls.html) feature, every time you declare a template to be clonable, make sure to recreate your `.htaccess` file else the cloned pages will NOT be accessible.
+If you have turned on the [**Pretty URLs**](../pretty-urls/) feature, every time you declare a template to be clonable, make sure to recreate your `.htaccess` file else the cloned pages will NOT be accessible.
 As a temporary measure, you can turn off Pretty URLs in `_config.php` till you are done with the testing.
 :::

@@ -38,7 +38,7 @@ As we'll see later, Couch also provides you all necessary security tools to safe
 Instead of dryly documenting the new tags, I'll walk you through a real-world example.
 
 :::danger[Important]
-The discussion that follows assumes that you're already conversant with Couch's [**form**](../forms.html) and [**editable-regions**](../editable-regions.html) concepts.
+The discussion that follows assumes that you're already conversant with Couch's [**form**](../forms/) and [**editable-regions**](../editable-regions/) concepts.
 If you are new to Couch, please take some time to first study those as all the new functions discussed here build upon them.
 :::
 
@@ -83,8 +83,8 @@ If, for a moment, we ignore the requirement of persisting the submitted front-en
 
 <Steps>
 
-1.  The [__*cms:form*__](../../tags-reference/form.html) and [__*cms:input*__](../../tags-reference/input.html) tags to implement the front-end form.
-2.  A clonable template with [__*cms:editable*__](../../tags-reference/editable.html) tags to hold data.
+1.  The [__*cms:form*__](../../tags-reference/form/) and [__*cms:input*__](../../tags-reference/input/) tags to implement the front-end form.
+2.  A clonable template with [__*cms:editable*__](../../tags-reference/editable/) tags to hold data.
 
 </Steps>
 
@@ -94,7 +94,7 @@ I mean, though the form can be used to submit data and the editable regions can 
 This is where the new 'databound form' feature comes in.
 You see, this simply connects an existing front-end form with existing back-end editable regions (in other words - 'binds' a Couch form with Couch database i.e. editable regions. This, incidentally, also explains why we chose to call this feaure 'DataBound Forms').
 
-So, when working with databound forms, we always start off with two concepts that are already well known to us - [**form**](./forms.html) and [**editable regions**](./editable-regions.html).
+So, when working with databound forms, we always start off with two concepts that are already well known to us - [**form**](../forms/) and [**editable regions**](../editable-regions/).
 This is the form we'll be working on (kindly provided by [@cheesypoof](https://www.couchcms.com/forum/memberlist.php?mode=viewprofile&u=11919)) -
 
 ![DataBound Forms](../../../assets/img/contents/databound-forms-1.png)
@@ -182,7 +182,7 @@ With the 'data' component completed, time to move to the 'form' component.
 
 ### 2. The 'form' part of DataBound forms
 
-It should be trivial to 'couchify' the plain HTML form we have in our template (as explained [here](../forms.html)).
+It should be trivial to 'couchify' the plain HTML form we have in our template (as explained [here](../forms/)).
 
 Following is what we end up with -
 
@@ -359,7 +359,7 @@ So, actually what we are seeing on the front-end form are the very editable regi
 
 Test the form out. All the validations, requirements etc. that we defined for the editable regions will be enforced on the front-end too (not surprising as these actually \*are\* the editable regions).
 
-When all the inputs are filled with proper data, the form submission succeeds and the *&lt;cms:if k\_success &gt;* block executes.
+When all the inputs are filled with proper data, the form submission succeeds and the *`<cms:if k_success >`* block executes.
 However, we haven't placed anything there. Let us do that in the final modification
 
 #### c. Persist submitted values on successful form submission
@@ -529,7 +529,6 @@ As a solution
 </Steps>
 :::
 
-
 ### Security
 
 OK, so we have a fully functional job application form on our website.
@@ -555,7 +554,7 @@ Decide upon a question simple enough for a human to answer but difficult for a b
 This webpage has some interesting sample questions that should give us an idea about the kind of questions that are effective.
 [Anti-Spam Questions Your Spam Bot Can't Answer](http://www.reverbstudios.ie/2649/anti-spam-questions-your-spam-bot-cant-answer/)
 
-An excerpt from it -
+An excerpt from it:
 
 *   What is the address of this website?
 *   What are the last 2 words in this question?
@@ -597,14 +596,14 @@ Spam submitted by real humans is a different prospect altogether.
 
 Our form was intended to be used by humans, right?. So really there is little we can 'directly' do to stop someone who decides to use the form for submitting what amounts to spam for us.
 Indirectly, however, there are services like akismet etc. that can be used to examine the submission and report if it could be considered as spam or not.
-One such service is provided by [StopForumSpam](http://http://www.stopforumspam.com/). This site mantains a list of known spammers as identified by the emails, usernames and IP addresses they tend to use while spamming around the Internet.
+One such service is provided by [StopForumSpam](https://www.stopforumspam.com/). This site mantains a list of known spammers as identified by the emails, usernames and IP addresses they tend to use while spamming around the Internet.
 The way it works is that upon receiving a form submission, we send the submitted email and username (if any - our form does not have this but others like registeration forms etc. will have one) to stopforumspam.com. The IP address gets send automatically.
 The service responds back with whether or not the email, username and IP address appears in its list of known spammers.
 
 The idea is simple but I can vouch for its effectiveness as I've seen it cut the, literally, hundreds of daily spam registrations on our forum to nearly zero.
 
 Incorporating this spam-check in our form couldn't be any simpler. We have a new tag named 'check_spam' to handle that.
-Just before we persist a successful form submission in the database by using '*cms:db_persist_form*', we place the '*check_spam*' tag like this -
+Just before we persist a successful form submission in the database by using '*cms:db_persist_form*', we place the '*check_spam*' tag like this:
 
 ```diff lang:php
 <cms:if k_success >
@@ -781,7 +780,7 @@ Visit the admin-panel and access the 'applications.php' template. Here is what s
 
 That is our snippet in action. Not doing anything useful though, I agree, but the point to note is that it has completely replaced the default listing shown by Couch.
 
-Place a [**cms:dump**](../../tags-reference/dump.html) tag in the snippet and you'll find that for all practical purposes our code thinks it is executing in the 'home-view' of masterpage 'applications.php'.
+Place a [**cms:dump**](../../tags-reference/dump/) tag in the snippet and you'll find that for all practical purposes our code thinks it is executing in the 'home-view' of masterpage 'applications.php'.
 
 ![DataBound Forms](../../../assets/img/contents/databound-forms-6.png)
 
@@ -790,7 +789,7 @@ Create a table, create a stacked display, show images, use custom CSS, JS ... wh
 Everything that can be used on the front-end can now be used in identical fashion on the backend.
 
 :::danger[Caveat]
-One little thing to keep in mind is that, unlike the front-end where our code controls the output of the entire page i.e. from &lt;HTML&gt; to &lt;/HTML&gt;, the snippet we use in the admin panel is constrained within an existing DIV -
+One little thing to keep in mind is that, unlike the front-end where our code controls the output of the entire page i.e. from `<html>` to `</html>`, the snippet we use in the admin panel is constrained within an existing DIV -
 
 ```php
 <div id="admin-wrapper-body">
@@ -854,7 +853,7 @@ $FUNCS->register_admin_pageview( 'application.php', 'my_edit.html', 1 ); // '1' 
 ```
 
 As with the custom listing, Couch forgoes everything it normally does while rendering the edit screen and delegates the process to our snippet.
-If we place a [**cms:dump**](../../tags-reference/dump.html) in our snippet, we'll find that our code thinks it is executing in a 'page-view' (where the current page is the one being edited).
+If we place a [**cms:dump**](../../tags-reference/dump/) in our snippet, we'll find that our code thinks it is executing in a 'page-view' (where the current page is the one being edited).
 
 So, although we can do anything we wish through our snippet it is only fair to assume that we'd want to provide the editing functionality here (after all it is the edit screen). If we take a look at the code used by Couch's default edit screen (using browser tools), we'll find that it uses an HTML form for the purpose. That is hardly surprising as anything related to editing database fields in a browser invariably has to use a form.
 Speaking of which, remember our databound form? I think you get the connection - yes, we'll use the databound form in our snippet to handle page editing.

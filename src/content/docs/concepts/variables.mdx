@@ -11,7 +11,7 @@ Don't get put off by that programming term. A variable is simply a place that ca
 
 ## Setting Variables
 
-You can use the Couch tag named [**set**](../../tags-reference/set.html) to place values within variables. For example:
+You can use the Couch tag named [**set**](../../tags-reference/set/) to place values within variables. For example:
 
 ```php
 <cms:set my_message='Hello World' />
@@ -28,7 +28,7 @@ For example, in the following snippet:
 <cms:show 'Hello' />
 ```
 
-We are passing 'Hello' as the parameter for [**show**](../../tags-reference/show.html) to display. If instead we do the following:
+We are passing 'Hello' as the parameter for [**show**](../../tags-reference/show/) to display. If instead we do the following:
 
 ```php
 <cms:show my_message />
@@ -46,7 +46,7 @@ For example:
 <cms:show my_message />
 ```
 
-[**show**](../../tags-reference/show.html) will now display 'Salut!'.
+[**show**](../../tags-reference/show/) will now display 'Salut!'.
 
 ## Types of Variables
 
@@ -72,14 +72,14 @@ And the following will output the link (URL) of the page:
 In the examples above, _k_template_name_ and _k_page_link_ are variables that have been set by Couch.
 
 :::tip
-See [**Variables Available in Views**](./variables-in-views.html) for a complete overview of system variables.
+See [**Variables Available in Views**](../variables-in-views/) for a complete overview of system variables.
 :::
 
 ### 2. Tag-Specific Variables
 
 A Paired tag usually sets certain variables that pertain to the task the tag does. These variables remain available only within the start-tag and the end-tag.
 
-For example - we have already seen how the [**repeat**](../../tags-reference/repeat.html) tag simply repeats the contents enclosed within it the number of times specified by the _count_ parameter. At each iteration, the [**repeat**](../../tags-reference/repeat.html) tag sets a variable named _k_count_ that is set to the count of the current iteration:
+For example - we have already seen how the [**repeat**](../../tags-reference/repeat/) tag simply repeats the contents enclosed within it the number of times specified by the _count_ parameter. At each iteration, the [**repeat**](../../tags-reference/repeat/) tag sets a variable named _k_count_ that is set to the count of the current iteration:
 
 ```php
 <cms:repeat count='4'>
@@ -92,4 +92,4 @@ The snippet above will output:
 0 1 2 3
 ```
 
-Having now seen what variables are, we can move on to complete the previous topic - [**Setting Tag Parameters**](../setting-parameters.html).
+Having now seen what variables are, we can move on to complete the previous topic - [**Setting Tag Parameters**](../setting-parameters/).

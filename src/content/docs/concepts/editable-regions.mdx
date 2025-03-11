@@ -25,7 +25,7 @@ As an example, suppose the following is a chunk of HTML from a template named `p
 ```
 
 The highlighted part is the description of some property. Suppose you wish to allow the user to edit this part himself.
-To do so, simply enclose this part by an [__*editable*__](../../tags-reference/editable.html) tag:
+To do so, simply enclose this part by an [__*editable*__](../../tags-reference/editable/) tag:
 
 ```php title="property.php"
 <div class="prop_desc">
@@ -41,7 +41,7 @@ To do so, simply enclose this part by an [__*editable*__](../../tags-reference/e
 </div>
 ```
 
-[__*Editable*__](../../tags-reference/editable.html) tag accepts several parameters but only one is mandatory - _name_. It has to be unique within a template.
+[__*Editable*__](../../tags-reference/editable/) tag accepts several parameters but only one is mandatory - _name_. It has to be unique within a template.
 
 Now, while being logged in as the super-admin, visit the template in your browser.
 For example, if the template was `property.php`, visit `https://www.yoursite.com/property.php`
@@ -53,7 +53,7 @@ At the risk of repeating ourselves - for your changes to show up in the admin pa
 Now visit the admin panel and access `property.php` and you'll find that Couch has created a textarea for the editable region.
 
 :::tip
-If you enclose some text between the opening and closing [__*Editable*__](../../tags-reference/editable.html) tags, this will cause Couch to display the text as default text within the editable region. Sometimes you do not wish have any default text displayed at all. For such cases, you can use the [__*Editable*__](../../tags-reference/editable.html) tag as a self closing tag:
+If you enclose some text between the opening and closing [__*Editable*__](../../tags-reference/editable/) tags, this will cause Couch to display the text as default text within the editable region. Sometimes you do not wish have any default text displayed at all. For such cases, you can use the [__*Editable*__](../../tags-reference/editable/) tag as a self closing tag:
 
 ```php
 <cms:editable name='prop_desc' />
@@ -114,9 +114,9 @@ There are four ways the contents of an editable region defined within a template
 
     You might recall from our previous discussion about tags that, every tag after executing its function returns back it output (which could be a blank).
 
-    The [__*editable*__](../../tags-reference/editable.html) tag, as its function, checks if the editable region has not already been created in the Admin Panel. If not, it creates one. After executing its function, the [__*editable*__](../../tags-reference/editable.html) tag fetches back the contents of the editable region and returns it as its output.
+    The [__*editable*__](../../tags-reference/editable/) tag, as its function, checks if the editable region has not already been created in the Admin Panel. If not, it creates one. After executing its function, the [__*editable*__](../../tags-reference/editable/) tag fetches back the contents of the editable region and returns it as its output.
 
-    Thus you can see that in the resulting webpage, the [__*editable*__](../../tags-reference/editable.html) tags are replaced by the current contents of the associated editable regions.
+    Thus you can see that in the resulting webpage, the [__*editable*__](../../tags-reference/editable/) tags are replaced by the current contents of the associated editable regions.
 
 2. **As Variables Automatically Set by Couch**
 
@@ -148,11 +148,11 @@ There are four ways the contents of an editable region defined within a template
 
 ## Separating the Definition of Editable Region from Its Display
 
-In the examples above we have been creating the editable regions exactly at the spot where we wanted their outputs to appear. In effect we have been using the [__*editable*__](../../tags-reference/editable.html) tag to both define the editable regions as well as to display their contents.
+In the examples above we have been creating the editable regions exactly at the spot where we wanted their outputs to appear. In effect we have been using the [__*editable*__](../../tags-reference/editable/) tag to both define the editable regions as well as to display their contents.
 
 In complex templates (_clonable_ templates, specifically) with several editable regions it is sometimes more manageable to define all the editable regions together at a single place.
 
-For such cases, we can use the [__*editable*__](../../tags-reference/editable.html) tag to only define the editable regions and use the [__*show*__](../../tags-reference/show.html) tag to display the contents.
+For such cases, we can use the [__*editable*__](../../tags-reference/editable/) tag to only define the editable regions and use the [__*show*__](../../tags-reference/show/) tag to display the contents.
 A good practice is to define together all editable regions used by the template somewhere at the very top of the template:
 
 ```php title="index.php"
@@ -162,11 +162,11 @@ A good practice is to define together all editable regions used by the template 
 </cms:template>
 ```
 
-The editable tags themselves can be enclosed within [__*template*__](../../tags-reference/template.html) tag (more about it in a little while) because this is a key tag in clonable templates and also because this tag has no output of its own and thus it 'swallows up' the default output of the enclosed editable tags, which otherwise would have appeared on the webpage.
+The editable tags themselves can be enclosed within [__*template*__](../../tags-reference/template/) tag (more about it in a little while) because this is a key tag in clonable templates and also because this tag has no output of its own and thus it 'swallows up' the default output of the enclosed editable tags, which otherwise would have appeared on the webpage.
 
-If you do not wish to enclose the [__*editable*__](../../tags-reference/editable.html) tags within [__*template*__](../../tags-reference/template.html) tag, set the _hidden_ parameter of each to '1' and this will turn off the output of the tags.
+If you do not wish to enclose the [__*editable*__](../../tags-reference/editable/) tags within [__*template*__](../../tags-reference/template/) tag, set the _hidden_ parameter of each to '1' and this will turn off the output of the tags.
 
-The content of these editable regions can be displayed where ever required by using the [__*show*__](../../tags-reference/show.html) tag:
+The content of these editable regions can be displayed where ever required by using the [__*show*__](../../tags-reference/show/) tag:
 
 ```php
 <cms:show body />
