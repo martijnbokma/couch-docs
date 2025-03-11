@@ -13,7 +13,9 @@ export default defineConfig({
 	base: '/couch-docs',
 	integrations: [
 		starlight({
-			// plugins: [starlightThemeObsidian()],
+			plugins: [starlightLinksValidator({
+				errorOnRelativeLinks: false
+			})],
 			title: 'CouchCMS Docs',
 			customCss: [
 				'./src/assets/styles/custom.css'
