@@ -1,0 +1,33 @@
+---
+title: Upgrading
+category: getting-started
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+To upgrade from a previous version of CouchCMS to version 2.0, follow these steps:
+
+<Steps>
+
+1. **Extract Files**: Unzip `couchcms-2.0.zip` to your local system.
+   - Inside the extracted `couchcms-2.0` folder, locate the `couch` directory.
+   - Within this `couch` directory:
+     - Delete the `snippets` and `uploads` folders.
+     - Remove the `config.example.php` file.
+
+2. **Prepare Existing Installation**: Rename the `ckeditor` folder in your current Couch installation's `includes` directory to `ckeditor_old` or remove it entirely.
+
+3. **Upload New Files**: Transfer the remaining contents of the `couch` directory from step 1 to your existing installation's `couch` directory (or its renamed equivalent).
+   - This process will overwrite all existing Couch core files with the new version while keeping any custom additions in the `snippets` and `uploads` folders intact.
+
+4. **Commercial License Update**: If your website has a commercial license, add the following line to your site's `couch/config.php` file:
+
+   ```php
+   define( 'K_PAID_LICENSE', 1 );
+   ```
+
+</Steps>
+
+:::danger[IMPORTANT]
+If you have renamed the `index.php` file for security reasons, ensure you delete the existing renamed `index.php` and rename the new `index.php` to your preferred name.
+:::

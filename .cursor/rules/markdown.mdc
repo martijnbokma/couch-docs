@@ -1,0 +1,288 @@
+---
+description: Markdown rules for CouchCMS Documentation
+globs: *.mdc
+alwaysApply: false
+tags: [CouchCMS, Documentation]
+priority: 3
+version: 1.0.0
+---
+
+# CouchCMS Documentation Style Guide
+
+This comprehensive style guide outlines all rules for writing CouchCMS documentation.  
+The primary goals are consistency, readability, maintainability, and accessibility.
+
+---
+
+## 1. Document Structure
+
+### 1.1 Required Frontmatter
+
+Every document MUST begin with frontmatter. Below is an example of the required fields:
+
+```
+---
+title: Document Title
+description: A clear, concise description of the document
+keywords: [keyword1, keyword2, keyword3]
+category: concept
+author: Author Name
+date: YYYY-MM-DD
+priority: 3 # Priority level from 1 (highest) to 5 (lowest)
+version: Major.Minor.Patch # Example: 1.0.0
+---
+```
+
+#### Notes:
+
+- `author` and `date` are optional but recommended for tracking purposes.
+- `priority` indicates the importance of the document (1 = critical; 5 = low priority).
+
+### 1.2 Required Components
+
+Import necessary components immediately after the frontmatter:
+
+```
+import { Steps } from '@astrojs/starlight/components';
+```
+
+---
+
+## 2. Content Formatting
+
+### 2.1 Headings
+
+- Use **Title Case** for all headings.
+- Leave one blank line before and after headings.
+- Follow proper hierarchy:
+
+```
+# Main Title
+
+## Major Section
+
+### Subsection
+
+#### Detail Section
+```
+
+### 2.2 Lists and Steps
+
+Use appropriate list format based on content:
+
+#### Unordered Lists:
+
+```
+- Main point
+- Another point
+  - Sub-point
+```
+
+#### Ordered Lists:
+
+```
+1. First step
+2. Second step
+   1. Sub-step
+```
+
+#### Steps Component (preferred for instructions):
+
+```
+<Steps>
+1. **First Step**
+   Explanation...
+
+2. **Second Step**
+   Details...
+</Steps>
+```
+
+### 2.3 Code Elements
+
+#### Inline Code:
+
+- Use single backticks (`) for:
+  - Code elements
+  - File names
+  - Functions
+  - Tags
+  - Technical terms
+  - URLs in text
+- Use underscores (\_) for:
+  - Field names (e.g., _title_, _name_)
+  - System variables (e.g., _k_search_content_, _k_page_title_)
+  - Parameters (e.g., _masterpage_, _limit_)
+- Use double backticks for nested code: `` `code` ``
+
+#### Code Blocks:
+
+- Always specify the language (e.g., `php`, `javascript`, `txt` for plain text)
+- Add descriptive titles when appropriate
+- Maintain exact code content and indentation
+- Use `txt` for URLs in code blocks
+
+Example:
+
+```php
+function example() {
+    // Code here
+}
+```
+
+For URLs in code blocks:
+
+```txt
+https://example.com/path/
+```
+
+For partial code:
+
+```php
+// ... existing code ...
+```
+
+### 2.4 Admonitions
+
+Admonitions should be used to highlight important information:
+
+```
+:::tip
+Best practices and helpful suggestions
+:::
+
+:::note
+Additional information and context
+:::
+
+:::caution
+Prerequisites and important assumptions
+:::
+
+:::danger[Important]
+Critical security or implementation warnings
+:::
+```
+
+### 2.5 Links and Media
+
+#### Links:
+
+- Internal links should use relative paths: `[Text](mdc:../path)`.
+- External links should include full URLs: `[Text](https://example.com)`.
+
+#### Images:
+
+- Always include alt text for accessibility: `![Alt Text](mdc:path/image.jpg)`.
+
+#### URLs in Code Blocks:
+
+Use plain text formatting for URLs in code examples:
+
+```
+https://example.com/path/
+```
+
+---
+
+## 3. Quality Standards
+
+### 3.1 Consistency Requirements
+
+Ensure uniformity in the following areas:
+
+- Spacing between elements (e.g., blank lines around headings).
+- Proper indentation for nested lists and code blocks.
+- Standardized naming conventions for files, variables, and components.
+
+### 3.2 Documentation Checklist
+
+✅ Complete frontmatter fields  
+✅ Required components imported after frontmatter  
+✅ Headings formatted in Title Case  
+✅ Code blocks include language specification  
+✅ Links are valid and correctly formatted  
+✅ Images have descriptive alt text  
+✅ Admonitions used appropriately  
+✅ Consistent spacing throughout
+
+---
+
+## 4. Technical Guidelines
+
+### 4.1 File References
+
+Follow these rules when referencing files:
+
+- Always use backticks for filenames (`file.php`).
+- Use forward slashes (`/`) for paths.
+- Prefer relative internal paths over absolute ones.
+- Include file sizes when relevant (e.g., "image.jpg - 45 KB").
+
+### 4.2 HTML Elements in Markdown
+
+When using HTML elements within Markdown:
+
+- Wrap tags in backticks (`<div>`).
+- Use descriptive attributes where necessary (e.g., `<img alt="Description">`).
+- Consistently format nested elements like `<dl>`, `<dt>`, and `<dd>`.
+
+---
+
+## 5. Accessibility Guidelines
+
+To ensure your documentation is accessible to all users:
+
+1. **Alt Text**: Provide meaningful descriptions for images.
+2. **Headings**: Use logical hierarchy to improve navigation.
+3. **Links**: Avoid vague link text like "click here"; use descriptive phrases instead.
+4. **Color Contrast**: Avoid relying solely on color to convey meaning.
+
+---
+
+## 6. Common Corrections
+
+Fix common spelling mistakes and maintain consistent grammar across all documentation:
+
+| Incorrect   | Correct      |
+| ----------- | ------------ |
+| neccessary  | necessary    |
+| additionaly | additionally |
+| permenantly | permanently  |
+| fidelety    | fidelity     |
+| incidently  | incidentally |
+| seperate    | separate     |
+
+---
+
+## 7. Content Preservation Rules
+
+### Code Preservation:
+
+1. NEVER modify existing code in code blocks unless explicitly instructed.
+2. Keep comments exactly as they are.
+3. Preserve variable names, values, spacing, and indentation.
+
+### Text Preservation:
+
+1. Maintain original technical terminology.
+2. Do not rewrite or rephrase existing sentences without explicit instruction.
+3. Keep URLs and references intact.
+
+---
+
+## 8. Recommended Tools & Automation
+
+To streamline compliance with these guidelines:
+
+1. **Linting Tools**: Use tools like [Markdownlint](https://github.com/DavidAnson/markdownlint) to automate style checks.
+2. **CI/CD Integration**: Set up automated checks in your repository to validate Markdown syntax during pull requests.
+3. **Example Files**: Provide sample Markdown files that adhere to these rules as templates for contributors.
+
+---
+
+## Conclusion
+
+By following this style guide, you can ensure that CouchCMS documentation remains consistent, readable, accessible, and technically accurate across all files.
+
+---

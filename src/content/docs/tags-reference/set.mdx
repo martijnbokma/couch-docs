@@ -1,0 +1,67 @@
+---
+title: set
+category: tag
+description: The set tag creates or updates variables with specified values, supporting different scopes and nested tag usage.
+keywords: [set, tag, PHP, variables, scope, data storage, template variables]
+---
+
+The **Set** tag is used to put some value in a variable. The variable, if not already present, is created.
+(This tag is the counterpart of [**Show**](../show.html) tag which is used to display set variables)
+
+The following example will create a variable called 'greeting' and set its value to 'Hello'
+
+```php
+<cms:set greeting='Hello' />
+```
+
+The following will create another variable known as 'message' and set its value to 'Hello'
+
+```php
+<cms:set message=greeting />
+```
+
+As with all other tags, nested tags may be used in parameters (taking care to use double quotes).
+The following will set the value of 'message' to 'Hello World'.
+```php
+<cms:set message="<cms:show greeting /> World" />
+```
+
+A valid variable name starts with a letter or underscore, followed by any number of letters, numbers, or underscores.
+
+:::note[Important]
+**Set** cannot be used to set system variables (i.e. those that begin with prefix 'k_').
+:::
+
+## Parameters
+
+The first parameter, as illustrated above, is mandatory and is used to set a named variable to a certain value.
+The tag also uses an optional unnamed (i.e. only the value can be provided) second parameter that defines the **scope** within which the variable will be set.
+
+```php
+<cms:set message='hello' scope='global' />
+```
+
+The above is the same as
+
+```php
+<cms:set message='hello' 'global' />
+```
+
+Here 'global' defines the scope of 'message' variable
+
+The valid values for this second parameter are -
+
+*   local
+*   parent
+*   global
+
+## Variables
+
+This tag does not set any variables of its own.
+
+## Related Tags
+
+*   [get](../get.html)
+*   [get_custom_field](../get_custom_field.html)
+*   [pages](../pages.html)
+*   [show](../show.html)
