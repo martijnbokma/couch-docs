@@ -251,11 +251,11 @@ The way to do so is setting the *clonable* parameter within the template tag:
 <head>
 ```
 
-Access `http://www.mytestsite.com/blog.php` as super-admin to refresh it and make your changes take effect.
+Access `https://www.mytestsite.com/blog.php` as super-admin to refresh it and make your changes take effect.
 Visit the admin section:
 
 ```txt
-http://www.mytestsite.com/couch/
+https://www.mytestsite.com/couch/
 ```
 
 Click on *Blog* in the list of templates in the sidebar.
@@ -342,13 +342,7 @@ https://www.mytestsite.com/blog.php?p=3
 
 Clearly, the '`?p=2`' and '`?p=3`' after the `blog.php` signal to Couch to generate a page using `blog.php` as template and filling in the editable regions with data associated with the page specified with the number given.
 So what happens if we access `blog.php` without any '`?p=n`' appended? Let us try.
-Access:
-
-```txt
-https://www.mytestsite.com/blog.php
-```
-
-and the following page should appear:
+Access `https://www.mytestsite.com/blog.php` and the following page should appear:
 
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-42.png)
 
@@ -426,13 +420,7 @@ As a quick and dirty test, place an arbitrary message in this block:
 </cms:if>
 ```
 
-Access:
-
-```txt
-http://www.mytestsite.com/blog.php
-```
-
-and you'll see:
+Access `https://www.mytestsite.com/blog.php` and you'll see:
 
 ```txt
 Hi! You are seeing the list-view
@@ -460,13 +448,7 @@ Now replace the silly message we were displaying in list-view with the following
 </cms:if>
 ```
 
-Access:
-
-```txt
-http://www.mytestsite.com/blog.php
-```
-
-once again and you should see the contents of `blog_list.html` being displayed.
+Access `https://www.mytestsite.com/blog.php` and you should see the contents of `blog_list.html` being displayed.
 
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-48.png)
 
@@ -488,31 +470,34 @@ You can use `<cms:dump_all />` or `<cms:dump />` to get a quick list of all the 
 :::
 
 Variables *k_page_title*, *k_page_date* and *k_comments_count* present in the page-view are what we require.
-With `blog.php` open in your editor, find the place where title of the blog entry is displayed
+With `blog.php` open in your editor, find the place where title of the blog entry is displayed:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-50.png)
-
-and replace it with
-
-```php
-<cms:show k_page_title />
+```diff lang="php" title="blog.php" "Loreum ipsium massa cras phasellus"
+<!-- Blog Post -->
+<div class="post">
+    <!-- Post Title -->
+    <h3 class="title"><a href="single.html">Loreum ipsium massa cras phasellus</a></h3>
 ```
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-51.png)
+and replace it with:
 
-The titles are currently linked to 'single.html'. Let us change this to link them back to the current page.
+```diff lang="php" title="blog.php" ins="<cms:show k_page_title />"
+<!-- Blog Post -->
+<div class="post">
+    <!-- Post Title -->
+    <h3 class="title"><a href="single.html"><cms:show k_page_title /></a></h3>
+```
+
+The titles are currently linked to `single.html`. Let us change this to link them back to the current page.
 We'll use the variable *k_page_link*, which is always available to give the link of the current page.
-Replace `single.html`
+Replace `single.html` with `<cms:show k_page_link />`:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-52.png)
-
-with
-
-```php
-<cms:show k_page_link />
+```diff lang="php" title="blog.php" ins="<cms:show k_page_link />"
+<!-- Blog Post -->
+<div class="post">
+    <!-- Post Title -->
+    <h3 class="title"><a href="<cms:show k_page_link />"><cms:show k_page_title /></a></h3>
 ```
-
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-53.png)
 
 Access the cloned pages to see their title being shown instead of the ipsum lorem stuff having the right link.
 
@@ -520,38 +505,46 @@ Access the cloned pages to see their title being shown instead of the ipsum lore
 
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-55.png)
 
-Moving on to fix the date, first find the date in the template
+Moving on to fix the date, first find the date in the template:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-56.png)
+```diff lang="php" title="blog.php"
+<a href="#">Products</a> &bull; 31st Sep, 09 &bull;
+```
 
-and replace it with
+and replace it with:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-57.png)
+```diff lang="php" title="blog.php" ins="<cms:show k_page_date />"
+<a href="#">Products</a> &bull; <cms:show k_page_date /> &bull;
+```
 
-Accessing any cloned page to see the change
+Accessing any cloned page to see the change:
 
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-58.png)
 
-The date that appears, although recognizable, hardly matches the '`31st Sep, 09`' format originally in place.
-This is because `k_page_date` shows date in the internal raw format of its storage (yyyy-mm-dd hh:mm:ss).
+The date that appears, although recognizable, hardly matches the '*31st Sep, 09*' format originally in place.
+This is because *k_page_date* shows date in the internal raw format of its storage (yyyy-mm-dd hh:mm:ss).
 To make it display in the desired format we'll have to use the Couch date tag that takes a format parameter which can be used to modify the display.
-Place the following in place of the show tag -
+Place the following in place of the show tag:
 
 ```php
 <cms:date k_page_date format='jS M, y'/>
 ```
 
-This results in the following display -
+This results in the following display:
 
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-59.png)
 
-The comments count can be similarly fixed by finding and replacing the count
+The comments count can be similarly fixed by finding and replacing the count:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-60.png)
+```diff lang="php" title="blog.php" "1 Comment"
+<cms:date k_page_date format='jS M, y'/> &bull; <a href="#">1 Comment</a></p>
+```
 
-with `k_comments_count` variable
+with *k_comments_count* variable:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-61.png)
+```diff lang="php" title="blog.php" ins="<cms:show k_comments_count />"
+<cms:date k_page_date format='jS M, y'/> &bull; <a href="#"><cms:show k_comments_count /> Comment(s)</a></p>
+```
 
 Of course for now all blog entries will show a count of 0 because they have no comments yet.
 
@@ -581,6 +574,32 @@ For our `blog.php`, we will create top-level folders to match the following cate
 
 Place the following tags within the template tag already placed at the beginning of `blog.php`:
 
+```diff lang="php" title="blog.php"
+<?php require_once( 'couch/cms.php' ); ?>
+<cms:template title="blog" clonable="1" >
+    <cms:editable name="blog_content" type="richtext" />
+    <cms:editable name="blog_image" 
+        crop="1"
+        width="610" 
+        height="150"
+        type="image"
+    />
+
++    <cms:folder name="philosophy" title="Philosophy" />
++    <cms:folder name="history" title="History" />
++    <cms:folder name="jobs" title="Jobs" />
++    <cms:folder name="staff" title="Staff" />
++    <cms:folder name="clients" title="Clients" />
+
+</cms:template>
+
+<cms:if k_is_page >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+```
+
+
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-62.png)
 
 Refresh `blog.php` in your browser by visiting it while still being logged-on as the super-admin.
@@ -591,8 +610,8 @@ Visit the *blog* section in Couch admin and you should find a drop-down list bei
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-64.png)
 
 Let us now add the first blog entry to a folder.
-Click on '`My first blog entry`' to edit it.
-Click on the '`Advanced Settings`' found at the top right -
+Click on '*My first blog entry*' to edit it.
+Click on the '*Advanced Settings*' found at the top right:
 
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-65.png)
 
@@ -600,7 +619,7 @@ It will expand to reveal several advanced settings. A list of the virtual folder
 
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-66.png)
 
-Select one, let us say '`clients`', and save.
+Select one, let us say '*clients*', and save.
 
 Now to display this folder in the blog entry -
 As you know, Couch provides information about the page being accessed by setting up variables. The *k_page_foldertitle* variable contains the title of the folder a cloned page resides in (remains blank if the page does not reside in any folder) [see [Variables available in Views](../../../concepts/variables-in-views/)].
@@ -609,13 +628,23 @@ As you know, Couch provides information about the page being accessed by setting
 Once again, when in any doubt about which variables are available for use, place `<cms:dump />` or `<cms:dump_all />` temporarily within the template. On accessing a page, these tags will spill out all the variables (along with their values) that are available.
 :::
 
-Find the place where the template displays the name of the categories -
+Find the place where the template displays the name of the categories:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-67.png)
+```diff lang="php" title="blog.php" "News</a>, <a href="#">Products"
+<!-- Post Title -->
+<h3 class="title"><a href="<cms:show k_page_link />"><cms:show k_page_title /></a></h3>
+<!-- Post Data -->
+<p class="sub"><a href="#">News</a>, <a href="#">Products</a> &bull; <cms:date k_page_date format='jS M, y'/> &bull; <a href="#"><cms:show k_comments_count /> Comment(s)</a></p>
+```
 
-Replace it with -
+Replace it with:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-68.png)
+```diff lang="php" title="blog.php" ins="<cms:show k_page_foldertitle />"
+<!-- Post Title -->
+<h3 class="title"><a href="<cms:show k_page_link />"><cms:show k_page_title /></a></h3>
+<!-- Post Data -->
+<p class="sub"><a href="#"><cms:show k_page_foldertitle /></a> &bull; <cms:date k_page_date format='jS M, y'/> &bull; <a href="#"><cms:show k_comments_count /> Comment(s)</a></p>
+```
 
 Notice how we have eliminated the second category because we can only have one.
 
@@ -633,12 +662,22 @@ We'd like to display '*Uncategorised*' for such pages that do not reside in any 
 To do so, instead of directly using the *k_page_foldertitle* variable, we'll use a variable of our own to display the folder title.
 
 :::note
-You might recall from the documentation that apart from the variables set up by Couch (the system variables that are all prefixed by '*k_*'), we can define our own variables. [see [Variables](../../../../concepts/variables/)].
+You might recall from the documentation that apart from the variables set up by Couch (the system variables that are all prefixed by '*k_*'), we can define our own variables. [see [Variables](../../../concepts/variables/)].
 :::
 
 If *k_page_foldertitle* is not blank, we'll set our variable to the folder title but if *k_page_foldertitle* is blank, we'll set it to '*Uncategorised*'. This is how it can be done:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-71.png)
+```diff lang="php" title="blog.php" ins="<cms:show my_category />"
+<!-- Post Title -->
+<h3 class="title"><a href="<cms:show k_page_link />"><cms:show k_page_title /></a></h3>
+<!-- Post Data -->
++    <cms:if k_page_foldertitle >
++        <cms:set my_category=k_page_foldertitle />
++    <cms:else />
++        <cms:set my_category="Uncategorised" />
++    </cms:if>
+<p class="sub"><a href="#"><cms:show my_category /></a> &bull; <cms:date k_page_date format='jS M, y'/> &bull; <a href="#"><cms:show k_comments_count /> Comment(s)</a></p>
+```
 
 Notice how we are now using *my_category*, instead of *k_page_foldertitle*, to display the folder title.
 
