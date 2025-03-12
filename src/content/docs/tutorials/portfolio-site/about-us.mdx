@@ -1,100 +1,97 @@
 ---
-title: Starting off simple - the About-Us page
+title: Starting off Simple - The About-Us Page
+description: Learn how to create a simple About Us page in CouchCMS by converting a static HTML template into a dynamic, editable page.
+keywords: [about us, static template, editable regions, richtext editor, template conversion]
 category: tutorial
 subCategory: portfolio-site
+author: CouchCMS
+priority: 3
 ---
 
-[⬇️ Download Couchified Code](https://www.couchcms.com/docs/code/about.zip)
+import { Steps, Card } from '@astrojs/starlight/components';
 
-Of all the five sections that Aurelius has (i.e. `About-Us`, `Portfolio`, `Blog`, `Contact-Us` and `Home`), the `Portfolio` and `Blog` sections will need the 'cloned pages' feature of Couch because they consist of multiple pages each cloned out of the same template.
+<Card icon="download" title="Download">
+[Download Couchified Code](https://www.couchcms.com/docs/code/about.zip)
+</Card>
+
+Of all the five sections that Aurelius has (i.e. 'About-Us', 'Portfolio', 'Blog', 'Contact-Us' and 'Home'), the 'Portfolio' and 'Blog' sections will need the 'cloned pages' feature of Couch because they consist of multiple pages each cloned out of the same template.
 
 We'll tackle the cloned pages in the next chapter. For now let us begin with a simpler section that doesn't require cloning. The `About Us` page will serve our purpose.
-Before proceeding further, make sure that you are logged into Couch using the super-admin account that got created during installation.
-
-Access `about.html` in your browser by visiting `http://www.mytestsite.com/about.html`.
-The `About Us` page should appear.
-
-Change the extension of the template from `.html` to `.php` so that `about.html` now becomes `about.php`. Access `about.php` in your browser -
-`http://www.mytestsite.com/about.php`
-The same `About Us` page should appear as did when the file's extension was `.html`.
-This change of extension from `.html` to `.php` is necessary before Couch can be retrofitted into a template.
-
-Time to fit Couch into `about.php`.
-Open up `about.php` in your favorite text editor and paste the following line to the very top of the file -
-
-```php
-<?php require_once( 'couch/cms.php' ); ?>
-```
-
-```diff lang="php"
-+   <?php require_once( 'couch/cms.php' ); ?>
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-    <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-	    <title>Aurelius | About Us</title>
-	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-```
 
 :::note
-If you had chosen to rename the default admin folder from couch to something else, make sure the line pasted above also reflects the change. Thus if the new name of the folder was myadmin, the line to be pasted will become -
-
-&lt;?php require\_once( 'myadmin/cms.php' ); ?&gt;
+Before proceeding further, make sure that you are logged into Couch using the super-admin account that got created during installation.
 :::
 
-As the final step, paste the following to `about.php` as the last line of the file (i.e. after all other content of the file) -
+<Steps>
 
-```php
-<?php COUCH::invoke(); ?>
-```
+1. Access `about.html` in your browser by visiting:
+   ```txt
+   https://www.mytestsite.com/about.html
+   ```
+   The `About Us` page should appear.
 
-```diff lang="php"
-    	</div><!--end wrapper-->
+2. Change the extension of the template from `.html` to `.php` so `about.html` becomes `about.php`. Access it in your browser:
+   ```txt
+   https://www.mytestsite.com/about.php
+   ```
+   The same `About Us` page should appear as before. This change is necessary before Couch can be retrofitted into a template.
 
-    </body>
-    </html>
-+   <?php COUCH::invoke(); ?>
-```
+3. Open `about.php` in your text editor and add the following line at the very top:
+   ```php
+   <?php require_once( 'couch/cms.php' ); ?>
+   ```
+
+   ```diff lang="php"
+   +   <?php require_once( 'couch/cms.php' ); ?>
+       <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+       <html xmlns="http://www.w3.org/1999/xhtml">
+       <head>
+           <title>Aurelius | About Us</title>
+           <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   ```
+
+   :::note
+   If you renamed the default admin folder from `couch` to something else, update the path accordingly. For example, if renamed to `myadmin`:
+   ```php
+   <?php require_once( 'myadmin/cms.php' ); ?>
+   ```
+   :::
+
+4. Add this line as the last line of the file (after all other content):
+   ```php
+   <?php COUCH::invoke(); ?>
+   ```
+
+   ```diff lang="php"
+       	</div><!--end wrapper-->
+   
+       </body>
+       </html>
+   +   <?php COUCH::invoke(); ?>
+   ```
+
+</Steps>
 
 These two boilerplate lines of code are the only PHP that you should ever need to write to work with Couch.
 
 Refresh the template within your browser by revisiting `about.php` and now visit the admin section once again.
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-11.jpg)
+![Admin Panel Showing About.php Template](../../../../assets/img/contents/portfolio-site-11.jpg)
 
 Notice how `about.php` now appears in the list of templates in the sidebar on the left and how the right panel informs you that `about.php` has no editable regions defined yet.
 
 These steps are all that you need to take in order to port any template to Couch.
 
-### Defining editable regions
+## Defining Editable Regions
 
 With Couch now hooked into `about.php`, let us now decide which regions within the template should be editable by the client.
-Looking at `about.php` in the browser, it appears that these two regions are the ones that the client will want to edit -
+Looking at `about.php` in the browser, it appears that these two regions are the ones that the client will want to edit:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-12.png)
+![Editable Regions in About Us Page](../../../../assets/img/contents/portfolio-site-12.png)
 
-With `about.php` open in the text editor, find the HTML block representing the main content region -
+### Main Content Region
 
-```html
-<!-- Column 1 / Content -->
-
-<div class="grid_8">
-    <h4 class="page_title">Our mission</h4>
-    <div class="hr dotted clearfix">&nbsp;</div>
-    <p><i>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor. Phasellus cursus augue ac purus. Curabitur faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</i></p> 
-    <h4 class="page_title">So who are we?</h4>
-    <div class="hr dotted clearfix">&nbsp;</div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor. Phasellus cursus augue ac purus. Curabitur faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor. Phasellus cursus augue ac purus. Curabitur faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p> 
-    <h4 class="page_title">Staff</h4>
-    <div class="hr dotted clearfix">&nbsp;</div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor. Phasellus cursus augue ac purus. Curabitur faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor. Phasellus cursus augue ac purus. Curabitur faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p> 
-    <h4 class="page_title">Clients</h4>
-    <div class="hr dotted clearfix">&nbsp;</div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor. Phasellus cursus augue ac purus. Curabitur faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor. Phasellus cursus augue ac purus. Curabitur faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p> 
-</div>
-
-```
-
-and surround it with Couch's editable tags as follows -
+Find the HTML block representing the main content region and surround it with Couch's editable tags:
 
 ```php
 <cms:editable name='main_content' type='richtext'> original content </cms:editable>
@@ -120,68 +117,40 @@ and surround it with Couch's editable tags as follows -
 +   </cms:editable>
 ```
 
-Similarly find the content in the sidebar -
+### Sidebar Content Region
 
-```html
-<!-- Column 2 / Sidebar -->
-<div class="grid_4">
-
-    <h4>Our History</h4>
-    <div class="hr dotted clearfix">&nbsp;</div>
-    <dl class="history"> 
-        <dt>1994</dt> 
-        <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor.</dd> 
-    
-        <dt>1996</dt> 
-        <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor.</dd> 
-    
-        <dt>2000</dt> 
-        <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor.</dd> 
-    
-        <dt>2003</dt> 
-        <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor.</dd> 
-    
-        <dt>2009</dt> 
-        <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor.</dd> 
-    </dl>
-</div>
-```
-
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-15.gif)
-
-and surround it with the editable tags -
+Similarly for the sidebar content:
 
 ```diff lang="php"
     <!-- Column 2 / Sidebar -->
 +   <cms:editable name='sidebar_content' type='richtext'>
-		<div class="grid_4">
-		
-			<h4>Our History</h4>
-			<div class="hr dotted clearfix">&nbsp;</div>
-			<dl class="history"> 
-				<dt>1994</dt> 
-				<dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor.</dd> 
-			
-				<dt>1996</dt> 
-				<dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor.</dd> 
-			
-				<dt>2000</dt> 
-				<dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor.</dd> 
-			
-				<dt>2003</dt> 
-				<dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor.</dd> 
-			
-				<dt>2009</dt> 
-				<dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor.</dd> 
-			</dl>
-		</div>
+    <div class="grid_4">
+        <h4>Our History</h4>
+        <div class="hr dotted clearfix">&nbsp;</div>
+        <dl class="history"> 
+            <dt>1994</dt> 
+            <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor.</dd> 
+        
+            <dt>1996</dt> 
+            <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor.</dd> 
+        
+            <dt>2000</dt> 
+            <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor.</dd> 
+        
+            <dt>2003</dt> 
+            <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor.</dd> 
+        
+            <dt>2009</dt> 
+            <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel diam id mauris accumsan egestas. Sed sed lorem. Integer id mi vel sapien fermentum vehicula. Pellentesque vitae lacus a sem posuere fringilla. Vestibulum dolor.</dd> 
+        </dl>
+    </div>
 +   </cms:editable>
 ```
 
 Refresh `about.php` by revisiting it in your browser. Go to the admin section and click on `about.php` in the list on the left.
-The right panel should now display the following -
+The right panel should now display:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-17.png)
+![Admin Panel with Editable Regions](../../../../assets/img/contents/portfolio-site-17.png)
 
 As you can see, Couch has now created the two editable regions for you.
 Try editing the contents in them and revisit `about.php` after saving your changes. Your changes should now appear on the website.
@@ -190,10 +159,15 @@ Try editing the contents in them and revisit `about.php` after saving your chang
 The editable tag, particularly the richtext type, has a plethora of options that you can set to tailor the created editable region to your client's need. Please consult the [documentation](../../../../concepts/editable-regions/) for details.
 :::
 
+## Enhancing the Admin Experience
+
 This is all that is needed to make a single page editable.
 To further refine the experience for your client, a few minor enhancements can be made.
-The name of the template appears as `about.php` in the admin panel. Let us make it appear as `About Us`.
-Couch has a tag named `template`. Add the following line containing the template tag to somewhere at the top of the page (below the boilerplate PHP include code we added, of course) -
+
+### Customizing Template Name
+
+The name of the template appears as `about.php` in the admin panel. Let's make it appear as `About Us`.
+Add the following line containing the template tag somewhere at the top of the page (below the boilerplate PHP include code):
 
 ```php
 <cms:template title='About Us' />
@@ -203,19 +177,17 @@ Couch has a tag named `template`. Add the following line containing the template
     <?php require_once( 'couch/cms.php' ); ?>
 +   <cms:template title='About Us' />
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-    <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-	    <title>Aurelius | About Us</title>
-	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 ```
 
 Repeat the mandatory step of refreshing the template in browser and then revisit the admin panel.
 The template should now be listed as 'About Us' instead of its file-name.
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-19.png)
+![Template Listed as About Us](../../../../assets/img/contents/portfolio-site-19.png)
 
 In the next chapter we'll tackle the templates that will be used to create multiple cloned pages.
 
-[⬇️ Download Couchified Code](https://www.couchcms.com/docs/code/about.zip)
+<Card icon="download" title="Download">
+[Download Couchified Code](https://www.couchcms.com/docs/code/about.zip)
+</Card>
 
-[Diving deep - the Blog (Part 1)](../blog/)
+[Next Chapter: Diving Deep - The Blog (Part 1)](../blog/)
