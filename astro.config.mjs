@@ -25,8 +25,15 @@ export default defineConfig({
 				dark: '/src/assets/img/couchcms-primary-logo-white-gradient.svg',
 				replacesTitle: true,
 			},
+			editLink: {
+				baseUrl: 'https://github.com/martijnbokma/couch-docs/edit/main/',
+			},
 			social: {
 				github: 'https://martijnbokma.github.io/couch-docs/',
+			},
+			tableOfContents: {
+				minHeadingLevel: 2,
+				maxHeadingLevel: 5,
 			},
 			sidebar: [
 				{
@@ -42,22 +49,25 @@ export default defineConfig({
 				},
 				{
 					label: 'Concepts',
+					collapsed: true,
 					autogenerate: { directory: 'concepts' },
 				},
 				{
 					label: 'Tags Reference',
+					collapsed: true,
 					autogenerate: { directory: 'tags-reference' },
 				},
 				{
 					label: 'Tutorials',
+					collapsed: true,
 					items: [
 						{
 							label: 'Building a Real-World Site',
 							items: [
-								'tutorials/portfolio-site/getting-started',
+								'tutorials/portfolio-site/building-real-world-site',
 								'tutorials/portfolio-site/about-us',
-								'tutorials/portfolio-site/blog',
-								'tutorials/portfolio-site/blog-2',
+								'tutorials/portfolio-site/diving-deep-blog-part-1',
+								'tutorials/portfolio-site/diving-deep-blog-part-2',
 								'tutorials/portfolio-site/portfolio',
 								'tutorials/portfolio-site/contact-form',
 								'tutorials/portfolio-site/home-page',
