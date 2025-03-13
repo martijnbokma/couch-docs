@@ -10,36 +10,30 @@ importers:
     dependencies:
       '@astrojs/starlight':
         specifier: ^0.32.2
-        version: 0.32.2(astro@5.4.3(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3))
+        version: 0.32.2(astro@5.5.2(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3))
       astro:
-        specifier: ^5.4.3
-        version: 5.4.3(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3)
+        specifier: ^5.5.2
+        version: 5.5.2(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3)
       sharp:
         specifier: ^0.33.5
         version: 0.33.5
       starlight-links-validator:
         specifier: ^0.14.3
-        version: 0.14.3(@astrojs/starlight@0.32.2(astro@5.4.3(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3)))
+        version: 0.14.3(@astrojs/starlight@0.32.2(astro@5.5.2(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3)))
 
 packages:
 
-  '@astrojs/compiler@2.10.4':
-    resolution: {integrity: sha512-86B3QGagP99MvSNwuJGiYSBHnh8nLvm2Q1IFI15wIUJJsPeQTO3eb2uwBmrqRsXykeR/mBzH8XCgz5AAt1BJrQ==}
-
-  '@astrojs/internal-helpers@0.6.0':
-    resolution: {integrity: sha512-XgHIJDQaGlFnTr0sDp1PiJrtqsWzbHP2qkTU+JpQ8SnBewKP2IKOe/wqCkl0CyfyRXRu3TSWu4t/cpYMVfuBNA==}
+  '@astrojs/compiler@2.11.0':
+    resolution: {integrity: sha512-zZOO7i+JhojO8qmlyR/URui6LyfHJY6m+L9nwyX5GiKD78YoRaZ5tzz6X0fkl+5bD3uwlDHayf6Oe8Fu36RKNg==}
 
   '@astrojs/internal-helpers@0.6.1':
     resolution: {integrity: sha512-l5Pqf6uZu31aG+3Lv8nl/3s4DbUzdlxTWDof4pEpto6GUJNhhCbelVi9dEyurOVyqaelwmS9oSyOWOENSfgo9A==}
 
-  '@astrojs/markdown-remark@6.2.0':
-    resolution: {integrity: sha512-LUDjgd9p1yG0qTFSocaj3GOLmZs8Hsw/pNtvqzvNY58Acebxvb/46vDO/e/wxYgsKgIfWS+p+ZI5SfOjoVrbCg==}
+  '@astrojs/markdown-remark@6.3.0':
+    resolution: {integrity: sha512-imInEojAbpeV9D/SRaSQBz3yUzvtg3UQC1euX70QHVf8X0kWAIAArmzBbgXl8LlyxSFe52f/++PXQ4t14V9b+A==}
 
-  '@astrojs/markdown-remark@6.2.1':
-    resolution: {integrity: sha512-qtQXfZXeG84XSH9bMgG2e/kZfA4J7U19PKjhmFDNsKX47nautSHC0DitvxaWgQFSED66k6hWKDHLq3VKHCy/rg==}
-
-  '@astrojs/mdx@4.1.0':
-    resolution: {integrity: sha512-M7BaYhVTT7Q/iS2EoEaUngQnN+D2jPCWmNS1TIY31bDyz3MOf+dZmuqODJOEUdBBAASkQE+MhzyPds/N2o6csw==}
+  '@astrojs/mdx@4.2.0':
+    resolution: {integrity: sha512-MHiogYeb7XdzbqUktoMsrziph1vK10WfLgwDJVejGOieEsJ1eOUtNtQCl2vv85tnr/+IGBqZ0bOf6ydQGgJMYA==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0}
     peerDependencies:
       astro: ^5.0.0
@@ -68,17 +62,17 @@ packages:
     resolution: {integrity: sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/parser@7.26.9':
-    resolution: {integrity: sha512-81NWa1njQblgZbQHxWHpxxCzNsa3ZwvFqpUg7P+NNUU6f3UU2jBEg4OlF/J6rl8+PQGh1q6/zWScd001YwcA5A==}
+  '@babel/parser@7.26.10':
+    resolution: {integrity: sha512-6aQR2zGE/QFi8JpDLjUZEPYOs7+mhKXm86VaKFiLP35JQwQb6bwUE+XbvkH0EptsYhbNBSUGaUBLKqxH1xSgsA==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
-  '@babel/runtime@7.26.9':
-    resolution: {integrity: sha512-aA63XwOkcl4xxQa3HjPMqOP6LiK0ZDv3mUPYEFXkpHbaFjtGggE1A61FjFzJnB+p7/oy2gA8E+rcBNl/zC1tMg==}
+  '@babel/runtime@7.26.10':
+    resolution: {integrity: sha512-2WJMeRQPHKSPemqk/awGrAiuFfzBmOIPXKizAsVhWH9YJqLZ0H+HS4c8loHGgW6utJ3E/ejXQUsiGaQy2NZ9Fw==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/types@7.26.9':
-    resolution: {integrity: sha512-Y3IR1cRnOxOCDvMmNiym7XpXQ93iGDDPHx+Zj+NM+rg0fBaShfQLkg+hKPaZCEvg5N/LeCo4+Rj/i3FuJsIQaw==}
+  '@babel/types@7.26.10':
+    resolution: {integrity: sha512-emqcG3vHrpxUKTrxcblR36dcrcoRDvKmnL/dCL6ZsHaShW80qxCAcNhzQZrpeM765VzEos+xOi4s+r4IXzTwdQ==}
     engines: {node: '>=6.9.0'}
 
   '@ctrl/tinycolor@4.1.0':
@@ -619,8 +613,8 @@ packages:
     peerDependencies:
       astro: ^4.0.0-beta || ^5.0.0-beta || ^3.3.0
 
-  astro@5.4.3:
-    resolution: {integrity: sha512-GKkOJQCHLx6CrPoghGhj7824WDSvIuuc+HTVjfjMPdB9axp238iJLByREJNDaSdzMeR/lC13xvBiUnKvcYyEIA==}
+  astro@5.5.2:
+    resolution: {integrity: sha512-SOTJxB8mqxe/KEYEJiLIot0YULiCffyfTEclwmdeaASitDJ7eLM/KYrJ9sx3U5hq9GVI17Z4Y0P/1T2aQ0ZN3A==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -1355,8 +1349,8 @@ packages:
     resolution: {integrity: sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==}
     engines: {node: ^10 || ^12 || >=14}
 
-  prismjs@1.29.0:
-    resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
+  prismjs@1.30.0:
+    resolution: {integrity: sha512-DEvV2ZF2r2/63V+tK8hQvrR2ZGn10srHbXviTlcv7Kpzw8jWiNTqbVgjO3IY8RxrrOUF8VPMQQFysYYYv0YZxw==}
     engines: {node: '>=6'}
 
   prompts@2.4.2:
@@ -1784,39 +1778,11 @@ packages:
 
 snapshots:
 
-  '@astrojs/compiler@2.10.4': {}
-
-  '@astrojs/internal-helpers@0.6.0': {}
+  '@astrojs/compiler@2.11.0': {}
 
   '@astrojs/internal-helpers@0.6.1': {}
 
-  '@astrojs/markdown-remark@6.2.0':
-    dependencies:
-      '@astrojs/internal-helpers': 0.6.0
-      '@astrojs/prism': 3.2.0
-      github-slugger: 2.0.0
-      hast-util-from-html: 2.0.3
-      hast-util-to-text: 4.0.2
-      import-meta-resolve: 4.1.0
-      js-yaml: 4.1.0
-      mdast-util-definitions: 6.0.0
-      rehype-raw: 7.0.0
-      rehype-stringify: 10.0.1
-      remark-gfm: 4.0.1
-      remark-parse: 11.0.0
-      remark-rehype: 11.1.1
-      remark-smartypants: 3.0.2
-      shiki: 1.29.2
-      smol-toml: 1.3.1
-      unified: 11.0.5
-      unist-util-remove-position: 5.0.0
-      unist-util-visit: 5.0.0
-      unist-util-visit-parents: 6.0.1
-      vfile: 6.0.3
-    transitivePeerDependencies:
-      - supports-color
-
-  '@astrojs/markdown-remark@6.2.1':
+  '@astrojs/markdown-remark@6.3.0':
     dependencies:
       '@astrojs/internal-helpers': 0.6.1
       '@astrojs/prism': 3.2.0
@@ -1842,12 +1808,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@4.1.0(astro@5.4.3(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3))':
+  '@astrojs/mdx@4.2.0(astro@5.5.2(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3))':
     dependencies:
-      '@astrojs/markdown-remark': 6.2.0
+      '@astrojs/markdown-remark': 6.3.0
       '@mdx-js/mdx': 3.1.0(acorn@8.14.1)
       acorn: 8.14.1
-      astro: 5.4.3(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3)
+      astro: 5.5.2(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3)
       es-module-lexer: 1.6.0
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.5
@@ -1863,7 +1829,7 @@ snapshots:
 
   '@astrojs/prism@3.2.0':
     dependencies:
-      prismjs: 1.29.0
+      prismjs: 1.30.0
 
   '@astrojs/sitemap@3.2.1':
     dependencies:
@@ -1871,16 +1837,16 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 3.24.2
 
-  '@astrojs/starlight@0.32.2(astro@5.4.3(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3))':
+  '@astrojs/starlight@0.32.2(astro@5.5.2(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3))':
     dependencies:
-      '@astrojs/mdx': 4.1.0(astro@5.4.3(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3))
+      '@astrojs/mdx': 4.2.0(astro@5.5.2(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3))
       '@astrojs/sitemap': 3.2.1
       '@pagefind/default-ui': 1.3.0
       '@types/hast': 3.0.4
       '@types/js-yaml': 4.0.9
       '@types/mdast': 4.0.4
-      astro: 5.4.3(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3)
-      astro-expressive-code: 0.40.2(astro@5.4.3(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3))
+      astro: 5.5.2(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3)
+      astro-expressive-code: 0.40.2(astro@5.5.2(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3))
       bcp-47: 2.1.0
       hast-util-from-html: 2.0.3
       hast-util-select: 6.0.4
@@ -1918,15 +1884,15 @@ snapshots:
 
   '@babel/helper-validator-identifier@7.25.9': {}
 
-  '@babel/parser@7.26.9':
+  '@babel/parser@7.26.10':
     dependencies:
-      '@babel/types': 7.26.9
+      '@babel/types': 7.26.10
 
-  '@babel/runtime@7.26.9':
+  '@babel/runtime@7.26.10':
     dependencies:
       regenerator-runtime: 0.14.1
 
-  '@babel/types@7.26.9':
+  '@babel/types@7.26.10':
     dependencies:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
@@ -2343,16 +2309,16 @@ snapshots:
 
   astring@1.9.0: {}
 
-  astro-expressive-code@0.40.2(astro@5.4.3(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3)):
+  astro-expressive-code@0.40.2(astro@5.5.2(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3)):
     dependencies:
-      astro: 5.4.3(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3)
+      astro: 5.5.2(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3)
       rehype-expressive-code: 0.40.2
 
-  astro@5.4.3(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3):
+  astro@5.5.2(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3):
     dependencies:
-      '@astrojs/compiler': 2.10.4
+      '@astrojs/compiler': 2.11.0
       '@astrojs/internal-helpers': 0.6.1
-      '@astrojs/markdown-remark': 6.2.1
+      '@astrojs/markdown-remark': 6.3.0
       '@astrojs/telemetry': 3.2.0
       '@oslojs/encoding': 1.1.0
       '@rollup/pluginutils': 5.1.4(rollup@4.35.0)
@@ -2890,7 +2856,7 @@ snapshots:
 
   i18next@23.16.8:
     dependencies:
-      '@babel/runtime': 7.26.9
+      '@babel/runtime': 7.26.10
 
   import-meta-resolve@4.1.0: {}
 
@@ -2996,8 +2962,8 @@ snapshots:
 
   magicast@0.3.5:
     dependencies:
-      '@babel/parser': 7.26.9
-      '@babel/types': 7.26.9
+      '@babel/parser': 7.26.10
+      '@babel/types': 7.26.10
       source-map-js: 1.2.1
 
   markdown-extensions@2.0.0: {}
@@ -3563,7 +3529,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  prismjs@1.29.0: {}
+  prismjs@1.30.0: {}
 
   prompts@2.4.2:
     dependencies:
@@ -3832,9 +3798,9 @@ snapshots:
 
   space-separated-tokens@2.0.2: {}
 
-  starlight-links-validator@0.14.3(@astrojs/starlight@0.32.2(astro@5.4.3(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3))):
+  starlight-links-validator@0.14.3(@astrojs/starlight@0.32.2(astro@5.5.2(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3))):
     dependencies:
-      '@astrojs/starlight': 0.32.2(astro@5.4.3(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3))
+      '@astrojs/starlight': 0.32.2(astro@5.5.2(jiti@2.4.2)(lightningcss@1.29.1)(rollup@4.35.0)(typescript@5.7.3))
       '@types/picomatch': 3.0.2
       github-slugger: 2.0.0
       hast-util-from-html: 2.0.3
