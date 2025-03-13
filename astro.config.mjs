@@ -58,6 +58,11 @@ export default defineConfig({
 					autogenerate: { directory: 'tags-reference' },
 				},
 				{
+					label: 'Miscellaneous',
+					collapsed: true,
+					autogenerate: { directory: 'miscellaneous' },
+				},
+				{
 					label: 'Tutorials',
 					collapsed: true,
 					items: [
