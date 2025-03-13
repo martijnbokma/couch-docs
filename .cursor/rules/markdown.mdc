@@ -23,13 +23,15 @@ Every document MUST begin with frontmatter. Below is an example of the required 
 ```
 ---
 title: Document Title
+slug: slug-name
 description: A clear, concise description of the document
-keywords: [keyword1, keyword2, keyword3]
+keywords:
+  - keyword 1
+  - keyword 2
+  - keyword 3
 category: concept
 author: Author Name
-date: YYYY-MM-DD
-priority: 3 # Priority level from 1 (highest) to 5 (lowest)
-version: Major.Minor.Patch # Example: 1.0.0
+lastUpdated: YYYY-MM-DD
 ---
 ```
 
