@@ -49,7 +49,7 @@ export default defineConfig({
 				},
 				{
 					label: 'Concepts',
-					collapsed: true,
+					collapsed: false,
 					autogenerate: { directory: 'concepts' },
 				},
 				{
