@@ -21,8 +21,8 @@ export default defineConfig({
 				'./src/assets/styles/custom.css'
 			],
 			logo: {
-				light: '/src/assets/img/couchcms-primary-logo-black-gradient.svg',
-				dark: '/src/assets/img/couchcms-primary-logo-white-gradient.svg',
+				light: './src/assets/img/couchcms-primary-logo-black-gradient.svg',
+				dark: './src/assets/img/couchcms-primary-logo-white-gradient.svg',
 				replacesTitle: true,
 			},
 			editLink: {
@@ -121,6 +121,5 @@ export default defineConfig({
 				'@content': path.resolve(__dirname, './src/content'),
 			},
 		},
-		plugins: [starlightLinksValidator()],
 	},
 });
