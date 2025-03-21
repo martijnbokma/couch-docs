@@ -1,10 +1,8 @@
 ---
-description: Markdown rules for CouchCMS Documentation
-globs: *.mdc
+description: "Markdown rules for CouchCMS Documentation"
+globs: "*.mdc"
 alwaysApply: false
-tags: [CouchCMS, Documentation]
-priority: 3
-version: 1.0.0
+tags: ["CouchCMS", "Documentation"]
 ---
 
 # CouchCMS Documentation Style Guide
