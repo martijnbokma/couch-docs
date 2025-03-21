@@ -29,7 +29,7 @@ export default defineConfig({
 				baseUrl: 'https://github.com/martijnbokma/couch-docs/edit/main/',
 			},
 			social: {
-				github: 'https://martijnbokma.github.io/couch-docs/',
+				github: 'https://github.com/martijnbokma/couch-docs',
 			},
 			tableOfContents: {
 				minHeadingLevel: 2,
