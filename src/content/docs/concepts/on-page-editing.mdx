@@ -1,15 +1,20 @@
 ---
 title: On-Page Editing
 description: Learn how to edit content directly on your website's frontend using CouchCMS's on-page editing features
-keywords: [on-page editing, inline editing, popup editing, content management]
+keywords:
+    - on-page editing
+    - inline editing
+    - popup editing
+    - content management
 category: concept
 sidebar:
     order: 30
 author: Kamran Kashif
-lastUpdated: 2025-03-20
+lastUpdated: 2025-03-21
+fmContentType: default
 ---
 
-import { Steps } from '@astrojs/starlight/components';
+import { Steps, Card } from '@astrojs/starlight/components';
 
 On-page editing is a functionality that allows content to be edited directly on the frontend of your website, without having to access the admin panel. This offers several advantages:
 
@@ -17,6 +22,10 @@ On-page editing is a functionality that allows content to be edited directly on 
 - **Efficient workflow**: No constant switching between frontend and admin panel
 - **Better user experience**: More intuitive for content editors
 - **WYSIWYG editing**: What you see is what you get, without formatting surprises
+
+<Card icon="star" title="Tutorial">
+The best way to learn CouchCMS's on-page editing is through our [tutorial](../../tutorials/on-page-editing/on-page-editing/) that shows how to edit content directly on your website's frontend.
+</Card>
 
 ## Technical Challenges
 
@@ -115,25 +124,21 @@ Tag Parameters
 
 ## Best Practices
 
-<Steps>
-
-1. **Use inline editing for:**
+**Use inline editing for:**
    - Headings and titles
    - Paragraphs
    - Short text blocks
    
-2. **Use popup editing for:**
+**Use popup editing for:**
    - Images
    - Files
    - Complex form fields
    - Multiple fields at once
 
-3. **Performance tips:**
+**Performance tips:**
    - Load the editor only for logged-in admins
-   - Use `skip_ckeditor` if you only need popup editing
+   - Use **skip_ckeditor** if you only need popup editing
    - Consider caching for non-admin visitors
-
-</Steps>
 
 ## Accessibility
 
