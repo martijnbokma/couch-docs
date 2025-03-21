@@ -11,7 +11,7 @@ keywords:
 category: tutorial
 subCategory: portfolio-site
 author: Kamran Kashif
-lastUpdated: 2025-03-13
+lastUpdated: 2025-03-21
 banner:
     content: "Tutorial: Building a Real-World Site"
 ---
@@ -92,37 +92,86 @@ Delete two posts so that we are left with only one. Visit `https://www.mytestsit
 We have already seen that the pages tag repeats the contents enclosed by it as many times as there are pages for it to display. We are going to enclose the remaining one post with the pages tag hence we need the HTML for only one blog post.
 Enclose the solitary blog post by the pages tag this way:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-77.png)
+```diff lang="php" title="blog_list.html"
++<cms:pages masterpage='blog.php' >
+<!-- Blog Post -->
+<div class="post">
+    <!-- Post Title -->
+    <h3 class="title"><a href="single.html">Loreum ipsium massa cras phasellus</a></h3>
+    <!-- Post Data -->
+    <p class="sub"><a href="#">News</a>, <a href="#">Products</a> &bull; 31st Sep, 09 &bull; <a href="#">1 Comment</a></p>
+    <div class="hr dotted clearfix">&nbsp;</div>
+    <!-- Post Image -->
+    <img class="thumb" alt="" src="images/610x150.gif" />
+    <!-- Post Content -->
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <b>Mauris vel porta erat.</b> Quisque sit amet risus at odio pellentesque sollicitudin. Proin suscipit molestie facilisis. Aenean vel massa magna. Proin nec lacinia augue. Mauris venenatis libero nec odio viverra consequat. In hac habitasse platea dictumst.</p>
+    <p>Cras vestibulum lorem et dui mollis sed posuere leo semper. Integer ac ultrices neque. Cras lacinia orci a augue tempor egestas. Sed cursus, sem ut vehicula vehicula, ipsum est mattis justo, at volutpat nibh arcu sit amet risus. Vestibulum tincidunt, eros ut commodo laoreet, arcu eros ultrices nibh, ac auctor est dui vel nibh.</p>
+    <!-- Read More Button -->
+    <p class="clearfix"><a href="single.html" class="button right"> Read More...</a></p>
+</div>
+<div class="hr clearfix">&nbsp;</div>
++</cms:pages>
+```
 
 Visit `http://www.mytestsite.com/blog.php` again and see that now it has repeated the static blog post twice, once for each cloned page of `blog.php`. The two posts are of course identical. We'll now set them to display variables from the cloned pages fetched by the pages tag instead of the hard coded HTML.
 
 We have already been through this step of finding relevant regions within the HTML code and replacing them with the page's variables while configuring the page-view. The finished code should look like this -
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-78.png)
+```diff lang="php" title="blog_list.html" ins="<cms:show k_page_link />" ins="<cms:show k_page_title />" ins="<cms:show my_category />" ins="<cms:show k_page_date />" ins="<cms:show blog_image />" ins="<cms:show blog_content />"
+<cms:pages masterpage='blog.php' >
+<!-- Blog Post -->
+<div class="post">
+    <!-- Post Title -->
+    <h3 class="title"><a href="<cms:show k_page_link />"><cms:show k_page_title /></a></h3>
+    <!-- Post Data -->
+    <cms:if k_page_foldertitle >
+        <cms:set my_category=k_page_foldertitle />
+    <cms:else >
+        <cms:set my_category='Uncategorized' />
+    </cms:if >
+    <p class="sub"><a href="#"><cms:show my_category /></a> &bull; <cms:show k_page_date /> &bull; <a href="#">1 Comment</a></p>
+    <div class="hr dotted clearfix">&nbsp;</div>
+    <!-- Post Image -->
+    <img class="thumb" alt="" src="<cms:show blog_image />" />
+    <!-- Post Content -->
+    <cms:show blog_content />
+    <!-- Read More Button -->
+    <p class="clearfix"><a href="single.html" class="button right"> Read More...</a></p>
+</div>
+<div class="hr clearfix">&nbsp;</div>
+</cms:pages>
+```
 
-Visit `http://www.mytestsite.com/blog.php` to see the two cloned pages listed on it -
+Visit `http://www.mytestsite.com/blog.php` to see the two cloned pages listed on it:
 
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-79.png)
 
 Click on the title of any post to verify that it loads the page-view of that post.
 
 Everything looks good for now.
-The '`Read More..`' button at the bottom of each post needs some attention.
+The '*Read More..*' button at the bottom of each post needs some attention.
 Usually when a blog post is displayed in its page-view (i.e. singly), its entire content is displayed. However, when the same post is displayed in the list-view (with several other posts) it is pragmatic to display only an excerpt of its contents and provide a link that leads to its page-view.
 
 Couch has two tags that can be used to get an excerpt from any input provided to them - excerpt and excerptHTML.
 The difference between the two, of course, is that excerptHTML preserves the HTML elements present in the input while excerpt strips off all HTML tags.
 We'll use the excerptHTML tag for our purpose. It can be additionally configured to ignore certain HTML tags. We'll make it ignore any IMG tag because if it happens to be present within the excerpt it is certainly going to make the post taller than what we desire. We'll set the count of words for the excerpt to 75\.
-The modified code is -
+The modified code is:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-80.png)
+```diff lang="php" title="blog_list.html" ins="<cms:show k_page_link />"
+<!-- Post Content -->
++<cms:excerptHTML count="75" ignore="img" >
+    <cms:show blog_content />
++</cms:excerptHTML>
+<!-- Read More Button -->
+<p class="clearfix"><a href="<cms:show k_page_link />" class="button right"> Read More...</a></p>
+```
 
-Note that we have fixed the '`Read More..`' link too.
-Try it out by editing '`My second blog entry`', placing several paragraphs of text within it and then compare its page-view
+Note that we have fixed the '*Read More..*' link too.
+Try it out by editing '*My second blog entry*', placing several paragraphs of text within it and then compare its page-view:
 
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-81.png)
 
-with the list-view
+with the list-view:
 
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-82.png)
 
@@ -140,18 +189,42 @@ The solution? Show the pages in fixed chunks of, say, ten pages at a time and gi
 For the purpose of our demonstration, we'll show three pages at a time in the list-view.
 Add the following parameters to the pages tag:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-84.png)
+```diff lang="php" title="blog_list.html" ins="limit="3"" ins="paginate="1""
+<cms:pages masterpage='blog.php' limit="3" paginate="1" >
+<!-- Blog Post -->
+<div class="post">
+    <!-- Post Title -->
+    <h3 class="title"><a href="<cms:show k_page_link />"><cms:show k_page_title /></a></h3>
+```
 
 The *limit* parameter limits the number of pages fetched to 3 while setting the *paginate* parameter to 1 indicates to Couch that it now has to support pagination. Once Couch is made to support pagination, it will set some new variables for us that show the current status of the paginated result [see [Pagination](../../../concepts/pagination/) in documentation for more details].
 The new variables include links to the next and the previous set of three pages (if available).
 We can use them to modify the links of the two buttons at the bottom that say '*Previous Posts*' and '*Next Posts*', but before we can do that we'll have to move the HTML code for the two buttons within the pages tags (because the variables are available only within this tag's context) -
 Before:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-85.png)
+```diff lang="php" title="blog_list.html"
+<div class="hr clearfix">&nbsp;</div>
+-</cms:pages>
+
+<!-- Blog Navigation -->
+<p class="clearfix">
+    <a href="#" class="button float">&lt;&lt; Previous Posts</a>
+    <a href="#" class="button float right">Newer Posts >></a>
+</p>
+```
 
 After:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-86.png)
+```diff lang="php" title="blog_list.html"
+<div class="hr clearfix">&nbsp;</div>
+
+<!-- Blog Navigation -->
+<p class="clearfix">
+    <a href="#" class="button float">&lt;&lt; Previous Posts</a>
+    <a href="#" class="button float right">Newer Posts >></a>
+</p>
++</cms:pages>
+```
 
 But now when you access `blog.php`, you'll see that the next and previous buttons now get repeated for all the posts that are listed on the page. Certainly not what we desired. We wish to display the navigation buttons only after the last post on the page. As noted above, Couch sets up several variables that reflect the current status of the loop as the pages tag iterates through the fetched pages.
 *k_paginated_top* and *k_paginated_bottom* are two such variables.
@@ -161,27 +234,60 @@ Use `<cms:dump />` or `<cms:dump_all />` anywhere within the opening and closing
 *k_paginated_top* is set when the first page of the current set of pages is being displayed while *k_paginated_bottom* is set when it is the last page that is getting displayed.
 We can use the *k_paginated_bottom* variable to conditionally output the navigation buttons only after the last entry:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-87.png)
+```diff lang="php" title="blog_list.html"
+<div class="hr clearfix">&nbsp;</div>
+
++<cms:if k_paginated_bottom >
+    <!-- Blog Navigation -->
+    <p class="clearfix">
+        <a href="#" class="button float">&lt;&lt; Previous Posts</a>
+        <a href="#" class="button float right">Newer Posts >></a>
+    </p>
++</cms:if>
+
+</cms:pages>
+```
 
 Visit `blog.php` and the navigation buttons should now display properly after the last post.
 We can now set the two buttons to link to the next and previous set of pages.
 Couch sets two variables: *k_paginate_link_prev* and *k_paginate_link_next* that give us these links.
 We'll add them to the buttons.
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-88.png)
+```diff lang="php" title="blog_list.html" ins="<cms:show k_paginate_link_next />" ins="<cms:show k_paginate_link_prev />"
+<cms:if k_paginated_bottom >
+    <!-- Blog Navigation -->
+    <p class="clearfix">
+        <a href="<cms:show k_paginate_link_next />" class="button float">&lt;&lt; Previous Posts</a>
+        <a href="<cms:show k_paginate_link_prev />" class="button float right">Newer Posts >></a>
+    </p>
+</cms:if >
+```
 
 Visit `blog.php` again and click on the '*Previous Posts*' button. You should now see `blog.php` displaying the remaining two posts.
 
 There is small issue here, however, that needs attention.
 The five posts were split into two sets - the first set (or page) had three posts while the second has two posts.
-We are at the second set and there are no more posts to display after this. Yet the '`Previous Posts`' is still being displayed.
+We are at the second set and there are no more posts to display after this. Yet the '*Previous Posts*' is still being displayed.
 Similarly, when we were at the first set there were no '*Newer Posts*' to display and yet this button was being displayed.
 
 Couch, in fact, is aware of which set is being displayed and actually sets the *k_paginate_link_prev* and *k_paginate_link_next* variables only if there are any next or previous sets to display.
 We simply have to check for these variables before displaying the navigation buttons.
 Let us modify the code to do this:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-89.png)
+```diff lang="php" title="blog_list.html"
+<cms:if k_paginated_bottom >
+    <!-- Blog Navigation -->
+    <p class="clearfix">
++        <cms:if k_paginate_link_next >
+            <a href="<cms:show k_paginate_link_next />" class="button float">&lt;&lt; Previous Posts</a>
++        </cms:if >
+
++        <cms:if k_paginate_link_prev >
+            <a href="<cms:show k_paginate_link_prev />" class="button float right">Newer Posts >></a>
++        </cms:if >
+    </p>
+</cms:if >
+```
 
 Visit `blog.php` again and the pagination should work perfectly.
 Time to move our attention to the sidebar.
@@ -198,12 +304,50 @@ Since the sidebars are almost identical, we can save the one that has more eleme
 
 Find the following sidebar code in `blog.php`.
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-91.png)
+```diff lang="php" title="blog.php"
+<!-- Column 2 / Sidebar -->
+<div class="grid_4">
+
+    <h4>Catagories</h4>
+    <ul class="sidebar">
+        <li><a href="">So who are we?</a></li>
+        <li><a href="">Philosophy</a></li>
+        <li><a href="">History</a></li>
+        <li><a href="">Jobs</a></li>
+        <li><a href="">Staff</a></li>
+        <li><a href="">Clients</a></li>
+    </ul>
+
+    <h4>Latest News</h4>
+    <ul class="sidebar">
+        <li><a href="">Chickens rules the world</a></li>
+        <li><a href="">Chuck Bartowski is back</a></li>
+        <li><a href="">Aurelius for sale</a></li>
+        <li><a href="">Themeforest goes bust</a></li>
+    </ul>
+    
+    <h4>Archives</h4>
+    <ul class="sidebar">
+        <li><a href="">January 2010</a></li>
+        <li><a href="">December 2009</a></li>
+        <li><a href="">Novemeber 2009</a></li>
+        <li><a href="">October 2009</a></li>
+        <li><a href="">September 2009</a></li>
+        <li><a href="">August 2009</a></li>
+    </ul>
+</div>
+```
 
 Cut and paste it into a file and save it as `blog_sidebar.html` in the snippets folder.
-Place the following code in `blog.php` in place the code removed above
+Place the following code in `blog.php` in place the code removed above:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-92.png)
+```diff lang="php" title="blog.php"
+<!-- Column 2 / Sidebar -->
++<cms:embed 'blog_sidebar.html' />
+
+<!-- Footer -->
+<p class="grid_12 footer clearfix">
+```
 
 Similarly remove the sidebar code from `blog_list.html` (list-view) and replace it with the embed tag shown above.
 
@@ -211,7 +355,17 @@ The two views should now show identical sidebars. However the '*Latest News*' po
 A little conditional code should handle this -
 Open up `blog_sidebar.html` in your text editor and enclose the '*Latest News*' list with a conditional tag like this:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-93.png)
+```diff lang="html" title="blog_sidebar.html"
++<cms:if k_page_page >
+    <h4>Latest News</h4>
+    <ul class="sidebar">
+        <li><a href="">Chickens rules the world</a></li>
+        <li><a href="">Chuck Bartowski is back</a></li>
+        <li><a href="">Aurelius for sale</a></li>
+        <li><a href="">Themeforest goes bust</a></li>
+    </ul>
++</cms:if >
+```
 
 The '*Latest News*' section should now be visible only in page-view.
 
@@ -222,24 +376,48 @@ We'll start with the first listing. The first thing to do is correct the header'
 
 As we can see, the category (folders) listing in the sidebar is a series of `<li>`'s within a `<ul>` tag:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-94.png)
+```diff lang="html" title="blog_sidebar.html"
+<h4>Catagories</h4>
+<ul class="sidebar">
+    <li><a href="">So who are we?</a></li>
+    <li><a href="">Philosophy</a></li>
+    <li><a href="">History</a></li>
+    <li><a href="">Jobs</a></li>
+    <li><a href="">Staff</a></li>
+    <li><a href="">Clients</a></li>
+</ul>
+```
 
 In Couch, we can enumerate the folders of a template by using the folders tag. This tag works in a similar fashion as the pages tag we saw a little while back. It fetches the folders and then iterates through them, making available each folder's variables as it loops through each.
 The `<li>` portion of the list shown above is the part that needs to be output for each folder found.
 Delete all `<li>`'s except one and then enclose this single `<li>` with the folders tag:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-95.png)
+```diff lang="html" title="blog_sidebar.html"
+<h4>Catagories</h4>
+<ul class="sidebar">
++   <cms:folders masterpage="blog.php" >
+        <li><a href="">So who are we?</a></li>
++   </cms:folders>
+</ul>
+```
 
 Next replace the folder's name and its link with the variables that Couch provides for each folder it finds:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-96.png)
+```diff lang="html" title="blog_sidebar.html" ins="<cms:show k_folder_link />" ins="<cms:show k_folder_title />"
+<h4>Catagories</h4>
+<ul class="sidebar">
+    <cms:folders masterpage="blog.php" >
+        <li><a href="<cms:show k_folder_link />"><cms:show k_folder_title /></a></li>
+    </cms:folders>
+</ul>
+```
 
 This will result in a list of all the five folders we defined for `blog.php` template.
 
 #### Listing pages within a folder
 
-Each folder in the list produced by the folders tag above is also linked to a URL similar to
-```txt "?f=n"
+Each folder in the list produced by the folders tag above is also linked to a URL similar to:
+```txt "?f=5"
 https://www.mytestsite.com/blog.php?f=5
 ```
 Notice how the name of the template is followed by '`?f=n`' (where n is a number denoting a particular folder).
@@ -258,11 +436,23 @@ Currently it only has the *masterpage* parameter that is constraining the pages 
 The tag also supports a parameter named *folder* where we can specify the name of the folder (or folders) the pages belonging to which need to be fetched.
 For example, if we hardcode the name of folder as *clients*, the list-view will start showing only the two pages that currently reside in this folder:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-97.png)
+```diff lang="php" title="blog_list.html" "folder="clients""
+<cms:pages masterpage='blog.php' folder="clients" limit="3" paginate="1" >
+<!-- Blog Post -->
+<div class="post">
+    <!-- Post Title -->
+    <h3 class="title"><a href="<cms:show k_page_link />"><cms:show k_page_title /></a></h3>
+```
 
 As it happens, during folder-view, a variable named `k_folder_name` gets set by Couch, which gives us the name of the folder specified in the URL. Place this variable as the *folder* parameter in the pages tag:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-98.png)
+```diff lang="php" title="blog_list.html" "folder="k_folder_name""
+<cms:pages masterpage='blog.php' folder="k_folder_name" limit="3" paginate="1" >
+<!-- Blog Post -->
+<div class="post">
+    <!-- Post Title -->
+    <h3 class="title"><a href="<cms:show k_page_link />"><cms:show k_page_title /></a></h3>
+```
 
 Refresh `blog.php` and click on the '*Clients*' folder in the sidebar list.
 Only two pages, each belonging to '*Clients*' folder will be displayed.
@@ -278,60 +468,118 @@ Let us move on to it.
 
 ### Listing Archives
 
-This section is very similar to the Listing folders section we handled above -
+This section is very similar to the Listing folders section we handled above:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-99.png)
+```html title="blog_sidebar.html"
+<h4>Archives</h4>
+<ul class="sidebar">
+    <li><a href="">January 2010</a></li>
+    <li><a href="">December 2009</a></li>
+    <li><a href="">Novemeber 2009</a></li>
+    <li><a href="">October 2009</a></li>
+    <li><a href="">September 2009</a></li>
+    <li><a href="">August 2009</a></li>
+</ul>
+```
 
-Edit `blog_sidebar.html` to delete all the LIs within the UL except one.
+Edit `blog_sidebar.html` to delete all the `<li>`'s within the `<ul>` except one.
 The Couch tag used to enumerate all the archive periods that have published pages within them is the archives tag.
-Enclose the solitary LI with this tag -
+Enclose the solitary `<li>` with this tag:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-100.png)
+```diff lang="html" title="blog_sidebar.html"
+<h4>Archives</h4>
+<ul class="sidebar">
++    <cms:archives masterpage="blog.php" >
+        <li><a href="">January 2010</a></li>
++    </cms:archives>
+</ul>
+```
 
 Similar to the pages or folders tag, the archives tag makes available all information about each archive period by setting up variables.
-Variable `k_archive_date` gives the date that represents the first day of the archive period while `k_archive_link` provides the link to the archive-view that should display all pages belonging to this period.
-Add the aforesaid variables to the LI -
+Variable *k_archive_date* gives the date that represents the first day of the archive period while *k_archive_link* provides the link to the archive-view that should display all pages belonging to this period.
+Add the aforesaid variables to the `<li>`:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-101.png)
+```diff lang="html" title="blog_sidebar.html" ins="<cms:date k_archive_date format="F Y" />" ins="<cms:show k_archive_link />"
+<h4>Archives</h4>
+<ul class="sidebar">
+    <cms:archives masterpage="blog.php" >
+        <li><a href="<cms:show k_archive_link />"><cms:date k_archive_date format="F Y" /></a></li>
+    </cms:archives>
+</ul>
+```
 
 We have already discussed the use of date tag to format dates.
 
 Visit `blog.php` and you'll see the archives being displayed in the sidebar.
-Click on one archive item and it should lead you to a URL like -
-`http://www.mytestsite.com/blog.php?d=201010`
+Click on one archive item and it should lead you to a URL like:
 
-The '`?d=201010`' after the `blog.php` signals to Couch that an archive-view is being accessed. Couch makes available all information pertaining to the archive period specified in the URL by setting various variables [see [Variables available in Views](../../../../concepts/variables-in-views/)].
+```txt "?d=201010"
+http://www.mytestsite.com/blog.php?d=201010
+```
+
+The '`?d=201010`' after the `blog.php` signals to Couch that an archive-view is being accessed. Couch makes available all information pertaining to the archive period specified in the URL by setting various variables [see [Variables available in Views](../../../concepts/variables-in-views/)].
 It is up to the template being accessed to handle the archive period anyway it chooses to.
 For now, our `blog.php` will simply display whatever it did in the list-view (remember archive-view and folder-view are sub-categories of list-view) because we have not yet handled the archive-view.
 Let us do that now.
 
 Once again it is the pages tag that we placed within the `blog_list.html` (that handles list-view) that needs a little modification.
-Pages tag supports two parameters that can be set to constrain the fetched pages to belong to a certain time period - `start_on` and `stop_before`.
-We'll set the values of these parameters by using two variables that are set by Couch in archive-view that denote the start and end dates of the archive period - `k_archive_date` and `k_next_archive_date`.
-The modified pages tag should look like -
+Pages tag supports two parameters that can be set to constrain the fetched pages to belong to a certain time period - *start_on* and *stop_before*.
+We'll set the values of these parameters by using two variables that are set by Couch in archive-view that denote the start and end dates of the archive period - *k_archive_date* and *k_next_archive_date*.
+The modified pages tag should look like:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-102.png)
+```diff lang="html" title="blog_list.html"
+<cms:pages masterpage='blog.php' 
+            folder="k_folder_name" 
+            limit="3" 
+            paginate="1" 
++            start_on="k_archive_date" 
++            stop_before="k_next_archive_date" >
+
+<!-- Blog Post -->
+<div class="post">
+    <!-- Post Title -->
+    <h3 class="title"><a href="<cms:show k_page_link />"><cms:show k_page_title /></a></h3>
+```
 
 This minor modification will make our original code handle the archive-view too (i.e. list only pages belonging to that archive period).
 As with the folder-view, this works because when `blog.php` is accessed in a view other than the archive-view, the two variables we used are empty and hence are ignored by the pages tag.
 
 This wraps up the two lists that appear in the sidebar of list-view.
 The page-view has an additional list, the `Latest News` list, which we'll use to display the latest four blog posts.
-Open up `blog_sidebar.html` in your text editor and find the `Latest News` listing.
+Open up `blog_sidebar.html` in your text editor and find the *Latest News* listing.
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-103.png)
+```diff lang="html" title="blog_sidebar.html"
+<cms:if k_page_page >
+    <h4>Latest News</h4>
+    <ul class="sidebar">
+        <li><a href="">Chickens rules the world</a></li>
+        <li><a href="">Chuck Bartowski is back</a></li>
+        <li><a href="">Aurelius for sale</a></li>
+        <li><a href="">Themeforest goes bust</a></li>
+    </ul>
+</cms:if >
+```
 
 Having already configured the folders and archive listings, this one should be a cinch.
 We already know that the Couch tag used to list pages is the pages tag.
-The steps needed to make this listing dynamic should now be familiar -
+The steps needed to make this listing dynamic should now be familiar:
 
-**a.** Delete all but one LI representing one page entry in the list.
-**b.** Enclose the solitary LI with the tag that enumerates the objects being listed - in this case it is the pages tag.
-**c.** Use the variables set by the enumerator tag in the list item.
+- **a.** Delete all but one `<li>` representing one page entry in the list.
+- **b.** Enclose the solitary `<li>` with the tag that enumerates the objects being listed - in this case it is the pages tag.
+- **c.** Use the variables set by the enumerator tag in the list item.
 
-The finished code is as follows -
+The finished code is as follows:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-104.png)
+```diff lang="html" title="blog_sidebar.html" ins="<cms:show k_page_link />" ins="<cms:show k_page_title />" "limit="4""
+<cms:if k_page_page >
+    <h4>Latest News</h4>
+    <ul class="sidebar">
++        <cms:pages masterpage="blog.php" limit="4" >
+            <li><a href="<cms:show k_page_link />"><cms:show k_page_title /></a></li>
++        </cms:pages>
+    </ul>
+</cms:if >
+```
 
 Notice that we have set the limit to four.
 
@@ -348,7 +596,15 @@ Let us move on to them to finally finish the blog in Aurelius.
 As the very first step in configuring comments, mark the `blog.php` template as being commentable.
 This is done by setting the *commentable* attribute to '1' in the template tag present in `blog.php`:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-106.png)
+```diff lang="php" title="blog.php" "commentable='1'"
+<?php require_once( 'couch/cms.php' ); ?>
+<cms:template title='Blog' clonable='1' commentable='1'>
+	<cms:editable name='blog_content' type='richtext' />
+	
+	<cms:editable name='blog_image'
+		crop='1'
+		width='610'
+```
 
 Access `blog.php` in your browser while being logged-in as the super-admin.
 Visit the admin section and you'll find that as soon as a template is declared as commentable, a new item is added to the sidebar:
@@ -358,29 +614,68 @@ Visit the admin section and you'll find that as soon as a template is declared a
 This will be used to administrate all the submitted comments. For now there are no comments for us to administrate so we'll come back to it a little latter.
 
 Let us add the form used to submit comments in the page-view.
-Within `blog.php`, find the form that is meant to submit comments -
+Within `blog.php`, find the form that is meant to submit comments:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-108.png)
+```php title="blog.php"
+<!-- Comment Form -->
+<form id="comment_form" action="" method="post"> 
+    <h3>Add a comment</h3>
+    <div class="hr dotted clearfix">&nbsp;</div>
+    <ul>
+        <li class="clearfix"> 
+            <label for="name">Your Name</label> 
+            <input id="name" name="name" type="text" /> 
+        </li> 
+        <li class="clearfix"> 
+            <label for="email">Your Email</label> 
+            <input id="email" name="email" type="text" /> 
+        </li> 
+        <li class="clearfix"> 
+            <label for="email">Your Website</label> 
+            <input id="website" name="website" type="text" /> 
+        </li> 
+        <li class="clearfix"> 
+            <label for="message">Comment</label> 
+            <textarea id="message" name="message" rows="3" cols="40"></textarea> 
+        </li> 
+        <li class="clearfix">
+            <!-- Add Comment Button -->
+            <a type="submit" class="button medium black right">Add comment</a>
+        </li> 
+    </ul> 
+</form>
+```
 
-We could modify this form to make Couch fit into it. However, since a comments submission form is such a standard component of a blog, in this case we can save some time by reusing the submission form that is described in Couch documentation of [comments](../../../../concepts/using-comments.html).
+We could modify this form to make Couch fit into it. However, since a comments submission form is such a standard component of a blog, in this case we can save some time by reusing the submission form that is described in Couch documentation of [comments](../../../concepts/comments.html).
 Copy and save that sample form into a file named `comments_form.html` [\[download it\]](https://www.couchcms.com/docs/code/blog.zip) and save this into the snippet folder of Couch.
-Replace the original form block in `blog.php` shown above with -
+Replace the original form block in `blog.php` shown above with:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-109.png)
+```diff lang="php" title="blog.php"
+<!-- Comment Form -->
++<cms:embed 'comments_form.html' />
+```
 
-This will cause the following to display when you are logged in -
+This will cause the following to display when you are logged in:
 
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-110.png)
 
-while the following form is shown to non logged-in users -
+while the following form is shown to non logged-in users:
 
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-111.png)
 
 You can style the input elements within this form yourself or simply substitute them with those found in the original Aurelius code.
 
-The code we copied uses the following values from `config.php` to email submission intimation messages to the administrator -
+The code we copied uses the following values from `config.php` to email submission intimation messages to the administrator:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-112.png)
+```php title="config.php" "youremail@gmail.com" "contact@yourdomain.com"
+    // 13.
+    // Your Email address. Will be used in contact forms.
+    define( 'K_EMAIL_TO', 'youremail@gmail.com' );
+
+    // 14.
+    // Will be used as the sender of messages delivered by contact forms to the address above.
+    define( 'K_EMAIL_FROM', 'contact@yourdomain.com' );
+```
 
 Don't forget to change them.
 
@@ -401,34 +696,137 @@ Approve the comments that need approval and now we can move on to getting all th
 
 Listing comments follows the same pattern we have seen so far with all the listings we have configured i.e. pages, folders and archives.
 The enumerator tag for listing comments is, no prizes for guessing, the comments tag.
-With no parameters specified, comments tag will list all the approved comments in the system regardless of the template they belong to. However, you can use the `masterpage`, `page_id` or `page_name` parameters to make it fetch only the comments that belong to a particular template or page.
+With no parameters specified, comments tag will list all the approved comments in the system regardless of the template they belong to. However, you can use the *masterpage*, *page_id* or *page_name* parameters to make it fetch only the comments that belong to a particular template or page.
 
 To put the comments tag into use, follow the usual method of isolating a single item and enclosing it with the enumerator tags.
-Here is how the sample comment contained in `blog.php` looks like after being enclosed by the comments tag -
+Here is how the sample comment contained in `blog.php` looks like after being enclosed by the comments tag:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-115.png)
+```diff lang="php" title="blog.php"
+<!-- Comments List -->
+<h3>Comments</h3>
+<div class="hr dotted clearfix">&nbsp;</div>
 
-Notice how we are using the system variable `k_page_id`, which is set by Couch to give the current page's id, to fetch only the comments that are associated with the page being accessed in page-view.
+<ol class="commentlist">
++    <cms:comments page_id=k_page_id order='asc' >
+    <li class="comment"> 
+        <div class="gravatar"> 
+            <img alt="" src='images/gravatar.png' height='48' width='48' />
+            <a class="comment-reply-link" href=''>Reply</a>     
+        </div> 
+        <div class="comment_content"> 
+            <div class="clearfix">
+                <cite class="author_name"><a href="">Joe Bloggs</a></cite>       
+                <div class="comment-meta commentmetadata">January 6, 2010 at 6:26 am</div> 
+            </div>
+            <div class="comment_text"> 
+                <p>Donec leo. Aliquam risus elit, luctus vel, interdum vitae, malesuada eget, elit. Nulla vitae ipsum. Donec ligula ante, bibendum sit amet, elementum quis, viverra eu, ante. Fusce tincidunt. Mauris pellentesque, arcu eget feugiat accumsan, ipsum mi molestie orci, ut pulvinar sapien lorem nec dui.</p> 
+            </div> 
+        </div>
+    </li>
++   </cms:comments>
+</ol>
+```
+
+Notice how we are using the system variable *k_page_id*, which is set by Couch to give the current page's id, to fetch only the comments that are associated with the page being accessed in page-view.
 
 Follow this with the usual step of replacing the static content with the variables set by the enumerator tag.
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-116.png)
+```diff lang="php" title="blog.php" ins="<cms:show k_comment_author />" ins="<cms:show k_comment_author_email />" ins="<cms:date k_comment_date format='F j, Y'/>" ins="<cms:date k_comment_date format='h:ia'/>" ins="<cms:show k_comment />"
+<!-- Comments List -->
+<h3>Comments</h3>
+<div class="hr dotted clearfix">&nbsp;</div>
 
-Notice the use of the gravatar tag. Also please notice the use of the following code
+<ol class="commentlist">
+    <cms:comments page_id=k_page_id order='asc' >
+    <li class="comment"> 
+        <div class="gravatar"> 
+            <cms:gravatar email="<cms:show k_comment_author_email />" size="60" />
+            <a name="<cms:show k_comment_anchor />">     
+        </div> 
+        <div class="comment_content"> 
+            <div class="clearfix">
+                <cite class="author_name"><a href=""><cms:show k_comment_author /></a></cite>       
+                <div class="comment-meta commentmetadata"><cms:date k_comment_date format='F j, Y'/> at <cms:date k_comment_date format='h:ia'/></a></div> 
+            </div>
+            <div class="comment_text"> 
+                <p><cms:show k_comment /></p> 
+            </div> 
+        </div>
+    </li>
+   </cms:comments>
+</ol>
+```
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-117.png)
+Notice the use of the gravatar tag. Also please notice the use of the following code:
+
+```diff lang="php" title="blog.php"
+<div class="gravatar"> 
+    <cms:gravatar email="<cms:show k_comment_author_email />" size="60" />
++    <a name="<cms:show k_comment_anchor />">    
+</div>
+```
 
 which is used to give every comment a unique anchor. This is helpful in linking back to specific comments from other pages.
 
 If you wish you can add pagination to this list of comments. The method is the same as that we used to paginate the list of pages before.
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-118.png)
+```diff lang="php" title="blog.php" ins="<cms:paginator />" ins="limit='5' paginate='1'"
+<ol class="commentlist">
+    <cms:comments page_id=k_page_id order='asc' limit='5' paginate='1' >
+    <li class="comment"> 
+        <div class="gravatar"> 
+            <cms:gravatar email="<cms:show k_comment_author_email />" size="60" />
+            <a name="<cms:show k_comment_anchor />">     
+        </div> 
+        <div class="comment_content"> 
+            <div class="clearfix">
+                <cite class="author_name"><a href=""><cms:show k_comment_author /></a></cite>       
+                <div class="comment-meta commentmetadata"><cms:date k_comment_date format='F j, Y'/> at <cms:date k_comment_date format='h:ia'/></a></div> 
+            </div>
+            <div class="comment_text"> 
+                <p><cms:show k_comment /></p> 
+            </div> 
+        </div>
+    </li>
+    <cms:paginator />
+   </cms:comments>
+</ol>
+```
 
-For the pagination, we have opted to use the Couch paginator instead of the usual '`next`' and '`prev`' buttons. This tag automatically generates a Google style pagination. You'll need to add a bit of CSS though to make the looks suit your needs (please see [Pagination documentation](../../../../concepts/pagination.html) for a sample CSS)
+For the pagination, we have opted to use the Couch paginator instead of the usual '*next*' and '*prev*' buttons. This tag automatically generates a Google style pagination. You'll need to add a bit of CSS though to make the looks suit your needs (please see [Pagination documentation](../../../../concepts/pagination.html) for a sample CSS)
 
-As a final tweak, we'll add a conditional tag to display this list only if the page has any comments available else show a '`No comments`' message. The final code -
+As a final tweak, we'll add a conditional tag to display this list only if the page has any comments available else show a '*No comments*' message. The final code:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-119.png)
+```diff lang="php" title="blog.php"
+<!-- Comments List -->
+<h3>Comments</h3>
+<div class="hr dotted clearfix">&nbsp;</div>
+
++<cms:if k_comments_count >
+<ol class="commentlist">
+    <cms:comments page_id=k_page_id order='asc' limit='5' paginate='1' >
+    <li class="comment"> 
+        <div class="gravatar"> 
+            <cms:gravatar email="<cms:show k_comment_author_email />" size="60" />
+            <a name="<cms:show k_comment_anchor />">     
+        </div> 
+        <div class="comment_content"> 
+            <div class="clearfix">
+                <cite class="author_name"><a href=""><cms:show k_comment_author /></a></cite>       
+                <div class="comment-meta commentmetadata"><cms:date k_comment_date format='F j, Y'/> at <cms:date k_comment_date format='h:ia'/></a></div> 
+            </div>
+            <div class="comment_text"> 
+                <p><cms:show k_comment /></p> 
+            </div> 
+        </div>
+    </li>
+    <cms:paginator />
+   </cms:comments>
+</ol>
++<cms:else >
++    <p>No comments</p>
++</cms:if >
+```
 
 That completes the last feature of the blog section.
 
@@ -442,40 +840,54 @@ The reason is that, latter on when all the templates have been configured, usual
 
 Thus, for example:
 
-```txt
+```txt "blog.php"
 https://www.mytestsite.com/blog.php
 ```
 will become:
-```txt
+```txt "blog/"
 https://www.mytestsite.com/blog/
 ```
-
-```txt
+And:
+```txt "?p=2"
 https://www.mytestsite.com/blog.php?p=2
 ```
 will become:
-```txt
+```txt "/my-first-blog-entry.html"
 https://www.mytestsite.com/blog/my-first-blog-entry.html
 ```
-
-```txt
+And:
+```txt "?f=5"
 https://www.mytestsite.com/blog.php?f=5
 ```
 will become:
-```txt
+```txt "/clients/"
 https://www.mytestsite.com/blog/clients/
-```etc.
+```
+
+etc.
 
 The right way to code any link in Couch is to use the *link* tag.
 This tag takes as parameters the names of the masterpage, page, folder etc. and depending on whether or not prettyURL is turned on, outputs the proper link.
 
 Find the following in `blog.php`:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-120.png)
+```diff lang="php" title="blog.php" "blog.html"
+<!-- Post Links -->
+<p class="clearfix">
+    <a href="blog.html" class="button float" >&lt;&lt; Back to Blog</a>
+    <a href="#commentform" class="button float right" >Discuss this post</a>
+</p>
+```
 
 and change it to:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-121.png)
+```diff lang="php" title="blog.php" ins="<cms:link masterpage='blog.php' />"
+<!-- Post Links -->
+<p class="clearfix">
+    <a href="<cms:link masterpage='blog.php' />" class="button float" >&lt;&lt; Back to Blog</a>
+    <a href="#commentform" class="button float right" >Discuss this post</a>
+</p>
+```
 
 Congratulations. The blog section is finally complete.
 
