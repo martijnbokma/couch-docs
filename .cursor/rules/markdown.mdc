@@ -18,7 +18,7 @@ The primary goals are consistency, readability, maintainability, and accessibili
 
 Every document MUST begin with frontmatter. Below is an example of the required fields:
 
-```
+```markdown
 ---
 title: Document Title
 slug: slug-name
@@ -42,7 +42,7 @@ lastUpdated: YYYY-MM-DD
 
 Import necessary components immediately after the frontmatter:
 
-```
+```astro
 import { Steps } from '@astrojs/starlight/components';
 ```
 
@@ -56,7 +56,7 @@ import { Steps } from '@astrojs/starlight/components';
 - Leave one blank line before and after headings.
 - Follow proper hierarchy:
 
-```
+```markdown
 # Main Title
 
 ## Major Section
@@ -179,7 +179,7 @@ Critical security or implementation warnings
 
 Use plain text formatting for URLs in code examples:
 
-```
+```txt
 https://example.com/path/
 ```
 
