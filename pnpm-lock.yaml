@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@astro-community/astro-embed-youtube':
+        specifier: ^0.5.6
+        version: 0.5.6(astro@5.5.3(rollup@4.36.0)(typescript@5.8.2))
       '@astrojs/starlight':
         specifier: ^0.32.3
         version: 0.32.3(astro@5.5.3(rollup@4.36.0)(typescript@5.8.2))
@@ -22,6 +25,11 @@ importers:
         version: 0.14.3(@astrojs/starlight@0.32.3(astro@5.5.3(rollup@4.36.0)(typescript@5.8.2)))
 
 packages:
+
+  '@astro-community/astro-embed-youtube@0.5.6':
+    resolution: {integrity: sha512-/mRfCl/eTBUz0kmjD1psOy0qoDDBorVp0QumUacjFcIkBullYtbeFQ2ZGZ+3N/tA6cR/OIyzr2QA4dQXlY6USg==}
+    peerDependencies:
+      astro: ^2.0.0 || ^3.0.0-beta || ^4.0.0-beta || ^5.0.0-beta
 
   '@astrojs/compiler@2.11.0':
     resolution: {integrity: sha512-zZOO7i+JhojO8qmlyR/URui6LyfHJY6m+L9nwyX5GiKD78YoRaZ5tzz6X0fkl+5bD3uwlDHayf6Oe8Fu36RKNg==}
@@ -1022,6 +1030,9 @@ packages:
     resolution: {integrity: sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==}
     engines: {node: '>= 8'}
 
+  lite-youtube-embed@0.3.3:
+    resolution: {integrity: sha512-gFfVVnj6NRjxVfJKo3qoLtpi0v5mn3AcR4eKD45wrxQuxzveFJUb+7Cr6uV6n+DjO8X3p0UzPPquhGt0H/y+NA==}
+
   longest-streak@3.1.0:
     resolution: {integrity: sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g==}
 
@@ -1737,6 +1748,11 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
 snapshots:
+
+  '@astro-community/astro-embed-youtube@0.5.6(astro@5.5.3(rollup@4.36.0)(typescript@5.8.2))':
+    dependencies:
+      astro: 5.5.3(rollup@4.36.0)(typescript@5.8.2)
+      lite-youtube-embed: 0.3.3
 
   '@astrojs/compiler@2.11.0': {}
 
@@ -2890,6 +2906,8 @@ snapshots:
   kleur@4.1.5: {}
 
   klona@2.0.6: {}
+
+  lite-youtube-embed@0.3.3: {}
 
   longest-streak@3.1.0: {}
 
