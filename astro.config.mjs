@@ -103,6 +103,13 @@ export default defineConfig({
 							items: [
 								'tutorials/job-application-form/getting-started',
 							],
+						},
+						{
+							label: 'Page Builder',
+							items: [
+								'tutorials/page-builder/part-1',
+								'tutorials/page-builder/part-2',
+							],
 						}
 					]
 				}
