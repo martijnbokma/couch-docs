@@ -20,11 +20,11 @@ sidebar:
 
 # Views » Notes Page View
 
-Dit onderdeel toont de inhoud van een enkele notitie met links naar de 'edit_view' en 'delete_view':
+This view shows the contents of a single note with links to its 'edit_view' and 'delete_view':
 
 ![Note Page View](./img/scr2.png)
 
-Laten we de code in `views/notes/page_view.html` bekijken die deze weergave implementeert:
+Please open `views/notes/page_view.html` snippet in your text editor and we'll take a look at the code that implements this view:
 
 ```php title="page_view.html"
 <cms:pages id=rt_id limit='1' show_future_entries='1'>
@@ -46,11 +46,11 @@ Laten we de code in `views/notes/page_view.html` bekijken die deze weergave impl
 <cms:embed 'views/layout_with_sidebar.html' />
 ```
 
-Vergeleken met de vorige weergave die we hebben bestudeerd, is deze code relatief eenvoudig.
+Compared to the last view we studied, this code is rather simple.
 
 ### Pages Block
 
-Het belangrijkste element is het `cms:pages` block dat bijna alle code in de snippet omsluit:
+The most important element is the `cms:pages` block that encloses almost all the code in the snippet:
 
 ```php title="page_view.html - Pages Block"
 <cms:pages id=rt_id limit='1' show_future_entries='1'>
@@ -58,26 +58,26 @@ Het belangrijkste element is het `cms:pages` block dat bijna alle code in de sni
 </cms:pages>
 ```
 
-Een page_view wordt aangeroepen met de volgende URL-structuren:
+A page_view is invoked using the following URLs:
 
 ```txt
 https://www.yoursite.com/notes/16
-https://www.yoursite.com/notes.php?q=16  # zonder prettyURLs
+https://www.yoursite.com/notes.php?q=16  # without prettyURLs
 ```
 
-In deze voorbeelden is `16` de ID van de notitie die moet worden weergegeven.
+In these examples, `16` is the ID of the note to be displayed.
 
-De `cms:match_route` maakt deze waarde beschikbaar als een variabele genaamd `rt_id`. De `cms:pages` tag haalt vervolgens de enkele gekloonde pagina op met de ID die is opgegeven in `rt_id` en maakt deze beschikbaar voor alle code die het omsluit:
+The `cms:match_route` makes this value available as a variable named `rt_id`. The `cms:pages` tag fetches the single cloned-page with the ID specified in `rt_id` and makes it available to all the code that it encloses:
 
 ```php title="page_view.html - Data Access"
 <cms:pages id=rt_id limit='1' show_future_entries='1'>
-    ... alle gegevens van de pagina uit de URL zijn hier beschikbaar voor gebruik ...
+    ... all data of the page specified in the URL is available for use here ...
 </cms:pages>
 ```
 
-### Content Weergave
+### Content Display
 
-De ingesloten code heeft nu toegang tot alle gegevens van de opgegeven pagina:
+The enclosed code now has access to all the data belonging to the specified page:
 
 ```php title="page_view.html - Content Display"
 <cms:set my_title=k_page_title 'global' />
@@ -93,19 +93,19 @@ De ingesloten code heeft nu toegang tot alle gegevens van de opgegeven pagina:
 </cms:capture>
 ```
 
-Het instellen van de `my_title` en `my_content` variabelen zou nu bekend moeten zijn, evenals de manier waarop de `cms:route_link` tag wordt gebruikt om de links naar de 'edit_view' en 'delete_view' te maken.
+The setting of `my_title` and `my_content` variables should be familiar to you by now as should be the way `cms:route_link` tag is used to craft the links to the 'edit_view' and 'delete_view'.
 
-### Layout Integratie
+### Layout Integration
 
-De laatste regel geeft de `my_title` en `my_content` variabelen door aan de decorator template voor de uiteindelijke weergave:
+The last line simply hands over the `my_title` and `my_content` variables to the decorator template for final display:
 
 ```php title="page_view.html - Layout Integration"
 <cms:embed 'views/layout_with_sidebar.html' />
 ```
 
-## Volgende Stap
+## Next Steps
 
-We gaan nu kijken naar de implementatie van de create_view.
+Next we'll take a look at the 'create_view'.
 
 ---
 
