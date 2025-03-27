@@ -39,13 +39,13 @@ export default defineConfig({
 				{
 					label: 'Getting Started',
 					items: [
-						'about-couch',
-						'requirements',
-						'installation',
-						'upgrade',
-						'localizing',
-						'rebranding',
-						'changelog',
+						'getting-started/about-couch',
+						'getting-started/requirements',
+						'getting-started/installation',
+						'getting-started/upgrade',
+						'getting-started/localizing',
+						'getting-started/rebranding',
+						'getting-started/changelog',
 					],
 				},
 				{
