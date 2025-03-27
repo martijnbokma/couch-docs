@@ -17,5 +17,9 @@
     "astro": "^5.5.3",
     "sharp": "^0.33.5",
     "starlight-links-validator": "^0.14.3"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "prettier-plugin-astro": "^0.14.1"
   }
 }
