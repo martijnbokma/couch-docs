@@ -1,0 +1,91 @@
+---
+title: "Create-View (with Pad)"
+description: "Learn how to implement a pre-selected pad feature when creating notes from within a specific pad context in the Notejam application."
+keywords:
+    - create view with pad
+    - pre-selected pad
+    - context-aware forms
+    - route parameters
+    - form delegation
+    - CouchCMS
+    - advanced tutorial
+    - user experience
+    - form handling
+category: tutorial
+subCategory: advanced-tutorial
+author: Kamran Kashif
+lastUpdated: 2025-03-27
+sidebar:
+    order: 12
+---
+
+Click one of the pads listed in the sidebar and you'll see a list of notes that belong to that particular pad.
+
+On this screen if we click 'New note', we get the same 'create_view' we discussed above except that now the pad we were
+browsing in the last step, appears to be selected automatically.
+
+![](./img/scr4.png)
+
+This is the **'create_with_pad_view'** and is actually just a thin wrapper around
+**[create_view](../11-create-view)**
+
+Please take a look at the snippet implementing it (i.e. `views/notes/create_with_pad_view.html`) and you'll find that it
+simply sets a variable named 'my_current_pad' and delegates over the page rendering to `views/notes/create_view.html`
+which implements the 'create_view' we've already studied
+
+```php
+<cms:set my_current_pad=rt_id 'global' />
+
+<cms:embed "views/notes/create_view.html" />
+```
+
+The 'rt_id' variable used above, you'll remember, would contain the value passed in the URL for the path parameter named
+`{:id}` as defined in this views route -
+
+```php
+<cms:route
+    name='create_with_pad_view'
+    path='{:id}/create'
+    filters='authenticated | pad_exists | owns_pad'
+    >
+
+    <cms:route_validators
+        id='non_zero_integer'
+    />
+</cms:route>
+```
+
+So, if the URL invoking the 'create_with_pad_view' was
+
+```txt
+http://www.yoursite.com/notes/12/create
+or
+http://www.yoursite.com/notes.php?q=12/create (without prettyURLs)
+```
+
+the 'rt_id' (and hence the 'my_current_pad') variable will contain a value of **_12_**.
+
+The action now gets delegated to the snippet implementing the 'create_view'.
+
+You'll remember from our discussion above about 'create_view', the definition of the 'dropdown' input showing all pads
+belonging to the current user was this -
+
+```php
+<cms:input
+    type='dropdown'
+    name='pad'
+    id='list'
+    opt_values=my_opt_values
+    opt_selected=my_current_pad
+    required='1'
+/>
+```
+
+Notice how it is using the 'my_current_pad' set by this view to pre-select the pad specified in the URL leading to this
+view. In our example, any listed pad with an ID of '12' would appear already selected in the form.
+
+With that we now move on to the 'edit_view'.
+
+---
+
+**Next: [Edit View →](https://github.com/trendoman/Midware/tree/main/tutorials/Notejam-App/14-Edit-View.md#views--notes-edit-view)**
