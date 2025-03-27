@@ -82,9 +82,7 @@ export default defineConfig({
 						},
 						{
 							label: 'Advanced Tutorial',
-							items: [
-								'tutorials/advanced-tutorial/getting-started',
-							],
+							autogenerate: { directory: 'tutorials/advanced-tutorial' }
 						},
 						{
 							label: 'Building a Shopping Cart',
