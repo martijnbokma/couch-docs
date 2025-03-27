@@ -18,7 +18,7 @@ banner:
 import { Card } from '@astrojs/starlight/components';
 
 <Card icon="download" title="Download Code">
-[Download the Couchified code](https://www.couchcms.com/docs/code/contact.zip)
+[Download the Couchified Code](https://www.couchcms.com/docs/code/contact.zip)
 </Card>
 
 The `contact.html` that comes with Aurelius provides a contact form as well as some contact details.
@@ -28,9 +28,23 @@ Take the usual steps to do so -
 Change the extension of `contact.html` to make it `contact.php`
 Add the two lines of boilerplate PHP code to enclose the contents of this file and use the template tag to change the display-name of the template.
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-148.png)
+```php title="contact.php" ins="<?php require_once( 'couch/cms.php' ); ?>" ins="<cms:template title='Contact Us' >"
+<?php require_once( 'couch/cms.php' ); ?>
+<cms:template title='Contact Us' >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Aurelius | About Us</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+```
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-149.png)
+```php title="contact.php" ins="<?php COUCH::invoke(); ?>"
+	</div><!--end wrapper-->
+
+</body>
+</html>
+<?php COUCH::invoke(); ?>
+```
 
 Access `http://www.mytestsite.com/contact.php` while logged on as the super-admin.
 This will hook up Couch to the template.
