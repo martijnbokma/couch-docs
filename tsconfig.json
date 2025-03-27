@@ -8,9 +8,12 @@
     "dist"
   ],
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "/couch-docs",
     "paths": {
       "@/*": [
+        "src/*"
+      ],
+      "~/*": [
         "src/*"
       ],
       "@components/*": [
@@ -19,14 +22,23 @@
       "@assets/*": [
         "src/assets/*"
       ],
+      "@content/*": [
+        "src/content/*"
+      ],
+      "@tutorials/*": [
+        "src/content/docs/tutorials/*"
+      ],
+      "@concepts/*": [
+        "src/content/docs/concepts/*"
+      ],
+      "@tag-reference/*": [
+        "src/content/docs/tag-reference/*"
+      ],
       "@layouts/*": [
         "src/layouts/*"
       ],
       "@utils/*": [
         "src/utils/*"
-      ],
-      "@content/*": [
-        "src/content/*"
       ]
     }
   }
