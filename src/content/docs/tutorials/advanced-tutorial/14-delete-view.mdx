@@ -1,0 +1,107 @@
+---
+title: "Delete View"
+description: "Learn how to implement secure note deletion functionality in CouchCMS, including confirmation forms, data deletion, and CSRF protection."
+keywords:
+    - delete view
+    - data deletion
+    - confirmation forms
+    - CSRF protection
+    - security measures
+    - CouchCMS
+    - advanced tutorial
+    - form handling
+    - database operations
+category: tutorial
+subCategory: advanced-tutorial
+author: Kamran Kashif
+lastUpdated: 2025-03-27
+sidebar:
+    order: 14
+---
+
+# Views » Notes Delete View
+
+The **delete_view**, reached by clicking the 'Delete it' link found on the 'page_view', shows a prominent button asking
+for confirmation about the action (and a 'Cancel' link that leads back to the 'page_view' of the note) —
+
+![](./img/scr6.png)
+
+The overall logic of this view is pretty simple – pressing the confirmation button submits a form. The **k_success**
+code of the form then effects the actual deletion.
+
+Please take a look at the snippet implementing this view - `views/notes/delete_view.html`.
+
+You'll notice that, similar to 'page_view' and 'create_view', there is a **cms:pages** block enveloping all the main
+code
+
+```xml
+<cms:pages id=rt_id limit='1' show_future_entries='1'>
+    ... form shown here ...
+</cms:pages>
+```
+
+Needless to say, it fetches the page to be deleted and makes it available to the form enclosed within the block. The
+form, you'll recognize, is a _DataBound Form_ attached to the page fetched above (via its 'page_id' parameter set to
+**_k_page_id_**)
+
+```xml
+<cms:form
+    masterpage=k_template_name
+    mode='edit'
+    page_id=k_page_id
+    method='post'
+    anchor='0'
+    >
+
+    ...
+    ...
+
+    <p>Are you sure you want to delete <cms:show k_page_title />?</p>
+    <cms:input name='submit' type="submit" class="button red" value="Yes, delete I want to delete this note" />
+    <a href="<cms:route_link 'page_view' rt_id=k_page_id />">Cancel</a>
+
+</cms:form>
+```
+
+All the action of this view lies in the **k_success** block of the form -
+
+```xml
+<cms:if k_success>
+    <cms:db_delete_form />
+    <cms:redirect "<cms:route_link 'list_view' />"  />
+</cms:if>
+```
+
+– where the **cms:db_delete_form** tag simply goes ahead and deletes the page bound to the containing form. The
+**cms:redirect** statement that follows it leads the user back to the list_view.
+
+That ends our tour through this view but in closing I'd like to mention a few important points about the
+**cms:db_delete_form** tag we used.
+
+The **cms:db_delete_form** tag works only from within a DataBound Form, as done above. This, however, necessarily
+constrains us in deleting only single pages (as a DataBound Form can bind with just a single page). If your design calls
+for deleting multiple pages, you'll have to use its sister tag named **cms:db_delete** which has no such constrains and
+works as a standalone statement.
+
+You'll find an example of **cms:db_delete** usage in the following thread of our forum (specifically, in answer to the
+post) -
+
+**Deleting page from the front-end
+([viewtopic.php?f=4&t=8087](http://www.couchcms.com/forum/viewtopic.php?f=4&t=8087))**
+
+The important point to keep in mind while using **cms:db_delete** (as discussed in the thread) is to \*always\* combine
+it with nonces (using **cms:cms:create_nonce** and **cms:validate_nonce** tags). Never use it without the nonces
+protection as it will open up your script to CSRF vulnerability.
+
+In our snippet that we discussed above, the DataBound Form hosting the **cms:db_delete_form** tag automatically takes
+care of creating/validating those nonces so we didn't have to bother implementing that security ourselves. This is one
+reason why using **cms:db_delete_form** could be an easier way of implementing delete functionality.
+
+Anyway, that completes our line-by-line tour through all the code that implements the 'Notes' portion of the Notejam
+application.
+
+We'll move to the 'Pads' section next.
+
+---
+
+**Next: [Pads →](https://github.com/trendoman/Midware/tree/main/tutorials/Notejam-App/16-Pads.md#pads)**
