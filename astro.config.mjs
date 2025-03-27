@@ -72,8 +72,8 @@ export default defineConfig({
 							items: [
 								'tutorials/portfolio-site/building-real-world-site',
 								'tutorials/portfolio-site/about-us',
-								'tutorials/portfolio-site/diving-deep-blog-part-1',
-								'tutorials/portfolio-site/diving-deep-blog-part-2',
+								'tutorials/portfolio-site/blog-part-1',
+								'tutorials/portfolio-site/blog-part-2',
 								'tutorials/portfolio-site/portfolio',
 								'tutorials/portfolio-site/contact-form',
 								'tutorials/portfolio-site/home-page',
