@@ -45,6 +45,7 @@ export default defineConfig({
 						'upgrade',
 						'localizing',
 						'rebranding',
+						'changelog',
 					],
 				},
 				{
