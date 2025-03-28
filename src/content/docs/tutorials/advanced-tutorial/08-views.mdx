@@ -26,14 +26,14 @@ As an example, suppose following are two such templates (with very simplistic HT
 
 ### Template 1
 
-```php title="template_1.php"
+```html title="template_1.php"
 <html>
     <head>
         <title>First Template</title>
     </head>
 
     <body>
-        <h1>Hello! I'm First Template</h1>
+        <h1>Hello! This is the First Template</h1>
 
         <div>
             Here is what first template has got to say to you!
@@ -44,14 +44,14 @@ As an example, suppose following are two such templates (with very simplistic HT
 
 ### Template 2
 
-```php title="template_2.php"
+```html title="template_2.php"
 <html>
     <head>
         <title>Second Template</title>
     </head>
 
     <body>
-        <h1>Hello! I'm Second Template</h1>
+        <h1>Hello! This is the Second Template</h1>
 
         <div>
             Here is what second template has got to say to you!
@@ -80,9 +80,9 @@ For example, the above templates could be split up into `header.html` and `foote
 
 and then the main templates would reuse the snippets like this:
 
-```php title="template_1.php"
+```html title="template_1.php"
 <cms:embed 'header.html' />
-    <h1>Hello! I'm First Template</h1>
+    <h1>Hello! This is the First Template</h1>
 
     <div>
         Here is what first template has got to say to you!
@@ -90,9 +90,9 @@ and then the main templates would reuse the snippets like this:
 <cms:embed 'footer.html' />
 ```
 
-```php title="template_2.php"
+```html title="template_2.php"
 <cms:embed 'header.html' />
-    <h1>Hello! I'm Second Template</h1>
+    <h1>Hello! This is the Second Template</h1>
 
     <div>
         Here is what second template has got to say to you!
@@ -106,14 +106,14 @@ What I wanted to discuss was an alternative way of implementing the same thing a
 
 Suppose, instead of two snippets (header and footer), we create a single snippet, say named `common.html`, as follows:
 
-```php title="common.html"
+```html title="common.html"
 <html>
     <head>
         <title><cms:show my_title /></title>
     </head>
 
     <body>
-        <h1>Hello! I'm <cms:show my_title /></h1>
+        <h1>Hello! This is the <cms:show my_title /></h1>
 
         <cms:show my_content />
 
@@ -123,7 +123,7 @@ Suppose, instead of two snippets (header and footer), we create a single snippet
 
 and then the two main templates call the `common.html` snippet like this:
 
-```php title="template_1.php"
+```html title="template_1.php"
 <cms:set my_title='First Template' />
 
 <cms:capture into='my_content' >
@@ -135,7 +135,7 @@ and then the two main templates call the `common.html` snippet like this:
 <cms:embed 'common.html' />
 ```
 
-```php title="template_2.php"
+```html title="template_2.php"
 <cms:set my_title='Second Template' />
 
 <cms:capture into='my_content' >
@@ -155,7 +155,7 @@ The `common.html` snippet contains the full markup (i.e. from `<html>` to `</htm
 
 The templates fill up those two variables (`my_title` and `my_content`) with their markup and then invoke `common.html`:
 
-```php
+```html title="template_2.php"
 <!-- fill 'my_title' -->
 <cms:set my_title='Second Template' />
 
@@ -196,4 +196,4 @@ Ok, so now let us take a look at the first view that the routes defined in `note
 
 ---
 
-**Next: [List View →](../09-list-view)**
+**Next: [List View →](./09-list-view)**
