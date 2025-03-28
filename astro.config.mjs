@@ -69,47 +69,70 @@ export default defineConfig({
 					items: [
 						{
 							label: 'Building a Real-World Site',
-							items: [
-								'tutorials/portfolio-site/building-real-world-site',
-								'tutorials/portfolio-site/about-us',
-								'tutorials/portfolio-site/blog-part-1',
-								'tutorials/portfolio-site/blog-part-2',
-								'tutorials/portfolio-site/portfolio',
-								'tutorials/portfolio-site/contact-form',
-								'tutorials/portfolio-site/home-page',
-								'tutorials/portfolio-site/tying-the-loose-ends'
-							],
+							autogenerate: { directory: 'tutorials/portfolio-site' }
 						},
+						// {
+						// 	label: 'Advanced Tutorial',
+						// 	autogenerate: { directory: 'tutorials/advanced-tutorial' }
+						// },
 						{
 							label: 'Advanced Tutorial',
-							autogenerate: { directory: 'tutorials/advanced-tutorial' }
+							items: [
+								'tutorials/advanced-tutorial/01-intro',
+								'tutorials/advanced-tutorial/02-installing-the-application',
+								{
+									label: 'Code Walkthrough',
+									items: [
+										'tutorials/advanced-tutorial/03-code-walkthrough',
+										{
+											label: 'Notes',
+											items: [
+												'tutorials/advanced-tutorial/04-notes',
+												'tutorials/advanced-tutorial/05-routes',
+												'tutorials/advanced-tutorial/06-filters',
+												'tutorials/advanced-tutorial/07-controller',
+												{
+													label: 'Views',
+													items: [
+														'tutorials/advanced-tutorial/08-views',
+														'tutorials/advanced-tutorial/09-list-view',
+														'tutorials/advanced-tutorial/10-page-view',
+														'tutorials/advanced-tutorial/11-create-view',
+														'tutorials/advanced-tutorial/12-create-view-with-pad',
+														'tutorials/advanced-tutorial/13-edit-view',
+														'tutorials/advanced-tutorial/14-delete-view',
+													]
+												}
+											],
+										},
+										'tutorials/advanced-tutorial/15-pads',
+										'tutorials/advanced-tutorial/16-users',
+									],
+								},
+								'tutorials/advanced-tutorial/17-wrapping-up',
+								// 'tutorials/advanced-tutorial/18-tags-reference',
+							],
 						},
 						{
 							label: 'Building a Shopping Cart',
-							items: [
-								'tutorials/shopping-cart/shopping-cart-1',
-								'tutorials/shopping-cart/shopping-cart-2',
-							],
-						},
-						{
-							label: 'On-Page Editing',
-							items: [
-								'tutorials/on-page-editing/on-page-editing',
-							],
-						},
-						{
-							label: 'Building a Job Application Form',
-							items: [
-								'tutorials/job-application-form/getting-started',
-							],
+							autogenerate: { directory: 'tutorials/shopping-cart' }
 						},
 						{
 							label: 'Page Builder',
-							items: [
-								'tutorials/page-builder/part-1',
-								'tutorials/page-builder/part-2',
-							],
-						}
+							autogenerate: { directory: 'tutorials/page-builder' }
+						},
+						{
+							label: 'On-Page Editing',
+							autogenerate: { directory: 'tutorials/on-page-editing' }
+						},
+						{
+							label: 'Admin Panel',
+							autogenerate: { directory: 'tutorials/admin-panel' }
+						},
+						{
+							label: 'Building a Job Application Form',
+							autogenerate: { directory: 'tutorials/job-application-form' }
+						},
 					]
 				}
 			],
