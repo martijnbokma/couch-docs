@@ -19,19 +19,15 @@ sidebar:
     order: 16
 ---
 
-# Users
+The finished Notejam application will allow visitors to register their accounts from the front-end, manage their profile, reclaim lost passwords etc. (i.e. all the paraphernalia that is usually associated with a membership site).
 
-The finished Notejam application will allow visitors to register their accounts from the front-end, manage their
-profile, reclaim lost passwords etc. (i.e. all the paraphernalia that is usually associated with a membership site).
+As already explained at the outset of this tutorial, we are using the 'extended-users' module ([Extended Users](../../concepts/extended-users)) to implement the mentioned functionalities.
 
-As already explained at the outset of this tutorial, we are using the 'extended-users' module
-([Extended Users](https://github.com/trendoman/Midware/tree/main/concepts/Extended-Users#extended-users)) to implement
-the mentioned functionalities.
+## Current Implementation
 
-So far, we have made use of only one of the functionalities offered by that module - the creation of users using a
-custom template. The config file in `couch/addons/extended`, as it exists at this point, shows the fact -
+So far, we have made use of only one of the functionalities offered by that module - the creation of users using a custom template. The config file in `couch/addons/extended`, as it exists at this point, shows the fact:
 
-```php config
+```php title="couch/addons/extended/config.php - Extended Users Configuration"
 // Names of the required templates
 $t['users_tpl'] = 'users/index.php';
 $t['login_tpl'] = '';
@@ -39,12 +35,12 @@ $t['lost_password_tpl'] = '';
 $t['registration_tpl'] = '';
 ```
 
-To put the rest of the functionalities in place, please use the tutorial here -
-[Extended Users » User accounts](https://github.com/trendoman/Midware/tree/main/concepts/Extended-Users#user-accounts).
+## Next Steps
+
+To put the rest of the functionalities in place, please refer to the [Extended Users » User accounts](../../concepts/extended-users#user-accounts) documentation.
 
 With that we can now finally wrap up this tutorial.
 
 ---
 
-**Next:
-[Wrapping up.. →](https://github.com/trendoman/Midware/tree/main/tutorials/Notejam-App/18-Wrapping-up.md#wrapping-up)**
+**Next: [Wrapping up →](./17-wrapping-up)**
