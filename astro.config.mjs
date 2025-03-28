@@ -38,6 +38,7 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: 'Getting Started',
+					collapsed: true,
 					items: [
 						'getting-started/about-couch',
 						'getting-started/requirements',
@@ -69,6 +70,7 @@ export default defineConfig({
 					items: [
 						{
 							label: 'Building a Real-World Site',
+							collapsed: true,
 							autogenerate: { directory: 'tutorials/portfolio-site' }
 						},
 						// {
@@ -77,15 +79,18 @@ export default defineConfig({
 						// },
 						{
 							label: 'Advanced Tutorial',
+							collapsed: true,
 							items: [
 								'tutorials/advanced-tutorial/01-intro',
 								'tutorials/advanced-tutorial/02-installing-the-application',
 								{
 									label: 'Code Walkthrough',
+									collapsed: true,
 									items: [
 										'tutorials/advanced-tutorial/03-code-walkthrough',
 										{
 											label: 'Notes',
+											collapsed: true,
 											items: [
 												'tutorials/advanced-tutorial/04-notes',
 												'tutorials/advanced-tutorial/05-routes',
@@ -93,6 +98,7 @@ export default defineConfig({
 												'tutorials/advanced-tutorial/07-controller',
 												{
 													label: 'Views',
+													collapsed: true,
 													items: [
 														'tutorials/advanced-tutorial/08-views',
 														'tutorials/advanced-tutorial/09-list-view',
@@ -115,22 +121,27 @@ export default defineConfig({
 						},
 						{
 							label: 'Building a Shopping Cart',
+							collapsed: true,
 							autogenerate: { directory: 'tutorials/shopping-cart' }
 						},
 						{
 							label: 'Page Builder',
+							collapsed: true,
 							autogenerate: { directory: 'tutorials/page-builder' }
 						},
 						{
 							label: 'On-Page Editing',
+							collapsed: true,
 							autogenerate: { directory: 'tutorials/on-page-editing' }
 						},
 						{
 							label: 'Admin Panel',
+							collapsed: true,
 							autogenerate: { directory: 'tutorials/admin-panel' }
 						},
 						{
 							label: 'Building a Job Application Form',
+							collapsed: true,
 							autogenerate: { directory: 'tutorials/job-application-form' }
 						},
 					]
