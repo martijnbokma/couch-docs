@@ -19,38 +19,35 @@ sidebar:
     order: 13
 ---
 
-# Views » Notes Edit View
+This view shows a form with the content of the page being edited pre-populated in the inputs for further editing:
 
-This view shows a form with the content of the page being edited pre-populated in the inputs for further editing -
+![Edit Note Form with Pre-populated Fields](./img/scr5.png)
 
-![](./img/scr5.png)
+## Implementation Details
 
-To study this view, please open the `views/notes/edit_view.html` snippet implementing this view in your text editor and
-\*also\* open the '**create_view**' snippet we studied above in another instance of the editor.
+To study this view, please open the `views/notes/edit_view.html` snippet implementing this view in your text editor and also open the *create_view* snippet we studied above in another instance of the editor.
 
-You'll notice that more than 95% of code is the same in both the views. This is a common occurrence in almost all
-applications and you'll usually always find the 'edit' and 'create' code to be very similar.
+You'll notice that more than 95% of code is the same in both views. This is a common occurrence in almost all applications and you'll usually always find the 'edit' and 'create' code to be very similar.
 
-Since we have already studied the 'create' code in detail, for this view I'll just dwell on the aspects that differ from
-it.
+Since we have already studied the 'create' code in detail, for this view I'll just focus on the aspects that differ from it.
 
-The first important thing that you'll notice in the 'edit_view' is that we are wrapping up almost the entire code within
-a **cms:pages** block -
+### Pages Block Implementation
 
-```xml
+The first important thing that you'll notice in the *edit_view* is that we are wrapping up almost the entire code within a `cms:pages` block:
+
+```php title="Pages Block"
 <cms:pages id=rt_id limit='1' show_future_entries='1'>
-    ...
+    // ... existing code ...
 </cms:pages>
 ```
 
-This is identical to what we did in the 'page_view', if you remember. The idea is to fetch the single page (a 'note' in
-our case) specified in the 'rt_id' variable (which, of course, is the page ID as specified in the URL). Since the rest
-of the code is then enveloped within the **cms:pages** block, all the variables belonging to the fetched page (e.g.
-**_k_page_title_**, **_k_page_name_**, all editable regions etc.) will be available directly to the code within.
+This is identical to what we did in the *page_view*. The idea is to fetch the single page (a 'note' in our case) specified in the `rt_id` variable (which contains the page ID as specified in the URL). Since the rest of the code is then enveloped within the `cms:pages` block, all the variables belonging to the fetched page (e.g. `k_page_title`, `k_page_name`, all editable regions etc.) will be available directly to the code within.
 
-You'll immediately see the form code making use of the fetched page's data as its parameters (_page_id=k_page_id_).
+### Form Configuration
 
-```xml
+You'll immediately see the form code making use of the fetched page's data as its parameters:
+
+```php title="Form Configuration"
 <cms:form
     masterpage=k_template_name
     mode='edit'
@@ -59,38 +56,38 @@ You'll immediately see the form code making use of the fetched page's data as it
     method='post'
     class="note"
     anchor='0' >
-
-    ..
-    ..
+    // ... existing code ...
 </cms:form>
 ```
 
-You'll also notice that this view has the DataBound Form's 'mode' set to '**_edit_**' (as opposed to the 'create_view'
-where it was 'create').
+Notice that this view has the DataBound Form's *mode* set to `edit` (as opposed to the *create_view* where it was 'create').
 
-The definition of the three inputs defined within the form are almost the same except for some minor changes in the two
-inputs that we are using in a non-bound manner. The 'content' input is a 'bound' input and so it automatically shows the
-existing data contained within it.\
-The 'name' and 'pad' inputs, however, are non-bound and so we'll have to explicitly fill the existing data of the page
-in them.
+### Input Field Handling
 
-This is how we do it for the 'name' field where we explicitly set the 'value' parameter -
+The definition of the three inputs defined within the form are almost the same except for some minor changes in the two inputs that we are using in a non-bound manner:
 
-```xml
-<cms:input type="text" name='name' id="name"  required='1' value="<cms:show k_page_title />" />
+1. The 'content' input is a 'bound' input and automatically shows the existing data
+2. The 'name' and 'pad' inputs are non-bound and require explicit data population
+
+#### Name Field
+
+For the 'name' field, we explicitly set the 'value' parameter:
+
+```php title="Name Field Configuration"
+<cms:input type="text" name='name' id="name" required='1' value="<cms:show k_page_title />" />
 ```
 
-For the 'pad' field (which is the dropdown showing all pads belonging to the logged-in user), we'll fetch the pad the
-note being edited belongs to using
+#### Pad Field
 
-```xml
+For the 'pad' field (dropdown showing all pads belonging to the logged-in user), we fetch the pad the note belongs to using:
+
+```php title="Pad Selection"
 <cms:related_pages 'note_pad' ids_only='1' />
 ```
 
-which, courtesy the 'ids_only' parameter, returns only the ID of the related page, and then set the value as the
-'opt_selected' parameter -
+The `ids_only` parameter returns only the ID of the related page. We then set this value as the `opt_selected` parameter:
 
-```xml
+```php title="Pad Field Configuration"
 <cms:input
     type='dropdown'
     name='pad'
@@ -100,28 +97,29 @@ which, courtesy the 'ids_only' parameter, returns only the ID of the related pag
     required='1' />
 ```
 
-This way, whatever pad the note belonged to will appear in a selected state.
+This ensures that whatever pad the note belonged to will appear in a selected state.
 
-The final difference between create_view and this edit_view is the lesser number of parameters we need to set in the
-**cms:db_persist_form** tag
+### Form Persistence
 
-```xml
+The final difference between `create_view` and this `edit_view` is the reduced number of parameters we need to set in the `cms:db_persist_form` tag:
+
+```php title="Form Persistence"
 <cms:if k_success>
     <cms:db_persist_form
         k_page_title=frm_name
         note_pad=frm_pad
     />
-    ..
-    ..
+    // ... existing code ...
 </cms:if>
 ```
 
-Please notice that we don't have to explicitly set 'content' field as that is a bound field and will automatically get
-saved. The two non-bound field have to be explicitly passed to **cms:db_persist_form**.
+Notice that:
+- We don't need to explicitly set the 'content' field as it's bound and saves automatically
+- The two non-bound fields must be explicitly passed to `cms:db_persist_form`
 
-Compare the code above to that used in 'create_view' -
+Compare this to the code used in `create_view`:
 
-```xml
+```php title="Create View Form Persistence"
 <cms:if k_success>
     <cms:db_persist_form
         k_page_title=frm_name
@@ -129,22 +127,22 @@ Compare the code above to that used in 'create_view' -
         note_pad=frm_pad
         note_owner=k_user_id
     />
-    ..
-    ..
+    // ... existing code ...
 </cms:if>
 ```
 
-Notice that now we don't have to set the 'k_page_name' and 'note_owner' as these two values won't change once set at
-creation time.
+The key differences are:
+- No need to set `k_page_name` and `note_owner`
+- These values won't change once set at creation time
 
-> **NOTE:** Depending on your particular application's needs, the **_k_page_name_** might be editable (but then you'd
-> certainly not set it initially to a random value) but the 'owner' will definitely remain unchanged.
+:::note[Important]
+Depending on your particular application's needs, the `k_page_name` might be editable (but then you'd certainly not set it initially to a random value) but the 'owner' will definitely remain unchanged.
+:::
 
-And that is it. We've covered the edit_view.
+## Next Steps
 
-We'll cover the last view of 'notes' next - the 'delete_view'.
+We've covered the edit_view. We'll cover the last view of 'notes' next - the 'delete_view'.
 
 ---
 
-**Next:
-[Delete View →](https://github.com/trendoman/Midware/tree/main/tutorials/Notejam-App/15-Delete-View.md#views--notes-delete-view)**
+**Next: [Delete View →](./14-delete-view)**
