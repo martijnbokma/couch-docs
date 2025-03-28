@@ -18,29 +18,28 @@ lastUpdated: 2025-03-27
 sidebar:
     order: 15
 ---
+The good thing about the 'Pads' section is that it is almost a copy of the [Notes section](./04-notes) that we've already studied in excruciating detail.
 
-# Pads
+So, instead of hand-holding you through its template and view snippets, I'll encourage you to take a look at the source files yourselves. There shouldn't be a single point in there that we haven't already covered and so you should really find everything easy.
 
-OK, the good thing about the 'Pads' section is that it is almost a copy of the
-['Notes'](https://github.com/trendoman/Midware/tree/main/tutorials/Notejam-App/04-Notes.md#notes) section that we've
-already studied in excruciating detail.
+## Implementation Structure
 
-So, instead of hand-holding you through its template and view snippets, I'll encourage you to take a look at the source
-files yourselves. There shouldn't be a single point in there that we haven't already covered and so you should really
-find everything easy.
+Begin from the `pads.php` template examining the routes defining its various views. Then move over to the `snippets/views/pads` folder to take a look at the snippets implementing those views.
 
-Begin from the **_pads.php_** template examining the routes defining its various views. Then move over to the
-`snippets/views/pads` folder to take a look at the snippets implementing those views.
+## Key Differences
 
-I'll just jot down the few minor points that are slightly different in this section -
+Let me highlight the few minor points that are slightly different in this section:
 
-1. You won't find a 'list_view'. It isn't required for pads as we list all the pads in the sidebar of the 'notes'
-   section.
-2. The 'page_view' of pads, instead of showing details of a single pad, shows all the notes belonging to that pad. So it
-   is almost identical to the 'list_view' of notes.
+### View Structure
 
-We'll now take a look at the final section of Notejam - Users
+1. You won't find a `list_view`. It isn't required for pads as we list all the pads in the sidebar of the 'notes' section.
+
+2. The `page_view` of pads, instead of showing details of a single pad, shows all the notes belonging to that pad. So it is almost identical to the `list_view` of notes.
+
+## Next Steps
+
+We'll now take a look at the final section of Notejam - Users.
 
 ---
 
-**Next: [Users →](https://github.com/trendoman/Midware/tree/main/tutorials/Notejam-App/17-Users.md#users)**
+**Next: [Users →](./16-users)**
