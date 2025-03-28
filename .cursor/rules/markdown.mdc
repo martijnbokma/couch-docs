@@ -1,8 +1,7 @@
 ---
-description: "Markdown rules for CouchCMS Documentation"
-globs: "*.mdc"
-alwaysApply: false
-tags: ["CouchCMS", "Documentation"]
+description: "Comprehensive style guide for CouchCMS documentation"
+globs: ["**/*.md", "**/*.mdx"]
+alwaysApply: true
 ---
 
 # CouchCMS Documentation Style Guide
@@ -16,27 +15,31 @@ The primary goals are consistency, readability, maintainability, and accessibili
 
 ### 1.1 Required Frontmatter
 
-Every document MUST begin with frontmatter. Below is an example of the required fields:
+Every document MUST begin with frontmatter containing these required fields:
 
 ```markdown
 ---
-title: Document Title
-slug: slug-name
-description: A clear, concise description of the document
+title: "Document Title"
+description: "A clear, concise description of the document"
 keywords:
-  - keyword 1
-  - keyword 2
-  - keyword 3
-category: concept
+    - keyword 1
+    - keyword 2
+    - keyword 3
+category: tutorial
+subCategory: advanced-tutorial
 author: Author Name
 lastUpdated: YYYY-MM-DD
+sidebar:
+    order: N
 ---
 ```
 
 #### Notes:
 
-- `author` and `date` are optional but recommended for tracking purposes.
-- `priority` indicates the importance of the document (1 = critical; 5 = low priority).
+- Use quotes for `title` and `description` to prevent YAML parsing issues
+- Indent nested properties with 4 spaces for consistency
+- `subCategory` is required for tutorials, optional for other categories
+- `sidebar.order` determines the position in navigation (lower numbers appear first)
 
 ### 1.2 Required Components
 
@@ -52,150 +55,173 @@ import { Steps } from '@astrojs/starlight/components';
 
 ### 2.1 Headings
 
-- Use **Title Case** for all headings.
-- Leave one blank line before and after headings.
-- Follow proper hierarchy:
+- Use **Title Case** for all headings
+- Leave one blank line before and after headings
+- Follow proper hierarchy without skipping levels
+- Start content sections with H2 (##)
 
 ```markdown
-# Main Title
+# Document Title
 
-## Major Section
+## Overview
 
-### Subsection
+### Key Features
 
-#### Detail Section
+#### Specific Details
 ```
 
-### 2.2 Lists and Steps
+### 2.2 Technical References
 
-Use appropriate list format based on content:
+#### Variable Names:
+- Use backticks for all variable names: `my_variable`
+- Use backticks for system variables: `rt_id`
+- Use backticks for parameter names: `my_current_pad`
 
-#### Unordered Lists:
+#### File References:
+- Use backticks for file paths: `views/notes/create_view.html`
+- Use backticks for file names: `create_view.html`
 
-```
-- Main point
-- Another point
-  - Sub-point
-```
+### 2.3 Code Blocks
 
-#### Ordered Lists:
+#### Code Block Headers:
+Always include a descriptive title for code blocks:
 
-```
-1. First step
-2. Second step
-   1. Sub-step
-```
-
-#### Steps Component (preferred for instructions):
-
-```
-<Steps>
-1. **First Step**
-   Explanation...
-
-2. **Second Step**
-   Details...
-</Steps>
+```php title="File Name or Description"
+// Code here
 ```
 
-### 2.3 Code Elements
+#### URL Examples:
+Use `txt` format with title for URL examples:
 
-#### Inline Code:
-
-- Use single backticks (`) for:
-  - Code elements
-  - File names
-  - Functions
-  - Tags
-  - Technical terms
-  - URLs in text
-- Use underscores (\_) for:
-  - Field names (e.g., _title_, _name_)
-  - System variables (e.g., _k_search_content_, _k_page_title_)
-  - Parameters (e.g., _masterpage_, _limit_)
-- Use double backticks for nested code: `` `code` ``
-
-#### Code Blocks:
-
-- Always specify the language (e.g., `php`, `javascript`, `txt` for plain text)
-- Add descriptive titles when appropriate
-- Maintain exact code content and indentation
-- Use `txt` for URLs in code blocks
-
-Example:
-
-```php
-function example() {
-    // Code here
-}
+```txt title="Example URLs"
+https://www.example.com/path
+# or without prettyURLs:
+https://www.example.com/index.php?q=path
 ```
 
-For URLs in code blocks:
-
-```txt
-https://example.com/path/
-```
-
-For partial code:
+#### Partial Code:
+For omitted code sections, use language-appropriate comments:
 
 ```php
 // ... existing code ...
 ```
 
-### 2.4 Admonitions
+### 2.4 Links
 
-Admonitions should be used to highlight important information:
+#### Internal Links:
+- Use relative paths for internal documentation links
+- Navigate up with `../` when needed
+- Include meaningful link text
 
-```
-:::tip
-Best practices and helpful suggestions
-:::
-
-:::note
-Additional information and context
-:::
-
-:::caution
-Prerequisites and important assumptions
-:::
-
-:::danger[Important]
-Critical security or implementation warnings
-:::
+```markdown
+[Previous Section](../previous-section)
+[Next Section](./next-section)
 ```
 
-### 2.5 Links and Media
+#### External Links:
+- Include full URLs for external links
+- Add meaningful context in link text
 
-#### Links:
+```markdown
+[CouchCMS Documentation](https://docs.couchcms.com)
+```
 
-- Internal links should use relative paths: `[Text](mdc:../path)`.
-- External links should include full URLs: `[Text](https://example.com)`.
+### 2.5 Images
 
-#### Images:
+- Always include descriptive alt text
+- Use relative paths for internal images
+- Add captions when helpful
 
-- Always include alt text for accessibility: `![Alt Text](mdc:path/image.jpg)`.
-
-#### URLs in Code Blocks:
-
-Use plain text formatting for URLs in code examples:
-
-```txt
-https://example.com/path/
+```markdown
+![Descriptive Alt Text](./img/screenshot.png)
 ```
 
 ---
 
-## 3. Quality Standards
+## 3. Technical Content
 
-### 3.1 Consistency Requirements
+### 3.1 Code Examples
+
+- Include complete, working examples
+- Add titles to all code blocks
+- Use proper syntax highlighting
+- Include comments for complex code
+
+### 3.2 Variables and Parameters
+
+- Use consistent naming throughout documentation
+- Explain all parameters and their purpose
+- Use backticks for all technical terms
+- Format system variables consistently
+
+Example:
+```markdown
+The `rt_id` variable contains the route parameter value.
+```
+
+---
+
+## 4. Navigation
+
+### 4.1 Section Links
+
+At the end of each document, include navigation links:
+
+```markdown
+---
+
+**Next: [Next Section →](./next-section)**
+```
+
+### 4.2 Related Content
+
+Use admonitions to reference related content:
+
+```markdown
+:::note[Related Content]
+See also: [Related Topic](../related-topic)
+:::
+```
+
+---
+
+## 5. Quality Checklist
+
+✅ Proper frontmatter with all required fields  
+✅ Consistent heading hierarchy  
+✅ Descriptive code block titles  
+✅ Technical terms in backticks  
+✅ Proper link formatting  
+✅ Descriptive image alt text  
+✅ Navigation links  
+✅ Proper spacing and formatting
+
+---
+
+## 6. Best Practices
+
+1. Keep technical terminology consistent
+2. Use clear, concise language
+3. Provide working code examples
+4. Include proper navigation
+5. Maintain consistent formatting
+6. Add helpful admonitions
+7. Use descriptive titles
+8. Include complete documentation
+
+---
+
+## 7. Quality Standards
+
+### 7.1 Consistency Requirements
 
 Ensure uniformity in the following areas:
 
-- Spacing between elements (e.g., blank lines around headings).
-- Proper indentation for nested lists and code blocks.
-- Standardized naming conventions for files, variables, and components.
+- Spacing between elements (e.g., blank lines around headings)
+- Proper indentation for nested lists and code blocks
+- Standardized naming conventions for files, variables, and components
 
-### 3.2 Documentation Checklist
+### 7.2 Documentation Checklist
 
 ✅ Complete frontmatter fields  
 ✅ Required components imported after frontmatter  
@@ -208,39 +234,39 @@ Ensure uniformity in the following areas:
 
 ---
 
-## 4. Technical Guidelines
+## 8. Technical Guidelines
 
-### 4.1 File References
+### 8.1 File References
 
 Follow these rules when referencing files:
 
-- Always use backticks for filenames (`file.php`).
-- Use forward slashes (`/`) for paths.
-- Prefer relative internal paths over absolute ones.
-- Include file sizes when relevant (e.g., "image.jpg - 45 KB").
+- Always use backticks for filenames (`file.php`)
+- Use forward slashes (`/`) for paths
+- Prefer relative internal paths over absolute ones
+- Include file sizes when relevant (e.g., "image.jpg - 45 KB")
 
-### 4.2 HTML Elements in Markdown
+### 8.2 HTML Elements in Markdown
 
 When using HTML elements within Markdown:
 
-- Wrap tags in backticks (`<div>`).
-- Use descriptive attributes where necessary (e.g., `<img alt="Description">`).
-- Consistently format nested elements like `<dl>`, `<dt>`, and `<dd>`.
+- Wrap tags in backticks (`<div>`)
+- Use descriptive attributes where necessary (e.g., `<img alt="Description">`)
+- Consistently format nested elements like `<dl>`, `<dt>`, and `<dd>`
 
 ---
 
-## 5. Accessibility Guidelines
+## 9. Accessibility Guidelines
 
 To ensure your documentation is accessible to all users:
 
-1. **Alt Text**: Provide meaningful descriptions for images.
-2. **Headings**: Use logical hierarchy to improve navigation.
-3. **Links**: Avoid vague link text like "click here"; use descriptive phrases instead.
-4. **Color Contrast**: Avoid relying solely on color to convey meaning.
+1. **Alt Text**: Provide meaningful descriptions for images
+2. **Headings**: Use logical hierarchy to improve navigation
+3. **Links**: Avoid vague link text like "click here"; use descriptive phrases instead
+4. **Color Contrast**: Avoid relying solely on color to convey meaning
 
 ---
 
-## 6. Common Corrections
+## 10. Common Corrections
 
 Fix common spelling mistakes and maintain consistent grammar across all documentation:
 
@@ -255,29 +281,29 @@ Fix common spelling mistakes and maintain consistent grammar across all document
 
 ---
 
-## 7. Content Preservation Rules
+## 11. Content Preservation Rules
 
 ### Code Preservation:
 
-1. NEVER modify existing code in code blocks unless explicitly instructed.
-2. Keep comments exactly as they are.
-3. Preserve variable names, values, spacing, and indentation.
+1. NEVER modify existing code in code blocks unless explicitly instructed
+2. Keep comments exactly as they are
+3. Preserve variable names, values, spacing, and indentation
 
 ### Text Preservation:
 
-1. Maintain original technical terminology.
-2. Do not rewrite or rephrase existing sentences without explicit instruction.
-3. Keep URLs and references intact.
+1. Maintain original technical terminology
+2. Do not rewrite or rephrase existing sentences without explicit instruction
+3. Keep URLs and references intact
 
 ---
 
-## 8. Recommended Tools & Automation
+## 12. Recommended Tools & Automation
 
 To streamline compliance with these guidelines:
 
-1. **Linting Tools**: Use tools like [Markdownlint](https://github.com/DavidAnson/markdownlint) to automate style checks.
-2. **CI/CD Integration**: Set up automated checks in your repository to validate Markdown syntax during pull requests.
-3. **Example Files**: Provide sample Markdown files that adhere to these rules as templates for contributors.
+1. **Linting Tools**: Use tools like [Markdownlint](https://github.com/DavidAnson/markdownlint) to automate style checks
+2. **CI/CD Integration**: Set up automated checks in your repository to validate Markdown syntax during pull requests
+3. **Example Files**: Provide sample Markdown files that adhere to these rules as templates for contributors
 
 ---
 
