@@ -19,22 +19,20 @@ sidebar:
     order: 17
 ---
 
-# Wrapping up..
+Finally time to say good-bye 👋
 
-Finally time to say good-bye :smile:
+But before we do that, let us tidy up one little thing - the `index.php` template.
 
-But before we do that, let us tidy up one little thing - the **_index.php_** template.
-
-Our application does not need one but web-servers usually insist on having an 'index.php' (or 'index.html') in the
+Our application does not need one but web-servers usually insist on having an `index.php` (or `index.html`) in the
 site's root so you'll find a template by that name in 'site' folder.
 
 Register it by visiting it as super-admin. You'll see that the template is empty (contains only the two PHP lines to
 make it a Couch managed template). You are, of course, free to place whatever is required by your app here but for our
 Notejam application we'll simply make it redirect to the notes template.
 
-To do that place the following line in it -
+To do that place the following line in it:
 
-```xml
+```php title="index.php"
 <cms:redirect "<cms:link 'notes.php' />" />
 ```
 
@@ -45,4 +43,4 @@ applications.
 
 Do let us know if you have any questions.
 
-Bye :smile:
+Bye 👋
