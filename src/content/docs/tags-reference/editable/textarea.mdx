@@ -4,6 +4,8 @@ category: tag
 subCategory: editable
 description: The textarea type editable region provides a multi-line textbox for users to input multiple lines of text, with optional HTML formatting support.
 keywords: [textarea, editable, tag, PHP, input, form, multi-line, HTML]
+author: Kamran Kashif
+lastUpdated: 2025-03-27
 ---
 
 Editable region of _textarea_ type is used to allow users to input multiple lines of text. It is suitable for inputting multiple lines of unformatted text (i.e. not requiring HTML tags) although the user can format the text by manually adding HTML tags to the input.
@@ -46,6 +48,7 @@ Any text enclosed between the opening and the closing tags will appear as the de
 ```php
 <cms:editable name='prop_desc' label='Description' desc='Enter description of property here' />
 ```
+
 :::
 
 The contents of this region can be accessed, as with all other editable regions, by using the variable named after it -
@@ -58,9 +61,9 @@ The contents of this region can be accessed, as with all other editable regions,
 
 In addition to the parameters common to all the types of editable regions, _textarea_ accepts the following parameters
 
-*   width
-*   height
-*   no_xss_check
+- width
+- height
+- no_xss_check
 
 ### width
 
@@ -81,7 +84,7 @@ The dimensions of the textarea can be changed by setting the _width_ and _height
 
 XSS (Cross Site Scripting) is a type of Web Application vulnerability which is caused by user managing to inject malicious script code into a webpage. Couch, by default, sanitizes all user input and that includes all inputs through all types of editable regions.
 
-In some cases though, you'll wish to allow your user to input Javascript code, or even script containing Couch tags, into an editable region. This could be, for example, when you have created a textarea type editable region into which the user is supposed to enter his Google AdSense code. In such cases, to instruct Couch to leave the input alone and not to sanitize it, set the *no_xss_check* to '1'. As an example -
+In some cases though, you'll wish to allow your user to input Javascript code, or even script containing Couch tags, into an editable region. This could be, for example, when you have created a textarea type editable region into which the user is supposed to enter his Google AdSense code. In such cases, to instruct Couch to leave the input alone and not to sanitize it, set the _no_xss_check_ to '1'. As an example -
 
 ```php
 <cms:editable name='my_adsense' label="Adsense Code" desc="Enter your Adsense code here"
@@ -91,22 +94,22 @@ In some cases though, you'll wish to allow your user to input Javascript code, o
 />
 ```
 
-Without the *no_xss_check* explicitly set, Couch would disable all Javascript code contained within the AdSense code and thus make it useless.
+Without the _no_xss_check_ explicitly set, Couch would disable all Javascript code contained within the AdSense code and thus make it useless.
 
 ## Related Tags
 
-*   [editable](../../editable/)
-*   [editable (checkbox)](../checkbox/)
-*   [editable (dropdown)](../dropdown/)
-*   [editable (file)](../file/)
-*   [editable (group)](../group/)
-*   [editable (image)](../image/)
-*   [editable (message)](../message/)
-*   [editable (nicedit)](../nicedit/)
-*   [editable (password)](../password/)
-*   [editable (radio)](../radio/)
-*   [editable (relation)](../relation/)
-*   [editable (richtext)](../richtext/)
-*   [editable (text)](../text/)
-*   [editable (textarea)](../textarea/)
-*   [editable (thumbnail)](../thumbnail/)
+- [editable](../../editable/)
+- [editable (checkbox)](../checkbox/)
+- [editable (dropdown)](../dropdown/)
+- [editable (file)](../file/)
+- [editable (group)](../group/)
+- [editable (image)](../image/)
+- [editable (message)](../message/)
+- [editable (nicedit)](../nicedit/)
+- [editable (password)](../password/)
+- [editable (radio)](../radio/)
+- [editable (relation)](../relation/)
+- [editable (richtext)](../richtext/)
+- [editable (text)](../text/)
+- [editable (textarea)](../textarea/)
+- [editable (thumbnail)](../thumbnail/)

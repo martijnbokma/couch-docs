@@ -3,6 +3,8 @@ title: cloak_url
 category: tag
 description: The cloak_url tag can be used to cloak links so that their destination is not immediately apparent.
 keywords: [cloak_url, CouchCMS, Couch, tags, PHP]
+author: Kamran Kashif
+lastUpdated: 2025-03-27
 ---
 
 The **cloak_url** tag, as the name suggests, can be used to cloak links so that it does not become apparent from just looking at the links as to where they actually lead to.
@@ -11,12 +13,12 @@ Please see [**Core Concepts - Cloaked Links**](../../concepts/cloaked-links.html
 
 ## Parameters
 
-*   link
-*   expiry
-*   access_level
-*   prompt_login
-*   redirect
-*   force_download
+- link
+- expiry
+- access_level
+- prompt_login
+- redirect
+- force_download
 
 ### link
 
@@ -32,7 +34,7 @@ If an access level is set by this parameter, only authenticated users with the r
 
 ### prompt_login
 
-This parameter works in tandem with the *access_level* parameter above. With this parameter set to '1', if a link that has an access level set on it is accessed by someone who is not privileged enough, a login box is shown to hime thus promting him to login for accessing the link.
+This parameter works in tandem with the _access_level_ parameter above. With this parameter set to '1', if a link that has an access level set on it is accessed by someone who is not privileged enough, a login box is shown to hime thus promting him to login for accessing the link.
 By default, this parameter is '0' and unauthorized users are simply served a blank page.
 
 ### redirect
@@ -50,4 +52,4 @@ This tag is self-closing and does not set any variables of its own.
 
 ## Related Tags
 
-*   [cloak_email](../cloak_email.html)
+- [cloak_email](../cloak_email.html)

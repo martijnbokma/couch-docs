@@ -4,6 +4,8 @@ category: tag
 subCategory: editable
 description: The thumbnail type editable region automatically creates thumbnail images from an associated image region, maintaining aspect ratios and allowing customizable dimensions.
 keywords: [thumbnail, editable, tag, PHP, image, resize, crop, preview]
+author: Kamran Kashif
+lastUpdated: 2025-03-27
 ---
 
 Editable region of type _thumbnail_, as the name suggests, is used to automatically create thumbnail images.
@@ -16,13 +18,13 @@ Once the thumbnail has been created, this editable region then holds its fully q
 The thumbnail gets created in the same folder as that of the main image.
 :::
 
-Suppose we have an editable region, named *my_image*, of type _image_ -
+Suppose we have an editable region, named _my_image_, of type _image_ -
 
 ```php
 <cms:editable name='my_image' label='Image' desc='Upload main image here' type="image" />
 ```
 
-To create a thumbnail automatically for any image that gets selected into it, we can define a new editable region of type _thumbnail_ and associate it with the region above by using the *assoc_field* parameter -
+To create a thumbnail automatically for any image that gets selected into it, we can define a new editable region of type _thumbnail_ and associate it with the region above by using the _assoc_field_ parameter -
 
 ```php
 <cms:editable
@@ -60,13 +62,13 @@ The contents of this region can be accessed, as with all other editable regions,
 
 Apart from the parameters common to all types of editable regions, the regions of _thumbnail_ type can take the following parameters -
 
-*   width
-*   height
-*   enforce_max
-*   quality
-*   show_preview
-*   preview_width
-*   preview_height
+- width
+- height
+- enforce_max
+- quality
+- show_preview
+- preview_width
+- preview_height
 
 ### width
 
@@ -85,8 +87,8 @@ Specifying a single dimension only will create a thumbnail with that dimension o
     type='thumbnail' />
 ```
 
-| Parent Image (200 x 300) | Thumbnail (100 x 150) | Remarks |
-| :----------------------- | :-------------------- | :------ |
+| Parent Image (200 x 300)                                      | Thumbnail (100 x 150)                                         | Remarks                                                                                                                                         |
+| :------------------------------------------------------------ | :------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------- |
 | ![](../../../../assets/img/contents/editable-thumbnail-3.jpg) | ![](../../../../assets/img/contents/editable-thumbnail-4.jpg) | The width was made 100px and the height was proportionately scaled to 150px so that the original proportion between the dimensions is retained. |
 
 Specifying both the dimensions will create a thumbnail with each dimension of the specified values. The original proportion between the dimensions is preserved and hence this could lead to cropping off of any dimension that overshoots the specified value in the attempt to retain proportion. e.g.
@@ -100,8 +102,8 @@ Specifying both the dimensions will create a thumbnail with each dimension of th
     type='thumbnail' />
 ```
 
-| Parent Image (200 x 300) | Thumbnail (100 x 80) | Remarks |
-| :----------------------- | :------------------- | :------ |
+| Parent Image (200 x 300)                                      | Thumbnail (100 x 80)                                          | Remarks                                                                                                                                                                                                                                                      |
+| :------------------------------------------------------------ | :------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ![](../../../../assets/img/contents/editable-thumbnail-5.jpg) | ![](../../../../assets/img/contents/editable-thumbnail-6.jpg) | The width was made 100px and the height was proportionately scaled resulting in a dimension of 150px. Since a height of only 80px was asked for, the surplus 70px were cropped off (35px equally from both sides with the two images aligned in the center). |
 
 As is obvious from the second example above, if both the dimensions are specified and the thumbnail's ratio does not match that of the parent image, the cropping that inevitably occurs can sometimes lead to unacceptable results. In the thumbnail above the most important part of the image has been cropped off. This can be rectified by asking Couch to recreate the thumbnail but this time aligning it to the top of the parent image instead of the default center.
@@ -147,7 +149,7 @@ Setting show_preview to '1' makes Couch display a preview of the created thumbna
 
 ### preview_height
 
-As noted above, setting *show_preview* to '1' causes a preview of the thumbnail to appear. The dimensions of this preview can be set by using *preview_width* and *preview_height* (needless to say, these two parameters take effect only with *show_preview* set to '1').
+As noted above, setting _show_preview_ to '1' causes a preview of the thumbnail to appear. The dimensions of this preview can be set by using _preview_width_ and _preview_height_ (needless to say, these two parameters take effect only with _show_preview_ set to '1').
 
 ```php
 <cms:editable name='my_image_thumb' label='Image Thumbnail' desc='Thumbnail of main image'
@@ -159,23 +161,23 @@ As noted above, setting *show_preview* to '1' causes a preview of the thumbnail 
 ```
 
 :::tip
-If both *preview_width* and *preview_height* are omitted, the thumbnail preview is of exactly the same dimensions as the thumbnail. Usually this is what you'd want and you won't find yourself setting *preview_width* or *preview_height* too often.
+If both _preview_width_ and _preview_height_ are omitted, the thumbnail preview is of exactly the same dimensions as the thumbnail. Usually this is what you'd want and you won't find yourself setting _preview_width_ or _preview_height_ too often.
 :::
 
 ## Related Tags
 
-*   [editable](../../editable/)
-*   [editable (checkbox)](../checkbox/)
-*   [editable (dropdown)](../dropdown/)
-*   [editable (file)](../file/)
-*   [editable (group)](../group/)
-*   [editable (image)](../image/)
-*   [editable (message)](../message/)
-*   [editable (nicedit)](../nicedit/)
-*   [editable (password)](../password/)
-*   [editable (radio)](../radio/)
-*   [editable (relation)](../relation/)
-*   [editable (richtext)](../richtext/)
-*   [editable (text)](../text/)
-*   [editable (textarea)](../textarea/)
-*   [editable (thumbnail)](../thumbnail/)
+- [editable](../../editable/)
+- [editable (checkbox)](../checkbox/)
+- [editable (dropdown)](../dropdown/)
+- [editable (file)](../file/)
+- [editable (group)](../group/)
+- [editable (image)](../image/)
+- [editable (message)](../message/)
+- [editable (nicedit)](../nicedit/)
+- [editable (password)](../password/)
+- [editable (radio)](../radio/)
+- [editable (relation)](../relation/)
+- [editable (richtext)](../richtext/)
+- [editable (text)](../text/)
+- [editable (textarea)](../textarea/)
+- [editable (thumbnail)](../thumbnail/)

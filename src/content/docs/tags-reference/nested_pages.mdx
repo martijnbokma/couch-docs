@@ -3,6 +3,8 @@ title: nested_pages
 category: tag
 description: The nested_pages tag lists nested pages with hierarchical structure, offering flexible options for menu creation, pagination, and custom field inclusion.
 keywords: [nested_pages, tag, PHP, navigation, hierarchy, menu, pagination]
+author: Kamran Kashif
+lastUpdated: 2025-03-27
 ---
 
 import { FileTree, Steps } from '@astrojs/starlight/components';
@@ -17,17 +19,9 @@ To illustrate the use of 'nested_pages', we'll use the same sample hierarchy of 
 We'll assume that a template named 'index.php' has been used to create the nested-pages.
 
 <FileTree>
-- World&nbsp;News/
-    - North&nbsp;American&nbsp;News/
-        - United&nbsp;States&nbsp;News/
-            - Ohio&nbsp;News/
-            - Nevada&nbsp;News/
-    - Asian&nbsp;News/
-        - China&nbsp;News/
-        - Japan&nbsp;News/
-- Sports&nbsp;News/
-- Music&nbsp;News/
-- Entertainment&nbsp;News/
+    - World&nbsp;News/ - North&nbsp;American&nbsp;News/ - United&nbsp;States&nbsp;News/ - Ohio&nbsp;News/ -
+    Nevada&nbsp;News/ - Asian&nbsp;News/ - China&nbsp;News/ - Japan&nbsp;News/ - Sports&nbsp;News/ - Music&nbsp;News/ -
+    Entertainment&nbsp;News/
 </FileTree>
 
 The simplest way to list the nested-pages would be as follows -
@@ -41,23 +35,15 @@ The simplest way to list the nested-pages would be as follows -
 The output -
 
 <FileTree>
-- World&nbsp;News/
-- North&nbsp;American&nbsp;News/
-- United&nbsp;States&nbsp;News/
-- Ohio&nbsp;News/
-- Nevada&nbsp;News/
-- Asian&nbsp;News/
-- China&nbsp;News/
-- Japan&nbsp;News/
-- Sports&nbsp;News/
-- Music&nbsp;News/
-- Entertainment&nbsp;News/
+    - World&nbsp;News/ - North&nbsp;American&nbsp;News/ - United&nbsp;States&nbsp;News/ - Ohio&nbsp;News/ -
+    Nevada&nbsp;News/ - Asian&nbsp;News/ - China&nbsp;News/ - Japan&nbsp;News/ - Sports&nbsp;News/ - Music&nbsp;News/ -
+    Entertainment&nbsp;News/
 </FileTree>
 
 Notice how the hierarchical relationship between the pages has been preserved.
 
-As is the norm with other similar tags in Couch, the 'nested_pages' tag too, as it iterates through the pages within the tree, makes available all the information pertaining the page it is currently on by setting various variables.
-Place a _&lt;cms:dump /&gt;_ statement inside the loop and you'll see that Couch provides all the information that was inputted in the admin-section for each nested-page.
+As is the norm with other similar tags in Couch, the 'nested*pages' tag too, as it iterates through the pages within the tree, makes available all the information pertaining the page it is currently on by setting various variables.
+Place a *&lt;cms:dump /&gt;\_ statement inside the loop and you'll see that Couch provides all the information that was inputted in the admin-section for each nested-page.
 
 ```php
 <cms:nested_pages masterpage='index.php'>
@@ -191,16 +177,8 @@ If you are familiar with the '[pages](../pages.html)' tag, the following snippet
 Output -
 
 ```html
-Page 1 of 3
-11 records Found. Displaying: 1-5
-
-World News
-North American News
-United States News
-Ohio News
-Nevada News
-
-« prev 1 2 3 next »
+Page 1 of 3 11 records Found. Displaying: 1-5 World News North American News United States News Ohio News Nevada News «
+prev 1 2 3 next »
 ```
 
 Some points to note -
@@ -223,20 +201,20 @@ You can definitely have hundreds of them, but if the number of pages is likely t
 
 ## Parameters
 
-*   masterpage
-*   depth
-*   orderby
-*   order
-*   exclude
-*   ignore_show_in_menu
-*   root
-*   childof
-*   extended_info
-*   include_custom_fields
-*   paginate
-*   limit
-*   offset
-*   startcount
+- masterpage
+- depth
+- orderby
+- order
+- exclude
+- ignore_show_in_menu
+- root
+- childof
+- extended_info
+- include_custom_fields
+- paginate
+- limit
+- offset
+- startcount
 
 ### masterpage
 
@@ -320,35 +298,35 @@ The k_count, k_record_from, k_current_record and k_record_to variables (see [Pag
 
 The following variables are set to provide information about each nested-page that gets enumerated -
 
-*   k_nestedpage_id
-*   k_nestedpage_name
-*   k_nestedpage_title
-*   k_nestedpage_is_active
-*   k_nestedpage_comments_count
-*   k_nestedpage_parent_id
-*   k_nestedpage_weight
-*   k_show_in_menu
-*   k_menu_text:
-*   k_menu_link
-*   k_menu_title
-*   k_is_pointer
-*   k_pointer_link:
-*   k_open_external
-*   k_masquerades
-*   k_is_active
-*   k_is_current
-*   k_immediate_children
-*   k_total_children
-*   k_first_child
-*   k_last_child
-*   k_nestedpage_link
+- k_nestedpage_id
+- k_nestedpage_name
+- k_nestedpage_title
+- k_nestedpage_is_active
+- k_nestedpage_comments_count
+- k_nestedpage_parent_id
+- k_nestedpage_weight
+- k_show_in_menu
+- k_menu_text:
+- k_menu_link
+- k_menu_title
+- k_is_pointer
+- k_pointer_link:
+- k_open_external
+- k_masquerades
+- k_is_active
+- k_is_current
+- k_immediate_children
+- k_total_children
+- k_first_child
+- k_last_child
+- k_nestedpage_link
 
 If the 'extended_info' parameter is set to '1', the following variables also get set to indicate the current position in the hierarchy as this tag enumerates the pages -
 
-*   k_level_start
-*   k_element_start
-*   k_element_end
-*   k_level_end
+- k_level_start
+- k_element_start
+- k_element_end
+- k_level_end
 
 If the 'include_custom_fields' parameter is set to '1', all the values within the editable regions of each page are made available as variables named after the regions.
 
@@ -356,6 +334,6 @@ If the 'paginate' parameter is set to '1', variables that help in creating the p
 
 ## Related Tags
 
-*   [folders](../folders.html)
-*   [menu](../menu.html)
-*   [pages](../pages.html)
+- [folders](../folders.html)
+- [menu](../menu.html)
+- [pages](../pages.html)

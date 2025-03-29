@@ -4,13 +4,15 @@ category: tag
 subCategory: editable
 description: Editable region of type image is primarily used to allow the user to upload an image from his local computer onto the server.
 keywords: [image, CouchCMS, Couch, tags, PHP, editable]
+author: Kamran Kashif
+lastUpdated: 2025-03-27
 ---
 
 Editable region of type **image** is primarily used to allow the user to upload an image from his local computer onto the server. The user can also browse and select any of the previously uploaded images.
 Once an image has been selected, this editable region then holds a fully qualified URL of the uploaded image.
 
 :::note
-By default, all uploaded images will be saved within the _**couch/uploads/image**_ folder (or any subfolders created by the user within it). You can set the location to any other folder by uncommenting entry number 12 (*K_UPLOAD_DIR*) in _config.php_ and changing it to the desired location.
+By default, all uploaded images will be saved within the _**couch/uploads/image**_ folder (or any subfolders created by the user within it). You can set the location to any other folder by uncommenting entry number 12 (_K_UPLOAD_DIR_) in _config.php_ and changing it to the desired location.
 
 ```php title="config.php"
 // 12.
@@ -18,6 +20,7 @@ By default, all uploaded images will be saved within the _**couch/uploads/image*
 // Should be relative to your site (don't forget to set write permissions on it).
 define( 'K_UPLOAD_DIR', 'myuploads' );
 ```
+
 :::
 
 An editable region of type _image_ can be defined this way -
@@ -47,14 +50,14 @@ The contents of this region can be accessed, as with all other editable regions,
 
 Apart from the parameters common to all types of editable regions, the regions of _image_ type can take the following parameters -
 
-*   width
-*   height
-*   enforce_max
-*   crop
-*   quality
-*   show_preview
-*   preview_width
-*   preview_height
+- width
+- height
+- enforce_max
+- crop
+- quality
+- show_preview
+- preview_width
+- preview_height
 
 ### width
 
@@ -68,7 +71,7 @@ As mentioned above, when a user uploads an image, Couch saves it in a particular
 These dimensions (in pixels) are represented by the _width_ and _height_ parameter.
 
 How these dimensions are interpreted by Couch depends on the settings of two other (mutually exclusive) parameters -
-*enforce_max* and _crop_.
+_enforce_max_ and _crop_.
 
 :::note
 If **none** of the two dimensions are specified, e.g.
@@ -76,18 +79,19 @@ If **none** of the two dimensions are specified, e.g.
 ```php
 <cms:editable name='prop_image' type='image' />
 ```
-regardless of any settings of *enforce_max* and _crop_, the saved image will always be of exactly the same dimensions as the one uploaded (i.e. not resized at all).
+
+regardless of any settings of _enforce_max_ and _crop_, the saved image will always be of exactly the same dimensions as the one uploaded (i.e. not resized at all).
 :::
 
 ### enforce_max
 
-With *enforce_max* set to _1_ (the default), the _width_ and _height_ parameters are interpreted as being the maximum permitted values of the saved image's width and height.
+With _enforce_max_ set to _1_ (the default), the _width_ and _height_ parameters are interpreted as being the maximum permitted values of the saved image's width and height.
 
 If any of the dimensions of an uploaded image exceeds the provided value, Couch resizes the image (preserving the existing proportion between width and height) till that dimension is reduced to the supplied value.
 
 If both height and width are specified, enforcing the limit of one dimension might end up making the other dimension smaller than what was specified (_see examples below_).
 
-**By default *enforce_max* is always on so you do not have to explicitly set it.** It can be turned off either by specifically setting it to _0_ (enforce_max='0') or by turning on _crop_ (crop='1').
+**By default _enforce_max_ is always on so you do not have to explicitly set it.** It can be turned off either by specifically setting it to _0_ (enforce*max='0') or by turning on \_crop* (crop='1').
 
 #### Examples:
 
@@ -99,16 +103,16 @@ If both height and width are specified, enforcing the limit of one dimension mig
     type='image' />
 ```
 
-| Uploaded Image (300 x 200) | Saved Image (150 x 100) | Remarks |
-| :------------------------- | :---------------------- | :------ |
+| Uploaded Image (300 x 200)                                | Saved Image (150 x 100)                                   | Remarks                                                                              |
+| :-------------------------------------------------------- | :-------------------------------------------------------- | :----------------------------------------------------------------------------------- |
 | ![](../../../../assets/img/contents/editable-image-2.jpg) | ![](../../../../assets/img/contents/editable-image-3.jpg) | The width was constrained to 150px while also decreasing the height proportionately. |
 
-| Uploaded Image (200 x 300) | Saved Image (150 x 225) | Remarks |
-| :------------------------- | :---------------------- | :------ |
+| Uploaded Image (200 x 300)                                | Saved Image (150 x 225)                                   | Remarks                                                                              |
+| :-------------------------------------------------------- | :-------------------------------------------------------- | :----------------------------------------------------------------------------------- |
 | ![](../../../../assets/img/contents/editable-image-4.jpg) | ![](../../../../assets/img/contents/editable-image-5.jpg) | The width was constrained to 150px while also decreasing the height proportionately. |
 
-| Uploaded Image (100 x 75) | Saved Image (100 x 75) | Remarks |
-| :------------------------ | :--------------------- | :------ |
+| Uploaded Image (100 x 75)                                 | Saved Image (100 x 75)                                    | Remarks                                                                                    |
+| :-------------------------------------------------------- | :-------------------------------------------------------- | :----------------------------------------------------------------------------------------- |
 | ![](../../../../assets/img/contents/editable-image-6.jpg) | ![](../../../../assets/img/contents/editable-image-7.jpg) | The width was already smaller than the required 150px, hence no changes made to the image. |
 
 #### Specifying both dimensions
@@ -120,21 +124,21 @@ If both height and width are specified, enforcing the limit of one dimension mig
     type='image' />
 ```
 
-| Uploaded Image (300 x 200) | Saved Image (150 x 100) | Remarks |
-| :------------------------- | :---------------------- | :------ |
+| Uploaded Image (300 x 200)                                | Saved Image (150 x 100)                                   | Remarks                                                                                                                                                                                    |
+| :-------------------------------------------------------- | :-------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ![](../../../../assets/img/contents/editable-image-8.jpg) | ![](../../../../assets/img/contents/editable-image-9.jpg) | The width was constrained to 150px while also decreasing the height proportionately. The resulting height of 100px was smaller than the required 150px hence no further changes were made. |
 
-| Uploaded Image (200 x 300) | Saved Image (100 x 150) | Remarks |
-| :------------------------- | :---------------------- | :------ |
+| Uploaded Image (200 x 300)                                 | Saved Image (100 x 150)                                    | Remarks                                                                                                                                                                                                                                                                                 |
+| :--------------------------------------------------------- | :--------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ![](../../../../assets/img/contents/editable-image-10.jpg) | ![](../../../../assets/img/contents/editable-image-11.jpg) | The width was constrained to 150px while also decreasing the height proportionately. The resulting height of 225px was larger than the required 150px hence the image was proportionately scaled further till the height became 150px. In doing so the width became smaller than 150px. |
 
-| Uploaded Image (100 x 75) | Saved Image (100 x 75) | Remarks |
-| :------------------------ | :--------------------- | :------ |
+| Uploaded Image (100 x 75)                                  | Saved Image (100 x 75)                                     | Remarks                                                                                                           |
+| :--------------------------------------------------------- | :--------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------- |
 | ![](../../../../assets/img/contents/editable-image-12.jpg) | ![](../../../../assets/img/contents/editable-image-13.jpg) | The width as well as the height were already smaller than the required 150px, hence no changes made to the image. |
 
 #### Sidenote:
 
-A short discussion is necessary about what happens if *enforce\_max* is explicitly set to '0' instead of implicitly doing it by setting _crop_ - e.g..
+A short discussion is necessary about what happens if _enforce_max_ is explicitly set to '0' instead of implicitly doing it by setting _crop_ - e.g..
 
 ```php
 <cms:editable name='prop_image' label='Image' desc='Upload main image of property here'
@@ -146,8 +150,8 @@ A short discussion is necessary about what happens if *enforce\_max* is explicit
 
 In such cases, since height and width are no longer enforcing maximum dimensions, these values are interpreted as being the absolute dimensions for the saved image. While resizing the image to these values **_no effort is made to preserve the existing proportion_** between original height and width. The new image is simply resized to the given values and thus if the ratio of the new dimensions do not match that of the original ones you'll end up with having a distorted image. Thus -
 
-| Uploaded Image (200 x 300) | Saved Image (150 x 150) | Remarks |
-| :------------------------- | :---------------------- | :------ |
+| Uploaded Image (200 x 300)                                 | Saved Image (150 x 150)                                    | Remarks                                                                                                                                                         |
+| :--------------------------------------------------------- | :--------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ![](../../../../assets/img/contents/editable-image-14.jpg) | ![](../../../../assets/img/contents/editable-image-15.jpg) | The image was simply resized to a width of 150px and a height of 150px. No attempt was made to mantain proportion and the resulting image is visibily squashed. |
 
 ### crop
@@ -159,7 +163,7 @@ If any of the dimensions of an uploaded image is lesser or greater than the valu
 If both width and height are specified, very often while matching one dimension the other dimension overshoots the given value. In such cases, the overflowing part of it is cropped.
 
 :::note
-By setting this parameter to _1_ we also implicitly turn off *enforce_max*.
+By setting this parameter to _1_ we also implicitly turn off _enforce_max_.
 :::
 
 #### Examples:
@@ -173,17 +177,17 @@ By setting this parameter to _1_ we also implicitly turn off *enforce_max*.
     type='image' />
 ```
 
-| Uploaded Image (300 x 200) | Saved Image (150 x 100) | Remarks |
-| :------------------------- | :---------------------- | :------ |
-| ![](../../../../assets/img/contents/editable-image-16.jpg) | ![](../../../../assets/img/contents/editable-image-17.jpg) | The required width (150px) is smaller than the actual (300px), hence the width was reduced to 150px while also decreasing the height proportionately. The result is the same as with *enforce\_max* on one dimension. |
+| Uploaded Image (300 x 200)                                 | Saved Image (150 x 100)                                    | Remarks                                                                                                                                                                                                              |
+| :--------------------------------------------------------- | :--------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![](../../../../assets/img/contents/editable-image-16.jpg) | ![](../../../../assets/img/contents/editable-image-17.jpg) | The required width (150px) is smaller than the actual (300px), hence the width was reduced to 150px while also decreasing the height proportionately. The result is the same as with _enforce_max_ on one dimension. |
 
-| Uploaded Image (200 x 300) | Saved Image (150 x 225) | Remarks |
-| :------------------------- | :---------------------- | :------ |
-| ![](../../../../assets/img/contents/editable-image-18.jpg) | ![](../../../../assets/img/contents/editable-image-19.jpg) | The required width (150px) is smaller than the actual (200px), hence the width was reduced to 150px while also decreasing the height proportionately. The result is the same as with *enforce\_max* on one dimension. |
+| Uploaded Image (200 x 300)                                 | Saved Image (150 x 225)                                    | Remarks                                                                                                                                                                                                              |
+| :--------------------------------------------------------- | :--------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![](../../../../assets/img/contents/editable-image-18.jpg) | ![](../../../../assets/img/contents/editable-image-19.jpg) | The required width (150px) is smaller than the actual (200px), hence the width was reduced to 150px while also decreasing the height proportionately. The result is the same as with _enforce_max_ on one dimension. |
 
-| Uploaded Image (100 x 75) | Saved Image (150 x 112) | Remarks |
-| :------------------------ | :---------------------- | :------ |
-| ![](../../../../assets/img/contents/editable-image-20.jpg) | ![](../../../../assets/img/contents/editable-image-21.jpg) | The required width (150px) is larger than the actual (100px), hence the width was increased to 150px while also increasing the height proportionately. Note how the result differs from *enforce\_max* on one dimension. |
+| Uploaded Image (100 x 75)                                  | Saved Image (150 x 112)                                    | Remarks                                                                                                                                                                                                                 |
+| :--------------------------------------------------------- | :--------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![](../../../../assets/img/contents/editable-image-20.jpg) | ![](../../../../assets/img/contents/editable-image-21.jpg) | The required width (150px) is larger than the actual (100px), hence the width was increased to 150px while also increasing the height proportionately. Note how the result differs from _enforce_max_ on one dimension. |
 
 #### Specifying both dimensions
 
@@ -195,16 +199,16 @@ By setting this parameter to _1_ we also implicitly turn off *enforce_max*.
     type='image' />
 ```
 
-| Uploaded Image (300 x 200) | Saved Image (150 x 150) | Remarks |
-| :------------------------- | :---------------------- | :------ |
+| Uploaded Image (300 x 200)                                 | Saved Image (150 x 150)                                    | Remarks                                                                                                                                                                                                                                       |
+| :--------------------------------------------------------- | :--------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ![](../../../../assets/img/contents/editable-image-22.jpg) | ![](../../../../assets/img/contents/editable-image-23.jpg) | The image is proportionately scaled till one of the two dimension is _equal_ to the required value and the other is either _equal or larger_ than the required value. In case the other dimension is larger, the surplus area is cropped off. |
 
-| Uploaded Image (200 x 300) | Saved Image (150 x 150) | Remarks |
-| :------------------------- | :---------------------- | :------ |
+| Uploaded Image (200 x 300)                                 | Saved Image (150 x 150)                                    | Remarks         |
+| :--------------------------------------------------------- | :--------------------------------------------------------- | :-------------- |
 | ![](../../../../assets/img/contents/editable-image-24.jpg) | ![](../../../../assets/img/contents/editable-image-25.jpg) | -same as above- |
 
-| Uploaded Image (100 x 75) | Saved Image (150 x 150) | Remarks |
-| :------------------------ | :---------------------- | :------ |
+| Uploaded Image (100 x 75)                                  | Saved Image (150 x 150)                                    | Remarks         |
+| :--------------------------------------------------------- | :--------------------------------------------------------- | :-------------- |
 | ![](../../../../assets/img/contents/editable-image-26.jpg) | ![](../../../../assets/img/contents/editable-image-27.jpg) | -same as above- |
 
 ### quality
@@ -226,11 +230,11 @@ You can set _quality_ from 0 (worst quality, smaller file) to 100 (best quality,
     type='image' />
 ```
 
-Setting *show_preview* to '1' makes Couch display a preview of the selected image above the upload control.
+Setting _show_preview_ to '1' makes Couch display a preview of the selected image above the upload control.
 
 ![](../../../../assets/img/contents/editable-image-28.jpg)
 
-If *show_preview* is not set at all or is set to '0', upon selecting an image a link is added below the upload control for previewing the selected image.
+If _show_preview_ is not set at all or is set to '0', upon selecting an image a link is added below the upload control for previewing the selected image.
 
 ![](../../../../assets/img/contents/editable-image-29.jpg)
 
@@ -238,7 +242,7 @@ If *show_preview* is not set at all or is set to '0', upon selecting an image a 
 
 ### preview_height
 
-As illustrated above, setting *show_preview* to '1' causes a preview of the selected image to appear. The dimensions of this preview can be set by using *preview\_width* and *preview\_height* (needless to say, these two parameters take effect only with *show\_preview* set to '1').
+As illustrated above, setting _show_preview_ to '1' causes a preview of the selected image to appear. The dimensions of this preview can be set by using _preview_width_ and _preview_height_ (needless to say, these two parameters take effect only with _show_preview_ set to '1').
 
 ```php
 <cms:editable name='prop_image' label='Image' desc='Upload main image of property here'
@@ -250,22 +254,22 @@ As illustrated above, setting *show_preview* to '1' causes a preview of the sele
 ![](../../../../assets/img/contents/editable-image-30.jpg)
 
 :::tip
-It is always a good idea to set at least one of the two dimensions while using *show_preview*.
+It is always a good idea to set at least one of the two dimensions while using _show_preview_.
 :::
 
 ## Related Tags
 
-*   [editable](../../editable/)
-*   [editable (checkbox)](../checkbox/)
-*   [editable (dropdown)](../dropdown/)
-*   [editable (file)](../file/)
-*   [editable (group)](../group/)
-*   [editable (image)](../image/)
-*   [editable (message)](../message/)
-*   [editable (nicedit)](../nicedit/)
-*   [editable (password)](../password/)
-*   [editable (radio)](../radio/)
-*   [editable (relation)](../relation/)
-*   [editable (text)](../text/)
-*   [editable (textarea)](../textarea/)
-*   [editable (thumbnail)](../thumbnail/)
+- [editable](../../editable/)
+- [editable (checkbox)](../checkbox/)
+- [editable (dropdown)](../dropdown/)
+- [editable (file)](../file/)
+- [editable (group)](../group/)
+- [editable (image)](../image/)
+- [editable (message)](../message/)
+- [editable (nicedit)](../nicedit/)
+- [editable (password)](../password/)
+- [editable (radio)](../radio/)
+- [editable (relation)](../relation/)
+- [editable (text)](../text/)
+- [editable (textarea)](../textarea/)
+- [editable (thumbnail)](../thumbnail/)

@@ -3,6 +3,8 @@ title: pages
 category: tag
 description: The pages tag can be used to list all pages belonging to a template.
 keywords: [pages, CouchCMS, Couch, tags, PHP, template, pagination]
+author: Kamran Kashif
+lastUpdated: 2025-03-27
 ---
 
 **Pages** tag can be used to list all pages belonging to a template.
@@ -23,21 +25,21 @@ This tag iterates through each of the fetched page and makes available all the d
 
 ## Parameters
 
-*   masterpage
-*   id
-*   page_name
-*   limit
-*   paginate
-*   offset
-*   startcount
-*   folder
-*   include_subfolders
-*   start_on
-*   stop_before
-*   show_future_entries
-*   orderby
-*   order
-*   custom_field
+- masterpage
+- id
+- page_name
+- limit
+- paginate
+- offset
+- startcount
+- folder
+- include_subfolders
+- start_on
+- stop_before
+- show_future_entries
+- orderby
+- order
+- custom_field
 
 ### masterpage
 
@@ -125,7 +127,7 @@ This example would fetch pages cloned from blog.php after skipping the first two
 <cms:pages masterpage='blog.php' startcount='0'></cms:pages>
 ```
 
-The *k_count*, *k_record_from*, *k_current_record* and *k_record_to* variables (see [**Pagination**](../../concepts/pagination.html)) start by default from '1'. This can be changed to any other value by setting this parameter.
+The _k_count_, _k_record_from_, _k_current_record_ and _k_record_to_ variables (see [**Pagination**](../../concepts/pagination.html)) start by default from '1'. This can be changed to any other value by setting this parameter.
 
 ### folder
 
@@ -148,10 +150,10 @@ This example would fetch pages cloned from blog.php and belonging to folders nam
 This example would fetch all pages cloned from blog.php except those belonging to folders named 'classic-bikes' or 'super-bikes'.
 
 By default Couch will only fetch pages that lie DIRECTLY within the given folder(s).
-To include the pages that are within the subfolders of the given folder(s), set the *include_subfolders* parameter as well.
+To include the pages that are within the subfolders of the given folder(s), set the _include_subfolders_ parameter as well.
 See below.
 
-In the _folder-view_ (see [**Views**](../../concepts/views.html)), the *k_folder_name* variable is set to the name of the current folder. It can be used to list the right pages -
+In the _folder-view_ (see [**Views**](../../concepts/views.html)), the _k_folder_name_ variable is set to the name of the current folder. It can be used to list the right pages -
 
 ```php
 <cms:pages folder=k_folder_name include_subfolders='1'></cms:pages>
@@ -183,7 +185,7 @@ This example would fetch all pages cloned from blog.php that have been published
 
 This example would fetch all pages cloned from blog.php that have been published before the first of March, 2010\.
 
-The parameters *start_on* and *stop_before* can be combined to fetch pages published betwen a particular time period. Thus -
+The parameters _start_on_ and _stop_before_ can be combined to fetch pages published betwen a particular time period. Thus -
 
 ```php
 <cms:pages masterpage='blog.php' start_on='2010-02-01' stop_before='2010-03-01'></cms:pages>
@@ -191,7 +193,7 @@ The parameters *start_on* and *stop_before* can be combined to fetch pages publi
 
 This example would fetch all pages cloned from blog.php that have been published on or after the first of February, 2010 but before the first of March, 2010\. (i.e. only during the month of February of 2010)
 
-In the _archive-view_ (see [**Views**](../../concepts/views.html)), the *k_archive_date* and the *k_next_archive_date* are set to the first day of the archive and the first day of the next archive (month). These can be used to easily fetch pages that belong to only that archive period -
+In the _archive-view_ (see [**Views**](../../concepts/views.html)), the _k_archive_date_ and the _k_next_archive_date_ are set to the first day of the archive and the first day of the next archive (month). These can be used to easily fetch pages that belong to only that archive period -
 
 ```php
 <cms:pages start_on=k_archive_date stop_before=k_next_archive_date ></cms:pages>
@@ -209,12 +211,12 @@ This example would fetch only those pages cloned from blog.php that have been pu
 
 The pages fetched can be sorted and ordered according to the following fields -
 
-*   publish_date (_default_)
-*   page_name
-*   page_title
-*   modification_date
-*   comments_count
-*   random
+- publish*date (\_default*)
+- page_name
+- page_title
+- modification_date
+- comments_count
+- random
 
 Thus -
 
@@ -222,7 +224,7 @@ Thus -
 <cms:pages masterpage='blog.php' orderby='page_name'></cms:pages>
 ```
 
-Apart from the three fields mentioned above, any of the custom field defined in the template (i.e. the editable regions contained within the template) may be used for sorting the fetched pages. Thus, for example if the template 'blog.php' has three editable regions - *my_blog_text*, *my_blog_image* and *my_blog_author*, the following snippet -
+Apart from the three fields mentioned above, any of the custom field defined in the template (i.e. the editable regions contained within the template) may be used for sorting the fetched pages. Thus, for example if the template 'blog.php' has three editable regions - _my_blog_text_, _my_blog_image_ and _my_blog_author_, the following snippet -
 
 ```php
 <cms:pages masterpage='blog.php' orderby='my_blog_author'></cms:pages>
@@ -287,7 +289,7 @@ This example would fetch all cloned pages of blog.php where the editable region 
 :::note
 Since a comma ',' is being used to separate two values, if any of the values contains a comma
 within itself you'll have to 'escape' the comma by prepending it with a backward slash -
-'my_blog_text=veni, vidi, veci'  - contains any of the terms veni, vidi or veci
+'my_blog_text=veni, vidi, veci' - contains any of the terms veni, vidi or veci
 'my_blog_text=veni\\, vidi\\, veci' - contains the phrase 'veni, vidi, veci'.
 
 Similarly if any of the values contains a single quote ''' or double quote '"', it can be escaped likewise.
@@ -353,7 +355,7 @@ price = 355.39
 Telephone number, though it might contain all numeric values, is not a 'number' because you are unlikely to do something like -
 telephone_number < 234567878
 
-For all such cases where the values will be numbers and you'd want to use them in the *custom_field* parameter, MAKE SURE to set the *search_type* parameter of the editable regions to either 'integer' (for values that will not be fractional e.g. number of bathrooms) or 'decimal' (for values that can be fractional e.g. price).
+For all such cases where the values will be numbers and you'd want to use them in the _custom_field_ parameter, MAKE SURE to set the _search_type_ parameter of the editable regions to either 'integer' (for values that will not be fractional e.g. number of bathrooms) or 'decimal' (for values that can be fractional e.g. price).
 
 Remember that only editable regions of types 'text', 'radio' and 'dropdown' can be made of 'integer'/'decimal' search_type.
 :::
@@ -370,13 +372,13 @@ AND custom field price 'less than or equal to' 3000000 (i.e. price between 10000
 
 The following comparisons can be done with numeric fields -
 
-*   `=` (equal to)
-*   `!=` (not equal to)
-*   `<=` (less than or equal to)
-*   `>=` (greater than or equal to)
-*   `<>` (not equal to)
-*   `<` (less than)
-*   `>` (greater than)
+- `=` (equal to)
+- `!=` (not equal to)
+- `<=` (less than or equal to)
+- `>=` (greater than or equal to)
+- `<>` (not equal to)
+- `<` (less than)
+- `>` (greater than)
 
 ## Variables
 
@@ -387,7 +389,7 @@ See [**Pagination**](../../concepts/pagination.html).
 
 ## Related Tags
 
-*   [archives](../archives.html)
-*   [comments](../comments.html)
-*   [folders](../folders.html)
-*   [templates](../templates.html)
+- [archives](../archives.html)
+- [comments](../comments.html)
+- [folders](../folders.html)
+- [templates](../templates.html)

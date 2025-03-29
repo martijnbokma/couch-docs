@@ -3,6 +3,8 @@ title: menu
 category: tag
 description: The menu tag generates HTML markup for nested pages in the form of a dropdown menu, with customizable styling, active states, and dynamic menu options.
 keywords: [menu, tag, PHP, navigation, HTML, nested pages, dropdown]
+author: Kamran Kashif
+lastUpdated: 2025-03-27
 ---
 
 import { FileTree } from '@astrojs/starlight/components';
@@ -13,39 +15,31 @@ Please see [**Core Concepts - Nested Pages**](../../concepts/nested-pages-aka-me
 
 ## Parameters
 
-*   masterpage
-*   depth
-*   orderby
-*   order
-*   exclude
-*   ignore_show_in_menu
-*   root
-*   childof
-*   extended_info
-*   menu_class
-*   menu_id
-*   first_class
-*   last_class
-*   no_selected
-*   selected_class
-*   no_active_trail
-*   active_trail_class
-*   list_type
+- masterpage
+- depth
+- orderby
+- order
+- exclude
+- ignore_show_in_menu
+- root
+- childof
+- extended_info
+- menu_class
+- menu_id
+- first_class
+- last_class
+- no_selected
+- selected_class
+- no_active_trail
+- active_trail_class
+- list_type
 
 To illustrate the use of 'menu' tag, we'll use the same sample hierarchy of elements that we used in the '[folders](../../concepts/using-folders.html)' section. The difference being that in this case the elements represent pages instead of folders.
 
 <FileTree>
-    - World&nbsp;News/
-        - North&nbsp;American&nbsp;News/
-            - United&nbsp;States&nbsp;News/
-                - Ohio&nbsp;News/
-                - Nevada&nbsp;News/
-        - Asian&nbsp;News/
-            - China&nbsp;News/
-            - Japan&nbsp;News/
-    - Sports&nbsp;News/
-    - Music&nbsp;News/
-    - Entertainment&nbsp;News/
+    - World&nbsp;News/ - North&nbsp;American&nbsp;News/ - United&nbsp;States&nbsp;News/ - Ohio&nbsp;News/ -
+    Nevada&nbsp;News/ - Asian&nbsp;News/ - China&nbsp;News/ - Japan&nbsp;News/ - Sports&nbsp;News/ - Music&nbsp;News/ -
+    Entertainment&nbsp;News/
 </FileTree>
 
 ### masterpage
@@ -68,12 +62,7 @@ This can be used, for example, to list only the top-level pages in the tree by s
 
 Output:
 
-<FileTree>
-- World&nbsp;News/
-- Sports&nbsp;News/
-- Music&nbsp;News/
-- Entertainment&nbsp;News/
-</FileTree>
+<FileTree>- World&nbsp;News/ - Sports&nbsp;News/ - Music&nbsp;News/ - Entertainment&nbsp;News/</FileTree>
 
 ### orderby
 
@@ -87,12 +76,8 @@ This parameter can be set to order them according to the following criteria - na
 Output:
 
 <FileTree>
-- Entertainment&nbsp;News/
-- Music&nbsp;News/
-- Sports&nbsp;News/
-- World&nbsp;News/
-    - Asian&nbsp;News/
-    - North&nbsp;American&nbsp;News/
+    - Entertainment&nbsp;News/ - Music&nbsp;News/ - Sports&nbsp;News/ - World&nbsp;News/ - Asian&nbsp;News/ -
+    North&nbsp;American&nbsp;News/
 </FileTree>
 
 ### order
@@ -107,12 +92,8 @@ Valid values are 'asc' and 'desc'. Default is 'asc'.
 Output:
 
 <FileTree>
-- World&nbsp;News/
-    - North&nbsp;American&nbsp;News/
-    - Asian&nbsp;News/
-- Sports&nbsp;News/
-- Music&nbsp;News/
-- Entertainment&nbsp;News/
+    - World&nbsp;News/ - North&nbsp;American&nbsp;News/ - Asian&nbsp;News/ - Sports&nbsp;News/ - Music&nbsp;News/ -
+    Entertainment&nbsp;News/
 </FileTree>
 
 ### exclude
@@ -128,13 +109,8 @@ If multiple pages are to be excluded, separate them using comma.
 Output:
 
 <FileTree>
-- World&nbsp;News/
-    - North&nbsp;American&nbsp;News/
-    - Asian&nbsp;News/
-        - Japan&nbsp;News/
-- Sports&nbsp;News/
-- Music&nbsp;News/
-- Entertainment&nbsp;News/
+    - World&nbsp;News/ - North&nbsp;American&nbsp;News/ - Asian&nbsp;News/ - Japan&nbsp;News/ - Sports&nbsp;News/ -
+    Music&nbsp;News/ - Entertainment&nbsp;News/
 </FileTree>
 
 ### ignore_show_in_menu
@@ -158,11 +134,7 @@ The nested-page specified as the root is displayed along with all its children (
 
 Output:
 
-<FileTree>
-- United&nbsp;States&nbsp;News/
-    - Ohio&nbsp;News/
-    - Nevada&nbsp;News/
-</FileTree>
+<FileTree>- United&nbsp;States&nbsp;News/ - Ohio&nbsp;News/ - Nevada&nbsp;News/</FileTree>
 
 ### childof
 
@@ -179,12 +151,10 @@ If both 'childof' and 'root' are set, the 'root' parameter gets precedence.
 
 Output:
 
-<FileTree>
-- Ohio&nbsp;News/
-- Nevada&nbsp;News/
-</FileTree>
+<FileTree>- Ohio&nbsp;News/ - Nevada&nbsp;News/</FileTree>
 
 :::note
+
 <h4 id="dynamic-menu">Dynamic Menu</h4>
 
 Occasionally, you'll come across sites where there is more than one menu on a single page with each of the discrete menus being inter-dependant.
@@ -195,15 +165,16 @@ To help easily create such menus the 'childof' and 'root' parameter accept some 
 
 The special keywords are -
 
-+ **@n** (where n is a number starting from 1 e.g. @1, @2 etc.)
-    
+- **@n** (where n is a number starting from 1 e.g. @1, @2 etc.)
+
     By setting either the 'childof' and 'root' parameter to '@n', we ask Couch to use as the 'root' or 'childof' the page that is parent number 'n' of the current page being visited.
-    
+
     For example -
 
     ```php
     <cms:menu masterpage='menu.php' root='@1' />
     ```
+
     In the snippet above we are instructing Couch to find out all the parents of the current page and then use the top most parent (first parent) as the value for the 'root' parameter.
     Thus, if the page being visited was
     'Nevada News' (https://www.yoursite.com/world-news/north-american-news/united-states-news/nevada-news/)
@@ -213,28 +184,31 @@ The special keywords are -
     ```php
     <cms:menu masterpage='menu.php' root='@2' />
     ```
+
     the value used for the 'root' parameter would be 'north-american-news' as that is the second parent of the current page.
 
-+ **@current**
-    By setting either the 'childof' and 'root' parameter to '@current', we ask Couch to use as the 'root' or 'childof' the current page itself that is being visited.
-    
+- **@current**
+  By setting either the 'childof' and 'root' parameter to '@current', we ask Couch to use as the 'root' or 'childof' the current page itself that is being visited.
+
     For example -
 
     ```php
     <cms:menu masterpage='menu.php' root='@current' />
     ```
+
     In the snippet above, if the page being visited was
     'North American News' (https://www.yoursite.com/world-news/north-american-news/)
     the value used for the 'root' parameter would be 'north-american-news'.
 
-+ **@current-n** (where n is a number starting from 1 e.g. @current-1, @current-2 etc.)
-    By setting either the 'childof' and 'root' parameter to '@current-n', we ask Couch to use as the 'root' or 'childof' the parent page that is 'n' level above the page being visited.
-    
+- **@current-n** (where n is a number starting from 1 e.g. @current-1, @current-2 etc.)
+  By setting either the 'childof' and 'root' parameter to '@current-n', we ask Couch to use as the 'root' or 'childof' the parent page that is 'n' level above the page being visited.
+
     For example -
 
     ```php
     <cms:menu masterpage='menu.php' root='@current-1' />
     ```
+
     In the snippet above, if the page being visited was
     'Nevada News' (https://www.yoursite.com/world-news/north-american-news/united-states-news/nevada-news/)
     the value used for the 'root' parameter would be 'united-states-news' while for the following snippet
@@ -242,6 +216,7 @@ The special keywords are -
     ```php
     <cms:menu masterpage='menu.php' root='@current-2' />
     ```
+
     the value used would be 'north-american-news'.
 
 Using these special keywords some very complex menu can be easily created without involving any programming.
@@ -341,5 +316,5 @@ This tag is self-closing and does not set any variables of its own.
 
 ## Related Tags
 
-*   [nested_crumbs](../nested_crumbs.html)
-*   [nested_pages](../nested_pages.html)
+- [nested_crumbs](../nested_crumbs.html)
+- [nested_pages](../nested_pages.html)

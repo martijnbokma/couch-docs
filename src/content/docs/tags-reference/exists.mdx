@@ -3,17 +3,19 @@ title: exists
 category: tag
 description: The exists tag checks for the presence of a file or folder on the server, returning '1' if found and '0' if not, with paths relative to the couch/snippets folder.
 keywords: [exists, tag, PHP, file, folder, check, path]
+author: Kamran Kashif
+lastUpdated: 2025-03-27
 ---
 
 The **Exists** tag can be used to confirm the presence of a file or a folder on the server.
 It returns '1' if the object file/folder exists. Otherwise it returns a '0'.
-For example -
+For example:
 
 ```php
 <cms:exists "contact.inc" />
 ```
 
-will output either '1' or '0' depending on whether the file 'contact.inc' is present or not within the 'couch/snippets' folder.
+will output either '1' or '0' depending on whether the file `contact.inc` is present or not within the `couch/snippets` folder.
 
 :::note
 Exactly like the [**embed**](../embed.html) tag, the **exists** tag considers the file/folder provided to be relative to the 'couch/snippets' folder.
@@ -22,16 +24,18 @@ For example
 ```php
 <cms:exists "common/contact.inc" />
 ```
+
 will look for 'contact.inc' file within a folder named 'common' that resides within the 'couch/snippets' folder. Whereas
 
 ```php
 <cms:exists "../../common/contact.inc" />
 ```
-will move up through the folder hierarchy (the first '../' will move into the 'couch' folder while the next '../'  will move into the website folder within which 'couch' folder resides) and search for the file within a folder named 'common' residing in the main website folder.
+
+will move up through the folder hierarchy (the first '../' will move into the 'couch' folder while the next '../' will move into the website folder within which 'couch' folder resides) and search for the file within a folder named 'common' residing in the main website folder.
 :::
 
 Combined with the [**If**](../if.html) tag and [**Embed**](../embed.html) tag, the **Exists** tag provides a very powerful method of choosing the right template to display while showing a particular page.
-For example, let us say we have a template 'index.php' that is clonable and several pages have been made out of it - e.g. 'about-us', 'services',  'contact-us' etc.. The template has defined one editable richtext area named 'my_content' and, as usual, every page has its own data in this area. The code within this template to display the data for each cloned page might go somewhat like this
+For example, let us say we have a template 'index.php' that is clonable and several pages have been made out of it - e.g. 'about-us', 'services', 'contact-us' etc.. The template has defined one editable richtext area named 'my_content' and, as usual, every page has its own data in this area. The code within this template to display the data for each cloned page might go somewhat like this
 
 ```php
 <cms:if k_is_page >
@@ -91,7 +95,7 @@ You'll never need to modify the code given above.
 
 ## Parameters
 
-*   unnamed
+- unnamed
 
 Takes one unnamed parameter (only the value is required).
 It is considered to be a path to a file or folder. The path is always relative to the 'couch/snippets' folder.
@@ -103,6 +107,6 @@ This tag does not set any variables of its own.
 
 ## Related Tags
 
-*   [embed](../embed.html)
-*   [if](../if.html)
-*   [page_exists](../page_exists.html)
+- [embed](../embed.html)
+- [if](../if.html)
+- [page_exists](../page_exists.html)

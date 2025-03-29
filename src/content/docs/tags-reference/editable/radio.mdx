@@ -4,6 +4,8 @@ category: tag
 subCategory: editable
 description: Editable region of radio type is used to allow the user to choose one option from several presented to him in the form of radio buttons.
 keywords: [radio, editable, tag, PHP, form, input]
+author: Kamran Kashif
+lastUpdated: 2025-03-27
 ---
 
 Editable region of _radio_ type is used to allow the user to choose one option from several presented to him in the form of radio buttons.
@@ -34,11 +36,11 @@ The option selected in this region can be accessed, as with all other editable r
 
 In addition to the parameters common to all the types of editable regions, _radio_ accepts the following parameters
 
-*   opt_values
-*   opt_selected
-*   separator
-*   val_separator
-*   search_type
+- opt_values
+- opt_selected
+- separator
+- val_separator
+- search_type
 
 ### opt_values
 
@@ -79,6 +81,7 @@ Specifying an empty option makes Couch generate a break '`<br>`'. e.g.
 ```php
 opt_values='Residential=0 | Commercial=1 | | Rental=2'
 ```
+
 In the code above, actually four options have been specified - the third option (between _Commercial_ and _Rental_) is empty.
 This results in -
 
@@ -87,7 +90,7 @@ This results in -
 
 ### opt_selected
 
-By default, the first option in the list is shown as the selected option. You can show any other option as selected by setting *opt_selected* to the **value** of that option. For example -
+By default, the first option in the list is shown as the selected option. You can show any other option as selected by setting _opt_selected_ to the **value** of that option. For example -
 
 ```php
 <cms:editable name="my_property_type" label="Property Type" desc="Select one from these"
@@ -111,7 +114,7 @@ will show _Rental_ as the option selected by default.
 
 ### separator
 
-As seen in the examples above, the list provided to *opt_values* parameter consists of the options separated by a '|' (pipe) character.
+As seen in the examples above, the list provided to _opt_values_ parameter consists of the options separated by a '|' (pipe) character.
 This is the default separator used by Couch. For some reason if you do not wish to have a pipe as separator (e.g. if any of the options contains the pipe character within itself, obviously the same character cannot be used as the separator), any other character can be designated as the separator by setting this parameter. For example as in follows -
 
 ```php
@@ -122,7 +125,7 @@ This is the default separator used by Couch. For some reason if you do not wish 
 />
 ```
 
-Note how the opt_values are separated by '*'.
+Note how the opt_values are separated by '\*'.
 
 ### val_separator
 
@@ -136,11 +139,11 @@ val_separator=':'
 
 Can be set to the following valid values -
 
-*   text
-*   integer
-*   decimal
+- text
+- integer
+- decimal
 
-The default *search_type* is (as with all other types of editable regions) _text_.
+The default _search_type_ is (as with all other types of editable regions) _text_.
 If you wish to use this region to input numeric values (e.g. age or salary), set the type to either _numeric_ or _decimal_ (if the value can be fractional).
 
 :::note
@@ -149,17 +152,17 @@ It is necessary to set an explicit numeric type on an editable region only when 
 
 ## Related Tags
 
-*   [editable](../../editable/)
-*   [editable (checkbox)](../checkbox/)
-*   [editable (dropdown)](../dropdown/)
-*   [editable (file)](../file/)
-*   [editable (group)](../group/)
-*   [editable (image)](../image/)
-*   [editable (message)](../message/)
-*   [editable (nicedit)](../nicedit/)
-*   [editable (password)](../password/)
-*   [editable (radio)](../radio/)
-*   [editable (relation)](../relation/)
-*   [editable (text)](../text/)
-*   [editable (textarea)](../textarea/)
-*   [editable (thumbnail)](../thumbnail/)
+- [editable](../../editable/)
+- [editable (checkbox)](../checkbox/)
+- [editable (dropdown)](../dropdown/)
+- [editable (file)](../file/)
+- [editable (group)](../group/)
+- [editable (image)](../image/)
+- [editable (message)](../message/)
+- [editable (nicedit)](../nicedit/)
+- [editable (password)](../password/)
+- [editable (radio)](../radio/)
+- [editable (relation)](../relation/)
+- [editable (text)](../text/)
+- [editable (textarea)](../textarea/)
+- [editable (thumbnail)](../thumbnail/)

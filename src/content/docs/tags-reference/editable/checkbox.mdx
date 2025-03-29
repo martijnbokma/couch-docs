@@ -4,6 +4,8 @@ category: tag
 subCategory: editable
 description: Editable region of checkbox type is used to allow the user to choose multiple options from several presented to him in the form of check boxes.
 keywords: [checkbox, CouchCMS, Couch, tags, PHP, editable]
+author: Kamran Kashif
+lastUpdated: 2025-03-27
 ---
 
 Editable region of _checkbox_ type is used to allow the user to choose multiple options from several presented to him in the form of check boxes.
@@ -46,16 +48,17 @@ To access each of the individual selected option, you can use the [**Each**](../
     <cms:show cat /><br>
 </cms:each>
 ```
+
 :::
 
 ## Parameters
 
 In addition to the parameters common to all the types of editable regions, _checkbox_ accepts the following parameters
 
-*   opt_values
-*   opt_selected
-*   separator
-*   val_separator
+- opt_values
+- opt_selected
+- separator
+- val_separator
 
 ### opt_values
 
@@ -100,6 +103,7 @@ Multiple selections have been discussed above.
 ```php
 opt_values='Entertainment=0 | | Computers=1 | | Sports=2 | | Health=3'
 ```
+
 In the code above, actually seven options have been specified - three are empty (nothing between the pipes).
 This results in -
 
@@ -108,7 +112,7 @@ This results in -
 
 ### opt_selected
 
-You can show any option as selected by setting *opt_selected* to the value of that option. For example -
+You can show any option as selected by setting _opt_selected_ to the value of that option. For example -
 
 ```php
 <cms:editable name="my_categories" label="Categories" desc="Check all applicable"
@@ -140,7 +144,7 @@ The above will show _Entertainment_ and _Sports_ selected by default.
 
 ### separator
 
-As seen in the examples above, the list provided to *opt_values* parameter consists of the options separated by a '|' (pipe) character and so are the values provided to *opt_selected*.
+As seen in the examples above, the list provided to _opt_values_ parameter consists of the options separated by a '|' (pipe) character and so are the values provided to _opt_selected_.
 This is the default separator used by Couch. For some reason if you do not wish to have a pipe as separator (e.g. if any of the options contains the pipe character within itself, obviously the same character cannot be used as the separator), any other character can be designated as the separator by setting this parameter. For example as in follows -
 
 ```php
@@ -152,7 +156,7 @@ This is the default separator used by Couch. For some reason if you do not wish 
 />
 ```
 
-Note how the *opt_values* and *opt_selected* are separated by '*'.
+Note how the _opt_values_ and _opt_selected_ are separated by '\*'.
 
 ### val_separator
 
@@ -164,17 +168,17 @@ val_separator=':'
 
 ## Related Tags
 
-*   [editable](../../editable/)
-*   [editable (checkbox)](../checkbox/)
-*   [editable (dropdown)](../dropdown/)
-*   [editable (file)](../file/)
-*   [editable (group)](../group/)
-*   [editable (image)](../image/)
-*   [editable (message)](../message/)
-*   [editable (nicedit)](../nicedit/)
-*   [editable (password)](../password/)
-*   [editable (radio)](../radio/)
-*   [editable (relation)](../relation/)
-*   [editable (text)](../text/)
-*   [editable (textarea)](../textarea/)
-*   [editable (thumbnail)](../thumbnail/)
+- [editable](../../editable/)
+- [editable (checkbox)](../checkbox/)
+- [editable (dropdown)](../dropdown/)
+- [editable (file)](../file/)
+- [editable (group)](../group/)
+- [editable (image)](../image/)
+- [editable (message)](../message/)
+- [editable (nicedit)](../nicedit/)
+- [editable (password)](../password/)
+- [editable (radio)](../radio/)
+- [editable (relation)](../relation/)
+- [editable (text)](../text/)
+- [editable (textarea)](../textarea/)
+- [editable (thumbnail)](../thumbnail/)

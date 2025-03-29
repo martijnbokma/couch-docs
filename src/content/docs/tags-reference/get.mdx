@@ -3,6 +3,8 @@ title: get
 category: tag
 description: The get tag outputs the value of a variable specified by name, particularly useful for dynamically generated variable names.
 keywords: [get, tag, PHP, variables, output, dynamic, retrieval]
+author: Kamran Kashif
+lastUpdated: 2025-03-27
 ---
 
 The **get** tag is used to output the value of the variable the name of which is supplied to it as its parameter.
@@ -13,7 +15,7 @@ For example -
 <cms:get 'my_var' />
 ```
 
-In the snippet given above,  'my_var' is the name of the variable the value of which is output by the **get** tag.
+In the snippet given above, 'my_var' is the name of the variable the value of which is output by the **get** tag.
 The output of the snippet is '10'.
 
 Compare the **get** tag with the **show** tag that takes a value (not the name) as its parameter.
@@ -27,7 +29,7 @@ In the snippet given above, if we substitute the **get** tag with the **show** t
 
 \- the output would be 'my_var' and not '10'.
 
-The snippet has to be written in the following manner to make it show the value contained within variable *my_var* -
+The snippet has to be written in the following manner to make it show the value contained within variable _my_var_ -
 
 ```php
 <cms:set my_var='10' />
@@ -49,8 +51,8 @@ The **get** tag is useful in the cases where we have to fetch the values of vari
 
 ## Parameters
 
-*   var
-*   local_only
+- var
+- local_only
 
 ### var
 
@@ -66,7 +68,7 @@ This tag is self-closing and does not set any variables of its own.
 
 ## Related Tags
 
-*   [get_custom_field](../get_custom_field.html)
-*   [pages](../pages.html)
-*   [set](../set.html)
-*   [show](../show.html)
+- [get_custom_field](../get_custom_field.html)
+- [pages](../pages.html)
+- [set](../set.html)
+- [show](../show.html)

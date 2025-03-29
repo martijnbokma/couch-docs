@@ -3,6 +3,8 @@ title: set
 category: tag
 description: The set tag creates or updates variables with specified values, supporting different scopes and nested tag usage.
 keywords: [set, tag, PHP, variables, scope, data storage, template variables]
+author: Kamran Kashif
+lastUpdated: 2025-03-27
 ---
 
 The **Set** tag is used to put some value in a variable. The variable, if not already present, is created.
@@ -22,6 +24,7 @@ The following will create another variable known as 'message' and set its value 
 
 As with all other tags, nested tags may be used in parameters (taking care to use double quotes).
 The following will set the value of 'message' to 'Hello World'.
+
 ```php
 <cms:set message="<cms:show greeting /> World" />
 ```
@@ -29,7 +32,7 @@ The following will set the value of 'message' to 'Hello World'.
 A valid variable name starts with a letter or underscore, followed by any number of letters, numbers, or underscores.
 
 :::note[Important]
-**Set** cannot be used to set system variables (i.e. those that begin with prefix 'k_').
+**Set** cannot be used to set system variables (i.e. those that begin with prefix 'k\_').
 :::
 
 ## Parameters
@@ -51,9 +54,9 @@ Here 'global' defines the scope of 'message' variable
 
 The valid values for this second parameter are -
 
-*   local
-*   parent
-*   global
+- local
+- parent
+- global
 
 ## Variables
 
@@ -61,7 +64,7 @@ This tag does not set any variables of its own.
 
 ## Related Tags
 
-*   [get](../get.html)
-*   [get_custom_field](../get_custom_field.html)
-*   [pages](../pages.html)
-*   [show](../show.html)
+- [get](../get.html)
+- [get_custom_field](../get_custom_field.html)
+- [pages](../pages.html)
+- [show](../show.html)

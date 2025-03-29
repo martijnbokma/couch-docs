@@ -3,6 +3,8 @@ title: zebra
 category: tag
 description: The zebra tag cycles through parameters for alternating output in repeating contexts, commonly used for alternating row styles in tables.
 keywords: [zebra, tag, PHP, alternating styles, table rows, iteration, CSS classes]
+author: Kamran Kashif
+lastUpdated: 2025-03-27
 ---
 
 The **zebra** tag, when used within any Couch tag that repeats its contents (e.g. repeat, while, pages, folders, templates etc.), outputs its first parameter at the first iteration, its second parameter at the second iteration and so on. If the number of iterations exceed the number of its parameters, it wraps around and starts from the first parameter.
@@ -20,11 +22,7 @@ Some examples:
 The snippet above will output -
 
 ```html
-one
-two
-three
-one
-two
+one two three one two
 ```
 
 A more practical example -
@@ -55,5 +53,5 @@ This tag is self-closing and does not set any variables of its own.
 
 ## Related Tags
 
-*   [each](../each.html)
-*   [repeat](../repeat.html)
+- [each](../each.html)
+- [repeat](../repeat.html)

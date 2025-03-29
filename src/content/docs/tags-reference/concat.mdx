@@ -3,6 +3,8 @@ title: concat
 category: tag
 description: The concat tag is a utility tag that can be used to concatenate several values together into a single variable.
 keywords: [concat, CouchCMS, Couch, tags, PHP]
+author: Kamran Kashif
+lastUpdated: 2025-03-27
 ---
 
 The **Concat** tag is a utility tag that can be used to concatenate several values together into a single variable.
@@ -36,6 +38,7 @@ In such cases, we can try naming the parameters (any arbitrary names can be used
 ```php
 <cms:set welcome_message="<cms:concat p1='Hello ' p2=first_name p3=' ' p4=last_name p5='! We welcome you!' />" />
 ```
+
 Hopefully that should make the snippet more legible.
 :::
 
@@ -49,6 +52,7 @@ Another is that we can use '\n' and '\t' for inserting newline and tab character
     'item_number: ' pp_item_number '\n'
     'quantity: ' pp_quantity />" />
 ```
+
 In the snippet above, 'msg' variable is being set in response to a successful PayPal transaction and will then be emailed.
 :::
 

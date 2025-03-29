@@ -4,13 +4,15 @@ category: tag
 subCategory: editable
 description: Editable region of type file is primarily used to allow the user to upload a file from his local computer onto the server.
 keywords: [file, CouchCMS, Couch, tags, PHP, editable]
+author: Kamran Kashif
+lastUpdated: 2025-03-27
 ---
 
 Editable region of type **file** is primarily used to allow the user to upload a file from his local computer onto the server. The user can also browse and select any of the previously uploaded files.
 Once a file has been selected, this editable region then holds a fully qualified URL of the uploaded file.
 
 :::note
-By default, all uploaded files will be saved within the _**couch/uploads/file**_ folder (or any subfolders created by the user within it). You can set the location to any other folder by uncommenting entry number 12 (*K_UPLOAD_DIR*) in _config.php_ and changing it to the desired location.
+By default, all uploaded files will be saved within the _**couch/uploads/file**_ folder (or any subfolders created by the user within it). You can set the location to any other folder by uncommenting entry number 12 (_K_UPLOAD_DIR_) in _config.php_ and changing it to the desired location.
 
 ```php title="config.php"
 // 12.
@@ -18,6 +20,7 @@ By default, all uploaded files will be saved within the _**couch/uploads/file**_
 // Should be relative to your site (don't forget to set write permissions on it).
 define( 'K_UPLOAD_DIR', 'myuploads' );
 ```
+
 :::
 
 An editable region of _file_ type can be defined this way -
@@ -49,17 +52,17 @@ Apart from the parameters common to all the other types of editable regions, thi
 
 ## Related Tags
 
-*   [editable](../../editable/)
-*   [editable (checkbox)](../checkbox/)
-*   [editable (dropdown)](../dropdown/)
-*   [editable (file)](../file/)
-*   [editable (group)](../group/)
-*   [editable (image)](../image/)
-*   [editable (message)](../message/)
-*   [editable (nicedit)](../nicedit/)
-*   [editable (password)](../password/)
-*   [editable (radio)](../radio/)
-*   [editable (relation)](../relation/)
-*   [editable (text)](../text/)
-*   [editable (textarea)](../textarea/)
-*   [editable (thumbnail)](../thumbnail/)
+- [editable](../../editable/)
+- [editable (checkbox)](../checkbox/)
+- [editable (dropdown)](../dropdown/)
+- [editable (file)](../file/)
+- [editable (group)](../group/)
+- [editable (image)](../image/)
+- [editable (message)](../message/)
+- [editable (nicedit)](../nicedit/)
+- [editable (password)](../password/)
+- [editable (radio)](../radio/)
+- [editable (relation)](../relation/)
+- [editable (text)](../text/)
+- [editable (textarea)](../textarea/)
+- [editable (thumbnail)](../thumbnail/)

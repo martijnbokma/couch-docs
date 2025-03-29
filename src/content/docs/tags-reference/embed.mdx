@@ -3,6 +3,8 @@ title: embed
 category: tag
 description: The embed tag allows you to divide templates into manageable chunks by embedding reusable code snippets from separate files.
 keywords: [embed, CouchCMS, Couch, tags, PHP, template, include, snippets]
+author: Kamran Kashif
+lastUpdated: 2025-03-27
 ---
 
 The **Embed** tag can be used to divide your templates into manageable chunks.
@@ -81,12 +83,12 @@ Per se, this does not seem to be of much use, but this ability of **embed** tag 
 Clearly we can now store snippets or even complete templates as editable regions that can be tweaked within the browser itself instead of manipulating a physical file and FTP'ing it back to the server.
 
 :::caution
-Make sure that the type of the editable region is _textarea_ and that its *no_xss_check* parameter is set to '1' (this will prevent Couch from mangling up the < and > tags the way it usually does to stop XSS attacks).
+Make sure that the type of the editable region is _textarea_ and that its _no_xss_check_ parameter is set to '1' (this will prevent Couch from mangling up the < and > tags the way it usually does to stop XSS attacks).
 :::
 
 ## Parameters
 
-*   unnamed or code
+- unnamed or code
 
 If the first parameter is unnamed (i.e. only the value is passed) or it is anything other than 'code', it is considered to be a path to an embedded file. The path is always relative to the 'couch/snippets' folder. e.g.
 
