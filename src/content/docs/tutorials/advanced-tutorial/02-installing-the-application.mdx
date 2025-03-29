@@ -14,13 +14,20 @@ sidebar:
     order: 2
 ---
 
-import { Steps } from '@astrojs/starlight/components';
+import { Steps, FileTree } from '@astrojs/starlight/components';
 
 If not already downloaded, please get the [**Notejam-Couchified.zip**](./Notejam-Couchified.zip) now.
 
 It is a zip file, extracting which will yield a folder named 'site'. Place the contents of the folder (i.e. excluding the 'site' folder itself) into your webserver's root.
 
-![Files structure](./img/files.png)
+<FileTree>
+- css/
+- snippets/
+- users/
+- index.php
+- notes.php
+- pads.php
+</FileTree>
 
 Important files are our templates (the 'users' folder contains templates concerned with user accounts, login, registration etc.) and the 'snippets' folder that contains much of our application logic (we'll see all that in detail soon).
 
@@ -28,15 +35,32 @@ Notice that there is no 'couch' folder in there yet.
 
 Please download the [**latest version of Couch**](https://www.couchcms.com/products/) and place the 'couch' folder within the site's root.
 
-![Files structure after placing Couch folder](./img/files2.png)
+<FileTree>
+- **couch/**
+- css/
+- snippets/
+- users/
+- index.php
+- notes.php
+- pads.php
+</FileTree>
 
-Rename `couch/config.example.php` to `couch/config.php` and add to it the required database information. Important to this tutorial, edit the following settings from:
+Rename `couch/config.example.php` to `couch/config.php` and add to it the required database information. Important to this tutorial, edit the following settings:
 
-![Config file](./img/config.png)
+```diff lang="php" title="couch/config.php"
+// 12.
+// Upload folder if not using the default upload folder within 'couch'.
+// Should be relative to your site (don't forget to set write permissions on it).
+// No leading or trailing slashes please.
+-//define('K_UPLOAD_DIR', 'myuploads');
++define('K_UPLOAD_DIR', 'myuploads');
 
-to:
-
-![Config file](./img/config2.png)
+// 12b.
+// Folder containing the embedded snippets if not using the default 'snippets' folder within 'couch'.
+// Should be relative to your site. No leading or trailing slashes please.
+-//define('K_SNIPPETS_DIR', 'mysnippets');
++define('K_SNIPPETS_DIR', 'mysnippets');
+```
 
 As can be seen, we are changing the default locations of 'uploads' and 'snippets' folder from within the 'couch' folder to directly beneath the site's root. The 'snippets' folder, as we saw before, is already present in the site's root. The 'uploads' folder will get created automatically when we upload any asset through Couch.
 
