@@ -12,12 +12,32 @@
     "punctuation": ".,;:!。，；：！"
   },
   "MD029": { "style": "ordered" },
+  "MD031": true,
+  "MD032": true,
   "MD033": {
-    "allowed_elements": ["Steps", "FileTree", "note", "tip", "success"]
+    "allowed_elements": ["Steps", "FileTree", "note", "tip", "success", "code"]
   },
   "MD035": { "style": "---" },
+  "MD036": false,
+  "MD037": false,
+  "MD039": true,
   "MD040": true,
   "MD041": false,
   "MD046": { "style": "fenced" },
-  "MD048": { "style": "backtick" }
+  "MD048": { "style": "backtick" },
+  "MD049": { "style": "asterisk" },
+  "MD050": { "style": "asterisk" },
+  "link_style": {
+    "inline": "**",
+    "inline_italic": "*",
+    "inline_bold_italic": "***"
+  },
+  "no_space_in_code": true,
+  "no_inline_escapes": true,
+  "code_blocks": {
+    "style": "backtick"
+  },
+  "code_inline": {
+    "pattern": "\\b[\\w.-]+\\.(php|html|js|css|md|mdx|json|yml|yaml)\\b"
+  }
 } 
