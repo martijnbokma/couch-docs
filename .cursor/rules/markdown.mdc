@@ -156,6 +156,124 @@ For omitted code sections, use language-appropriate comments:
 ![Descriptive Alt Text](./img/screenshot.png)
 ```
 
+### 2.7 Punctuation and Lists
+
+#### Colons vs Dashes:
+
+- Use colons (`:`) before code blocks, examples, or lists
+- Never use dashes (`-`) before code blocks
+- Use a blank line after a colon when followed by a code block
+
+Example:
+
+````markdown
+Here is an example:
+
+\```php
+code here
+\```
+````
+
+#### Example Text and Titles:
+
+- Use code blocks with `txt` type for example output or titles
+- Add quotes in the text, not in code blocks
+- Always add a blank line before example blocks
+
+Example:
+
+````markdown
+The page will show this title:
+
+\```txt
+My Example Title
+\```
+````
+
+### 2.8 Code Block Usage
+
+#### When to Use Code Blocks:
+
+- For all code examples
+- For example output
+- For example titles or messages
+- For URLs and file paths that need highlighting
+
+#### Code Block Types:
+
+- Use `php` for PHP code
+- Use `txt` for plain text, URLs, and example output
+- Use `markdown` for markdown examples
+- Use `astro` for Astro component examples
+
+### 2.9 Admonitions
+
+Use these specific admonition types for different purposes:
+
+#### Types and Usage:
+
+- `:::note` - For additional information and side notes
+- `:::tip` - For helpful tips and best practices
+- `:::caution` - For important warnings that need attention
+- `:::danger` - For critical warnings about breaking changes or serious issues
+
+Example:
+
+```markdown
+:::note[Additional Info]
+This is extra information that might be helpful.
+:::
+
+:::danger[Breaking Change]
+This change will affect existing installations.
+:::
+```
+
+### 2.10 Whitespace and Spacing
+
+#### Between Sections:
+
+- Leave 2 blank lines between major sections (H2)
+- Leave 1 blank line between subsections (H3, H4)
+- Leave 1 blank line before and after code blocks
+- Leave 1 blank line before and after admonitions
+
+Example:
+
+```markdown
+## Major Section
+
+This is content.
+
+## Next Major Section
+
+### Subsection
+
+Content here.
+
+:::note
+Note content
+:::
+
+More content.
+```
+
+### 2.11 Version Numbers
+
+When referencing CouchCMS versions:
+
+- Use `v` prefix for version numbers: `v2.0`
+- Include all version components for specific releases: `v2.1.1`
+- Use `vX.X` for generic version references
+- Highlight breaking changes between major versions
+
+Example:
+
+```markdown
+Starting from `v2.0`, this feature is available.
+This was changed in `v2.1.1` to improve performance.
+```
+
 ---
 
 ## 3. Technical Content
@@ -306,11 +424,34 @@ Fix common spelling mistakes and maintain consistent grammar across all document
 
 ### 11.1 Code Preservation Rules:
 
-1. NEVER modify existing code in code blocks unless explicitly instructed
-2. NEVER remove or modify comments in code blocks
-3. Keep comments exactly as they are, including formatting and indentation
-4. Preserve variable names, values, spacing, and indentation
-5. When showing partial code, use language-appropriate comments (e.g. `// ... existing code ...`)
+1. **Existing Code**
+
+    - NEVER modify code content without explicit instruction
+    - Keep all comments, including their formatting
+    - Preserve exact indentation and spacing
+    - Maintain original variable names and values
+
+2. **Partial Code Display**
+
+    - Use `// ... existing code ...` for PHP
+    - Use `<!-- ... existing code ... -->` for HTML
+    - Use `/* ... existing code ... */` for CSS
+    - Place these on their own line with original indentation
+
+3. **Code Block Formatting**
+    - Keep original language specifications
+    - Maintain existing titles if present
+    - Preserve any special formatting or highlighting
+
+Example of proper code preservation:
+
+```php title="Original Code Structure"
+function my_function() {
+    // ... existing code ...
+    $new_code = 'example';
+    // ... existing code ...
+}
+```
 
 ### 11.2 Text Preservation:
 
