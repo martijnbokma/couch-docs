@@ -59,6 +59,7 @@ Note the various components we'll have to build:
 ### Required Components
 
 **Components to implement:**
+
 - **a.** The blog entry itself, comprising of its title, content, categories, date and number of comments
 - **b.** A list of comments and a form to submit comment
 - **c.** A list of blog categories in the right sidebar
@@ -139,6 +140,7 @@ In `blog.php` add a template tag pair at the top of the document:
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 ```
+
 Next we'll place the editable tags defining the two editable regions we identified above within this template tag:
 
 ```diff lang="php" title="blog.php"
@@ -193,7 +195,7 @@ In `blog.php`, find the place where the blog entry's content is displayed:
 
 and replace the text shown as content by a show tag:
 
-```diff lang="php" title="blog.php" 
+```diff lang="php" title="blog.php"
 <!-- Blog Post -->
 <div class="post">
     <!-- Post Title -->
@@ -390,7 +392,7 @@ Place the opening if tag `<cms:if k_is_page >` before the `<html>` tag:
 and place the closing if tag `</cms:if>` after the `</html>` tag:
 
 ```diff lang="php" title="blog.php"
-	</div><!--end wrapper-->
+    </div><!--end wrapper-->
 
 </body>
 </html>
@@ -406,7 +408,7 @@ Let us handle the list-view now.
 Add an else tag before the ending if tag.
 
 ```diff lang="php" title="blog.php"
-	</div><!--end wrapper-->
+    </div><!--end wrapper-->
 
 </body>
 </html>
@@ -477,7 +479,7 @@ Take a look at the '[Variables available in Views](../../../concepts/variables-i
 You can use `<cms:dump_all />` or `<cms:dump />` to get a quick list of all the variables that are available for use at any particular place.
 :::
 
-Variables *k_page_title*, *k_page_date* and *k_comments_count* present in the page-view are what we require.
+Variables `k_page_title`, `k_page_date` and `k_comments_count` present in the page-view are what we require.
 With `blog.php` open in your editor, find the place where title of the blog entry is displayed:
 
 ```diff lang="php" title="blog.php" "Loreum ipsium massa cras phasellus"
@@ -497,7 +499,7 @@ and replace it with:
 ```
 
 The titles are currently linked to `single.html`. Let us change this to link them back to the current page.
-We'll use the variable *k_page_link*, which is always available to give the link of the current page.
+We'll use the variable `k_page_link`, which is always available to give the link of the current page.
 Replace `single.html` with `<cms:show k_page_link />`:
 
 ```diff lang="php" title="blog.php" ins="<cms:show k_page_link />"
@@ -530,7 +532,7 @@ Accessing any cloned page to see the change:
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-58.png)
 
 The date that appears, although recognizable, hardly matches the '*31st Sep, 09*' format originally in place.
-This is because *k_page_date* shows date in the internal raw format of its storage (yyyy-mm-dd hh:mm:ss).
+This is because `k_page_date` shows date in the internal raw format of its storage (yyyy-mm-dd hh:mm:ss).
 To make it display in the desired format we'll have to use the Couch date tag that takes a format parameter which can be used to modify the display.
 Place the following in place of the show tag:
 
@@ -548,7 +550,7 @@ The comments count can be similarly fixed by finding and replacing the count:
 <cms:date k_page_date format='jS M, y'/> &bull; <a href="#">1 Comment</a></p>
 ```
 
-with *k_comments_count* variable:
+with `k_comments_count` variable:
 
 ```diff lang="php" title="blog.php" ins="<cms:show k_comments_count />"
 <cms:date k_page_date format='jS M, y'/> &bull; <a href="#"><cms:show k_comments_count /> Comment(s)</a></p>
@@ -574,6 +576,7 @@ The template tag is an ideal place within which these folder tags may be placed.
 ### Setting Up Categories
 
 For our `blog.php`, we will create top-level folders to match the following categories visible in the Aurelius template:
+
 - *Philosophy*
 - *History*
 - *Jobs*
@@ -607,7 +610,6 @@ Place the following tags within the template tag already placed at the beginning
 <head>
 ```
 
-
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-62.png)
 
 Refresh `blog.php` in your browser by visiting it while still being logged-on as the super-admin.
@@ -630,7 +632,7 @@ It will expand to reveal several advanced settings. A list of the virtual folder
 Select one, let us say '*clients*', and save.
 
 Now to display this folder in the blog entry -
-As you know, Couch provides information about the page being accessed by setting up variables. The *k_page_foldertitle* variable contains the title of the folder a cloned page resides in (remains blank if the page does not reside in any folder) [see [Variables available in Views](../../../concepts/variables-in-views/)].
+As you know, Couch provides information about the page being accessed by setting up variables. The `k_page_foldertitle` variable contains the title of the folder a cloned page resides in (remains blank if the page does not reside in any folder) [see [Variables available in Views](../../../concepts/variables-in-views/)].
 
 :::tip
 Once again, when in any doubt about which variables are available for use, place `<cms:dump />` or `<cms:dump_all />` temporarily within the template. On accessing a page, these tags will spill out all the variables (along with their values) that are available.
@@ -667,13 +669,13 @@ Now visit '*My second blog entry*':
 Nothing is displayed for the folder as this page was not placed in any folder but the blank looks awkward.
 We'd like to display '*Uncategorised*' for such pages that do not reside in any folder.
 
-To do so, instead of directly using the *k_page_foldertitle* variable, we'll use a variable of our own to display the folder title.
+To do so, instead of directly using the `k_page_foldertitle` variable, we'll use a variable of our own to display the folder title.
 
 :::note
-You might recall from the documentation that apart from the variables set up by Couch (the system variables that are all prefixed by '*k_*'), we can define our own variables. [see [Variables](../../../concepts/variables/)].
+You might recall from the documentation that apart from the variables set up by Couch (the system variables that are all prefixed by `k_`), we can define our own variables. [see [Variables](../../../concepts/variables/)].
 :::
 
-If *k_page_foldertitle* is not blank, we'll set our variable to the folder title but if *k_page_foldertitle* is blank, we'll set it to '*Uncategorised*'. This is how it can be done:
+If `k_page_foldertitle` is not blank, we'll set our variable to the folder title but if `k_page_foldertitle` is blank, we'll set it to '*Uncategorised*'. This is how it can be done:
 
 ```diff lang="php" title="blog.php" ins="<cms:show my_category />"
 <!-- Post Title -->
@@ -687,7 +689,7 @@ If *k_page_foldertitle* is not blank, we'll set our variable to the folder title
 <p class="sub"><a href="#"><cms:show my_category /></a> &bull; <cms:date k_page_date format='jS M, y'/> &bull; <a href="#"><cms:show k_comments_count /> Comment(s)</a></p>
 ```
 
-Notice how we are now using *my_category*, instead of *k_page_foldertitle*, to display the folder title.
+Notice how we are now using `my_category`, instead of `k_page_foldertitle`, to display the folder title.
 
 Visiting '*My second blog entry*' now will show:
 
