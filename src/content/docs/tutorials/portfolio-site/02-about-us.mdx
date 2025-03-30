@@ -34,18 +34,23 @@ Before proceeding further, make sure that you are logged into Couch using the su
 <Steps>
 
 1. Access `about.html` in your browser by visiting:
+
    ```txt
    https://www.mytestsite.com/about.html
    ```
+
    The `About Us` page should appear.
 
 2. Change the extension of the template from `.html` to `.php` so `about.html` becomes `about.php`. Access it in your browser:
+
    ```txt
    https://www.mytestsite.com/about.php
    ```
+
    The same `About Us` page should appear as before. This change is necessary before Couch can be retrofitted into a template.
 
 3. Open `about.php` in your text editor and add the following line at the very top:
+
    ```php
    <?php require_once( 'couch/cms.php' ); ?>
    ```
@@ -61,18 +66,21 @@ Before proceeding further, make sure that you are logged into Couch using the su
 
    :::note
    If you renamed the default admin folder from `couch` to something else, update the path accordingly. For example, if renamed to `myadmin`:
+
    ```php
    <?php require_once( 'myadmin/cms.php' ); ?>
    ```
+
    :::
 
 4. Add this line as the last line of the file (after all other content):
+
    ```php
    <?php COUCH::invoke(); ?>
    ```
 
    ```diff lang="php"
-       	</div><!--end wrapper-->
+        </div><!--end wrapper-->
    
        </body>
        </html>
