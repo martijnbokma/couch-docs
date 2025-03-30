@@ -41,6 +41,7 @@ The code in our tutorial will also utilize the `<cms:set_flash />` tag to set fl
 ```php title="kfunctions.php"
 require_once( K_COUCH_DIR.'addons/cart/session.php' );
 ```
+
 :::tip[Note]
 Beginning with 1.4, new installations will find a file named `kfunctions.example.php` in the addon folder. This is to prevent future upgrades from overwriting your changes. Please rename this file to `kfunctions.php` and uncomment the mentioned line from it.
 :::
@@ -54,13 +55,13 @@ The submitted info should then get persisted in a database wherefrom he could ac
 Couch's DataBound Form would be a perfect fit to pull this off easily.
 There are clearly two elements in the requirements -
 
-1.  The front-end form used to submit data.
-2.  The back-end database that holds the submitted form data.
+1. The front-end form used to submit data.
+2. The back-end database that holds the submitted form data.
 
 If, for a moment, we ignore the requirement of persisting the submitted front-end data, we can see that Couch can already be used to implement each of these two parts independently.
 
-1.  The [__*cms:form*__](../../tags-reference/form.html) and [__*cms:input*__](../../tags-reference/input.html) tags to implement the front-end form.
-2.  A clonable template with [__*cms:editable*__](../../tags-reference/editable.html) tags to hold data.
+1. The [***cms:form***](../../tags-reference/form.html) and [***cms:input***](../../tags-reference/input.html) tags to implement the front-end form.
+2. A clonable template with [***cms:editable***](../../tags-reference/editable.html) tags to hold data.
 
 The obvious problem would be that there is no connection between the two.
 I mean, though the form can be used to submit data and the editable regions can be used to save data, there is no direct way of saving the form's data into the editable regions.
@@ -420,6 +421,7 @@ In this tutorial of ours, if we were to simply use
 ```php
 <cms:db_persist_form />
 ```
+
 this would result in an error complaining that the 'name' cannot be left empty. The explanation above should explain that.
 
 As a solution
@@ -470,8 +472,8 @@ Since the form is Couch managed, the default security offered by the CMS against
 
 As discussed elsewhere on our forum ([Fighting Spam](https://www.couchcms.com/forum/viewtopic.php?f=8&t=7047)), Captcha has long lost its efficacy in stopping spam. We have to look at other measures now. As discussed in the mentioned thread, there are two main sources of spam to contend with -
 
-1.  Spambots
-2.  Human
+1. Spambots
+2. Human
 
 We'll have put in appropriate measures to thwart each of them.
 
@@ -486,15 +488,15 @@ This webpage has some interesting sample questions that should give us an idea a
 
 An excerpt from it -
 
-*   What is the address of this website?
-*   What are the last 2 words in this question?
-*   What colour is a blue apple?
-*   What size is a 'big' dog?
-*   If a piece of string is 1 foot long, how long is it?
-*   What is the very last letter or symbol in this question?
-*   How many legs has a 3 legged spider?
-*   How many strings has a 9 string guitar?
-*   My dog is a spaniel, what breed is he?
+- What is the address of this website?
+- What are the last 2 words in this question?
+- What colour is a blue apple?
+- What size is a 'big' dog?
+- If a piece of string is 1 foot long, how long is it?
+- What is the very last letter or symbol in this question?
+- How many legs has a 3 legged spider?
+- How many strings has a 9 string guitar?
+- My dog is a spaniel, what breed is he?
 
 Suppose we choose, 'What colour is a blue apple?'.
 To implement it in the form, we add the following field to it -
@@ -726,6 +728,7 @@ Everything that can be used on the front-end can now be used in identical fashio
 <!-- our snippet gets output here -->
 </div>
 ```
+
 If your snippet uses its own CSS, this piece of information will likely be necessary to be taken into account.
 :::
 
@@ -743,10 +746,13 @@ Coming back to the admin-panel should show that it mimics the default listing pr
 The attached zip contains the final version of our `my_list.html` snippet.
 You can do a comparison of both versions to find the minimal modifications needed.
 The portions requiring changes are marked by
+
 ```html
 <!-- EDIT -->
 ```
+
 and
+
 ```html
 <!-- END EDIT -->
 ```
@@ -806,10 +812,10 @@ You can study this code to see the use of Databound forms for editing existing p
 
 <Steps>
 
-1.  Define the markup used to show the form.
-2.  Place the inputs in any sequence.
-3.  Style the inputs in any manner using CSS.
-4.  Show only some inputs or show/hide them depending on custom logic using JS.
+1. Define the markup used to show the form.
+2. Place the inputs in any sequence.
+3. Style the inputs in any manner using CSS.
+4. Show only some inputs or show/hide them depending on custom logic using JS.
 
 </Steps>
 and much more.
