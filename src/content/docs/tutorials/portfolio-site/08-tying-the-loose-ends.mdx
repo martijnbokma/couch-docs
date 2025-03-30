@@ -27,7 +27,7 @@ import { Card } from '@astrojs/starlight/components';
 
 The links in the menu at the top of all the five templates are still pointing to the original files of Aurelius (those with the `.html` extensions). We need to link them to our new templates.
 
-A look at the HTML code of our templates will reveal that they all have this piece of code for menu in common -
+A look at the HTML code of our templates will reveal that they all have this piece of code for menu in common:
 
 ```diff lang="php" "class="current"
 <!-- Text Logo -->
@@ -93,11 +93,11 @@ The modified code -
 
 <!-- Navigation Menu -->
 <ul id="navigation" class="grid_8">
-	<li><a href="<cms:link 'contact.php' />" <cms:if k_template_name=='contact.php'>class="current"</cms:if> ><span class="meta">Get in touch</span><br />Contact Us</a></li>
-	<li><a href="<cms:link 'blog.php' />" <cms:if k_template_name=='blog.php'>class="current"</cms:if> ><span class="meta">Latest news</span><br />Blog</a></li>
-	<li><a href="<cms:link 'portfolio.php' />" <cms:if k_template_name=='portfolio.php'>class="current"</cms:if> ><span class="meta">Our latest work</span><br />Portfolio</a></li>
-	<li><a href="<cms:link 'about.php' />" <cms:if k_template_name=='about.php'>class="current"</cms:if> ><span class="meta">Who are we?</span><br />About</a></li>
-	<li><a href="<cms:link 'index.php' />" <cms:if k_template_name=='index.php'>class="current"</cms:if> ><span class="meta">Homepage</span><br />Home</a></li>
+    <li><a href="<cms:link 'contact.php' />" <cms:if k_template_name=='contact.php'>class="current"</cms:if> ><span class="meta">Get in touch</span><br />Contact Us</a></li>
+    <li><a href="<cms:link 'blog.php' />" <cms:if k_template_name=='blog.php'>class="current"</cms:if> ><span class="meta">Latest news</span><br />Blog</a></li>
+    <li><a href="<cms:link 'portfolio.php' />" <cms:if k_template_name=='portfolio.php'>class="current"</cms:if> ><span class="meta">Our latest work</span><br />Portfolio</a></li>
+    <li><a href="<cms:link 'about.php' />" <cms:if k_template_name=='about.php'>class="current"</cms:if> ><span class="meta">Who are we?</span><br />About</a></li>
+    <li><a href="<cms:link 'index.php' />" <cms:if k_template_name=='index.php'>class="current"</cms:if> ><span class="meta">Homepage</span><br />Home</a></li>
 </ul>
 ```
 
@@ -132,12 +132,12 @@ Add the mandatory PHP code to it to attach Couch to it -
 ```php title="globals.php"
 <?php require_once( 'couch/cms.php' ); ?>
 <cms:template title='Global Settings' executable='0'>
-		 
+   
 </cms:template>
 <?php COUCH::invoke(); ?>
 ```
 
-Access `http://www.mytestsite.com/globals.php` as super-admin and then visit the admin section.
+Access `https://www.mytestsite.com/globals.php` as super-admin and then visit the admin section.
 Our new template should now be available.
 
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-197.png)
@@ -146,41 +146,41 @@ Our new template should now be available.
 
 We can now define all the editable regions that will hold the global values.
 We have already discussed the site's name. We'll create one to hold a one-line site's description. Each of the five templates has a catch-line each. We'll create editable regions for these too.
-The finished code should look like this -
+The finished code should look like this:
 
 ```diff lang="php" title="globals.php"
 <?php require_once( 'couch/cms.php' ); ?>
 <cms:template title='Global Settings' executable='0'>
 +   <cms:editable name='site_name' label='Your Site\'s name' type='text'>Aurelius</cms:editable>
 +   <cms:editable name='site_desc' label='Your Site\'s description' type='text'>
-+		 A premium Business and Portfolio theme
++       A premium Business and Portfolio theme
 +   </cms:editable>
-	
+ 
 +   <cms:editable name='home_caption' label='Home Caption'
-+		 height='50'
-+		 type='textarea'>Welcome! This is <span>Aurelius</span>, a slick, professional <u>Business</u> & <u>Portfolio</u> theme built to engage the user in your work.
++       height='50'
++       type='textarea'>Welcome! This is <span>Aurelius</span>, a slick, professional <u>Business</u> & <u>Portfolio</u> theme built to engage the user in your work.
 +   </cms:editable>
 +   <cms:editable name='about_caption' label='About Us Caption'
-+		 height='50'
-+		 type='textarea'>Learn <span>about us</span> and what we do best.
++       height='50'
++       type='textarea'>Learn <span>about us</span> and what we do best.
 +   </cms:editable>
 +   <cms:editable name='blog_caption' label='Blog Caption'
-+		 height='50'
-+		 type='textarea'>Our <span>blog</span>, keeping you up-to-date on our latest news.
++       height='50'
++       type='textarea'>Our <span>blog</span>, keeping you up-to-date on our latest news.
 +   </cms:editable>
 +   <cms:editable name='portfolio_caption' label='Portfolio Caption'
-+		 height='50'
-+		 type='textarea'>Our <b>portfolio</b>, home to our latest, and greatest work.
-+   </cms:editable>	
++       height='50'
++       type='textarea'>Our <b>portfolio</b>, home to our latest, and greatest work.
++   </cms:editable> 
 +   <cms:editable name='contact_caption' label='Contact Us Caption'
-+		 height='50'
-+		 type='textarea'>Enjoyed looking at our work? Don't hesitate to <span>contact us</span>!
-+   </cms:editable>	
++       height='50'
++       type='textarea'>Enjoyed looking at our work? Don't hesitate to <span>contact us</span>!
++   </cms:editable> 
 </cms:template>
 <?php COUCH::invoke(); ?>
 ```
 
-Refresh `http://www.mytestsite.com/globals.php` still logged-in as the super-admin to make Couch pick up the changes.
+Refresh `https://www.mytestsite.com/globals.php` still logged-in as the super-admin to make Couch pick up the changes.
 Visiting the admin panel should reveal the following editable regions -
 
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-199.png)
@@ -189,8 +189,8 @@ That is half of our work done. We can now get the values in. Let us see how to g
 
 #### Fetching global values
 
-There are two different methods of fetching in the global values, We'll describe both -
-**a.** The first method uses the regular Couch pages tag that we have used several times so far.
+There are two different methods of fetching in the global values, We'll describe both:
+- **a.** The first method uses the regular Couch pages tag that we have used several times so far.
 Somewhere at the start of a template, use the pages tag and specify `globals.php` as the masterpage. `globals.php` is non-clonable, so the pages tag will fetch in the values of all the editable regions defined for the template.
 
 ```diff lang="php" "g_site_name" "site_name"
@@ -217,22 +217,22 @@ For example, the following code in the embedded `header.html`
 <h1 id="logo" class="grid_4">Aurelius</h1>
 ```
 
-becomes
+becomes:
 
 ```diff lang="html" "<cms:show g_site_name />" title="header.html"
 <!-- Text Logo -->
 <h1 id="logo" class="grid_4"><cms:show g_site_name /></h1>
 ```
 
-**b.** The first method given above is good to fetch in all global values in one fell sweep but has the drawback of having to place the code using the pages tag somewhere at the start of every template where the values are to be used.
-Sometimes you need to show only a few values from the global template. For such cases you can use the Couch get\_custom\_field tag to directly fetch the variable's value. This tag takes as parameters the name of the variable to be fetched, the template's name and the page's name if the template is clonable.
-Since our `globals.php` template is non-clonable, we can skip the cloned page's name and simply state -
+- **b.** The first method given above is good to fetch in all global values in one fell sweep but has the drawback of having to place the code using the pages tag somewhere at the start of every template where the values are to be used.
+Sometimes you need to show only a few values from the global template. For such cases you can use the Couch `get_custom_field` tag to directly fetch the variable's value. This tag takes as parameters the name of the variable to be fetched, the template's name and the page's name if the template is clonable.
+Since our `globals.php` template is non-clonable, we can skip the cloned page's name and simply state:
 
 ```php
 <cms:get_custom_field 'site_name' masterpage='globals.php' />
 ```
 
-Thus the code to display the site's name in header.html becomes -
+Thus the code to display the site's name in `header.html` becomes:
 
 ```diff lang="html" "<cms:get_custom_field 'site_name' masterpage='globals.php' />" title="header.html"
 <!-- Text Logo -->
@@ -241,7 +241,7 @@ Thus the code to display the site's name in header.html becomes -
 
 Since for our templates we'll be mainly displaying only solitary global values. we'll use the second method.
 
-For example, to fix the caption for `about.php`, change the following code -
+For example, to fix the caption for `about.php`, change the following code:
 
 ```diff lang="php" title="about.php"
 <!-- Caption Line -->
@@ -299,7 +299,7 @@ Before handing this site over to the client, however, you'd want to turn on the 
 Please see Couch's documentation that shows you in detail how to do so.
 Once you complete the steps detailed in the documentation, visit all the templates again to see how the URLs have changed.
 You'll immediately notice a problem - except for the home page, in all the other templates the CSS files do not load properly with the new prettyurls.
-The reason lies in the original code of Aurelius -
+The reason lies in the original code of Aurelius:
 
 ```php
 <!-- Stylesheets -->
@@ -308,7 +308,7 @@ The reason lies in the original code of Aurelius -
 ```
 
 As you can see, the hrefs of the stylesheets are given in relative format. With prettyurls turned on, once the URL of any containing page changes, so do these links.
-We need to make the hrefs absolute. To do so, modify the code shown above to the following in all the templates (don't forget the embedded `blog_list.html` and `portfolio_list.html`) -
+We need to make the hrefs absolute. To do so, modify the code shown above to the following in all the templates (don't forget the embedded `blog_list.html` and `portfolio_list.html`):
 
 ```diff lang="php" ins="<cms:show k_site_link />"
 <!-- Stylesheets -->
@@ -316,7 +316,7 @@ We need to make the hrefs absolute. To do so, modify the code shown above to the
 <link rel="stylesheet" href="<cms:show k_site_link />css/styles.css" />
 ```
 
-`portfolio.php` will also need this fixing of relative links for the .js files -
+`portfolio.php` will also need this fixing of relative links for the `.js` files:
 
 ```diff lang="php" ins="<cms:show k_site_link />"
 <!-- Stylesheets -->
