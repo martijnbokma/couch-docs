@@ -17,7 +17,7 @@ The primary goals are consistency, readability, maintainability, and accessibili
 
 Every document MUST begin with frontmatter containing these required fields:
 
-```markdown
+```markdown title="Required Frontmatter Structure"
 ---
 title: "Document Title"
 description: "A clear, concise description of the document"
@@ -41,13 +41,50 @@ sidebar:
 - `subCategory` is required for tutorials, optional for other categories
 - `sidebar.order` determines the position in navigation (lower numbers appear first)
 
-### 1.2 Required Components
+### 1.2 Import Statements
+
+#### Required Components
 
 Import necessary components immediately after the frontmatter:
 
-```astro
+```astro title="Required Component Import"
 import { Steps } from '@astrojs/starlight/components';
 ```
+
+#### Import Rules:
+
+- Place imports directly after frontmatter
+- Leave one blank line after imports
+- Use single quotes for import paths
+- Sort imports alphabetically when multiple
+- Group imports by type (components, utilities, etc.)
+
+Example of multiple imports:
+
+```astro title="Multiple Component Imports"
+import { CardGrid } from '@astrojs/starlight/components';
+import { Steps } from '@astrojs/starlight/components';
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+import '../styles/custom.css';
+```
+
+### 1.3 Document Layout
+
+Follow this order in your documents:
+
+1. Frontmatter
+2. Import statements
+3. Brief introduction
+4. Main content
+5. Navigation links
+
+Leave appropriate spacing:
+
+- One blank line after frontmatter
+- One blank line after imports
+- Two blank lines between major sections
+- One blank line between subsections
 
 ---
 
@@ -55,10 +92,18 @@ import { Steps } from '@astrojs/starlight/components';
 
 ### 2.1 Text Formatting
 
+Use consistent formatting for text emphasis and code references:
+
+- Use backticks (`) for:
+    - Variable names: `my_variable`
+    - System variables: `rt_id`
+    - Parameter names: `my_current_pad`
+    - File paths: `views/notes/create_view.html`
+    - File names: `create_view.html`
+    - Code snippets: `echo "Hello"`
 - Use asterisks (*) for italic text: *example\*
-- Never use underscores (\_) for italic text
 - Use double asterisks (**) for bold text: **example\*\*
-- Use backticks (`) for inline code: `example`
+- Never use underscores (\_) for emphasis
 
 ### 2.2 Headings
 
@@ -79,32 +124,46 @@ import { Steps } from '@astrojs/starlight/components';
 
 ### 2.3 Technical References
 
-#### Variable Names:
-
-- Use backticks for all variable names: `my_variable`
-- Use backticks for system variables: `rt_id`
-- Use backticks for parameter names: `my_current_pad`
-
-#### Text Formatting:
-
-- Use asterisks (*) for italic text: *example\*
-- Never use underscores (\_) for italic text
-- Use double asterisks (**) for bold text: **example\*\*
+See section 2.1 for text formatting rules.
 
 #### File References:
 
-- Use backticks for file paths: `views/notes/create_view.html`
-- Use backticks for file names: `create_view.html`
+- Always use forward slashes (/) in paths
+- Include file extensions
+- Use relative paths when possible
+- For images, include size if relevant
+
+Examples:
+
+```txt title="File Path Examples"
+views/templates/default.php
+../images/logo.png (45KB)
+./styles/custom.css
+```
 
 ### 2.4 Code Blocks
 
 #### Code Block Headers:
 
-Always include a descriptive title for code blocks:
+Always include a descriptive title for code blocks using the `title` attribute:
 
-```php title="File Name or Description"
+```php title="Example PHP Function"
 // Code here
 ```
+
+#### Title Format Rules:
+
+- Use Title Case for all code block titles
+- Make titles descriptive but concise
+- Include language or type indication when relevant
+- Use quotes consistently in titles
+
+Examples of good titles:
+
+- "Basic HTML Form"
+- "PHP Function Example"
+- "Database Query Result"
+- "Configuration Object"
 
 #### URL Examples:
 
@@ -164,70 +223,78 @@ For omitted code sections, use language-appropriate comments:
 - Never use dashes (`-`) before code blocks
 - Use a blank line after a colon when followed by a code block
 
-Example:
-
-````markdown
-Here is an example:
-
-\```php
-code here
-\```
-````
-
 #### Example Text and Titles:
 
 - Use code blocks with `txt` type for example output or titles
 - Add quotes in the text, not in code blocks
 - Always add a blank line before example blocks
 
-Example:
-
-````markdown
-The page will show this title:
-
-\```txt
-My Example Title
-\```
-````
-
 ### 2.8 Code Block Usage
 
 #### When to Use Code Blocks:
 
-- For all code examples
-- For example output
-- For example titles or messages
-- For URLs and file paths that need highlighting
+Use code blocks for:
 
-#### Code Block Types:
+- All code examples
+- Example output
+- Example titles or messages
+- URLs and file paths that need highlighting
+
+Here are the supported code block types:
 
 - Use `php` for PHP code
 - Use `txt` for plain text, URLs, and example output
 - Use `markdown` for markdown examples
 - Use `astro` for Astro component examples
 
+Examples:
+
+```php title="PHP Example"
+echo "Hello World";
+```
+
+```txt title="Example Output"
+Hello World
+```
+
+```txt title="Example File Path"
+/path/to/file.php
+```
+
 ### 2.9 Admonitions
 
-Use these specific admonition types for different purposes:
+Use specific admonition types for different purposes:
 
-#### Types and Usage:
-
-- `:::note` - For additional information and side notes
-- `:::tip` - For helpful tips and best practices
-- `:::caution` - For important warnings that need attention
-- `:::danger` - For critical warnings about breaking changes or serious issues
-
-Example:
-
-```markdown
-:::note[Additional Info]
-This is extra information that might be helpful.
-:::
-
-:::danger[Breaking Change]
-This change will affect existing installations.
+```markdown title="Note Example"
+:::note[About Feature]
+Use for additional information and context
 :::
 ```
+
+```markdown title="Tip Example"
+:::tip[Best Practice]
+Use for best practices and recommendations
+:::
+```
+
+```markdown title="Caution Example"
+:::caution[Important]
+Use for important limitations or warnings
+:::
+```
+
+```markdown title="Danger Example"
+:::danger[Critical]
+Use for critical warnings that could cause data loss
+:::
+```
+
+#### Admonition Rules:
+
+- Always include a descriptive title in square brackets
+- Keep content concise and focused
+- Use appropriate type for the content
+- Leave one blank line before and after
 
 ### 2.10 Whitespace and Spacing
 
@@ -273,6 +340,35 @@ Example:
 Starting from `v2.0`, this feature is available.
 This was changed in `v2.1.1` to improve performance.
 ```
+
+### 2.12 Tables
+
+#### Table Formatting
+
+- Use standard markdown table syntax
+- Include header row
+- Align columns appropriately:
+    - Left-align text (`:---)`)
+    - Right-align numbers (`---:`)
+    - Center-align headers (`:-:`)
+- Add blank lines before and after tables
+
+Example:
+
+```markdown title="Table Format Example"
+| Name     | Type    | Default | Description       |
+| :------- | :------ | ------: | :---------------- |
+| size     | number  |      10 | Input field size  |
+| required | boolean |   false | Is field required |
+| type     | string  |    text | Input field type  |
+```
+
+#### Table Best Practices
+
+- Keep tables simple and readable
+- Use consistent column widths
+- Add header row separators
+- Use proper alignment for data types
 
 ---
 
@@ -388,20 +484,65 @@ Follow these rules when referencing files:
 
 When using HTML elements within Markdown:
 
-- Wrap tags in backticks (`<div>`)
-- Use descriptive attributes where necessary (e.g., `<img alt="Description">`)
-- Consistently format nested elements like `<dl>`, `<dt>`, and `<dd>`
+- Wrap HTML tags in backticks
+- Use proper attributes
+- Maintain consistent indentation
+- Follow HTML5 standards
 
----
+Examples:
 
-## 9. Accessibility Guidelines
+```markdown title="HTML in Markdown"
+Use the `<div>` element for blocks.
 
-To ensure your documentation is accessible to all users:
+Image with alt text: `<img src="image.jpg" alt="Description">`
 
-1. **Alt Text**: Provide meaningful descriptions for images
-2. **Headings**: Use logical hierarchy to improve navigation
-3. **Links**: Avoid vague link text like "click here"; use descriptive phrases instead
-4. **Color Contrast**: Avoid relying solely on color to convey meaning
+Definition lists:
+`<dl>`
+`<dt>`Term`</dt>`
+`<dd>`Definition`</dd>`
+`</dl>`
+```
+
+### 9. Accessibility Guidelines
+
+To ensure documentation is accessible:
+
+1. **Images and Alt Text**
+
+```markdown title="Image with Alt Text"
+![A form with two input fields and a submit button](./form-example.png)
+```
+
+2. **Heading Structure**
+
+```markdown title="Proper Heading Structure"
+# Main Title
+
+## Section
+
+### Subsection
+
+#### Detail
+```
+
+3. **Link Text**
+
+```markdown title="Link Text Examples"
+<!-- Bad -->
+
+[Click here](./page) to learn more
+
+<!-- Good -->
+
+[Learn more about form validation](./form-validation)
+```
+
+4. **Color and Contrast**
+
+```markdown title="Color Reference"
+Use `#0066cc` for links (WCAG AA compliant)
+Use `#333333` for main text (WCAG AAA compliant)
+```
 
 ---
 
@@ -424,36 +565,63 @@ Fix common spelling mistakes and maintain consistent grammar across all document
 
 ### 11.1 Code Preservation Rules:
 
-1. **Existing Code**
+1. **Absolute Preservation**
 
-    - NEVER modify code content without explicit instruction
-    - Keep all comments, including their formatting
-    - Preserve exact indentation and spacing
-    - Maintain original variable names and values
+    - NEVER modify ANY code content unless explicitly instructed
+    - Code blocks are considered immutable by default
+    - Form examples must remain exactly as provided
+    - HTML and PHP examples must maintain exact spacing and format
 
-2. **Partial Code Display**
+2. **Form Code Examples**
+
+    - Keep all HTML attributes in their original order
+    - Preserve exact whitespace in form elements
+    - Maintain original line breaks in form examples
+    - Keep comments exactly as they appear
+    - Never reformat form structure or indentation
+
+3. **Partial Code Display**
 
     - Use `// ... existing code ...` for PHP
     - Use `<!-- ... existing code ... -->` for HTML
     - Use `/* ... existing code ... */` for CSS
     - Place these on their own line with original indentation
+    - Never modify surrounding code context
 
-3. **Code Block Formatting**
+4. **Code Block Formatting**
     - Keep original language specifications
     - Maintain existing titles if present
     - Preserve any special formatting or highlighting
+    - Never auto-format code unless explicitly requested
+    - Keep original quote styles (single/double)
 
-Example of proper code preservation:
+Example of proper form code preservation:
 
-```php title="Original Code Structure"
-function my_function() {
-    // ... existing code ...
-    $new_code = 'example';
-    // ... existing code ...
-}
+```html title="Original Form Structure"
+<form method="post" action="contact.php">
+    Name: <input type="text" size="10" maxlength="40" name="name" /> <br />
+    Email: <input type="text" size="10" name="email" /> <br />
+
+    <input type="submit" value="Send" />
+</form>
 ```
 
-### 11.2 Text Preservation:
+### 11.2 Special Cases
+
+1. **Form Documentation**
+
+    - Keep exact HTML/PHP syntax as shown
+    - Preserve attribute ordering in examples
+    - Maintain original spacing around form elements
+    - Keep line breaks and indentation as is
+    - Never reformat or "prettify" form code
+
+2. **Code Comparisons**
+    - When showing before/after examples, keep both exactly as provided
+    - Do not normalize differences in style or formatting
+    - Preserve intentional variations in coding style
+
+### 11.3 Text Preservation:
 
 1. Maintain original technical terminology
 2. Do not rewrite or rephrase existing sentences without explicit instruction
