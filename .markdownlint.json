@@ -1,29 +1,50 @@
 {
   "default": true,
+  "MD001": false,
   "MD003": { "style": "atx" },
   "MD004": { "style": "dash" },
-  "MD007": { "indent": 4 },
+  "MD007": { "indent": 2 },
   "MD013": false,
   "MD024": false,
   "MD025": {
-    "front_matter_title": "^\\s*title\\s*[:=]"
+    "front_matter_title": ""
   },
   "MD026": {
     "punctuation": ".,;:!。，；：！"
   },
-  "MD029": { "style": "ordered" },
+  "MD029": false,
   "MD031": true,
   "MD032": true,
   "MD033": {
-    "allowed_elements": ["Steps", "FileTree", "note", "tip", "success", "code"]
+    "allowed_elements": [
+      "Card",
+      "CardGrid",
+      "YouTubeCard",
+      "LinkButton",
+      "Steps",
+      "FileTree",
+      "note",
+      "tip",
+      "caution",
+      "danger",
+      "code",
+      "h4",
+      "s"
+    ]
   },
   "MD035": { "style": "---" },
   "MD036": false,
   "MD037": false,
   "MD039": true,
-  "MD040": true,
+  "MD040": {
+    "language": ["php", "html", "js", "css", "json", "yaml", "txt"]
+  },
   "MD041": false,
-  "MD046": { "style": "fenced" },
+  "MD042": false,
+  "MD045": false,
+  "MD046": {
+    "style": "fenced"
+  },
   "MD048": { "style": "backtick" },
   "MD049": { "style": "asterisk" },
   "MD050": { "style": "asterisk" },
@@ -35,7 +56,7 @@
   "no_space_in_code": true,
   "no_inline_escapes": true,
   "code_blocks": {
-    "style": "backtick"
+    "style": "fenced"
   },
   "code_inline": {
     "pattern": "\\b[\\w.-]+\\.(php|html|js|css|md|mdx|json|yml|yaml)\\b"
