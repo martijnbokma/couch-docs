@@ -1,0 +1,6 @@
+# Ignore all MDX files
+*.mdx
+*.md
+
+# Ignore documentation directory
+src/content/docs/**/* 
