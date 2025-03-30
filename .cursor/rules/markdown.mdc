@@ -27,7 +27,7 @@ keywords:
     - keyword 3
 category: tutorial
 subCategory: advanced-tutorial
-author: Author Name
+author: Kamran Kashif
 lastUpdated: YYYY-MM-DD
 sidebar:
     order: N
@@ -53,7 +53,14 @@ import { Steps } from '@astrojs/starlight/components';
 
 ## 2. Content Formatting
 
-### 2.1 Headings
+### 2.1 Text Formatting
+
+- Use asterisks (*) for italic text: *example\*
+- Never use underscores (\_) for italic text
+- Use double asterisks (**) for bold text: **example\*\*
+- Use backticks (`) for inline code: `example`
+
+### 2.2 Headings
 
 - Use **Title Case** for all headings
 - Leave one blank line before and after headings
@@ -70,20 +77,29 @@ import { Steps } from '@astrojs/starlight/components';
 #### Specific Details
 ```
 
-### 2.2 Technical References
+### 2.3 Technical References
 
 #### Variable Names:
+
 - Use backticks for all variable names: `my_variable`
 - Use backticks for system variables: `rt_id`
 - Use backticks for parameter names: `my_current_pad`
 
+#### Text Formatting:
+
+- Use asterisks (*) for italic text: *example\*
+- Never use underscores (\_) for italic text
+- Use double asterisks (**) for bold text: **example\*\*
+
 #### File References:
+
 - Use backticks for file paths: `views/notes/create_view.html`
 - Use backticks for file names: `create_view.html`
 
-### 2.3 Code Blocks
+### 2.4 Code Blocks
 
 #### Code Block Headers:
+
 Always include a descriptive title for code blocks:
 
 ```php title="File Name or Description"
@@ -91,6 +107,7 @@ Always include a descriptive title for code blocks:
 ```
 
 #### URL Examples:
+
 Use `txt` format with title for URL examples:
 
 ```txt title="Example URLs"
@@ -100,15 +117,17 @@ https://www.example.com/index.php?q=path
 ```
 
 #### Partial Code:
+
 For omitted code sections, use language-appropriate comments:
 
 ```php
 // ... existing code ...
 ```
 
-### 2.4 Links
+### 2.5 Links
 
 #### Internal Links:
+
 - Use relative paths for internal documentation links
 - Navigate up with `../` when needed
 - Include meaningful link text
@@ -119,6 +138,7 @@ For omitted code sections, use language-appropriate comments:
 ```
 
 #### External Links:
+
 - Include full URLs for external links
 - Add meaningful context in link text
 
@@ -126,7 +146,7 @@ For omitted code sections, use language-appropriate comments:
 [CouchCMS Documentation](https://docs.couchcms.com)
 ```
 
-### 2.5 Images
+### 2.6 Images
 
 - Always include descriptive alt text
 - Use relative paths for internal images
@@ -155,6 +175,7 @@ For omitted code sections, use language-appropriate comments:
 - Format system variables consistently
 
 Example:
+
 ```markdown
 The `rt_id` variable contains the route parameter value.
 ```
@@ -283,13 +304,15 @@ Fix common spelling mistakes and maintain consistent grammar across all document
 
 ## 11. Content Preservation Rules
 
-### Code Preservation:
+### 11.1 Code Preservation Rules:
 
 1. NEVER modify existing code in code blocks unless explicitly instructed
-2. Keep comments exactly as they are
-3. Preserve variable names, values, spacing, and indentation
+2. NEVER remove or modify comments in code blocks
+3. Keep comments exactly as they are, including formatting and indentation
+4. Preserve variable names, values, spacing, and indentation
+5. When showing partial code, use language-appropriate comments (e.g. `// ... existing code ...`)
 
-### Text Preservation:
+### 11.2 Text Preservation:
 
 1. Maintain original technical terminology
 2. Do not rewrite or rephrase existing sentences without explicit instruction
