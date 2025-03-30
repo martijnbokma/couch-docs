@@ -139,6 +139,7 @@ Couch works by retrofitting within an existing working site. As such, our first 
 3. **Configure CouchCMS**
    - Rename `config.example.php` to `config.php`
    - Change the values to match those of your MySQL database:
+
     ```php "database_name" "database_username" "database_password" "localhost"
     // MySQL settings. You need to get this info from your web host.
     // 4.
@@ -181,7 +182,8 @@ Couch works by retrofitting within an existing working site. As such, our first 
     :::
 
 5. **Run Installation**
-   - Access the admin section: 
+   - Access the admin section:
+
    ```txt
    https://www.mytestsite.com/couch/
    ```
@@ -191,13 +193,13 @@ Couch works by retrofitting within an existing working site. As such, our first 
     :::
 
     Couch will sense that installation is required and will display the following form for you to fill:
-    
+
     ![Installation Form](../../../../assets/img/contents/portfolio-site-5.jpg)
 
     :::caution
     If you get a '500 Internal Server Error', try deleting the `.htaccess` file in the *couch* folder. Some hosts (notably GoDaddy) have issues with its directives.
     :::
-    
+
     Fill in:
     - Your desired 'Super-Admin Username'
     - Password
@@ -216,18 +218,19 @@ Couch works by retrofitting within an existing working site. As such, our first 
     :::
 
 8. **Access Admin Panel**
-    
+
     Login using the super-admin account you created and brace yourself for facing the most 'barren' admin section you'll ever come across:
-   
+
    ![Initial Admin Panel](../../../../assets/img/contents/portfolio-site-7.jpg)
 
    This almost bare admin panel is an important feature of Couch. We realize that the person most often logged into it is going to be the client that you'll be building the website for and, more often than not, he is not going to be as computer savvy as you are. Instead of overwhelming such a client with an admin panel that resembles the cockpit of an airliner, we wished to confront him with just as much information as is absolutely essential. As we move along with building the site, the admin panel will start displaying more information. This is the admin panel of our finished site:
-   
+
    ![Completed Admin Panel](../../../../assets/img/contents/portfolio-site-8.png)
 
    :::note
    It is important to note that the admin panels of no two sites built with Couch are going to be identical. As the designer of a website, it is you who'll choose how much data gets exposed to the client within the admin section.
    :::
+
 </Steps>
 
 With CouchCMS installed, we can now begin converting the Aurelius template files.
