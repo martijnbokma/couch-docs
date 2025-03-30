@@ -150,7 +150,7 @@ Please notice that if no 'sort' parameter is found in the URL, the code assumes 
 ```
 
 :::danger[Security Best Practice]
-Very importantly, note that we are *not* directly using the values provided by the user through the URL i.e. we are not blindly setting our variables to the value provided through the URL. Instead we check if it matches the values expected by us ('name', '-name', 'date'). 
+Very importantly, note that we are *not* directly using the values provided by the user through the URL i.e. we are not blindly setting our variables to the value provided through the URL. Instead we check if it matches the values expected by us ('name', '-name', 'date').
 
 We don't check for '-date' - rather we assume that if the values do not match the other three, then this is the value provided. This way even if some malicious user tries to pass a potentially harmful value as 'sort', it won't affect us as we are not using it directly.
 
