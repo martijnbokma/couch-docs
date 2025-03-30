@@ -23,6 +23,7 @@ This is the part where we put the source blocks we created above into use.
 For this demo, I'll use these blocks in a (nestable) template named `index.php`.
 
 Place a file named `index.php` in the site root and put the following into it:
+
 ```php title="index.php"
 <?php require_once("couch/cms.php"); ?>
 <cms:template title='Pages' order='-1' clonable='1' nested_pages='1'>
@@ -35,6 +36,7 @@ Place a file named `index.php` in the site root and put the following into it:
 </cms:template>
 <?php COUCH::invoke(); ?>
 ```
+
 And there you finally see the `<cms:pagebuilder>` editable region making its appearance :)
 
 It is defining two sections (i.e. sets of related blocks) named 'Covers' and 'About'.
@@ -43,15 +45,15 @@ Params to note in each `<section>` are the 'masterpage' and 'mosaic' params (the
 
 Visit the template as super-admin to register it.
 
-Coming back to the admin-panel, you should see something like this -
+Coming back to the admin-panel, you should see something like this:
 
 ![page-builder-10.png](../../../../assets/img/contents/page-builder-10.png)
 
-Clicking 'Covers' should show a listing of all blocks we created in 'covers' template
+Clicking 'Covers' should show a listing of all blocks we created in 'covers' template:
 
 ![page-builder-11.png](../../../../assets/img/contents/page-builder-11.png)
 
-while clicking 'About' show a listing of all blocks we created in the 'about' template
+while clicking 'About' show a listing of all blocks we created in the 'about' template:
 
 ![page-builder-12.png](../../../../assets/img/contents/page-builder-12.png)
 
@@ -60,6 +62,7 @@ The user can now mix-n-match all blocks of her choice and edit the contents to c
 Which leaves us with the final part of this exercise - display the selected and edited blocks on the frontend.
 
 To do that, modify the template to make it as follows:
+
 ```php title="index.php"
 <?php require_once("couch/cms.php"); ?>
 <cms:template title='Pages' order='-1' clonable='1' nested_pages='1'>
@@ -80,6 +83,7 @@ To do that, modify the template to make it as follows:
 
 <?php COUCH::invoke(); ?>
 ```
+
 The `<cms:show_pagebuilder 'main_pb'>` block in the code above fetches in the rendered HTML of all the blocks selected for the page being displayed.
 
 It, however, does *not* fetch the 'wrapper' HTML. So, you can either manually place that wrapper HTML in the template itself or use the technique shown above where we capture and pass on the blocks HTML to `<cms:render 'pb_wrapper' 'page' />` which automatically wraps that in the wrapper code we used in the admin-panel.
