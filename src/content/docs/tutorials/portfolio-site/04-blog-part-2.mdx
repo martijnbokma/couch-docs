@@ -76,6 +76,7 @@ Since at each iteration it also makes available all the variables belonging to t
     </p>
 </cms:pages>
 ```
+
 will display:
 
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-76.png)
@@ -419,9 +420,11 @@ This will result in a list of all the five folders we defined for `blog.php` tem
 #### Listing pages within a folder
 
 Each folder in the list produced by the folders tag above is also linked to a URL similar to:
+
 ```txt "?f=5"
 https://www.mytestsite.com/blog.php?f=5
 ```
+
 Notice how the name of the template is followed by '`?f=n`' (where n is a number denoting a particular folder).
 This URL is meant for listing pages that belong to the specified folder only. Such view is a sub-category of the list-view and is known as the folder-view [see [Views](../../../concepts/views/)].
 
@@ -601,11 +604,11 @@ This is done by setting the *commentable* attribute to '1' in the template tag p
 ```diff lang="php" title="blog.php" "commentable='1'"
 <?php require_once( 'couch/cms.php' ); ?>
 <cms:template title='Blog' clonable='1' commentable='1'>
-	<cms:editable name='blog_content' type='richtext' />
-	
-	<cms:editable name='blog_image'
-		crop='1'
-		width='610'
+    <cms:editable name='blog_content' type='richtext' />
+ 
+    <cms:editable name='blog_image'
+        crop='1'
+        width='610'
 ```
 
 Access `blog.php` in your browser while being logged-in as the super-admin.
@@ -698,7 +701,7 @@ Approve the comments that need approval and now we can move on to getting all th
 
 Listing comments follows the same pattern we have seen so far with all the listings we have configured i.e. pages, folders and archives.
 The enumerator tag for listing comments is, no prizes for guessing, the comments tag.
-With no parameters specified, comments tag will list all the approved comments in the system regardless of the template they belong to. However, you can use the *masterpage*, *page_id* or *page_name* parameters to make it fetch only the comments that belong to a particular template or page.
+With no parameters specified, comments tag will list all the approved comments in the system regardless of the template they belong to. However, you can use the `masterpage`, `page_id` or `page_name` parameters to make it fetch only the comments that belong to a particular template or page.
 
 To put the comments tag into use, follow the usual method of isolating a single item and enclosing it with the enumerator tags.
 Here is how the sample comment contained in `blog.php` looks like after being enclosed by the comments tag:
@@ -729,7 +732,7 @@ Here is how the sample comment contained in `blog.php` looks like after being en
 </ol>
 ```
 
-Notice how we are using the system variable *k_page_id*, which is set by Couch to give the current page's id, to fetch only the comments that are associated with the page being accessed in page-view.
+Notice how we are using the system variable `k_page_id`, which is set by Couch to give the current page's id, to fetch only the comments that are associated with the page being accessed in page-view.
 
 Follow this with the usual step of replacing the static content with the variables set by the enumerator tag.
 
@@ -845,30 +848,40 @@ Thus, for example:
 ```txt "blog.php"
 https://www.mytestsite.com/blog.php
 ```
+
 will become:
+
 ```txt "blog/"
 https://www.mytestsite.com/blog/
 ```
+
 And:
+
 ```txt "?p=2"
 https://www.mytestsite.com/blog.php?p=2
 ```
+
 will become:
+
 ```txt "/my-first-blog-entry.html"
 https://www.mytestsite.com/blog/my-first-blog-entry.html
 ```
+
 And:
+
 ```txt "?f=5"
 https://www.mytestsite.com/blog.php?f=5
 ```
+
 will become:
+
 ```txt "/clients/"
 https://www.mytestsite.com/blog/clients/
 ```
 
 etc.
 
-The right way to code any link in Couch is to use the *link* tag.
+The right way to code any link in Couch is to use the `link` tag.
 This tag takes as parameters the names of the masterpage, page, folder etc. and depending on whether or not prettyURL is turned on, outputs the proper link.
 
 Find the following in `blog.php`:
@@ -894,4 +907,3 @@ and change it to:
 Congratulations. The blog section is finally complete.
 
 Next: [The portfolio section](../portfolio/)
-
