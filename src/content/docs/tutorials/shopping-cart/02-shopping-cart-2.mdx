@@ -52,27 +52,30 @@ If it comes down to having to use your own custom implementation and you are not
 
 Before we delve into the details of available calculations, however, a little concept (used both by shipping and by discount calculations that follow) requires some explanation.
 
-:::note
-**Sliding Scale:**
-This is a scale in which the indicated shipping charges or discounts vary in accordance with another factor - e.g. _count of items_, _total price_ etc. For example, more the total cost of the order, more the discount offered or more the number of items in cart, less the shipping charges payable.
+:::note[**Sliding Scale:**]
+This is a scale in which the indicated shipping charges or discounts vary in accordance with another factor - e.g. *count of items*, *total price* etc. For example, more the total cost of the order, more the discount offered or more the number of items in cart, less the shipping charges payable.
 
 The accepted format for such scale is simple and looks like the following
 
 ```php
 [ 0=3 | 50=7 | 100=10 ]
 ```
+
 where, in the example above, the scale has three tiers.
 Important (and potentially confusing) thing to remember is that this is a **more than** scale (and not **starts from** scale as you might think).
 
 So, assuming the scale above denotes shipping charges based on number of items in cart, the three tiers in the scale would stand for
+
 - More than 0 items - charge 3
 - More than 50 items - charge 7
 - More than 100 items - charge 10
 
 This, in other words, could also be written as:
+
 - 1 to 50 items - charge 3
 - 51 to 100 - charge 7
 - 101 to infinity - charge 10
+
 :::
 
 ## Shipping Charges
@@ -83,10 +86,10 @@ Shipping charges can be calculated at two levels - **cart level** and individual
 
 There are 4 different ways to calculate cart level shipping charges. All of them can be set in `addons/cart/config.php` file.
 
-*   Flat rate per order
-*   Flat rate per item
-*   Ship by order total
-*   Ship by quantity ordered
+- Flat rate per order
+- Flat rate per item
+- Ship by order total
+- Ship by quantity ordered
 
 #### Flat rate per order
 
@@ -109,7 +112,7 @@ $pp['shipping_flat_rate_per_item'] = '1';
 #### Ship by order total
 
 This option can be set if you want to set up a sliding scale of shipping charges based on the **order's total cost**.
-For example, if you charge $6 for orders between $1 to $50, $3 for orders between $51 to $100, and free shipping for orders worth $101 and more, set it to
+For example, if you charge $6 for orders between $1 to $50, $3 for orders between $51 to $100, and free shipping for orders worth $101 and more, set it to:
 
 ```php
 $pp['shipping_by_order_total'] = '[ 0=6 | 50=3 | 100=0 ]';
@@ -123,12 +126,12 @@ To set up the shipping charges as a **percentage of order's total cost** (as opp
 $pp['shipping_by_order_total'] = '[ 0=6 | 50=3 | 100=0 ]%';
 ```
 
-which now makes it 6% of the cart's total for orders over $0, 3% of the cart's total for orders over $50 and 0% (free) for over $100\.
+which now makes it 6% of the cart's total for orders over $0, 3% of the cart's total for orders over $50 and 0% (free) for over $100.
 
 #### Ship by quantity ordered
 
 This option can be set if you want to set up a sliding scale of shipping charges based on the **number of items in cart**.
-For example, if you charge $3 to deliver one to five books, $7 to ship six to 15 books, and $10 to ship more than 15 books, set it to
+For example, if you charge $3 to deliver one to five books, $7 to ship six to 15 books, and $10 to ship more than 15 books, set it to:
 
 ```php
 $pp['shipping_by_quantity_ordered'] = '[ 0=3 | 5=7 | 15=10 ]';
@@ -168,8 +171,8 @@ Like shipping, discounts can also be set at both **cart level** as well as at in
 
 There are two different ways cart level discounts may be calculated. Both of them can be set in `addons/cart/config.php` file.
 
-*   Discount by order total
-*   Discount by quantity ordered
+- Discount by order total
+- Discount by quantity ordered
 
 #### Discount by order total
 
@@ -195,7 +198,7 @@ e.g. the following will provide a flat discount of $10 on any order above $100
 $pp['discount_by_order_total'] = '[ 100=10 ]';
 ```
 
-while the following will provide a flat discount of 10% on any order above $100\.
+while the following will provide a flat discount of 10% on any order above $100.
 
 ```php
 $pp['discount_by_order_total'] = '[ 100=10 ]%';
@@ -224,7 +227,7 @@ If you are using the editable region definitions contained in our sample templat
 
 ![Shopping Cart Example](../../../../assets/img/contents/shopping-cart-18.png)
 
-Using the editable region, individual products can now be set with a sliding scale for price-reductions (discounts). For example
+Using the editable region, individual products can now be set with a sliding scale for price-reductions (discounts). For example:
 
 ```php
 [ 5=10 | 10=15 ]
@@ -241,16 +244,17 @@ To setup price-reductions (discounts) as a **percentage** of the product's base 
 where the scale now becomes 'reduce product's base-price by 10% if customer buys more than 5 units of it, by 15% if buys more than 10'.
 
 :::note
-If a product's base price gets reduced by this method, two custom variables are made available within `<cms:pp_cart_items />` tag (the tag used to display the cart) -
+If a product's base price gets reduced by this method, two custom variables are made available within `<cms:pp_cart_items />` tag (the tag used to display the cart):
 
-+ **line_discount**: this shows the discounted value
-+ **orig_price**: this shows the original base price without the discount applied.
+- **line_discount**: this shows the discounted value
+- **orig_price**: this shows the original base price without the discount applied.
 
-e.g. in `cart.php` template, this is how we display the original price of discounted cart items (with a strikethrough style)
+e.g. in `cart.php` template, this is how we display the original price of discounted cart items (with a strikethrough style):
 
 ```php title="cart.php"
 <cms:if line_discount><span class="compare-price">$<cms:number_format orig_price /></span></cms:if>$<cms:number_format price />
 ```
+
 :::
 
 ## Taxes
@@ -260,7 +264,7 @@ The config file has two settings for taxes:
 
 <Steps>
 
-1. You can specify the tax percentage applied to the **cart's total value**. For example, the following sets a 10% tax
+1. You can specify the tax percentage applied to the **cart's total value**. For example, the following sets a 10% tax:
 
     ```php
     $pp['tax_percent'] = '10';
@@ -281,7 +285,7 @@ This simple implementation of the coupon feature is an example of using Couch's 
 The finished version of our sample site contains a template named `coupons.php`. It is a regular Couch template defining a set of editable regions. Execute it as super-admin to register it with Couch. In the admin-panel, we can now create coupons as cloned pages of this template.
 
 :::note
-The `End Date` field defined by this template makes use of the [**Date-Picker addon**](https://www.couchcms.com/forum/viewtopic.php?f=8&t=7126) for ease in inputting dates. If you don't wish to use the addon, you may safely remove the `editable name='datepicker'` region from the template.
+The 'End Date' field defined by this template makes use of the [**Date-Picker addon**](https://www.couchcms.com/forum/viewtopic.php?f=8&t=7126) for ease in inputting dates. If you don't wish to use the addon, you may safely remove the `editable name='datepicker'` region from the template.
 :::
 
 ### Creating coupons
@@ -306,7 +310,7 @@ The value of the discount provided by the coupon.
 
 #### Type
 
-Can be either `Percentage` or `Fixed Amount`. This refers to the discount value mentioned above and specifies whether it is a fixed value or a percentage of the cart total.
+Can be either 'Percentage' or 'Fixed Amount'. This refers to the discount value mentioned above and specifies whether it is a fixed value or a percentage of the cart total.
 
 #### Minimum Amount
 
@@ -314,7 +318,7 @@ If the coupon is meant to be applied to only orders worth at least a certain amo
 
 #### Free Shipping
 
-If set to `Yes`, this coupon will set the cart's shipping charges to 0. A coupon that provides only free shipping and no other discount can be created by setting the `Discount` field to 0 and this field to `Yes`.
+If set to 'Yes', this coupon will set the cart's shipping charges to 0. A coupon that provides only free shipping and no other discount can be created by setting the 'Discount' field to 0 and this field to 'Yes'.
 
 #### End Date
 
@@ -351,6 +355,7 @@ In this condition, we use `pages` tag to fetch the cloned page (i.e. the coupon)
 </cms:pages>
 </cms:if>
 ```
+
 If one is found, the inputted coupon is valid. Now comes the important technique. As we know, it is `cart_ex.php` that does all the calculations for discounts and shipping. We provide `cart_ex.php` all the coupon data we fetched via `cms:pages` by using '**session variables**' (these variables can be accessed site-wide. The shopping cart itself is internally implemented as a session variable).
 Note the last statement `pp_refresh_cart`. By refreshing the cart, we make `cart_ex.php` redo all the calculations (which now will take into account the coupon data we provided)
 
@@ -368,19 +373,20 @@ Note the last statement `pp_refresh_cart`. By refreshing the cart, we make `cart
 </cms:pages>
 </cms:if>
 ```
+
 So this basically is how the coupon feature was implemented. The same technique (i.e. using cms:form and then setting session variables with submitted values) can be used to implement other features e.g. capturing buyer's address etc.
 :::
 
-## The end, finally...
+## The end, finally
 
 So that wraps up our tutorial (cum documentation) of CouchCart.
 It's a lean, yet quite extensible, little shopping cart that should come in handy with a lot of sites with simpler ECommerce requirements.
 
 What CouchCart is NOT (at least not as yet) is:
 
-*   An Order management system
-*   An Inventory management system
-*   A Customer management system
+- An Order management system
+- An Inventory management system
+- A Customer management system
 
 As the feature-set of CouchCMS expands, we can expect this to change.
 
