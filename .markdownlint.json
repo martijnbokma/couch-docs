@@ -36,15 +36,11 @@
   "MD036": false,
   "MD037": false,
   "MD039": true,
-  "MD040": {
-    "language": ["php", "html", "js", "css", "json", "yaml", "txt"]
-  },
+  "MD040": false,
   "MD041": false,
   "MD042": false,
   "MD045": false,
-  "MD046": {
-    "style": "fenced"
-  },
+  "MD046": false,
   "MD048": { "style": "backtick" },
   "MD049": { "style": "asterisk" },
   "MD050": { "style": "asterisk" },
