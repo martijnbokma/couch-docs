@@ -745,7 +745,7 @@ Coming back to the admin-panel should show that it mimics the default listing pr
 
 The attached zip contains the final version of our `my_list.html` snippet.
 You can do a comparison of both versions to find the minimal modifications needed.
-The portions requiring changes are marked by
+The portions requiring changes are marked by:
 
 ```html
 <!-- EDIT -->
@@ -757,11 +757,11 @@ and
 <!-- END EDIT -->
 ```
 
-This is what our listing now looks like -
+This is what our listing now looks like:
 
 ![Databound Forms Example](../../../../assets/img/contents/databound-forms-7.png)
 
-Here is another example done on a different site -
+Here is another example done on a different site:
 
 ![Databound Forms Example](../../../../assets/img/contents/databound-forms-8.png)
 
@@ -779,7 +779,7 @@ Anyways, just to illustrate how to use a custom edit screen, we'll (redundantly)
 
 The procedure is very similar to what we used for custom listing above.
 It begins by creating a snippet file in Couch's snippets folder and then registering it for the template in kfunctions.php.
-Assuming the snippet we use is named `my_edit.html`, this is what needs to be placed in `kfunctions.php` -
+Assuming the snippet we use is named `my_edit.html`, this is what needs to be placed in `kfunctions.php`:
 
 ```php title="kfunctions.php"
 $FUNCS->register_admin_pageview( 'application.php', 'my_edit.html', 1 ); // '1' for showing the 'advanced setting dropdown'
@@ -800,11 +800,11 @@ If you do a comparison of both versions, you'll find that the added code for the
 
 The other minor modifications consist of adding a few in-page CSS styles and linking 'bootstrap.min.css' to the form (you might have to adjust its href if located at a different location).
 
-Here is what our rendered edit screen looks like
+Here is what our rendered edit screen looks like:
 
 ![Databound Forms Example](../../../../assets/img/contents/databound-forms-10.png)
 
-Not very different from the default screen provide by Couch but now since the output is completely controlled by us there is a lot we can accomplish that cannot be done otherwise. For example -
+Not very different from the default screen provide by Couch but now since the output is completely controlled by us there is a lot we can accomplish that cannot be done otherwise. For example:
 
 :::note
 You can study this code to see the use of Databound forms for editing existing pages.
