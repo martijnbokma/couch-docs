@@ -16,33 +16,11 @@ sidebar:
 
 Sometimes a website grows and the backend navigation looks utterly confusing. Lets say, you have a yoga studio.
 
-Yoga Institute
-About us
-Teacher
-Rental
-Services
-Program
-Courses
-Workshops and Seminars
-Education
-Massages
-Personal yoga
-Business yoga
-Prices
-Booking
-Contact
-Registration
-Directions
-Imprint
-Data protection
-
-The flat structure is no good readable in the backend. It would be nice to nest the navigation items like this:
-
-Yoga Institute
+- Yoga Institute
 - About us
 - Teacher
 - Rental
-Services
+- Services
 - Program
 - Courses
 - Workshops and Seminars
@@ -52,11 +30,33 @@ Services
 - Business yoga
 - Prices
 - Booking
-Contact
+- Contact
 - Registration
 - Directions
 - Imprint
 - Data protection
+
+The flat structure is no good readable in the backend. It would be nice to nest the navigation items like this:
+
+- Yoga Institute
+    - About us
+    - Teacher
+    - Rental
+- Services
+    - Program
+    - Courses
+    - Workshops and Seminars
+    - Education
+    - Massages
+    - Personal yoga
+    - Business yoga
+    - Prices
+    - Booking
+- Contact
+    - Registration
+    - Directions
+    - Imprint
+    - Data protection
 
 Fortunately, with just a few lines of code, you can create this order in CouchCMS. You have to edit the `couch/addons/kfunctions.php`:
 
@@ -88,4 +88,4 @@ or
 <cms:template title='Directions' parent='contact' icon='location' />
 ```
 
-If you edit all templates this way, you got a well-structured, collapsable backend navigation. Don't forget to use some memorable icons, you find an overview on Open Iconic.
+If you edit all templates this way, you got a well-structured, collapsable backend navigation. Don't forget to use some memorable icons, you find an overview on [Open Iconic](https://useiconic.com/open#icons).
