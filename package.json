@@ -11,7 +11,7 @@
     "clean": "rm -rf dist node_modules/.cache",
     "clean:all": "rm -rf dist node_modules",
     "lint:md": "markdownlint-cli2 \"src/content/docs/**/*.mdx\"",
-    "lint:md:fix": "markdownlint-cli2-fix \"src/content/docs/**/*.mdx\""
+    "lint:md:fix": "npx markdownlint-cli2 --fix \"src/content/docs/**/*.mdx\""
   },
   "dependencies": {
     "@astro-community/astro-embed-youtube": "^0.5.6",
