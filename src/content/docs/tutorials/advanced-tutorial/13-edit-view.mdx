@@ -114,6 +114,7 @@ The final difference between `create_view` and this `edit_view` is the reduced n
 ```
 
 Notice that:
+
 - We don't need to explicitly set the 'content' field as it's bound and saves automatically
 - The two non-bound fields must be explicitly passed to `cms:db_persist_form`
 
@@ -132,6 +133,7 @@ Compare this to the code used in `create_view`:
 ```
 
 The key differences are:
+
 - No need to set `k_page_name` and `note_owner`
 - These values won't change once set at creation time
 
