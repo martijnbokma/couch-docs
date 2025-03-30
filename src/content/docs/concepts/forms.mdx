@@ -52,7 +52,7 @@ Couch expects its single tags to be properly self-closed hence the two input tag
 The `name` parameter is mandatory for an input tag in Couch hence the submit type was given a name.
 Finally, since now Couch will be handling all the validation chores, the `action` attribute is removed.
 
-:::note[About the action attribute]
+:::tip[About the action attribute]
 The `action` attribute can be retained if you wish the form to be processed by some other script. In such cases, Couch tags will simply be used to output the form.
 :::
 
@@ -78,7 +78,7 @@ It should be evident from the discussion above that for both the success as well
 Before we demonstrate how to use both the ways, let us first place some validation constrains on the input fields.
 The most common validation that is required is making sure that a field has not been left empty. This can be done by setting the `required` parameter to `1`.
 
-:::note
+:::tip[About Form Validation]
 For a `required` field further several kinds of validations can be enforced.
 The input tags use the same validators that are used by the [**editable regions**](../editable-regions/). Please see the [**validators**](../../tags-reference/editable.html#validator) section of [__*editable*__](../../tags-reference/editable.html) tag for a list of all the validators that can be used.
 :::
@@ -314,8 +314,8 @@ Couch equivalent:
 />
 ```
 
-:::note[About Dropdown Size]
-Setting the `size` parameter will convert the drodown to a plain selection list:
+:::tip[About Dropdown Size]
+Setting the `size` parameter will convert the dropdown to a plain selection list.
 
 ```php "size"
 <cms:input type="dropdown"
@@ -326,7 +326,7 @@ Setting the `size` parameter will convert the drodown to a plain selection list:
 ```
 :::
 
-:::note[Important]
+:::caution[Important Limitation]
 Multiple selection is not currently supported.
 :::
 
@@ -337,7 +337,7 @@ Multiple selection is not currently supported.
 It is used to create a CAPTCHA that prevents spammers from abusing your form.
 
 :::note[About Required Parameter]
-`required` parameter is always assumed to be set to `1` for a captcha.
+`required` parameter is always assumed to be set to '1' for a captcha.
 :::
 
 ```php
@@ -395,9 +395,8 @@ The default value of `format` is 't-i-r'
 The `reload_text` parameter can be used to change the 'Reload Image' text to anything you wish.
 The `width` parameter can be used to set the width of the text box.
 
-:::note
-Couch, as of the current version, does not support file uploads e.g.:
-
+:::caution[File Upload Limitation]
+Couch, as of the current version, does not support file uploads e.g.
 ```html
 <input name="file" type="file" />
 ```
@@ -432,8 +431,8 @@ will output the following HTML code:
 </fieldset>
 ```
 
-:::note
-For input tags that are wrapped within [__*fieldset*__](../../tags-reference/fieldset/) tags, you can set the `label` and `desc` parameters to properly label the fields.
+:::tip[About Fieldset Labels]
+For input tags that are wrapped within [**_fieldset_**](../../tags-reference/fieldset/) tags, you can set the `label` and `desc` parameters to properly label the fields.
 :::
 
 ### Example of a Full Form
