@@ -1,6 +1,6 @@
 ---
-title: Rebranding (White-Label)
-description: Learn how to rebrand CouchCMS with your own logo and copyright information.
+title: "Rebranding (White-Label)"
+description: "Learn how to rebrand CouchCMS with your own logo and copyright information."
 keywords:
     - CouchCMS
     - rebranding
@@ -8,7 +8,7 @@ keywords:
     - admin panel
     - web design
 category: getting-started
-author: Kamran Kashif
+author: "Kamran Kashif"
 lastUpdated: 2025-03-27
 ---
 
@@ -20,7 +20,7 @@ Once you have received our email confirming your purchase, there are two places 
 
 <Steps>
 
-1. In **`couch/config.php`**, scroll down and find the following line. Change the **0** to **1**.
+1. In **`couch/config.php`**, scroll down and find the following line. Change the `0` to `1`.
 
     ```diff lang="php" title="couch/config.php"
     -define( 'K_PAID_LICENSE', 0 );
@@ -28,7 +28,7 @@ Once you have received our email confirming your purchase, there are two places 
     ```
 
     Immediately below the above setting you'll find the following lines.
-    Uncomment the ones containing 'define' (i.e. remove the '//' prefixed to 'define') and add your own info:
+    Uncomment the ones containing 'define' (i.e. remove the `//` prefixed to 'define') and add your own info:
 
     ```diff lang="php" title="couch/config.php"
     // Rebranding. Uncomment the following defines and add your info.
@@ -42,11 +42,11 @@ Once you have received our email confirming your purchase, there are two places 
     +define( 'K_LOGO_DARK', 'your-logo.png' );
 
     // 99c. Footer content (Company name and link)
-    -//define( 'K_ADMIN_FOOTER', '<a href="http://www.yourcompany.com">COMPANY NAME</a>' );
-    +define( 'K_ADMIN_FOOTER', '<a href="http://www.yourcompany.com">COMPANY NAME</a>' );
+    -//define( 'K_ADMIN_FOOTER', '<a href="https://www.yourcompany.com">COMPANY NAME</a>' );
+    +define( 'K_ADMIN_FOOTER', '<a href="https://www.yourcompany.com">COMPANY NAME</a>' );
     ```
 
-2. In the **language file** being used by your site (default being **EN.php**) found in the `couch/lang` folder, find the following lines and modify them to suit your needs. This will change the title of the admin-panel and login box.
+2. In the **language file** being used by your site (default being `EN.php`) found in the `couch/lang` folder, find the following lines and modify them to suit your needs. This will change the title of the admin-panel and login box.
 
     ```diff lang="php" title="couch/lang/EN.php"
     // Addendum to Version 1.1 /////////////////////////////////////
@@ -63,4 +63,3 @@ Once you have received our email confirming your purchase, there are two places 
 Rebranding **DOES NOT** however permit you to remove copyright notices in the source code of the Software.
 These copyright notices must remain intact **under any circumstances**.
 :::
-
