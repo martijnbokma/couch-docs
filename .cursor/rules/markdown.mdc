@@ -40,6 +40,10 @@ sidebar:
 - Indent nested properties with 4 spaces for consistency
 - `subCategory` is required for tutorials, optional for other categories
 - `sidebar.order` determines the position in navigation (lower numbers appear first)
+- Description must be 50-160 characters
+- Include at least 3 relevant keywords
+- Author must be in "First Last" format
+- Date must be in YYYY-MM-DD format
 
 ### 1.2 Import Statements
 
@@ -183,36 +187,78 @@ For omitted code sections, use language-appropriate comments:
 // ... existing code ...
 ```
 
-### 2.5 Links
+### 2.5 Links and Cross-References
 
-#### Internal Links:
+#### Internal Links
 
 - Use relative paths for internal documentation links
 - Navigate up with `../` when needed
-- Include meaningful link text
+- Include meaningful link text that indicates the destination
+- Never use generic phrases like "click here" or "read more"
+- Add ARIA labels for complex or technical links
 
-```markdown
-[Previous Section](../previous-section)
-[Next Section](./next-section)
+```markdown title="Internal Link Examples"
+<!-- Bad -->
+
+[Click here](./page) to learn more
+
+<!-- Good -->
+
+[Learn about User Authentication](../authentication/overview.md)
+{aria-label="Complete guide to user authentication"}
+
+[See Configuration Options](../config/options.md)
 ```
 
-#### External Links:
+#### External Links
 
 - Include full URLs for external links
 - Add meaningful context in link text
+- Ensure links are distinguishable within content
 
-```markdown
+```markdown title="External Link Example"
 [CouchCMS Documentation](https://docs.couchcms.com)
+```
+
+#### Related Content
+
+End documents with related content section:
+
+```markdown title="Related Content Section"
+---
+
+## Related Content
+
+:::related
+
+- [Topic One](../topic-one/) - Brief description of the first related topic
+- [Topic Two](../topic-two/) - Brief description of the second related topic
+  :::
 ```
 
 ### 2.6 Images
 
-- Always include descriptive alt text
+#### Image Requirements
+
+- Use descriptive alt text that explains the image's content and purpose
+- Add ARIA labels for complex images or diagrams
 - Use relative paths for internal images
 - Add captions when helpful
+- Screenshots: Max width 1200px
+- Thumbnails: 300px width
+- Optimize all images for web
+- Use WebP format when possible
 
-```markdown
-![Descriptive Alt Text](./img/screenshot.png)
+#### Image Naming
+
+Format: `feature-action-context.ext`
+Example: `user-login-form-validation.webp`
+
+```markdown title="Image Examples"
+![Feature Name - Action Being Shown - Context](path/to/image.webp)
+{aria-label="Detailed description for screen readers"}
+
+![User Login - Form Validation - Error State](images/user-login-validation.webp)
 ```
 
 ### 2.7 Punctuation and Lists
@@ -491,7 +537,7 @@ When using HTML elements within Markdown:
 
 Examples:
 
-```markdown title="HTML in Markdown"
+```markdown title="HTML Element Usage in Markdown"
 Use the `<div>` element for blocks.
 
 Image with alt text: `<img src="image.jpg" alt="Description">`
@@ -503,17 +549,28 @@ Definition lists:
 `</dl>`
 ```
 
-### 9. Accessibility Guidelines
+## 9. Extended Features
+
+### 9.1 Accessibility Guidelines
 
 To ensure documentation is accessible:
 
 1. **Images and Alt Text**
+    - Use descriptive alt text that explains the image's content and purpose
+    - Add ARIA labels for complex images or diagrams
+    - Avoid using images for text content
+    - Ensure images have sufficient resolution
 
-```markdown title="Image with Alt Text"
+```markdown title="Accessible Image Example"
 ![A form with two input fields and a submit button](./form-example.png)
+{aria-label="Login form with username and password fields"}
 ```
 
 2. **Heading Structure**
+    - Follow proper hierarchy (H1 > H2 > H3)
+    - No skipped heading levels
+    - Use descriptive headings that indicate content
+    - Keep headings concise
 
 ```markdown title="Proper Heading Structure"
 # Main Title
@@ -526,6 +583,10 @@ To ensure documentation is accessible:
 ```
 
 3. **Link Text**
+    - Use descriptive link text that indicates the destination
+    - Include ARIA labels for complex links
+    - Never use "click here" or "read more"
+    - Ensure links are distinguishable within content
 
 ```markdown title="Link Text Examples"
 <!-- Bad -->
@@ -535,16 +596,26 @@ To ensure documentation is accessible:
 <!-- Good -->
 
 [Learn more about form validation](./form-validation)
+{aria-label="Complete guide to form validation techniques"}
 ```
 
-4. **Color and Contrast**
+### 9.2 SEO Optimization
 
-```markdown title="Color Reference"
-Use `#0066cc` for links (WCAG AA compliant)
-Use `#333333` for main text (WCAG AAA compliant)
-```
+#### Meta Requirements
 
----
+- Title: 50-60 characters
+- Description: 150-160 characters
+- Keywords: 3-5 relevant terms
+- Use target keywords naturally
+- Include structured data when relevant
+
+#### Content Structure
+
+- Use proper heading hierarchy (H1 > H2 > H3)
+- Structure URLs logically
+- Implement canonical URLs
+- Use descriptive slugs
+- Include meta descriptions
 
 ## 10. Common Corrections
 
@@ -639,8 +710,251 @@ To streamline compliance with these guidelines:
 
 ---
 
+## 13. Version-Specific Documentation
+
+### 13.1 Version Badges
+
+Use version badges to clearly indicate feature availability:
+
+```markdown title="Version Badge Example"
+:::version[v2.0+]
+This feature is available from version 2.0 onwards
+:::
+```
+
+### 13.2 Version History
+
+- Document breaking changes
+- Include migration guides
+- List deprecated features
+- Provide upgrade paths
+
+## 14. Component Documentation
+
+### 14.1 Import Statements
+
+Always place component imports at the top of the file after frontmatter:
+
+```markdown title="Component Import Example"
+---
+frontmatter: here
+---
+
+import { Steps, Card } from '@astrojs/starlight/components';
+```
+
+### 14.2 Component Usage
+
+Document components with:
+
+- Required props
+- Optional props
+- Usage examples
+- Common patterns
+
+## 15. Badge Usage
+
+### 15.1 Frontmatter Badges
+
+Use consistent badge variants in frontmatter:
+
+```markdown title="Badge Examples"
+sidebar:
+badge:
+text: New
+variant: tip # or
+badge:
+text: Beta
+variant: caution # or
+badge:
+text: Deprecated
+variant: danger
+```
+
+### 15.2 Badge Rules
+
+- Use "New" for features added in the latest version
+- Use "Beta" for experimental features
+- Use "Deprecated" for features being phased out
+- Include version numbers where relevant
+
+## 16. Documentation Status
+
+### 16.1 Status Notices
+
+Use standardized status notices:
+
+```markdown title="Status Notice Examples"
+:::note[Work in Progress]
+This documentation is actively being developed.
+:::
+
+:::caution[Needs Review]
+This documentation needs technical review.
+:::
+
+:::danger[Outdated]
+This documentation is outdated and needs updating.
+:::
+```
+
+### 16.2 Status Rules
+
+- Always include status notices at the top of the document
+- Update status when content changes
+- Include last review date
+- Link to latest stable documentation when relevant
+
+## 17. Code Block Standards
+
+### 17.1 Diff Syntax
+
+Use diff syntax for showing changes:
+
+```diff title="Code Changes Example"
+- old code
++ new code
+```
+
+### 17.2 Before/After Examples
+
+```markdown title="Before Changes"
+Original code here
+```
+
+```markdown title="After Changes"
+Modified code here
+```
+
+## 18. Image Guidelines
+
+### 18.1 Size Requirements
+
+- Screenshots: Max width 1200px
+- Thumbnails: 300px width
+- Optimize all images for web
+- Use WebP format when possible
+
+### 18.2 Naming Convention
+
+Format: `feature-action-context.ext`
+
+Example: `user-login-form-validation.webp`
+
+### 18.3 Alt Text Format
+
+```markdown title="Alt Text Examples"
+![Feature Name - Action Being Shown - Context](path/to/image.webp)
+![User Login - Form Validation - Error State](images/user-login-validation.webp)
+```
+
+## 19. Frontmatter Validation
+
+### 19.1 Required Fields
+
+```markdown title="Required Frontmatter"
+---
+title: "Document Title"
+description: "50-160 character description"
+keywords: [minimum, three, keywords]
+author: "First Last"
+lastUpdated: YYYY-MM-DD
+---
+```
+
+### 19.2 Validation Rules
+
+- Description: 50-160 characters
+- Keywords: Minimum 3
+- Author: First Last format
+- Date: YYYY-MM-DD format
+
+## 20. Cross-referencing
+
+### 20.1 Internal Links
+
+Use relative paths with descriptive text:
+
+```markdown title="Internal Link Examples"
+[Learn about User Authentication](../authentication/overview.md)
+[See Configuration Options](../config/options.md)
+```
+
+### 20.2 Related Content
+
+End documents with related content section:
+
+```markdown title="Related Content Section"
+---
+
+## Related Content
+
+:::related
+
+- [Topic One](../topic-one/) - Brief description of the first related topic
+- [Topic Two](../topic-two/) - Brief description of the second related topic
+
+:::
+```
+
+## 21. Tutorial Structure
+
+### 21.1 Required Sections
+
+```markdown title="Tutorial Template"
+---
+title: "Tutorial Title"
+---
+
+## Prerequisites
+
+- Required knowledge
+- Required software
+- Required setup
+
+## Time to Complete
+
+Approximately X minutes
+
+## Difficulty Level
+
+Beginner/Intermediate/Advanced
+
+## What You'll Learn
+
+- Objective 1
+- Objective 2
+- Objective 3
+
+## Example Output
+
+What the final result will look like
+```
+
+## 24. Mobile Documentation
+
+### 24.1 Mobile Documentation Guidelines
+
+- Use responsive images with appropriate sizes for different devices
+- Keep code examples concise and readable on small screens
+- Ensure touch targets are at least 44x44 pixels
+- Test documentation rendering on various mobile devices and screen sizes
+- Use collapsible sections for long content
+- Avoid horizontal scrolling except for code blocks
+- Optimize tables for mobile viewing
+- Ensure proper font sizes and spacing for mobile readability
+
+---
+
 ## Conclusion
 
-By following this style guide, you can ensure that CouchCMS documentation remains consistent, readable, accessible, and technically accurate across all files.
+By following this style guide, you can ensure that CouchCMS documentation remains:
+
+- Consistent across all files
+- Easily readable and maintainable
+- Accessible to all users
+- Technically accurate and complete
+- SEO-friendly
+- Mobile-responsive
 
 ---
