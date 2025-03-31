@@ -1,18 +1,19 @@
 ---
-title: Upgrading
-description: Learn how to upgrade your CouchCMS installation to the latest version.
+title: "Upgrading"
+description: "Learn how to upgrade your CouchCMS installation to the latest version."
 keywords:
     - CouchCMS
     - upgrade
     - web design
 category: getting-started
-author: Kamran Kashif
+author: "Kamran Kashif"
 lastUpdated: 2025-03-27
 ---
 
 import { Steps } from '@astrojs/starlight/components';
 
 Before starting the upgrade process, make sure to:
+
 - Back up your entire website
 - Back up your database
 - Note down any custom modifications you've made
@@ -45,9 +46,11 @@ Before starting the upgrade process, make sure to:
 5. **Post-Upload Steps**
    - Delete the old `ckeditor_old` folder
    - If using a commercial license, verify in `config.php`:
+
      ```php title="couch/config.php"
      define( 'K_PAID_LICENSE', 1 );
      ```
+
    - Clear your browser cache
 
 6. **Verify Installation**
@@ -59,18 +62,22 @@ Before starting the upgrade process, make sure to:
 </Steps>
 
 :::danger[Important Security Notes]
+
 - If you renamed `index.php` for security:
   1. Delete your current renamed file
   2. Upload the new `index.php`
   3. Rename it to your secure filename
 - Always maintain a backup until you've verified everything works
+
 :::
 
 :::tip[Common Issues]
+
 - White screen after upgrade? Clear PHP cache
 - Login issues? Clear browser cookies
 - Missing styles? Clear browser cache
 - Database errors? Verify MySQL version compatibility
+
 :::
 
 For any problems, consult the [CouchCMS Forum](https://www.couchcms.com/forum/) or check the error logs.
