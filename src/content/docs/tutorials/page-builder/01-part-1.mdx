@@ -21,25 +21,25 @@ import { LinkButton, Steps, FileTree } from '@astrojs/starlight/components';
 
 The page builder feature was implemented in [CouchCMS 2.3](https://www.couchcms.com/forum/viewtopic.php?f=5&t=13148).
 
-The defining feature of this version is the 'PageBuilder' which offers a new way of building sites for your clients.
+The defining feature of this version is the **PageBuilder** which offers a new way of building sites for your clients.
 
 It was somewhat challenging for me to articulate this feature in words, so I produced a brief 90-second video demonstrating it in action - please watch it on YouTube here:
 
 <YouTubeCard
-	href="https://www.youtube.com/watch?v=swR52Winn-E"
-	title="Page Builder in CouchCMS 2.3"
-	description="The defining feature of this version is the 'PageBuilder' which offers a new way of building sites for your clients."
+    href="https://www.youtube.com/watch?v=swR52Winn-E"
+    title="Page Builder in CouchCMS 2.3"
+    description="The defining feature of this version is the 'PageBuilder' which offers a new way of building sites for your clients."
 />
 
 OK, as I am sure you would have figured out from the video, the idea here is to divide up a site into sets of visual blocks (e.g. covers, contacts, teams, pricing etc.)
 and then use the pagebuilder to offer them to the end-users for crafting pages on their own.
 
 :::note
-If you are familiar with Couch, you are likely to notice that the existing ['Mosaic'](https://www.couchcms.com/forum/viewtopic.php?f=5&t=11105) feaure holds out a similar premise.
+If you are familiar with Couch, you are likely to notice that the existing [**Mosaic**](https://www.couchcms.com/forum/viewtopic.php?f=5&t=11105) feature holds out a similar premise.
 
-And you would be right! - the pagebuilder, in fact, is a super-set of the mosaic and uses it extensively (as you'll shortly see in the tutorial that follows).
+And you would be right! - the **pagebuilder**, in fact, is a super-set of the **mosaic** and uses it extensively (as you'll shortly see in the tutorial that follows).
 
-The most prominent difference is that the pagebuilder, unlike the mosaic, displays blocks in a WYSIWYG (what you see is what you get) manner so you can
+The most prominent difference is that the **pagebuilder**, unlike the **mosaic**, displays blocks in a WYSIWYG (what you see is what you get) manner so you can
 offer the end-user an entirely different experience where she can visually pick-n-choose blocks to build her pages.
 :::
 
@@ -64,11 +64,17 @@ Unzip the downloaded file.
 
 Place contents of the extracted 'www' folder within your site root (for this tutorial, I'll assume the site is http://test.local/).
 
-Try accessing http://test.local/covers.html
+Try accessing: 
+
+```txt
+http://test.local/covers.html
+```
 
 ![page-builder-covers.png](../../../../assets/img/contents/page-builder-covers.png)
 
+```txt
 http://test.local/about.html
+```
 
 ![page-builder-about.png](../../../../assets/img/contents/page-builder-about.png)
 
@@ -79,29 +85,32 @@ These are the 2 sections and the 4 blocks I mentioned which we'll now convert in
 While converting the first section, I'll spell out all gory details of the process.
 You are more than likely to find the process convoluted and long-drawn.
 
-Please bear with it. While converting the second section, I'll mention only the salient points and then you'll
-certainly realize that the process is actually much simpler and straightforward than what it initially appears.
+Please bear with it. While converting the second section, I'll mention only the salient points and then you'll certainly realize that the process is actually much simpler and straightforward than what it initially appears.
 :::
 
-Forewarned now, let us proceed :)
+Forewarned now, let us proceed :-)
 
 ## Install Couch
 
-Nothing new here - am repeating the steps just for the sake of completeness
+Nothing new here - am repeating the steps just for the sake of completeness:
 
 <Steps>
+
 1. Download the [latest](https://www.couchcms.com/kachua/download.php?auth=AkiD3VsCIx8pveFF%2BUCiLZJjM1KBeqHxDAFRlKmUyhipraWgIkPl%7Cct0PrqeOp1jVqxh8GpJjszK7F7bbiCgV%7C0%7C0%7C0%7C1%7C98474e58cf116aa615352ea7b282cb85) version of Couch and place the `couch` folder into the site root.
 2. Rename `couch/config.example.php` to `config.php` and edit it to enter your database's info.
 3. Access http://test.local/couch/ to complete the installation.
+
 </Steps>
 ![page-builder-00.png](../../../../assets/img/contents/page-builder-00.png)
 
 ## Enable PageBuilder
 
 Rename `couch/addons/kfunctions.example.php` to `kfunctions.php`. Edit it to uncomment the following line
+
 ```php title="couch/addons/kfunctions.php"
 require_once( K_COUCH_DIR.'addons/page-builder/page-builder.php' );
 ```
+
 ## Create blocks
 
 As mentioned, we have two sections (groups) of blocks - 'covers' and 'about'.
@@ -112,6 +121,7 @@ To keep the site root uncluttered, we'll keep these templates in a folder named 
 
 Here is the site structure we'll end up with:
 <FileTree>
+
 - www
     - blocks
         - about.php
@@ -120,12 +130,13 @@ Here is the site structure we'll end up with:
 </FileTree>
 
 :::note
-Please note that now because the templates are situated within a folder, their names as used for the 'masterpage' param will become `blocks/covers.php` and `blocks/about.php`
+Please note that now because the templates are situated within a folder, their names as used for the '`masterpage`' param will become `blocks/covers.php` and `blocks/about.php`
 :::
 
 Let us begin with 'covers'.
 
 Create `blocks/covers.php` and edit it to place the following within:
+
 ```php title="blocks/covers.php"
 <?php require_once( '../couch/cms.php' ); ?>
 <cms:template title='Covers' order='1' clonable='0'>
@@ -146,24 +157,24 @@ Create `blocks/covers.php` and edit it to place the following within:
 
 As you can see, the code above makes `blocks/covers.php` a non-clonable template and also defines within it a 'mosaic' region.
 
-The two (still empty) tiles that are defined within the mosaic are the two cover blocks that we have set out to build.
+The two (still empty) **tiles** that are defined within the **mosaic** are the two cover blocks that we have set out to build.
 
-Names of the tiles above are arbitrary and you may choose your own - I am using here the ones I chose for the site we are replicating.
-
+Names of the **tiles** above are arbitrary and you may choose your own - I am using here the ones I chose for the site we are replicating.
 
 Complete the mandatory 'visit the modified template as super-admin' step to persist the changes.
 
-Coming back to the admin-panel, you should find the covers template displaying a mosaic field with buttons for adding the two tiles
+Coming back to the admin-panel, you should find the covers template displaying a **mosaic** field with buttons for adding the two **tiles**:
 
 ![page-builder-01.png](../../../../assets/img/contents/page-builder-01.png)
 
-Of course, at this point if you try adding any of the tiles, you'll see a (self-explanatory) "No Editable Regions defined" message.
+Of course, at this point if you try adding any of the **tiles**, you'll see a (self-explanatory) "No Editable Regions defined" message.
 
-Let us change that by defining the editable regions required by each tile.
+Let us change that by defining the editable regions required by each **tile**.
 
 A quick look at the first cover block will tell us that we'll need, at least, regions for the title, body, button and the image (with link for the popup video).
 
 Following is how I defined those regions:
+
 ```php title="blocks/covers.php"
 <cms:mosaic name='blocks' label='Blocks'>
     <cms:tile name='cr01' label='CR01'>
@@ -195,6 +206,7 @@ The result:
 You'll recognize that I have used the [Bootstrap grid](https://www.couchcms.com/forum/viewtopic.php?f=8&t=11023) to arrange the regions in a more manageable way.
 
 Moving on to the second cover block, we define its regions as follows:
+
 ```php title="blocks/covers.php"
 <cms:mosaic name='blocks' label='Blocks'>
     <cms:tile name='cr01' label='CR01'>
@@ -224,13 +236,13 @@ Moving on to the second cover block, we define its regions as follows:
     </cms:tile>
 </cms:mosaic>
 ```
+
 As you can see in the code above, if there had been a greater number of blocks (i.e. tiles) or if the tiles had many more editable regions,
 our template above would quickly become very cluttered.
 
 To prevent that (and for other manageability concerns that we'll find ahead), let us move the code defining the editable regions above into separate 'snippets'.
 
-By default Couch expects all snippets to be within `couch/snippets` folder (this location can be changed from `couch/config.php` but I am assuming we are using the default) so I created a folder named 'pb' within it (again, an arbitrary name - pagebuilder shortened to pb)
-and then created separate folders for each block types.
+By default Couch expects all snippets to be within `couch/snippets` folder (this location can be changed from `couch/config.php` but I am assuming we are using the default) so I created a folder named `pb` within it (again, an arbitrary name - pagebuilder shortened to pb) and then created separate folders for each block types.
 
 <FileTree>
 - snippets
@@ -246,12 +258,14 @@ and then created separate folders for each block types.
             - theme/
 </FileTree>
 
-You'll notice that I have further sub-divided each block folder into 'embed' and 'theme' - we'll use that 'theme' folder a little later in this tutorial (same goes for the additional `misc` folder).
+You'll notice that I have further sub-divided each block folder into `embed` and `theme` - we'll use that `theme` folder a little later in this tutorial (same goes for the additional `misc` folder).
 
 For now we'll concern ourselves with just the `embed` folder within each block type to keep their snippets in.
 
-OK, next we'll create empty snippets within each block type (names are arbitrary - I find it easier to use the ones I used for the 'tiles' definition).
+OK, next we'll create empty snippets within each block type (names are arbitrary - I find it easier to use the ones I used for the **tiles** definition).
+
 <FileTree>
+
 - snippets
     - pb
         - about
@@ -272,6 +286,7 @@ OK, next we'll create empty snippets within each block type (names are arbitrary
 Now we can cut and paste the code for editable regions from our original code above into the `CR01.html` and `CR02.html` making them as follows:
 
 *CR01.html*
+
 ```php title="blocks/covers/embed/CR01.html"
 <cms:editable name='title' label='Title' type='textarea' height='60' order='1' required='1' />
 <cms:editable name='body' label='Body' type='textarea' height='120' order='2'  />
@@ -289,6 +304,7 @@ Now we can cut and paste the code for editable regions from our original code ab
 ```
 
 *CR02.html*
+
 ```php title="blocks/covers/embed/CR02.html"
 <cms:editable name='title' label='Title' type='textarea' height='60' order='1' required='1' />
 <cms:editable name='body' label='Body' type='textarea' height='120' order='2'  />
@@ -300,6 +316,7 @@ Now we can cut and paste the code for editable regions from our original code ab
 ```
 
 Our original code defining the mosaic can now link to the snippets above to become as follows:
+
 ```php title="blocks/covers.php"
 <cms:mosaic name='blocks' label='Blocks'>
     <cms:tile name='cr01' label='CR01'>
@@ -314,8 +331,7 @@ Our original code defining the mosaic can now link to the snippets above to beco
 
 This is definitely much cleaner that the original version.
 
-Visit the `blocks/covers.php` template as super-admin for the changes to persist and, coming back to the admin panel, you'll find that tiles show their regions
-in exactly the same manner as they did before their code was moved into snippets.
+Visit the `blocks/covers.php` template as super-admin for the changes to persist and, coming back to the admin-panel, you'll find that tiles show their regions in exactly the same manner as they did before their code was moved into snippets.
 
 Alright, let us try and create some tiles now.
 
@@ -327,11 +343,12 @@ You should get something like this:
 
 ![page-builder-05.png](../../../../assets/img/contents/page-builder-05.png)
 
-The output above is the classic output one would expect from 'mosaic'; which shouldn't be surprising as we have been working with a regular mosaic upto this point.
+The output above is the classic output one would expect from **mosaic**; which shouldn't be surprising as we have been working with a regular mosaic upto this point.
 
-It is time now to move from 'mosaic' to 'pagebuilder' and get instead the actual block rendered in its full glory.
+It is time now to move from **mosaic** to **pagebuilder** and get instead the actual block rendered in its full glory.
 
 To do that, begin by changing the mosaic's definition to make it as follows:
+
 ```diff title="blocks/covers.php" ins="body_class='_pb'" ins="_pb_template=''" ins="_pb_height='350'"
 <cms:mosaic name='blocks' label='Blocks' body_class='_pb'>
     <cms:tile name='cr01' label='CR01' _pb_template='' _pb_height='350'>
@@ -343,8 +360,10 @@ To do that, begin by changing the mosaic's definition to make it as follows:
     </cms:tile>
 </cms:mosaic>
 ```
+
 You'll notice that we have made only two changes:
 <Steps>
+
 1. Added *`body_class='_pb'`* to `<cms:mosaic>`
 2. Added *`_pb_template='' _pb_height='350'`* to each `<cms:tile>`
 </Steps>
@@ -364,7 +383,7 @@ Anyway, we are actually very close to what we set out to do. The changes we made
 
 As to what then it is complaining about, to understand that let us spare a few moments to see how the pagebuilder displays a block.
 
-When a tile (block) is saved, pagebuilder combines the posted data with some HTML markup and then outputs the result in an `<iframe>` (that IFRAME part is important as we'll see shortly below).
+When a **tile** (block) is saved, **pagebuilder** combines the posted data with some HTML markup and then outputs the result in an `<iframe>` (that IFRAME part is important as we'll see shortly below).
 
 Obviously, it needs to be told what HTML markup it is supposed to show for the block being displayed (as each block will have its own specific markup).
 The message we saw above simply tells us that pagebuilder couldn't find any HTML markup associated with the block being saved that it could display.
@@ -374,6 +393,7 @@ Let us address this and specify the HTML markup associated with each of the two 
 We know that the static HTML files (`covers.html` and `about.html`) we have in the site root contain the markup of our blocks.
 
 If you care to open up one of them, say `covers.html`, in your text editor, you'll see something like this (redacted version below):
+
 ```html title="covers.html"
 <!DOCTYPE html>
 <html>
@@ -407,8 +427,10 @@ If you care to open up one of them, say `covers.html`, in your text editor, you'
     </body>
 </html>
 ```
+
 Up there we can spot the two cover blocks we are interested in.
 This is the first one:
+
 ```html title="covers.html"
 <!-- cover block 1 -->
 <div id="section-2253" class="el-section tutor uk-position-relative uk-light">
@@ -417,7 +439,9 @@ This is the first one:
     </div>
 </div>
 ```
+
 and this is the second:
+
 ```html title="covers.html"
 <!-- cover block 2 -->
 <div id="section-2254" class="el-section tutor uk-position-relative uk-light">
@@ -426,14 +450,18 @@ and this is the second:
     </div>
 </div>
 ```
+
 We would like pagebuilder to show the first HTML markup above when it displays a CR01 block and the second one when it displays the CR02 block.
 
 However, please recall that pagebuilder will use an IFRAME for display - the content of an IFRAME needs to be a complete HTML document and not just a fragment of it.
 
 So we'll have to actually specify *two* separate pieces of markup for rendering each block:
+
 <Steps>
+
 1. The markup for the block itself, as shown above for two blocks.
 2. The markup for a *wrapper* around that block which will convert it into a valid HTML document.
+
 </Steps>
 
 That "wrapper" can be easily be extracted from the original markup itself. For example, following is what is left of the redacted HTML from `covers.html` above after we cut out all blocks from it:
@@ -472,6 +500,7 @@ So, we have the markup for the wrapper and the markups for the two cover blocks 
 We haven't yet told pagebuilder anything about how to find them (that is coming up next) but supposing we already did that, following is how pagebuilder will render the two blocks:
 
 *CR01*
+
 ```html title="CR01.html"
 <!DOCTYPE html>
 <html>
@@ -500,6 +529,7 @@ We haven't yet told pagebuilder anything about how to find them (that is coming 
 ```
 
 *CR02*
+
 ```html title="CR02.html"
 <!DOCTYPE html>
 <html>
@@ -526,6 +556,7 @@ We haven't yet told pagebuilder anything about how to find them (that is coming 
     </body>
 </html>
 ```
+
 As can be seen, it is just a case of merging each block markup with the same wrapper code (notice how the `<cms:show pb_tile_content />` we placed within the wrapper gets substituted by each block's content).
 
 Rendered within an IFRAME, each should render the block with perfect fidelity.
@@ -563,24 +594,30 @@ class MyPB{
     }
 } // end class MyPB
 ```
+
 You can absolutely move ahead without knowing a thing about what the code above does but I think it wouldn't be a bad idea to have at least a passing understanding of what is happening above.
 
 You see, when pagebuilder tries to render a block it broadcasts a message (an 'event' actually) asking other modules to let it know two things:
+
 <Steps>
+
 1. The name of the file containing the markup it is supposed to display and
 2. The location where it can find that file.
+
 </Steps>
 
 Also, if you recall the discussion about IFRAME we had above, it does this twice - once for the wrapper and then for the block itself.
 
 The code we used above answers its queries for both the items using the `$FUNCS->override_render( 'pb_wrapper'` and `$FUNCS->override_render( 'pb_tile'` statements.
 
-Notice specifically the value for the 'template_path' we are providing in both the statements -
+Notice specifically the value for the `template_path` we are providing in both the statements:
 
-For 'pb_tile' it is `snippets/pb/` within the couch folder while for 'pb_wrapper' it is more specifically `snippets/pb/misc/theme/` folder in the same location.
+For `pb_tile` it is `snippets/pb/` within the couch folder while for `pb_wrapper` it is more specifically `snippets/pb/misc/theme/` folder in the same location.
 
-If you recall the folder structure we created in the beginning for placing snippets, the two paths above point to locations within the same tree -
+If you recall the folder structure we created in the beginning for placing snippets, the two paths above point to locations within the same tree:
+
 <FileTree>
+
 - snippets
     - pb
         - about
@@ -589,25 +626,31 @@ If you recall the folder structure we created in the beginning for placing snipp
         - covers
             - embed/
             - theme/
+                - **CR01.html**
+                - CR02.html
         - misc
             - embed/
             - theme/
+                - pb_wrapper.html
+
 </FileTree>
 
 OK, so that tells pagebuilder where we put the files containing the markup.
 
 Now for the remaining question - what is the name of the file?
 
-For wrapper, because we only have a single one, we'll go with the default name pagebuilder searches for - that is 'pb_wrapper'.
+For wrapper, because we only have a single one, we'll go with the default name pagebuilder searches for - that is `pb_wrapper`.
 
 Copy the code for the wrapper we extracted above in a file named `pb_wrapper.html` and place it within `couch/snippets/pb/misc/theme/`.
 
-For blocks (tiles), the name would depend on which block is being rendered (as each block will have its own specific markup) so in the `$FUNCS->override_render( 'pb_tile'` statement we specify a function ('_render_pb_tile') that pagebuilder should consult to get the file name.
+For blocks (**tiles**), the name would depend on which block is being rendered (as each block will have its own specific markup) so in the `$FUNCS->override_render( 'pb_tile'` statement we specify a function (`_render_pb_tile`) that **pagebuilder** should consult to get the file name.
 
-Code for that function simply passes back whatever we set as the `_pb_template` param in our `<cms:tile>` definition e.g.
+The code for that function simply passes back whatever we set as the `_pb_template` param in our `<cms:tile>` definition e.g.:
+
 ```html
 <cms:tile name='cr01' label='CR01' _pb_template='covers/theme/CR01' _pb_height='350'>
 ```
+
 As it happens, we haven't yet set any value for that param.
 
 As the final modification to our covers template, let us add the names of the markup files for each block.
@@ -625,20 +668,23 @@ The resulting code is as follows:
     </cms:tile>
 </cms:mosaic>
 ```
+
 Make sure to visit the modified `blocks/covers.php` as super-admin for the change to persist.
 
 :::note
 At this point perhaps you would have already figured out the purpose of the `_pb_height` param we placed earlier in our `<cms:tile>` definition.
-It only serves to impart a minimum height to the block's IFRAME; However, its presence is necessary for pagebuilder to recognize that this particular tile needs to be processed by it - so it cannot be omitted.
+It only serves to impart a minimum height to the block's IFRAME; However, its presence is necessary for **pagebuilder** to recognize that this particular **tile** needs to be processed by it - so it cannot be omitted.
 :::
 
-OK, so with the changes we made above, when pagebuilder tries to render the CR01 block it tries to find a file named `covers/theme/CR01.html` (it appends '.html' to the name)
-within `couch/snippets/pb/` folder (remember this is the path our PHP code set for tiles).
+OK, so with the changes we made above, when **pagebuilder** tries to render the **CR01** block it tries to find a file named `covers/theme/CR01.html` (it appends `.html` to the name)
+within `couch/snippets/pb/` folder (remember this is the path our PHP code set for **tiles**).
 
 The two parts combined will point to `couch/snippets/pb/covers/theme/CR01.html` which is the following location:
+
 <FileTree>
+
 - snippets
-    - pb    
+    - pb
         - about
             - embed/
             - theme/
@@ -650,9 +696,11 @@ The two parts combined will point to `couch/snippets/pb/covers/theme/CR01.html` 
         - misc
             - embed/
             - theme/
-                - pb_wrapper.html   
+                - pb_wrapper.html
+                
 </FileTree>
-Similarly, for rendering CR02, it will search for `CR02.html` in the same location as shown above.
+
+Similarly, for rendering **CR02**, it will search for `CR02.html` in the same location as shown above.
 
 Create two files by the names of `CR01.html` and `CR02.html`, copy the code for the two blocks into them and place them in the location indicated above.
 
@@ -663,6 +711,7 @@ Coming back to the admin panel, hit the edit button for the block again and save
 The styling is missing (because the markup happens to use relative paths) but we can see that pagebuilder has rendered the correct files.
 
 To fix the styling, edit the wrapper file (`couch/snippets/pb/misc/theme/pb_wrapper.html`) and add a `<base>` statement as follows:
+
 ```html title="couch/snippets/pb/misc/theme/pb_wrapper.html"
 <!DOCTYPE html>
 <html>
@@ -670,6 +719,7 @@ To fix the styling, edit the wrapper file (`couch/snippets/pb/misc/theme/pb_wrap
         <base href="<cms:show k_site_link />">
         <title>Covers</title>
 ```
+
 Re-edit the block and, finally, here is the output we have been trying so hard for:
 
 ![page-builder-08.png](../../../../assets/img/contents/page-builder-08.png)
@@ -679,6 +729,7 @@ It does not show the data we inputted in the form but fixing that is staple fare
 Edit the `CR01.html` file (i.e. `couch/snippets/pb/covers/theme/CR01.html`) and replace all hardcoded values with values fetched from the editable regions we defined for this block.
 
 Original (redacted):
+
 ```html title="couch/snippets/pb/covers/theme/CR01.html"
 <h1 class="el-title">How To Create A Landing Page Video Course</h1>
 <div class="el-body">
@@ -687,7 +738,8 @@ Original (redacted):
 <div class="el-buttons">
     <div>
         <a class="uk-button uk-button-danger uk-button-large" href="#">
-        $29 Get Course</a>
+            $29 Get Course
+        </a>
     </div>
 </div>
 
@@ -695,7 +747,9 @@ Original (redacted):
     <img src="uploads/image/tutor/900/header-course.png" alt="">
 </a>
 ```
+
 After replacements:
+
 ```html title="couch/snippets/pb/covers/theme/CR01.html"
 <h1 class="el-title"><cms:show title /></h1>
 <div class="el-body">
@@ -704,7 +758,8 @@ After replacements:
 <div class="el-buttons">
     <div>
         <a class="uk-button uk-button-danger uk-button-large" href="<cms:show button_link />">
-        <cms:show button_text /></a>
+            <cms:show button_text />
+        </a>
     </div>
 </div>
 
@@ -721,8 +776,7 @@ That completes configuring our first block. You may use it as a guide to configu
 
 Now, as I warned at the very outset, it appears to be a complex, drawn-out procedure but that really has to do with my going into fine details of each step involved.
 
-I'll next setup the 'About' set of blocks which involves the exact set of steps discussed above but this time showing only the salient points -
-hopefully, you'll see that things are not as complex as they appeared the first time around.
+I'll next setup the 'About' set of blocks which involves the exact set of steps discussed above but this time showing only the salient points and then you'll certainly realize that things are not as complex as they appeared the first time around.
 
 These steps can also be considered as an overview of the conversion procedure.
 
@@ -750,12 +804,14 @@ These steps can also be considered as an overview of the conversion procedure.
     <?php COUCH::invoke(); ?>
     ```
 
-    Notice how the code above differs from that we used in `blocks/covers.php` in only the names of the snippets (AB instead of CR).
+    Notice how the code above differs from that we used in `blocks/covers.php` in only the names of the snippets (**AB** instead of **CR**).
 
     This is just a convention but helps in keeping things manageable.
 
 2. Since the mosaic above is defining only two blocks (AB01 and AB02), we create empty snippet files by the same names within `about/embed` and `about/theme` sub-folders of our `snippets/pb` folder:
+
     <FileTree>
+
     - snippets
         - pb
             - about
@@ -771,7 +827,9 @@ These steps can also be considered as an overview of the conversion procedure.
             - misc
                 - embed/
                 - theme/
+
     </FileTree>
+    
 3. Place the definition of all editable regions used by the two blocks in their snippets within `embed` folder above.
 4. Place the markup code used by the blocks in their snippets within `theme` folder above (no need for the 'wrapper' as it is already present).
 </Steps>
