@@ -1,6 +1,6 @@
 ---
-title: Installation
-description: Learn how to install CouchCMS on your web server in just a few simple steps.
+title: "Installation"
+description: "Learn how to install CouchCMS on your web server in just a few simple steps."
 keywords:
     - CouchCMS
     - installation guide
@@ -8,7 +8,7 @@ keywords:
     - step-by-step installation
     - web server setup
 category: getting-started
-author: Kamran Kashif
+author: "Kamran Kashif"
 lastUpdated: 2025-03-27
 ---
 
@@ -17,6 +17,7 @@ import { FileTree, Steps } from '@astrojs/starlight/components';
 CouchCMS is a user-friendly and powerful Content Management System (CMS) perfect for small to medium-sized projects. Below, you'll learn how to install CouchCMS on your web server in just a few simple steps.
 
 ### Requirements
+
 Before getting started, make sure your server meets the following requirements:
 
 1. **PHP**: Version 5.0.0 or higher
@@ -30,6 +31,7 @@ A more pragmatic approach would be to use [XAMPP](https://www.apachefriends.org/
 :::
 
 ### Step 1: Download CouchCMS
+
 <Steps>
 1. Visit the official website: [couchcms.com](https://www.couchcms.com).
 2. Download the latest version of CouchCMS.
@@ -37,7 +39,9 @@ A more pragmatic approach would be to use [XAMPP](https://www.apachefriends.org/
 You can also download the latest version from [GitHub](https://github.com/couchcms/couchcms/releases).
 
 ### Step 2: Upload to Your Server
+
 <Steps>
+
 1. Extract the downloaded ZIP file.
 2. You'll get a folder named `couch` containing the following files:
 
@@ -90,7 +94,7 @@ You can also download the latest version from [GitHub](https://github.com/couchc
     - uploader.php
     </FileTree>
 
-3. Upload the contents to your desired folder on your server. For example: 
+3. Upload the contents to your desired folder on your server. For example:
 
     <FileTree>
     - www
@@ -120,28 +124,35 @@ This will create a new directory called `mywebsite` and clone the CouchCMS repos
 :::
 
 ### Step 3: Set Up a MySQL Database
+
 <Steps>
+
 1. Create a new database via your hosting panel or using a local tool like phpMyAdmin.
-   
+
    **Using Hosting Panel:**
-   - Log in to your hosting panel (e.g., cPanel, Plesk).
-   - Navigate to the MySQL Databases section.
-   - Create a new database by entering a name and clicking the "Create Database" button.
-   - Create a new database user and assign it to the database with all privileges.
+
+- Log in to your hosting panel (e.g., cPanel, Plesk).
+- Navigate to the MySQL Databases section.
+- Create a new database by entering a name and clicking the "Create Database" button.
+- Create a new database user and assign it to the database with all privileges.
 
    **Using phpMyAdmin:**
-   - Open phpMyAdmin in your browser (usually accessible via `http://localhost/phpmyadmin` if working locally).
-   - Click on the "Databases" tab.
-   - Enter a name for your new database in the "Create database" field and click "Create".
-   - Go to the "User accounts" tab to create a new user.
-   - Click "Add user account", fill in the username and password, and select "Create database with same name and grant all privileges".
+
+- Open phpMyAdmin in your browser (usually accessible via `https://localhost/phpmyadmin` if working locally).
+- Click on the "Databases" tab.
+- Enter a name for your new database in the "Create database" field and click "Create".
+- Go to the "User accounts" tab to create a new user.
+- Click "Add user account", fill in the username and password, and select "Create database with same name and grant all privileges".
 
 2. Note down the database name, username, password, and server address (often `localhost`).
+
 </Steps>
 
 ### Step 4: Configure CouchCMS
+
 <Steps>
-1. Rename the file named `config.example.php` to `config.php`, located in the `couch` folder. 
+
+1. Rename the file named `config.example.php` to `config.php`, located in the `couch` folder.
 2. Open it in your text editor and find the following lines:
 
     ```php title="couch/config.php" "database_name" "database_username" "database_password" "localhost"
@@ -161,14 +172,17 @@ This will create a new directory called `mywebsite` and clone the CouchCMS repos
     ```
 
 3. Change the values to match those of your MySQL database.
+
 </Steps>
 
 ### Step 5: Run the Installation
+
 <Steps>
-1. Open your browser and go to: 
+
+1. Open your browser and go to:
 
     ```
-    http://yourdomain.com/couch
+    https://yourdomain.com/couch
     ```
 
 2. You'll see the CouchCMS installation screen. Couch will sense that installation is required and will display the following form for you to fill:
@@ -209,7 +223,9 @@ This will create a new directory called `mywebsite` and clone the CouchCMS repos
 With Couch installed you can now begin porting your files to it.
 
 ### Step 6: Integrate CouchCMS with Your HTML
+
 <Steps>
+
 1. To integrate CouchCMS with your existing website, follow these steps for each HTML file you want to manage with CouchCMS:
    - Rename your `.html` or `.htm` files to `.php`. For example, if you have a file named `about.html`, rename it to `about.php`.
    - Open the renamed `.php` file in a text editor and add the following line of PHP code at the very top of the file:
