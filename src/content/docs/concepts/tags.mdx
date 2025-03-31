@@ -12,7 +12,7 @@ lastUpdated: 2025-03-20
 In Couch, tags are what make things happen.
 
 The tags have been modeled after XML tags and hence should appear familiar to you.
-Similar to the XML tags, a Couch tag is either _self-closing_ or consists of a _start-tag/end-tag_ pair.
+Similar to the XML tags, a Couch tag is either *self-closing* or consists of a *start-tag/end-tag* pair.
 
 ## Self-Closing Tags
 
@@ -34,13 +34,13 @@ This is how a typical paired tag looks like:
 
 Everything between the start-tag and the end-tag is considered to be the input for the paired tag.
 
-Every Couch tag begins with `<cms:` followed by the tag's name (_show_ and _repeat_ in the examples above).
+Every Couch tag begins with `<cms:` followed by the tag's name (`show` and `repeat` in the examples above).
 The name may be followed by zero to any number of parameters (this depends on the tag in question).
 
 Depending upon the parameters and the input, a tag executes some function (e.g. modify the input, create a folder or fetch content from somewhere). If the action results in any displayable output, the tag returns back this output else it returns back a blank.
 
 :::note
-When a template containing Couch tags gets finally rendered in a browser, each of the tag is replaced by its individual output. 
+When a template containing Couch tags gets finally rendered in a browser, each of the tag is replaced by its individual output.
 Therefore, a Couch tag will never appear in the HTML that is returned to the browser.
 :::
 
@@ -52,7 +52,7 @@ Parameters are used to modify a tag's behaviour. They provide the tag with speci
 <cms:show 'Hello World' />
 ```
 
-In the following example, '4' is the parameter and it is the number of times that the [**repeat**](../../tags-reference/repeat/) tag will repeat the contents enclosed by it.
+In the following example, `4` is the parameter and it is the number of times that the [**repeat**](../../tags-reference/repeat/) tag will repeat the contents enclosed by it.
 
 ```php
 <cms:repeat count='4'>
@@ -62,9 +62,9 @@ In the following example, '4' is the parameter and it is the number of times tha
 
 ## Named and Unnamed Parameters
 
-Please notice that in the second example above, we are explicitly naming the parameter (_count='4'_ - where 'count' is the name and '4' is the value of the parameter), whereas in the first example the parameter was passed unnamed.
+Please notice that in the second example above, we are explicitly naming the parameter (`count='4'` - where `count` is the name and `4` is the value of the parameter), whereas in the first example the parameter was passed unnamed.
 
-In Couch, naming the parameters is entirely optional but then you'll have to make sure that you pass the parameters in the exact sequence the tag expects them in. Thus, for example, [**repeat**](../../tags-reference/repeat/) tag can take two parameters _count_ and _startcount_ where _startcount_ is expected to be the second parameter. If we explicitly name the parameters, e.g.:
+In Couch, naming the parameters is entirely optional but then you'll have to make sure that you pass the parameters in the exact sequence the tag expects them in. Thus, for example, [**repeat**](../../tags-reference/repeat/) tag can take two parameters `count` and `startcount` where `startcount` is expected to be the second parameter. If we explicitly name the parameters, e.g.:
 
 ```php
 <cms:repeat count='4' startcount='1'></cms:repeat>
