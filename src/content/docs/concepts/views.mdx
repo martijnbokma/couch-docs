@@ -1,11 +1,18 @@
 ---
-title: Views
-description: Understanding the different views in CouchCMS - List View, Page View, Folder View, and Archive View
-keywords: [views, list view, page view, folder view, archive view, templates, CouchCMS]
+title: "Views"
+description: "Understanding the different views in CouchCMS - List View, Page View, Folder View, and Archive View"
+keywords:
+    - views
+    - list view
+    - page view
+    - folder view
+    - archive view
+    - templates
+    - CouchCMS
 category: concept
 sidebar:
     order: 7
-author: Kamran Kashif
+author: "Kamran Kashif"
 lastUpdated: 2025-03-20
 ---
 
@@ -18,6 +25,7 @@ To recap -
 Suppose we have a template named `blog.php`.
 
 The simplest case is when this template has not yet been set as clonable (i.e. having similar pages created out of it). No views are associated with this page. The only possible way to execute this page is:
+
 ```txt
 https://www.yoursite.com/blog.php
 ```
@@ -26,7 +34,9 @@ However, once `blog.php` is set as being clonable there can be multiple pages th
 Obviously, we now have at least two scenarios `blog.php` may be executed in:
 
 <Steps>
+
 1. `blog.php` itself is executed:
+
     ```txt "blog.php"
     https://www.mysite.com/blog.php
     ```
@@ -36,13 +46,17 @@ Obviously, we now have at least two scenarios `blog.php` may be executed in:
     ```
 
 2. A page created out of `blog.php` is executed:
+
     ```txt "blog.php?p=12"
     https://www.mysite.com/blog.php?p=12
     ```
+
     or with pretty-urls activated:
+
     ```txt "blog/some_page_name.html"
     https://www.mysite.com/blog/some_page_name.html
     ```
+
 </Steps>
 
 In the first scenario, `blog.php` is said to be executing in **list view** while in the second case it is said to be executing in **page view**.
@@ -56,10 +70,12 @@ Couch simply sets certain variables to make it known to your script which view i
 :::
 
 Couch further supports two special URLs that are meant to list pages belonging to a particular folder or to a particular time period.
-Thus the _list view_ can be further categorized into two final views:
+Thus the *list view* can be further categorized into two final views:
 
 <Steps>
+
 1. **Folder view** - while listing pages belonging to a particular folder:
+
     ```txt "blog.php?f=3"
     https://www.mysite.com/blog.php?f=3
     ```
@@ -69,13 +85,17 @@ Thus the _list view_ can be further categorized into two final views:
     ```
 
 2. **Archive view** - while listing pages belonging to a particular time period:
+
     ```txt "blog.php?d=201005"
     https://www.mysite.com/blog.php?d=201005
     ```
+
     or with pretty-urls activated:
+
     ```txt "blog/2010/05/"
     https://www.mysite.com/blog/2010/05/
     ```
+
 </Steps>
 
 :::tip
@@ -89,23 +109,27 @@ Once again, while accessing pages through these URLs, it is expected that you'll
 The following variables are set by Couch for your script to know the view it is executing in:
 
 ### Page View
+
 ```php
 $k_is_page = '1';
 ```
 
 ### List View
+
 ```php
 $k_is_list = '1';
 $k_is_home = '1';
 ```
 
 ### Folder View
+
 ```php
 $k_is_list = '1';
 $k_is_folder = '1';
 ```
 
 ### Archive View
+
 ```php
 $k_is_list = '1';
 $k_is_archive = '1';
@@ -115,7 +139,7 @@ $k_is_year = '1';   // if yearly archive
 ```
 
 :::note
-Notice how the variable `$k_is_home` gets set only when `blog.php` gets executed in a simple _List view_ that is neither a _Folder view_ nor an _Archive view_. We can call this view - the **Home view**.
+Notice how the variable `$k_is_home` gets set only when `blog.php` gets executed in a simple *List view* that is neither a *Folder view* nor an *Archive view*. We can call this view - the **Home view**.
 :::
 
 ## Example URLs and Their Views
@@ -123,36 +147,44 @@ Notice how the variable `$k_is_home` gets set only when `blog.php` gets executed
 Taking the example of `blog.php`, notice how the views and variables change according to the URL used to access it:
 
 ### Home View
+
 ```txt "blog/"
 https://www.mysite.com/blog/
 ```
+
 ```php
 $k_is_list = 1;
 $k_is_home = 1;
 ```
 
 ### Folder View
+
 ```txt "blog/some_subfolder/"
 https://www.mysite.com/blog/some_subfolder/
 ```
+
 ```php
 $k_is_list = 1;
 $k_is_folder = 1;
 ```
 
 ### Archive View
+
 ```txt "blog/2010/05/"
 https://www.mysite.com/blog/2010/05/
 ```
+
 ```php
 $k_is_list = 1;
 $k_is_archive = 1;
 ```
 
 ### Page View
+
 ```txt "blog/some_page_name.html"
 https://www.mysite.com/blog/some_page_name.html
 ```
+
 ```php
 $k_is_page = 1;
 ```
@@ -194,5 +226,6 @@ Or a simpler version:
 ## Related Topics
 
 Please see:
+
 - [Variables Available in Views](../variables-in-views) for a comprehensive list of variables that become available during the different views
 - [Listing Pages](../listing-pages) for how to list pages in concordance to the views
