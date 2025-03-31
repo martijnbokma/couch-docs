@@ -1,11 +1,16 @@
 ---
-title: RSS Feeds
-description: Learn how to create and configure RSS feeds in CouchCMS for content syndication
-keywords: [RSS, feeds, syndication, XML, content distribution]
+title: "RSS Feeds"
+description: "Learn how to create and configure RSS feeds in CouchCMS for content syndication"
+keywords:
+    - RSS
+    - feeds
+    - syndication
+    - XML
+    - content distribution
 category: concept
 sidebar:
     order: 21
-author: Kamran Kashif
+author: "Kamran Kashif"
 lastUpdated: 2025-03-20
 ---
 
@@ -73,9 +78,10 @@ Rename the `rss.xml` file to `rss.php` and add the usual PHP code that hooks Cou
 This conversion of the xml file to a php file is essential for Couch but it will raise two problems that we'll need to solve before going ahead:
 
 <Steps>
+
 1. The `<?` and `?>` in the line `<?xml version="1.0"?>` will cause PHP to throw a parsing error because those characters mislead PHP into believing that the line is a php statement, which it is not.
 
-2. The web server always sends back to the browser the mime-type of any file that it is serving to fulfill the browser's request. The mime-type of an XML file should be `text/xml` but the new '.php' extension causes the web server to send back the default `text/html` mime-type, which will be rejected by the browser.
+2. The web server always sends back to the browser the mime-type of any file that it is serving to fulfill the browser's request. The mime-type of an XML file should be `text/xml` but the new `.php` extension causes the web server to send back the default `text/html` mime-type, which will be rejected by the browser.
 </Steps>
 
 The first problem can be rectified by breaking up the XML statement in a way that it does not confuse PHP.
@@ -86,7 +92,7 @@ The following snippet using Couch's [**concat**](../../tags-reference/concat/) t
 ```
 
 :::note
-The *k_site_charset* variable contains the value set in `config.php` for the character set used by your web-site.
+The `k_site_charset` variable contains the value set in `config.php` for the character set used by your web-site.
 :::
 
 The second problem can be rectified by using Couch's [**content_type**](../../tags-reference/content_type/) tag. This tag instructs the web server to output the desired mime-type. We'll use it to output `text/xml`.
@@ -158,9 +164,9 @@ We can now fetch the news items from the `news.php` template by using [**pages**
 <?php COUCH::invoke(); ?>
 ```
 
-We are assuming that an editable field named *my_news_text* contains the news text.
-The [__*excerptHTML*__](../../tags-reference/excerpthtml/) tag can be used to output only an excerpt of your page.
-We need to wrap the output within [__*html_encode*__](../../tags-reference/html_encode/) to encode certain characters that are not valid in XML.
+We are assuming that an editable field named `my_news_text` contains the news text.
+The [***excerptHTML***](../../tags-reference/excerpthtml/) tag can be used to output only an excerpt of your page.
+We need to wrap the output within [***html_encode***](../../tags-reference/html_encode/) to encode certain characters that are not valid in XML.
 
 And that is it. Your automated RSS feed is ready.
 Modify the snippet to suit your web-site's needs.
