@@ -1,11 +1,15 @@
 ---
-title: Photo Gallery
-description: Learn how to create and manage photo galleries in CouchCMS using multiple image upload functionality
-keywords: [photo gallery, image upload, gallery management, EXIF data]
+title: "Photo Gallery"
+description: "Learn how to create and manage photo galleries in CouchCMS using multiple image upload functionality"
+keywords:
+    - photo gallery
+    - image upload
+    - gallery management
+    - EXIF data
 category: concept
 sidebar:
     order: 25
-author: Kamran Kashif
+author: "Kamran Kashif"
 lastUpdated: 2025-03-20
 ---
 
@@ -18,10 +22,12 @@ In all fairness, it has always been possible to create functional image gallerie
 The workflow could go something like this:
 
 <Steps>
+
 1. Create a clonable template
-2. Define (at least) two editable regions - one of type 'image' for the main image and another of type 'thumbnail' that is associated with the main image.
+2. Define (at least) two editable regions - one of type `image` for the main image and another of type `thumbnail` that is associated with the main image.
 3. Add images to the gallery by creating a cloned page for each image. The folders may be used to create individual albums.
-4. Finally display the gallery on the website by using the cms:pages tag.
+4. Finally display the gallery on the website by using the `cms:pages` tag.
+
 </Steps>
 
 The method outlined above works but the step number 3 of manually creating a page each for every gallery item is what quickly proves to be tedious. This is especially so for albums those are required to be created by adding a large number of images at the same time.
@@ -45,7 +51,7 @@ We use the regular method of declaring the template as clonable:
 
 Notice that we are also declaring the template as using dynamic folders because those will be used for creating albums.
 
-Now comes the new part in this step. We add a new parameter to this declaration -
+Now comes the new part in this step. We add a new parameter to this declaration:
 
 ```php
 <cms:template title='Gallery' clonable='1' dynamic_folders='1' gallery='1'>
@@ -53,7 +59,7 @@ Now comes the new part in this step. We add a new parameter to this declaration 
 </cms:template>
 ```
 
-By adding **gallery='1'**, we inform Couch that template will require special consideration.
+By adding `gallery='1'`, we inform Couch that template will require special consideration.
 
 #### 2. Define editable regions
 
@@ -90,14 +96,14 @@ Let us add the following declarations to the code above:
 
 As you can see, we are using the regular way to define the two editable regions.
 The only new part in this step is that **the gallery module expects the two regions to have specific names**.
-It is mandatory to name the region of type 'image' as **gg_image** while the region of type 'thumbnail' is required to be named as **gg_thumb**.
+It is mandatory to name the region of type `image` as `gg_image` while the region of type `thumbnail` is required to be named as `gg_thumb`.
 This is necessary because later on while automatically creating the cloned pages, Couch will populate these regions without requiring any user intervention. To do so, it will need to know the names of the regions.
 
 You can tweak all other parameters of the two regions to your fill but the names cannot be changed if Couch is to recognize them.
 You can, of course, also create as many other editable regions as you wish (e.g. a region for 'description' is a usual addition).
 
 :::tip
-The thumbnail region **gg_thumb** is used by Couch for displaying the image thumbnails in the admin panel as such it is not advised to modify the dimensions of it. You can always create another associated thumbnail region if you wish to use thumbnails of other dimensions.
+The thumbnail region `gg_thumb` is used by Couch for displaying the image thumbnails in the admin panel as such it is not advised to modify the dimensions of it. You can always create another associated thumbnail region if you wish to use thumbnails of other dimensions.
 :::
 
 To persist the changes made to the template, make the mandatory visit to the template using your browser while being logged on as the super-admin.
@@ -106,20 +112,20 @@ This will add the template to Couch admin. We are now all set to begin adding im
 #### 3. Creating cloned pages
 
 This is the step where everything is now very different.
-The first thing that you'll notice is that there is no 'add new' button in the admin-panel of this template (this is the 'gallery' parameter in action).
+The first thing that you'll notice is that there is no 'add new' button in the admin-panel of this template (this is the `gallery` parameter in action).
 Instead you have an 'Upload' button
 
 ![Photo Gallery](../../../assets/img/contents/photo-gallery-1.gif)
 
 Also notice the 'Default page' that Couch creates for all cloned templates. For a gallery, this default page is really not needed and you should 'unpublish' it. It gets shown to only the super-admin. The site-owner will never see it.
 
-Clicking on this 'Upload' button will bring up the following window
+Clicking on this 'Upload' button will bring up the following window:
 
 ![Photo Gallery](../../../assets/img/contents/photo-gallery-2.gif)
 
 This is the new mass uploader that ships with Couch.
 Click on the 'Add images' button at the bottom of it and select multiple images from your local machine (you can also drag-n-drop if your browser supports the facility).
-Once all the images are queued up, click 'Start upload'
+Once all the images are queued up, click 'Start upload':
 
 ![Photo Gallery](../../../assets/img/contents/photo-gallery-3.gif)
 
@@ -164,17 +170,17 @@ Example:
 
 Apart from all the [usual variables pertaining to a page](../variables-in-views/) made available by Couch, the following new variables are also made available for gallery pages:
 
-*   k_file_name
-*   k_file_ext
-*   k_file_size
+- `k_file_name`
+- `k_file_ext`
+- `k_file_size`
 
 As the names of the variables suggest, they show meta data about the uploaded image.
 
-For gallery pages, the [**cms:pages**](../../tags-reference/pages/) tag also recognizes the following new values for the **orderby** parameter. These can be helpful in ordering the listing of images according to the meta data of the images.
+For gallery pages, the [**cms:pages**](../../tags-reference/pages/) tag also recognizes the following new values for the `orderby` parameter. These can be helpful in ordering the listing of images according to the meta data of the images.
 
-*   file_name
-*   file_ext
-*   file_size
+- `file_name`
+- `file_ext`
+- `file_size`
 
 ## EXIF data
 
@@ -182,61 +188,62 @@ EXIF (Exchangeable image file) format is a specification for image files used by
 Couch can extract this data from uploaded images and make it available as simple variables.
 
 :::note
-As this addition is more likely to be useful to only professional photographers, it is turned off by default. To turn this feature on, please set the following directive in `config.php` to '1':
+As this addition is more likely to be useful to only professional photographers, it is turned off by default. To turn this feature on, please set the following directive in `config.php` to `1`:
 
 ```php title="config.php"
 // 25
 // Set the following to '1' if you wish to extract EXIF data from images uploaded to Gallery
 define( 'K_EXTRACT_EXIF_DATA', 0 );
 ```
+
 :::
 
 Following is the complete list of variables that may become available (depending on their presence in the image):
 
-*   exif_aperture
-*   exif_color
-*   exif_componentconfig
-*   exif_jpegquality
-*   exif_exifcomment
-*   exif_contrast
-*   exif_copyright
-*   exif_customrendered
-*   exif_datetime
-*   exif_datetimedigitized
-*   exif_zoomratio
-*   exif_distancerange
-*   exif_height
-*   exif_width
-*   exif_exifversion
-*   exif_exposurebias
-*   exif_exposuremode
-*   exif_exposure
-*   exif_exposuretime
-*   exif_fnumber
-*   exif_flashused
-*   exif_flashpixversion
-*   exif_focallength
-*   exif_focusdistance
-*   exif_gaincontrol
-*   exif_isoequiv
-*   exif_make
-*   exif_meteringmode
-*   exif_model
-*   exif_orientation
-*   exif_jpegquality
-*   exif_resolution
-*   exif_resolutionunit
-*   exif_saturation
-*   exif_screencapturetype
-*   exif_sharpness
-*   exif_software
-*   exif_whitebalance
-*   exif_ycbcrpositioning
-*   exif_xresolution
-*   exif_yresolution
+- `exif_aperture`
+- `exif_color`
+- `exif_componentconfig`
+- `exif_jpegquality`
+- `exif_exifcomment`
+- `exif_contrast`
+- `exif_copyright`
+- `exif_customrendered`
+- `exif_datetime`
+- `exif_datetimedigitized`
+- `exif_zoomratio`
+- `exif_distancerange`
+- `exif_height`
+- `exif_width`
+- `exif_exifversion`
+- `exif_exposurebias`
+- `exif_exposuremode`
+- `exif_exposure`
+- `exif_exposuretime`
+- `exif_fnumber`
+- `exif_flashused`
+- `exif_flashpixversion`
+- `exif_focallength`
+- `exif_focusdistance`
+- `exif_gaincontrol`
+- `exif_isoequiv`
+- `exif_make`
+- `exif_meteringmode`
+- `exif_model`
+- `exif_orientation`
+- `exif_jpegquality`
+- `exif_resolution`
+- `exif_resolutionunit`
+- `exif_saturation`
+- `exif_screencapturetype`
+- `exif_sharpness`
+- `exif_software`
+- `exif_whitebalance`
+- `exif_ycbcrpositioning`
+- `exif_xresolution`
+- `exif_yresolution`
 
 These variables, however, are not available for direct use.
-To get to them, you need to make use of a new tag named 'exif'. The usage is simply:
+To get to them, you need to make use of a new tag named `exif`. The usage is simply:
 
 ```php
 <cms:pages masterpage="gallery.php" include_subfolders='0' >
@@ -253,7 +260,7 @@ To get to them, you need to make use of a new tag named 'exif'. The usage is sim
 </cms:pages>
 ```
 
-As can be seen, the 'exif' tag makes available all the Exif data within its opening and closing tags.
+As can be seen, the `exif` tag makes available all the Exif data within its opening and closing tags.
 
 :::danger[A note of caution here]
 The GD library used on the server side (by Couch as well as most other scripts) for image manipulation has the property of discarding away the Exif data for good from the image being manipulated (resized for example).
@@ -279,7 +286,10 @@ To jump-start your development, here is a complete sample gallery template that 
 ## Summary
 
 To sum up, to use the new gallery feature you are only required making the following changes:
+
 <Steps>
-1. Declare your clonable template with the **gallery** attribute.
-2. Declare an editable region of type 'image' with the name **gg_image** and an associated editable region of type thumbnail with the name **gg_thumb**.
+
+1. Declare your clonable template with the `gallery` attribute.
+2. Declare an editable region of type 'image' with the name `gg_image` and an associated editable region of type thumbnail with the name `gg_thumb`.
+
 </Steps>
