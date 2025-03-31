@@ -1,20 +1,25 @@
 ---
-title: cloak_email
+title: "cloak_email"
+description: "The cloak_email tag can be used to hide email addresses from spambots using JavaScript encryption."
+keywords:
+  - cloak_email
+  - CouchCMS
+  - Couch
+  - tags
+  - PHP
 category: tag
-description: The cloak_email tag can be used to hide email addresses from spambots using JavaScript encryption.
-keywords: [cloak_email, CouchCMS, Couch, tags, PHP]
-author: Kamran Kashif
+author: "Kamran Kashif"
 lastUpdated: 2025-03-27
 ---
 
-The **cloak_email** tag can be used to hide email addresses from spambots (email harvesters).
+The `cloak_email` tag can be used to hide email addresses from spambots (email harvesters).
 This tag creates a JavaScript encrypted mailto link that remains inaccessible to spambots.
 
 ```php
 <cms:cloak_email 'johndoe@gmail.com' />
 ```
 
-The code above will produce the following HTML but only if accessed using JavaScript -
+The code above will produce the following HTML but only if accessed using JavaScript:
 
 ```php
 <a href="mailto:johndoe@gmail.com">johndoe@gmail.com</a>
@@ -38,7 +43,7 @@ The email address to cloak.
 
 ### title
 
-The visible text of the mailto link. If skipped, the _email_ parameter is used for the title too.
+The visible text of the mailto link. If skipped, the `email` parameter is used for the title too.
 
 ```php
 <cms:cloak_email email='johndoe@gmail.com' title='Contact Me!' />
@@ -46,8 +51,11 @@ The visible text of the mailto link. If skipped, the _email_ parameter is used f
 
 ### msg
 
-Message to display if this email is accessed with JavaScript disabled. If skipped, the default text shown is -
-'_(Please enable JavaScript to view this email address)_'
+Message to display if this email is accessed with JavaScript disabled. If skipped, the default text shown is:
+
+```txt
+*(Please enable JavaScript to view this email address)*
+```
 
 ```php
 <cms:cloak_email email='johndoe@gmail.com' title='Contact Me!' msg='No JavaScript ?!!' />
