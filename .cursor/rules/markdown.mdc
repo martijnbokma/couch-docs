@@ -25,9 +25,9 @@ keywords:
     - keyword 1
     - keyword 2
     - keyword 3
-category: tutorial
-subCategory: advanced-tutorial
-author: Kamran Kashif
+category: tag
+subCategory: editable
+author: First Last
 lastUpdated: YYYY-MM-DD
 sidebar:
     order: N
@@ -36,16 +36,25 @@ sidebar:
 
 #### Notes:
 
-- Use quotes for all string values (`title`, `description`, `author`)
-- For tag references, the title must be lowercase and match the tag name exactly (e.g., "content_type", "thumbnail")
+- Use quotes for string values that:
+    - Contain special characters (`:`, `-`, etc.)
+    - Are part of the document content (`title`, `description`)
+- Do NOT use quotes for:
+    - Keywords in the list
+    - Category and subCategory values
+    - Author names
+    - Dates
+    - Numbers
+    - Boolean values
+- For tag references, the title must match the tag syntax exactly (e.g., "type = 'thumbnail'", "content_type")
 - Indent nested properties with 4 spaces for consistency
 - List `keywords` as individual items with 4 space indentation
 - `subCategory` is required for tutorials, optional for other categories
 - `sidebar.order` determines the position in navigation (lower numbers appear first)
 - Description must be 50-160 characters
 - Include at least 3 relevant keywords
-- Author must be in "First Last" format with quotes
-- Date must be in YYYY-MM-DD format (no quotes needed)
+- Author must be in First Last format
+- Date must be in YYYY-MM-DD format
 
 ### 1.2 Import Statements
 
