@@ -73,7 +73,7 @@ A cleaner approach would be to place the code for menu in a separate snippet and
 We'll take this approach.
 
 Cut the code we have been working on above, paste it into a file and save the file as `header.html` in the `snippets` folder of Couch.
-Embed the following code at all the seven locations we mentioned -
+Embed the following code at all the seven locations we mentioned:
 
 ```php
 <cms:embed 'header.html' />
@@ -85,7 +85,7 @@ That is not surprising as the code we embedded had the `class="current"` string 
 To rectify the situation, let us now modify the embedded `header.html`.
 We'll place some simple conditional tags to check for the current template and then output the `class="current"` within the right menu item.
 The variable to check is the `k_template_name` that is always set by Couch to indicate the template being used.
-The modified code -
+The modified code:
 
 ```diff lang="php" "<cms:if k_template_name=='contact.php'>"
 <!-- Text Logo -->
