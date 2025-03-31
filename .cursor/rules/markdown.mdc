@@ -19,7 +19,7 @@ Every document MUST begin with frontmatter containing these required fields:
 
 ```markdown title="Required Frontmatter Structure"
 ---
-title: "Document Title"
+title: Document Title
 description: "A clear, concise description of the document"
 keywords:
     - keyword 1
@@ -36,17 +36,20 @@ sidebar:
 
 #### Notes:
 
-- Use quotes for string values that:
-    - Contain special characters (`:`, `-`, etc.)
-    - Are part of the document content (`title`, `description`)
+- Use quotes ONLY for values that:
+    - Contain special characters (`:`, `-`, `=`, `'`, etc.)
+    - Contain multiple sentences or punctuation
 - Do NOT use quotes for:
+    - Simple titles (e.g., content_type)
     - Keywords in the list
     - Category and subCategory values
     - Author names
     - Dates
     - Numbers
     - Boolean values
-- For tag references, the title must match the tag syntax exactly (e.g., "type = 'thumbnail'", "content_type")
+- For tag references:
+    - Simple tag names should be unquoted (e.g., content_type)
+    - Complex tag syntax must be quoted (e.g., "type = 'thumbnail'")
 - Indent nested properties with 4 spaces for consistency
 - List `keywords` as individual items with 4 space indentation
 - `subCategory` is required for tutorials, optional for other categories
