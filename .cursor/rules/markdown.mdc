@@ -36,14 +36,16 @@ sidebar:
 
 #### Notes:
 
-- Use quotes for `title` and `description` to prevent YAML parsing issues
+- Use quotes for all string values (`title`, `description`, `author`)
+- For tag references, the title must be lowercase and match the tag name exactly (e.g., "content_type", "thumbnail")
 - Indent nested properties with 4 spaces for consistency
+- List `keywords` as individual items with 4 space indentation
 - `subCategory` is required for tutorials, optional for other categories
 - `sidebar.order` determines the position in navigation (lower numbers appear first)
 - Description must be 50-160 characters
 - Include at least 3 relevant keywords
-- Author must be in "First Last" format
-- Date must be in YYYY-MM-DD format
+- Author must be in "First Last" format with quotes
+- Date must be in YYYY-MM-DD format (no quotes needed)
 
 ### 1.2 Import Statements
 
