@@ -23,7 +23,7 @@ Shortcodes are little pieces of text that look like these:
 
 These codes can be inserted by the end user within the content that he enters into any editable region e.g. into the richtext box or the textarea.
 
-When a webpage containing this content gets output to the browser, Couch **expands** these shortcodes to replace them with whatever markup has been configured by the developer/designer who created these shortcodes. This could be, for example, the _adsense code_, code that creates a _Google map_, the embed code for _Youtube video_ or simply a `<div>` element with a particular background color that encloses the content entered by the user. In a way, shortcodes function as **macros**.
+When a webpage containing this content gets output to the browser, Couch **expands** these shortcodes to replace them with whatever markup has been configured by the developer/designer who created these shortcodes. This could be, for example, the *adsense code*, code that creates a *Google map*, the embed code for *Youtube video* or simply a `<div>` element with a particular background color that encloses the content entered by the user. In a way, shortcodes function as **macros**.
 
 Shortcodes provide a handy way for the designer to grant his client (the end user) the ability to inject arbitrary code anywhere within his content. This couldn't have otherwise been possible or would have been too difficult for the user.
 
@@ -106,7 +106,7 @@ If the end user is supposed to be inserting shortcodes within this editable regi
 <cms:do_shortcodes><cms:show my_content /></cms:do_shortcodes>
 ```
 
-In the code above we are wrapping the **show** tag with the newly introduced **do_shortcodes** tag. The **do_shortcodes** tag actually does all the heavy lifting associated with shortcodes. It parses out the content enclosed within it, searches out all registered shortcodes and replaces them with their associated values by executing their handler functions.
+In the code above we are wrapping the `show` tag with the newly introduced `do_shortcodes` tag. The `do_shortcodes` tag actually does all the heavy lifting associated with shortcodes. It parses out the content enclosed within it, searches out all registered shortcodes and replaces them with their associated values by executing their handler functions.
 
 And that's it. Now if the user places the following shortcode anywhere within the `my_content` editable region:
 
@@ -122,7 +122,7 @@ it gets expanded to:
 
 ## Creating Shortcodes with Enclosed Contents
 
-The shortcode we created above was a self-enclosing one. We can also create shortcodes that consist of the opening/closing tag pair. Such tags then can be used to enclose contents e.g.
+The shortcode we created above was a self-enclosing one. We can also create shortcodes that consist of the opening/closing tag pair. Such tags then can be used to enclose contents e.g.:
 
 ```php title="Shortcode with Content"
 [hello]What's up?[/hello]
@@ -231,15 +231,15 @@ An example of how the parameters should ideally be handled is as follows:
 $FUNCS->register_shortcode( 'googlemap', 'googlemap_handler' );
 
 function googlemap_handler( $params, $content=null ){
-    global $FUNCS;
+   global $FUNCS;
 
-    extract( $FUNCS->get_named_vars(array(
-       'src' => '',
-       'width' => '425',
-       'height' => '350'
-    ), $params) );
+   extract( $FUNCS->get_named_vars(array(
+      'src' => '',
+      'width' => '425',
+      'height' => '350'
+   ), $params) );
 
-    return '<iframe width="'.$width.'" height="'.$height.'" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="'.$src.'&output=embed"></iframe>';
+   return '<iframe width="'.$width.'" height="'.$height.'" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="'.$src.'&output=embed"></iframe>';
 }
 ```
 
