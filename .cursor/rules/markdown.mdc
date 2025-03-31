@@ -355,6 +355,8 @@ Use for critical warnings that could cause data loss
 - Keep content concise and focused
 - Use appropriate type for the content
 - Leave one blank line before and after
+- Don't nest admonitions
+- Use consistent formatting inside
 
 ### 2.10 Whitespace and Spacing
 
@@ -406,29 +408,323 @@ This was changed in `v2.1.1` to improve performance.
 #### Table Formatting
 
 - Use standard markdown table syntax
-- Include header row
-- Align columns appropriately:
-    - Left-align text (`:---)`)
-    - Right-align numbers (`---:`)
-    - Center-align headers (`:-:`)
+- Left-align text columns (`:---`)
+- Right-align number columns (`---:`)
+- Center-align headers (`:-:`)
 - Add blank lines before and after tables
+- Use consistent column widths where possible
+- Use backticks for code/technical terms in cells
+- Use bold (\*\*) for section headers in first column
+- Keep cells concise and readable
+- Avoid empty cells, use `-` if truly empty
+- Don't use escape characters unless necessary
+- For ranges use `x` through `y` format
+- For examples use `example:` prefix
 
 Example:
 
 ```markdown title="Table Format Example"
-| Name     | Type    | Default | Description       |
-| :------- | :------ | ------: | :---------------- |
-| size     | number  |      10 | Input field size  |
-| required | boolean |   false | Is field required |
-| type     | string  |    text | Input field type  |
+| Format   | Description                | Example values    |
+| :------- | :------------------------- | :---------------- |
+| **Time** |                            |                   |
+| `%H`     | Hours in 24-hour format    | `00` through `23` |
+| `%M`     | Minutes with leading zeros | `00` through `59` |
 ```
 
-#### Table Best Practices
+### 2.13 Technical Terms
 
-- Keep tables simple and readable
-- Use consistent column widths
-- Add header row separators
-- Use proper alignment for data types
+When referring to technical elements:
+
+- Use backticks (`) for:
+    - Variables: `my_var`
+    - Parameters: `width`
+    - File paths: `views/template.php`
+    - Code snippets: `echo $value`
+    - HTML tags: `<div>`
+    - Attributes: `class="example"`
+    - Commands: `php -v`
+- Use bold (\*\*) for:
+    - Section headers
+    - Important notes
+    - Warnings
+- Never mix formatting styles (e.g., don't use both \* and ` for same term)
+- Be consistent with formatting throughout the document
+
+### 2.14 Code Examples
+
+For code blocks:
+
+- Always specify the language
+- Add descriptive titles
+- Keep examples concise but complete
+- Include comments where helpful
+- Use consistent indentation
+- Remove trailing whitespace
+- Format according to language conventions
+- For partial code, use language-appropriate comment style:
+    ```php title="PHP Comment Style"
+    // ... existing code ...
+    ```
+    ```html title="HTML Comment Style"
+    <!-- ... existing code ... -->
+    ```
+    ```css title="CSS Comment Style"
+    /* ... existing code ... */
+    ```
+
+### 2.15 Lists
+
+For all types of lists:
+
+- Use `-` for unordered lists
+- Use proper indentation (4 spaces)
+- Keep items parallel in structure
+- End each item with appropriate punctuation
+- Group related items together
+- Use blank lines between groups
+- For nested lists, align bullets:
+    ```markdown
+    - Main item
+        - Sub item
+        - Another sub
+    - Next main item
+    ```
+
+### 2.16 Links and References
+
+For links and references:
+
+- Use descriptive link text
+- Avoid "click here" or "this link"
+- Use relative paths for internal links
+- Include file extensions
+- Group related links together
+- For external links, include protocol (https://)
+- Format:
+    ```markdown
+    [Descriptive Text](path/to/file.html)
+    ```
+
+### 2.17 Admonitions
+
+Use specific admonition types for different purposes:
+
+```markdown title="Note Example"
+:::note[About Feature]
+Use for additional information and context
+:::
+```
+
+```markdown title="Tip Example"
+:::tip[Best Practice]
+Use for best practices and recommendations
+:::
+```
+
+```markdown title="Caution Example"
+:::caution[Important]
+Use for important limitations or warnings
+:::
+```
+
+```markdown title="Danger Example"
+:::danger[Critical]
+Use for critical warnings that could cause data loss
+:::
+```
+
+#### Admonition Rules:
+
+- Always include a descriptive title in square brackets
+- Keep content concise and focused
+- Use appropriate type for the content
+- Leave one blank line before and after
+- Don't nest admonitions
+- Use consistent formatting inside
+
+### 2.18 Whitespace and Spacing
+
+#### Between Sections:
+
+- Leave 2 blank lines between major sections (H2)
+- Leave 1 blank line between subsections (H3, H4)
+- Leave 1 blank line before and after code blocks
+- Leave 1 blank line before and after admonitions
+
+Example:
+
+```markdown
+## Major Section
+
+This is content.
+
+## Next Major Section
+
+### Subsection
+
+Content here.
+
+:::note
+Note content
+:::
+
+More content.
+```
+
+### 2.19 Version Numbers
+
+When referencing CouchCMS versions:
+
+- Use `v` prefix for version numbers: `v2.0`
+- Include all version components for specific releases: `v2.1.1`
+- Use `vX.X` for generic version references
+- Highlight breaking changes between major versions
+
+Example:
+
+```markdown
+Starting from `v2.0`, this feature is available.
+This was changed in `v2.1.1` to improve performance.
+```
+
+### 2.20 Tables
+
+#### Table Formatting
+
+- Use standard markdown table syntax
+- Left-align text columns (`:---`)
+- Right-align number columns (`---:`)
+- Center-align headers (`:-:`)
+- Add blank lines before and after tables
+- Use consistent column widths where possible
+- Use backticks for code/technical terms in cells
+- Use bold (\*\*) for section headers in first column
+- Keep cells concise and readable
+- Avoid empty cells, use `-` if truly empty
+- Don't use escape characters unless necessary
+- For ranges use `x` through `y` format
+- For examples use `example:` prefix
+
+Example:
+
+```markdown title="Table Format Example"
+| Format   | Description                | Example values    |
+| :------- | :------------------------- | :---------------- |
+| **Time** |                            |                   |
+| `%H`     | Hours in 24-hour format    | `00` through `23` |
+| `%M`     | Minutes with leading zeros | `00` through `59` |
+```
+
+### 2.21 Technical Terms
+
+When referring to technical elements:
+
+- Use backticks (`) for:
+    - Variables: `my_var`
+    - Parameters: `width`
+    - File paths: `views/template.php`
+    - Code snippets: `echo $value`
+    - HTML tags: `<div>`
+    - Attributes: `class="example"`
+    - Commands: `php -v`
+- Use bold (\*\*) for:
+    - Section headers
+    - Important notes
+    - Warnings
+- Never mix formatting styles (e.g., don't use both \* and ` for same term)
+- Be consistent with formatting throughout the document
+
+### 2.22 Code Examples
+
+For code blocks:
+
+- Always specify the language
+- Add descriptive titles
+- Keep examples concise but complete
+- Include comments where helpful
+- Use consistent indentation
+- Remove trailing whitespace
+- Format according to language conventions
+- For partial code, use language-appropriate comment style:
+    ```php title="PHP Comment Style"
+    // ... existing code ...
+    ```
+    ```html title="HTML Comment Style"
+    <!-- ... existing code ... -->
+    ```
+    ```css title="CSS Comment Style"
+    /* ... existing code ... */
+    ```
+
+### 2.23 Lists
+
+For all types of lists:
+
+- Use `-` for unordered lists
+- Use proper indentation (4 spaces)
+- Keep items parallel in structure
+- End each item with appropriate punctuation
+- Group related items together
+- Use blank lines between groups
+- For nested lists, align bullets:
+    ```markdown
+    - Main item
+        - Sub item
+        - Another sub
+    - Next main item
+    ```
+
+### 2.24 Links and References
+
+For links and references:
+
+- Use descriptive link text
+- Avoid "click here" or "this link"
+- Use relative paths for internal links
+- Include file extensions
+- Group related links together
+- For external links, include protocol (https://)
+- Format:
+    ```markdown
+    [Descriptive Text](path/to/file.html)
+    ```
+
+### 2.25 Admonitions
+
+Use specific admonition types consistently:
+
+```markdown title="Note Example"
+:::note
+Use for additional information
+:::
+```
+
+```markdown title="Tip Example"
+:::tip
+Use for best practices
+:::
+```
+
+```markdown title="Caution Example"
+:::caution
+Use for important warnings
+:::
+```
+
+```markdown title="Danger Example"
+:::danger
+Use for critical issues
+:::
+```
+
+Rules:
+
+- Always include a descriptive title
+- Keep content concise
+- Use appropriate type for content
+- Add blank lines before and after
+- Don't nest admonitions
+- Use consistent formatting inside
 
 ---
 
@@ -945,30 +1241,10 @@ Beginner/Intermediate/Advanced
 What the final result will look like
 ```
 
-## 24. Mobile Documentation
-
-### 24.1 Mobile Documentation Guidelines
-
-- Use responsive images with appropriate sizes for different devices
-- Keep code examples concise and readable on small screens
-- Ensure touch targets are at least 44x44 pixels
-- Test documentation rendering on various mobile devices and screen sizes
-- Use collapsible sections for long content
-- Avoid horizontal scrolling except for code blocks
-- Optimize tables for mobile viewing
-- Ensure proper font sizes and spacing for mobile readability
-
 ---
 
-## Conclusion
+## Related Resources
 
-By following this style guide, you can ensure that CouchCMS documentation remains:
-
-- Consistent across all files
-- Easily readable and maintainable
-- Accessible to all users
-- Technically accurate and complete
-- SEO-friendly
-- Mobile-responsive
-
----
+- [Markdownlint](https://github.com/DavidAnson/markdownlint)
+- [Astro Documentation](https://docs.astro.build)
+- [MDN Web Docs Style Guide](https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines)
