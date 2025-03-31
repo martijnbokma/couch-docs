@@ -11,7 +11,6 @@ sidebar:
     order: 30
 author: Kamran Kashif
 lastUpdated: 2025-03-21
-fmContentType: default
 ---
 
 import { Steps, Card } from '@astrojs/starlight/components';
@@ -24,7 +23,7 @@ On-page editing is a functionality that allows content to be edited directly on 
 - **WYSIWYG editing**: What you see is what you get, without formatting surprises
 
 <Card icon="star" title="Tutorial">
-The best way to learn CouchCMS's on-page editing is through our [tutorial](../../tutorials/on-page-editing/on-page-editing/) that shows how to edit content directly on your website's frontend.
+    The best way to learn CouchCMS's on-page editing is through our [tutorial](../../tutorials/on-page-editing/on-page-editing/) that shows how to edit content directly on your website's frontend.
 </Card>
 
 ## Technical Challenges
@@ -32,6 +31,7 @@ The best way to learn CouchCMS's on-page editing is through our [tutorial](../..
 Implementing on-page editing comes with several technical challenges:
 
 <Steps>
+
 1. **Limited to textual content**: On-page editing naturally only works well with text fields. Non-textual elements (like images) or hidden fields (like folder names) require a different approach.
 
 2. **Unobtrusive implementation**: The solution must work with any frontend without assumptions about existing JS libraries or risk of disrupting the existing design.
@@ -52,6 +52,7 @@ CouchCMS addresses these challenges with the 'inline' addon that combines two di
 ### 2. Popup Editing
 
 For situations where inline editing isn't practical:
+
 - Suitable for all field types, including non-textual
 - Opens a popup window with only the relevant fields
 - Maintains all admin panel functionality
@@ -62,6 +63,7 @@ For situations where inline editing isn't practical:
 ### Activating the Addon
 
 Add the following line to `couch/addons/kfunctions.php`:
+
 ```php
 require_once( K_COUCH_DIR.'addons/inline/inline.php' );
 ```
@@ -77,20 +79,23 @@ For each template where you want to use on-page editing:
 <Steps>
 
 1. Add the required libraries in the `<head>` section:
+
     ```php
     <cms:load_edit />
     ```
 
 2. Implement the desired editing method:
 
-    #### For Inline Editing:
+   #### For Inline Editing
+
     ```php
     <div <cms:inline_edit 'field_name' /> >
         <cms:show field_name />
     </div>
     ```
 
-    #### For Popup Editing:
+   #### For Popup Editing
+
     ```php
     <cms:show field_name />
     <cms:popup_edit 'field_name' />
@@ -104,41 +109,44 @@ Tag Parameters
 
 ### load_edit
 
-- **skip_ckeditor**: Disable CKEditor if you only use popup editing
-- **no_border**: Hide the yellow border around editable elements
-- **prompt_text**: Customize the warning text for unsaved changes
+- `skip_ckeditor`: Disable CKEditor if you only use popup editing
+- `no_border`: Hide the yellow border around editable elements
+- `prompt_text`: Customize the warning text for unsaved changes
 
 ### popup_edit
 
-- **fields**: Specify multiple fields using `|` as separator
-- **link_text**: Customize the edit link text
-- **prompt_text**: Customize the warning text
-- **class**: Add additional CSS classes
+- `fields`: Specify multiple fields using `|` as separator
+- `link_text`: Customize the edit link text
+- `prompt_text`: Customize the warning text
+- `class`: Add additional CSS classes
 
 ### inline_edit
 
-- **fields**: Name of the field to edit
-- **toolbar**: Customize the CKEditor toolbar
-- **custom_toolbar**: Define a completely custom toolbar
-- **custom_styles**: Add custom styles to the editor
+- `fields`: Name of the field to edit
+- `toolbar`: Customize the CKEditor toolbar
+- `custom_toolbar`: Define a completely custom toolbar
+- `custom_styles`: Add custom styles to the editor
 
 ## Best Practices
 
 **Use inline editing for:**
-   - Headings and titles
-   - Paragraphs
-   - Short text blocks
-   
+
+- Headings and titles
+- Paragraphs
+- Short text blocks
+
 **Use popup editing for:**
-   - Images
-   - Files
-   - Complex form fields
-   - Multiple fields at once
+
+- Images
+- Files
+- Complex form fields
+- Multiple fields at once
 
 **Performance tips:**
-   - Load the editor only for logged-in admins
-   - Use **skip_ckeditor** if you only need popup editing
-   - Consider caching for non-admin visitors
+
+- Load the editor only for logged-in admins
+- Use `skip_ckeditor` if you only need popup editing
+- Consider caching for non-admin visitors
 
 ## Accessibility
 
@@ -150,7 +158,9 @@ Tag Parameters
 ## Common Issues
 
 :::note
+
 - **Inline editing not working**: Check if the element is a block-level element
 - **Popup not appearing**: Verify the correct field name is specified
 - **Styling issues**: Use the `class` parameter for custom styling
+
 :::
