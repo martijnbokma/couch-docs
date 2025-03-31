@@ -2,17 +2,23 @@
 title: type = 'dropdown'
 category: tag
 subCategory: editable
-description: Editable region of dropdown type is used to allow the user to choose one option from several presented to him in the form of a dropdown list.
-keywords: [dropdown, CouchCMS, Couch, tags, PHP, editable]
+description: "Editable region of dropdown type is used to allow the user to choose one option from several presented to them in the form of a dropdown list."
+keywords:
+    - dropdown
+    - CouchCMS
+    - Couch
+    - tags
+    - PHP
+    - editable
 author: Kamran Kashif
 lastUpdated: 2025-03-27
 ---
 
-Editable region of _dropdown_ type is used to allow the user to choose one option from several presented to him in the form of a dropdown list.
+Editable region of `dropdown` type is used to allow the user to choose one option from several presented to them in the form of a dropdown list.
 
-An editable region of _dropdown_ type can be defined this way -
+An editable region of `dropdown` type can be defined this way:
 
-```php
+```php title="Basic Dropdown Example"
 <cms:editable
     name="my_property_type"
     label="Property Type"
@@ -22,101 +28,101 @@ An editable region of _dropdown_ type can be defined this way -
 />
 ```
 
-The code above will result in -
+The code above will result in:
 
 ![](../../../../assets/img/contents/editable-dropdown-1.gif)
 
-After clicking it appears as-
+After clicking it appears as:
 
 ![](../../../../assets/img/contents/editable-dropdown-2.gif)
 
-The option selected in this region can be accessed, as with all other editable regions, by using the variable named after it -
+The option selected in this region can be accessed, as with all other editable regions, by using the variable named after it:
 
-```php
+```php title="Accessing Selected Value"
 <cms:show my_property_type />
 ```
 
 ## Parameters
 
-In addition to the parameters common to all the types of editable regions, _dropdown_ accepts the following parameters
+In addition to the parameters common to all the types of editable regions, `dropdown` accepts the following parameters:
 
-- opt_values
-- optselected
-- separator
-- valseparator
-- searchtype
+- `opt_values`
+- `opt_selected`
+- `separator`
+- `val_separator`
+- `search_type`
 
 ### opt_values
 
-This parameter takes a list of all the options that are displayed in the dropdown list.
+This parameter takes a list of all the options that are displayed in the dropdown list:
 
-```php
+```php title="Basic Options List"
 opt_values='Residential | Commercial | Rental'
 ```
 
 This results in the generation of a dropdown list with three options.
-Whichever option is selected by the user gets saved as the value of the editable region. For example suppose the user selected _Rental_. The following code -
+Whichever option is selected by the user gets saved as the value of the editable region. For example suppose the user selected `Rental`. The following code:
 
-```php
+```php title="Displaying Selected Value"
 <cms:show my_property_type />
 ```
 
-\- will output 'Rental'.
+will output *Rental*.
 
-As can be seen, the saved value is the same as the option's name. However we can specify a different value that can get saved into the editable region by using the following syntax -
+As can be seen, the saved value is the same as the option's name. However we can specify a different value that can get saved into the editable region by using the following syntax:
 
-```php
+```php title="Options with Custom Values"
 opt_values='Residential=0 | Commercial=1 | Rental=2'
 ```
 
-Printing out the value contained within the editable region -
+Printing out the value contained within the editable region:
 
-```php
+```php title="Displaying Custom Value"
 <cms:show my_property_type />
 ```
 
-\- will now output '2'.
+will now output *2*.
 
 :::note
-A value of '-' (hyphen) carries a special meaning for Couch. It can be used with options that are not considered as selectable e.g.
+A value of `-` (hyphen) carries a special meaning for Couch. It can be used with options that are not considered as selectable:
 
-```php
+```php title="Using Placeholder Option"
 opt_values='Please Select=- | Residential=0 | Commercial=1 | Rental=2'
 ```
 
-In the example above, out of the four options in the list, if the first option is selected, the selection is not considered to be made. If _required_ parameter is set, an error is thrown upon saving the page.
+In the example above, out of the four options in the list, if the first option is selected, the selection is not considered to be made. If `required` parameter is set, an error is thrown upon saving the page.
 :::
 
 ### opt_selected
 
-You can set one of the options to be selected by default by setting this parameter to the **value** of that item. For example -
+You can set one of the options to be selected by default by setting this parameter to the value of that item:
 
-```php
+```php title="Setting Default Selection"
 <cms:editable name="my_property_type" label="Property Type" desc="Select one from these"
     opt_values='Residential | Commercial | Rental'
-    opt_selected = 'Rental'
+    opt_selected='Rental'
     type='dropdown'
 />
 ```
 
-\- or -
+Or with custom values:
 
-```php
+```php title="Default Selection with Custom Values"
 <cms:editable name="my_property_type" label="Property Type" desc="Select one from these"
     opt_values='Residential=0 | Commercial=1 | Rental=2'
-    opt_selected = '2'
+    opt_selected='2'
     type='dropdown'
 />
 ```
 
-will show **Rental** as the option selected by default.
+will show *Rental* as the option selected by default.
 
 ### separator
 
-As seen in the examples above, the list provided to _opt_values_ parameter consists of the options separated by a '|' (pipe) character
-This is the default separator used by Couch. For some reason if you do not wish to have a pipe as separator (e.g. if any of the options contains the pipe character within itself, obviously the same character cannot be used as the separator), any other character can be designated as the separator by setting this parameter. For example as in follows -
+As seen in the examples above, the list provided to `opt_values` parameter consists of the options separated by a `|` (pipe) character.
+This is the default separator used by Couch. If you do not wish to have a pipe as separator (e.g. if any of the options contains the pipe character within itself), any other character can be designated as the separator by setting this parameter:
 
-```php
+```php title="Using Custom Separator"
 <cms:editable name="my_property_type" label="Property Type" desc="Select one from these"
     opt_values='Please Select=- * Residential=0 * Commercial=1 * Rental=2'
     separator='*'
@@ -124,29 +130,29 @@ This is the default separator used by Couch. For some reason if you do not wish 
 />
 ```
 
-Note how the opt_values are separated by '\*'.
+Note how the `opt_values` are separated by `*`.
 
 ### val_separator
 
-Similar to the problem outlined above, sometimes the options in the list contain the '=' (equals to) character. This makes it imposible to use '=' between the option's name and value. You can set any other character for this purpose by setting this parameter. For example -
+Similar to the problem outlined above, sometimes the options in the list contain the `=` (equals to) character. This makes it impossible to use `=` between the option's name and value. You can set any other character for this purpose by setting this parameter:
 
-```php
+```php title="Using Custom Value Separator"
 val_separator=':'
 ```
 
 ### search_type
 
-Can be set to the following valid values -
+Can be set to the following valid values:
 
-- text
-- integer
-- decimal
+- `text`
+- `integer`
+- `decimal`
 
-The default _search_type_ is (as with all other types of editable regions) _text_.
-If you wish to use this region to input numeric values (e.g. age or salary), set the type to either _numeric_ or _decimal_ (if the value can be fractional).
+The default `search_type` is (as with all other types of editable regions) `text`.
+If you wish to use this region to input numeric values (e.g. age or salary), set the type to either `integer` or `decimal` (if the value can be fractional).
 
 :::note
-It is necessary to set an explicit numeric type on an editable region only when you wish to use the values contained within it to make comparisons (i.e. age < 40) or to sort some output based on these values. See [**Pages**](../pages/#custom_field).
+It is necessary to set an explicit numeric type on an editable region only when you wish to use the values contained within it to make comparisons (i.e. age < 40) or to sort some output based on these values. See [**pages**](../pages/#custom_field).
 :::
 
 ## Related Tags
