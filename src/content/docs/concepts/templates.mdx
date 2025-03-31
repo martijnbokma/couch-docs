@@ -1,12 +1,17 @@
 ---
-title: Templates
-description: Learn how to create and work with templates in CouchCMS, including installation and setup
-keywords: [templates, installation, setup, PHP, CMS]
+title: "Templates"
+description: "Learn how to create and work with templates in CouchCMS, including installation and setup"
+keywords:
+    - templates
+    - installation
+    - setup
+    - PHP
+    - CMS
 category: concept
+author: "Kamran Kashif"
+lastUpdated: 2025-03-20
 sidebar:
     order: 1
-author: Kamran Kashif
-lastUpdated: 2025-03-20
 ---
 
 import { Steps, Card } from '@astrojs/starlight/components';
@@ -19,7 +24,7 @@ Couch works by retrofitting into these templates.
 Since the templates used by Couch are regular HTML files, any of your existing static HTML sites too can be easily ported to Couch with minimal effort.
 
 <Card icon="star" title="Tutorial">
-Please see the following tutorial, where we use Couch to build a full fledged site, for a step-by-step illustrated guide on how to install Couch - [Building a real-world site](../../tutorials/portfolio-site/building-real-world-site).
+   Please see the following tutorial, where we use Couch to build a full fledged site, for a step-by-step illustrated guide on how to install Couch - [Building a real-world site](../../tutorials/portfolio-site/building-real-world-site).
 </Card>
 
 ## Installation
@@ -36,6 +41,7 @@ Once Couch is installed, the next step is to hook it up into the templates.
 Three steps are required to accomplish this:
 
 <Steps>
+
 1. Since Couch is a PHP application, in order to make to your HTML templates compatible with it you need to change their extensions from `.html` or `.htm` to `.php`.
    For example, if `about-us.html` is a template that you wish to be managed by Couch, rename it as `about-us.php`.
    Accessing `http://www.yoursite.com/about-us.php` should show up the page just the way it was when it had a `.html` extension.
@@ -43,31 +49,32 @@ Three steps are required to accomplish this:
 2. Once the template has been made a `.php` file, two lines of PHP code need to be added to it.
    Open the template in a text editor (any plain text editor will do fine. We recommend using Notepad++. It is free and awesome).
    At the very top of the page, add the following line:
-   
+
    ```php
    <?php require_once( 'couch/cms.php' ); ?>
    ```
-   
+
    :::danger[Important]
    It is important that you place it at the very top so that it becomes the first line of your template.
    :::
-   
+
    Add the following as the LAST line of your template:
-   
+
    ```php
    <?php COUCH::invoke(); ?>
    ```
-   
+
    That is it. That is all the PHP that you'll ever need to write for using Couch.
 
 3. As the final step, you'll need to execute the template - i.e. access it through the browser.
    For example, if `about-us.php` was the template, upload it back to your server and access `https://www.yoursite.com/about-us.php` through a browser.
-   
+
    :::danger[Important]
    This is something you'll come across often - for your changes to show up in the admin panel, you'll need to run the modified template in the browser while being logged in as the super-admin.
    :::
-   
+
    If everything goes right, nothing should appear to have changed. The page should look exactly the same in the browser as it did before. However, now when you visit Couch's Admin Panel (`https://www.yoursite.com/couch/`) you should see that `about-us.php` has been added to the list of templates that are managed by Couch.
+   
 </Steps>
 
 ## What Next?
