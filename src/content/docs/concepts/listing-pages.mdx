@@ -9,7 +9,7 @@ author: Kamran Kashif
 lastUpdated: 2025-03-20
 ---
 
-Couch has a powerful tag named [__*pages*__](../../tags-reference/pages/) that can be used to list all pages belonging to a template.
+Couch has a powerful tag named [***pages***](../../tags-reference/pages/) that can be used to list all pages belonging to a template.
 For example:
 
 ```php
@@ -20,31 +20,35 @@ For example:
 ```
 
 The snippet given above will fetch all pages cloned out of `blog.php` template.
-The _masterpage_ parameter stands for the template's name. If this parameter is omitted, the name of the current template (i.e. the template this snippet is placed in) will be used.
+The `masterpage` parameter stands for the template's name. If this parameter is omitted, the name of the current template (i.e. the template this snippet is placed in) will be used.
 
 This tag iterates through each of the fetched page and makes available all the data associated with the page as variables. The variables are exactly the same as those made available had the page been accessed discretly via its URL (i.e. in its page-view).
 
-[__*Pages*__](../../tags-reference/pages/) tag supports a number of parameters that can be used to fine tune the actual pages that get fetched.
+[***Pages***](../../tags-reference/pages/) tag supports a number of parameters that can be used to fine tune the actual pages that get fetched.
 Please see the [**parameters**](../../tags-reference/pages/#parameters) section for a comprehensive list.
 
 ### Listing Pages in the List-Views (Home-View, Folder-View and Archive-View)
 
 As shown in the previous chapter, for clonable templates, Couch considers certain URLS as those meant for listing pages cloned out of the template being accessed.
 
-For example -
+For example:
+
 ```txt
 https://www.mysite.com/blog/
 ```
+
 \- is considered to be a **home-view** and a list to all the pages cloned out of `blog.php` should be displayed in this view.
 
 ```txt
 https://www.mysite.com/blog/hobbies/
 ```
+
 \- is considered to be a **folder-view** and a list of all the pages cloned out of `blog.php` that belong to 'hobbies' sub-folder should be displayed in this view.
 
 ```txt
 https://www.mysite.com/blog/2010/05/
 ```
+
 \- is considered to be an **archive-view** and a list of all the pages cloned out of `blog.php` that have been published during the month of May in 2010 should be displayed in this view.
 
 When a template is accessed using the URLs mentioned above, Couch recognizes the view and sets certain variables that can be used by you to list the pages as is expected for the particular view.
@@ -53,7 +57,7 @@ It is ultimately upto you whether or not you choose to list pages in the expecte
 
 ### Handling home-view
 
-The _k_is_home_ variable can be used to recognize this view and then the [__*pages*__](../../tags-reference/pages/) tag can be used to list all pages cloned from the template being accessed.
+The `k_is_home` variable can be used to recognize this view and then the [***pages***](../../tags-reference/pages/) tag can be used to list all pages cloned from the template being accessed.
 
 ```php
 <cms:if k_is_home >
@@ -65,7 +69,7 @@ The _k_is_home_ variable can be used to recognize this view and then the [__*pag
 
 ### Handling folder-view
 
-The _k_is_folder_ variable can be used to recognize this view. The _k_folder_name_ variable made available by Couch in this view can then be used as a parameter of the [__*pages*__](../../tags-reference/pages/) tag to list pages belonging to that folder -
+The `k_is_folder` variable can be used to recognize this view. The `k_folder_name` variable made available by Couch in this view can then be used as a parameter of the [***pages***](../../tags-reference/pages/) tag to list pages belonging to that folder:
 
 ```php
 <cms:if k_is_folder >
@@ -77,7 +81,7 @@ The _k_is_folder_ variable can be used to recognize this view. The _k_folder_nam
 
 ### Handling archive-view
 
-The _k_is_archive_ can be used to recognize this view. In this view, Couch makes available the _k_archive_date_ and _k_next_archive_date_ variables that denote the boundries of the archive's period. These two variables can then be used as parameters of the [__*pages*__](../../tags-reference/pages/) tag to list pages belonging to that time period -
+The `k_is_archive` can be used to recognize this view. In this view, Couch makes available the `k_archive_date` and `k_next_archive_date` variables that denote the boundries of the archive's period. These two variables can then be used as parameters of the [***pages***](../../tags-reference/pages/) tag to list pages belonging to that time period:
 
 ```php
 <cms:if k_is_archive >
@@ -89,7 +93,7 @@ The _k_is_archive_ can be used to recognize this view. In this view, Couch makes
 
 ### A unified way of handling all the listviews
 
-The three list views can be handled separately if the way the pages and their contents are displayed differs between the views. However, if their is no difference in the way the list is displayed, the following is the preferred way of handling all the three list-views together -
+The three list views can be handled separately if the way the pages and their contents are displayed differs between the views. However, if their is no difference in the way the list is displayed, the following is the preferred way of handling all the three list-views together:
 
 ```php
 <cms:if k_is_list >
@@ -100,5 +104,5 @@ The three list views can be handled separately if the way the pages and their co
 ```
 
 :::note
-The snippet given above can handle all the list-views because if the current view is a _home-view_, the _k_folder_name_, _k_archive_date_ and _k_next_archive_date_ will not be set and hence these parameters will have no effect on the pages fetched. Similarly in the _folder-view_ the _k_archive_date_ and _k_next_archive_date_ will not be set and in the archive-view the _k_folder_name_ will not be set.
+The snippet given above can handle all the list-views because if the current view is a *home-view*, the `k_folder_name`, `k_archive_date` and `k_next_archive_date` will not be set and hence these parameters will have no effect on the pages fetched. Similarly in the *folder-view* the `k_archive_date` and `k_next_archive_date` will not be set and in the archive-view the `k_folder_name` will not be set.
 :::
