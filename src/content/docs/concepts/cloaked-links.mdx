@@ -39,7 +39,7 @@ Now consider the following modification made to the link above:
 
 Take a look at the generated URL and how clicking it still leads to Google. This is classic 'URL cloaking'.
 
-In the snippet above we set the *redirect* parameter to '1' because the link being cloaked was that of a webpage and not of a physical file.
+In the snippet above we set the `redirect` parameter to `1` because the link being cloaked was that of a webpage and not of a physical file.
 
 ## Cloaking Links of Files
 
@@ -82,7 +82,7 @@ It is always a good idea to use `<cms:show k_admin_link/>` to output the full UR
 If the file cloaked above was a zip file, the browser would have displayed the familiar dialog-box prompting for the download location.
 This is because [***cloak_url***](../../tags-reference/cloak_url/) tries to figure out the mime type of the linked file and accordingly asks the browser to either display the file directly or prompt for download.
 
-If you'd rather have the download box shown for all types of files, set the *force_download* parameter to '1'.
+If you'd rather have the download box shown for all types of files, set the `force_download` parameter to `1`.
 Thus the following link will always force the user to download the image file:
 
 ```php
@@ -96,7 +96,7 @@ Thus the following link will always force the user to download the image file:
 
 ## Setting an Expiry Time for the Cloaked Links
 
-The cloaked links can be made to expire after a fixed period by setting the *expiry* parameter to the expiry period in seconds.
+The cloaked links can be made to expire after a fixed period by setting the `expiry` parameter to the expiry period in seconds.
 Thus to allow a link to be valid for only 24 hours, the following snippet can be used:
 
 ```php
@@ -109,13 +109,13 @@ Thus to allow a link to be valid for only 24 hours, the following snippet can be
 ">Test Link</a>
 ```
 
-Where 86400 is, of course, the number of seconds in 24 hours (24 * 60 * 60).
+Where *86400* is, of course, the number of seconds in 24 hours (24 * 60 * 60).
 
 ## Allowing Only Registered Users to Access Links
 
-If you have gone through the [**Users and Access Control**](../users/) section, you'll recall that Couch allots every visitor a numeric value denoting his access level. This depends on the group the user belongs to - thus an *Administrator* will have an access level of 7 while an *Authenticated User (Special)* will have a value of 4. Users not logged-in have an access level of 0.
+If you have gone through the [**Users and Access Control**](../users/) section, you'll recall that Couch allots every visitor a numeric value denoting his access level. This depends on the group the user belongs to - thus an *Administrator* will have an access level of `7` while an *Authenticated User (Special)* will have a value of `4`. Users not logged-in have an access level of `0`.
 
-Links can be configured to be accessible by only users of at least a particular level by setting the *access_level* parameter:
+Links can be configured to be accessible by only users of at least a particular level by setting the `access_level` parameter:
 
 ```php
 <a href="
@@ -127,9 +127,9 @@ Links can be configured to be accessible by only users of at least a particular 
 ">Test Link</a>
 ```
 
-In the snippet above, only authenticated users with access level equal to or higher than 4 will be able to download the image file.
+In the snippet above, only authenticated users with access level equal to or higher than `4` will be able to download the image file.
 If unauthenticated users try to access this link, they'll get a blank screen.
-To prompt them to login to download the file, set the *prompt_login* parameter to '1':
+To prompt them to login to download the file, set the `prompt_login` parameter to `1`:
 
 ```php
 <a href="
