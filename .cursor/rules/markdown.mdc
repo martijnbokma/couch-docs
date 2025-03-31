@@ -726,6 +726,42 @@ Rules:
 - Don't nest admonitions
 - Use consistent formatting inside
 
+### 2.26 Document Structure
+
+For tag reference documents:
+
+- Start with a clear description of the tag's functionality
+- No "Overview" section needed - the opening paragraph serves this purpose
+- Include "Basic Usage" section with practical examples
+- Group related parameters and variables logically
+- End with related tags or resources
+
+Example structure:
+
+```markdown
+---
+frontmatter
+---
+
+Description of what the tag does and its main purpose.
+
+## Basic Usage
+
+Code examples and explanations.
+
+## Parameters
+
+Parameter descriptions.
+
+## Variables
+
+Variable descriptions.
+
+## Related Tags
+
+Links to related tags.
+```
+
 ---
 
 ## 3. Technical Content
@@ -1242,9 +1278,3 @@ What the final result will look like
 ```
 
 ---
-
-## Related Resources
-
-- [Markdownlint](https://github.com/DavidAnson/markdownlint)
-- [Astro Documentation](https://docs.astro.build)
-- [MDN Web Docs Style Guide](https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines)
