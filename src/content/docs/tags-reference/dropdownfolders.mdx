@@ -1,34 +1,39 @@
 ---
 title: dropdownfolders
 category: tag
-description: The dropdownfolders tag can be used to create a quick-n-dirty HTML dropdown list of the folders belonging to a template.
-keywords: [dropdownfolders, CouchCMS, Couch, tags, PHP]
+description: "The dropdownfolders tag can be used to create a quick-n-dirty HTML dropdown list of the folders belonging to a template."
+keywords:
+    - dropdownfolders
+    - CouchCMS
+    - Couch
+    - tags
+    - PHP
 author: Kamran Kashif
 lastUpdated: 2025-03-27
 ---
 
-The **dropdownfolders** tag can be used to create a quick-n-dirty HTML dropdown list of the folders belonging to a template.
+The `dropdownfolders` tag can be used to create a quick-n-dirty HTML dropdown list of the folders belonging to a template.
 
-```php
+```php title="Basic Dropdown Example"
 <cms:dropdownfolders masterpage='news.php' />
 ```
 
 ## Parameters
 
-Supports the same parameter as the **folders** tag. In addition, takes one more parameter - _show_count_.
+Supports the same parameters as the `folders` tag. In addition, takes one more parameter - `show_count`.
 
-- masterpage
-- root
-- childof
-- hierarchical
-- depth
-- orderby
-- order
-- exclude
-- extended_info
-- show_count
+- `masterpage`: Template to list folders from
+- `root`: Root folder to start listing from
+- `childof`: Show only children of specified folder
+- `hierarchical`: Show folders in hierarchical order
+- `depth`: Maximum depth of folders to show
+- `orderby`: Field to sort folders by
+- `order`: Sort order (asc/desc)
+- `exclude`: Folders to exclude
+- `extended_info`: Include additional folder information
+- `show_count`: Show number of items in each folder
 
-Please see the [**folders**](../folders.html) documentation for an explanation of these parameters.
+Please see the [`folders`](../folders.html) documentation for an explanation of these parameters.
 
 ## Variables
 
