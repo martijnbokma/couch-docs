@@ -1,47 +1,54 @@
 ---
-title: Variables Available in Views
-description: Learn about the different variables available in CouchCMS templates based on their view type and context
-keywords: [variables, views, page view, list view, folder view, archive view, home view]
+title: "Variables Available in Views"
+description: "Learn about the different variables available in CouchCMS templates based on their view type and context"
+keywords:
+    - variables
+    - views
+    - page view
+    - list view
+    - folder view
+    - archive view
+    - home view
 category: concept
 sidebar:
     order: 8
-author: Kamran Kashif
+author: "Kamran Kashif"
 lastUpdated: 2025-03-20
 ---
 
 import { Steps } from '@astrojs/starlight/components';
 
-From what we have read so far, we know that a template can be either _clonable_ or _non-clonable_.
-A _clonable_ template will necessarily have cloned pages associated with it hence it is said to be executing within a _page-view_ when a cloned page of it is accessed while it is said to be executing within a _list-view_ if it is accessed in a stand alone manner.
+From what we have read so far, we know that a template can be either *clonable* or *non-clonable*.
+A *clonable* template will necessarily have cloned pages associated with it hence it is said to be executing within a *page-view* when a cloned page of it is accessed while it is said to be executing within a *list-view* if it is accessed in a stand alone manner.
 
-A _non-clonable_ template always represents one single page and hence it has no such views associated with it.
+A *non-clonable* template always represents one single page and hence it has no such views associated with it.
 
 Depending on whether a template is clonable or non-clonable and upon the view it is being executed in, each time a template is accessed, Couch makes available certain variables that are relevant to the template's state.
 
-For example, when executed in a _page-view_, a template is used to access a cloned page and hence all that cloned page's data (including all its editable region's contents) are made available by Couch for use by your script.
+For example, when executed in a *page-view*, a template is used to access a cloned page and hence all that cloned page's data (including all its editable region's contents) are made available by Couch for use by your script.
 
-In contrast, when executed in a _list-view_, it is not any single page that is accessed and hence no such page specific data is made available. Instead, certain variables that describe the 'list-view' and make it easy for your script to actually 'list' the pages pertaining to the view, are made available.
+In contrast, when executed in a *list-view*, it is not any single page that is accessed and hence no such page specific data is made available. Instead, certain variables that describe the 'list-view' and make it easy for your script to actually 'list' the pages pertaining to the view, are made available.
 
 A complete list of all the variables that become available during the above mentioned conditions are listed below.
 
-For the sake of this example we make use of a template named _blog.php_ that has three editable regions defined within it - *my_blog_text*, *my_blog_image* and *my_blog_author* (these will be made available as variables with the same names. They are shown highlighted below).
+For the sake of this example we make use of a template named `blog.php` that has three editable regions defined within it - *my_blog_text*, *my_blog_image* and *my_blog_author* (these will be made available as variables with the same names. They are shown highlighted below).
 
 The following variables are available in ALL cases, irrespective of the clonable status of the template and the current view:
 
-- _k_page_link_
-- _k_admin_link_
-- _k_site_link_
-- _k_admin_path_
-- _k_site_path_
-- _k_template_title_
-- _k_template_name_
-- _k_template_id_
-- _k_template_link_
-- _k_prettyurls_
-- _k_site_charset_
-- _k_email_from_
-- _k_email_to_
-- _k_is_commentable_
+- `k_page_link`
+- `k_admin_link`
+- `k_site_link`
+- `k_admin_path`
+- `k_site_path`
+- `k_template_title`
+- `k_template_name`
+- `k_template_id`
+- `k_template_link`
+- `k_prettyurls`
+- `k_site_charset`
+- `k_email_from`
+- `k_email_to`
+- `k_is_commentable`
 
 ## Non-Clonable Template Variables
 
@@ -53,13 +60,13 @@ https://www.mysite.com/blog.php
 
 Available variables in this case are:
 
-- _k_is_list_page_
-- _k_comments_count_
-- _k_page_date_
-- _k_page_modification_date_
-- _my_blog_text_
-- _my_blog_image_
-- _my_blog_author_
+- `k_is_list_page`
+- `k_comments_count`
+- `k_page_date`
+- `k_page_modification_date`
+- `my_blog_text`
+- `my_blog_image`
+- `my_blog_author`
 
 ## Clonable Template
 
@@ -68,6 +75,7 @@ If `blog.php` is made clonable, different views become available, each with its 
 ### Page View
 
 Example URL:
+
 ```txt
 http://www.mysite.com/blog/some_page_name.html
 ```
@@ -76,75 +84,79 @@ In this view, variables giving information about the current page, the containin
 
 The folowing variables carry information about the page in question:
 
-- _k_is_page_
-- _k_page_title_
-- _k_page_name_
-- _k_page_id_
-- _k_page_date_
-- _k_page_modification_date_
-- _k_comments_count_
+- `k_is_page`
+- `k_page_title`
+- `k_page_name`
+- `k_page_id`
+- `k_page_date`
+- `k_page_modification_date`
+- `k_comments_count`
 
 The following variables carry Information about the folder, if the page resides in one:
 
-- _k_page_folderid_
-- _k_page_foldername_
-- _k_page_foldertitle_
-- _k_page_folderlink_
-- _k_page_folderpagecount_
-- _k_page_foldertotalpagecount_
+- `k_page_folderid`
+- `k_page_foldername`
+- `k_page_foldertitle`
+- `k_page_folderlink`
+- `k_page_folderpagecount`
+- `k_page_foldertotalpagecount`
 
 Finally the contents of editable regions:
 
-- _my_blog_text_
-- _my_blog_image_
-- _my_blog_author_
+- `my_blog_text`
+- `my_blog_image`
+- `my_blog_author`
 
 ### Folder View
 
 Example URL:
+
 ```txt
 http://www.mysite.com/blog/some_subfolder/
 ```
+
 In this view, variables giving information about the folder mentioned in the URL are set.
 
-- _k_is_list_
-- _k_is_folder_
-- _k_folder_id_
-- _k_folder_name_
-- _k_folder_title_
-- _k_folder_link_
-- _k_folder_pagecount_ (Number of pages in the folder)
-- _k_folder_totalpagecount_ (Total number of pages, including pages in subfolders)
+- `k_is_list`
+- `k_is_folder`
+- `k_folder_id`
+- `k_folder_name`
+- `k_folder_title`
+- `k_folder_link`
+- `k_folder_pagecount` (Number of pages in the folder)
+- `k_folder_totalpagecount` (Total number of pages, including pages in subfolders)
 
 ### Archive View
 
 Example URL:
+
 ```txt
 http://www.mysite.com/blog/2010/05/
 ```
 
 In this view, variables giving information about the archive's time period (as given in the URL) are set.
 
-- _k_is_list_
-- _k_is_archive_
-- _k_archive_date_
-- _k_next_archive_date_
-- _k_archive_link_
-- _k_day_
-- _k_month_
-- _k_year_
+- `k_is_list`
+- `k_is_archive`
+- `k_archive_date`
+- `k_next_archive_date`
+- `k_archive_link`
+- `k_day`
+- `k_month`
+- `k_year`
 
 ### Home View
 
 Example URL:
+
 ```txt
 http://www.mysite.com/blog/
 ```
 
-- _k_is_list_
-- _k_is_home_
-- _k_folder_pagecount_ (Number of pages. Remember home view is also the root folder)
-- _k_folder_totalpagecount_ (Total number of cloned pages, including pages in subfolders)
+- `k_is_list`
+- `k_is_home`
+- `k_folder_pagecount` (Number of pages. Remember home view is also the root folder)
+- `k_folder_totalpagecount` (Total number of cloned pages, including pages in subfolders)
 
 :::danger[Important]
 For clonable templates, the contents of the editable regions associated with a page are made available only in page view.
