@@ -17,8 +17,8 @@ sidebar:
 import { Steps, FileTree } from "@astrojs/starlight/components";
 
 :::note[Release Info]
-**15 Jan 2017** - _taken from
-[CouchCMS Forum](https://www.couchcms.com/forum/viewtopic.php?f=5&t=10241)_
+**15 Jan 2017** - *taken from
+[CouchCMS Forum](https://www.couchcms.com/forum/viewtopic.php?f=5&t=10241)*
 
 This feature was introduced in CouchCMS v2.0.
 :::
@@ -43,7 +43,7 @@ This is where all the snippets used to render the default admin-panel design res
 
 I'd suggest you start with the `main.html` in there. Open it in your favorite text editor and you'll immediately see that this template serves as the base for all the admin pages. You'll also recognize the familiar Couch tags interspersed with normal HTML tags. You'll also come across several new tags (e.g. the `<cms:render />` tag) but, more or less, the code within the file should appear no different from what we have always used on normal front-end Couch templates.
 
-You'll find the same to be true for all other snippets in the folder. I'd like to draw attention to one particular snippet - `content_form.html`. Open it in your editor and you should recognize that it is a standard "Data-Bound Form". This particular snippet is used by the default admin panel to render _all_ "edit" screens - be it for pages, drafts, folders, comments or users. So, I think, you'll find it interesting to note that **the same Data-bound form is used to edit all entities** in Couch now.
+You'll find the same to be true for all other snippets in the folder. I'd like to draw attention to one particular snippet - `content_form.html`. Open it in your editor and you should recognize that it is a standard "Data-Bound Form". This particular snippet is used by the default admin panel to render *all* "edit" screens - be it for pages, drafts, folders, comments or users. So, I think, you'll find it interesting to note that **the same Data-bound form is used to edit all entities** in Couch now.
 
 To render the "list" screens, each of the entities has its own separate snippet e.g.:
 
@@ -97,9 +97,9 @@ You would have noticed that the `sample` folder already contained some files (th
 <FileTree>
 
 - sample
-    - styles.css
-    - kfunctions.php
-    - icons.php
+  - styles.css
+  - kfunctions.php
+  - icons.php
 
 </FileTree>
 
@@ -534,7 +534,7 @@ The parameters we used for the `<cms:field>` tag in the code above should be sel
 
 - a. the system fields shown before the custom fields are placed within the `'_system_fields_'` group,
 
-- b. the system fields contained within the 'Advanced settings' dropdown are placed within the '_advanced_settings_' group
+- b. the system fields contained within the 'Advanced settings' dropdown are placed within the '*advanced_settings*' group
 
 - c. while all the custom fields defined by you fall within the `'_custom_fields_'` group.
 
@@ -832,7 +832,7 @@ Now go ahead and place the following in the `my_list.html` snippet:
 </table>
 ```
 
-You'll see that now the list screen renders _exactly_ the same as the default listing.
+You'll see that now the list screen renders *exactly* the same as the default listing.
 
 ![Default admin panel list view with standard columns](./img/19.jpg)
 
