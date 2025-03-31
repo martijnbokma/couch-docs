@@ -1,6 +1,6 @@
-# Ignore all MDX files
-*.mdx
+# Ignore all markdown files
 *.md
+*.mdx
 
 # Ignore documentation directory
-src/content/docs/**/* 
+src/content/docs/**/*
