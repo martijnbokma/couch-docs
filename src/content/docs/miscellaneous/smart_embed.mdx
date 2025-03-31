@@ -7,7 +7,7 @@ keywords:
     - views
     - site structure
 category: miscellaneous
-author: Kamran Kashif
+author: "Kamran Kashif"
 lastUpdated: 2024-03-30
 sidebar:
     order: 6
@@ -107,12 +107,12 @@ For example, if the current template is `movies.php` and it is being accessed in
 
 <Steps>
 
-1.  Check if the snippets folder contains a file named '_movies-home_' (this search is extension agnostic. You can use whatever extension you desire). Notice how the name 'movies-home' combines both the name of the template as well as the view. If, for example, a snippet named 'movies-home.html' (or 'movies-home.txt' - the extension is not important) is indeed available in the snippets folder it would be used for embedding. However if no file of such name is found the tag now moves on to
-2.  Check if a snippet named '_movies-list_' is available. Notice now that the 'view' part of the name changes from 'home' to 'list' i.e. from specific to generic - home-view being a specialized view of the more generic list-view. If no such file is found the tag moves on to
-3.  Check if a snippet named '_movies-default_' is available. The 'default' is a catch-all term and a snippet with this name can be used for all possible views of 'movies.php' template. If no such file is found the tag moves on to
-4.  Check if a snippet named '_home_' is available. Notice now that the template name is dropped from the search. This makes it possible to use a single snippet that is common across all the templates. If no such file is found the tag moves on to
-5.  Check if a snippet named '_list_' is available. Once again the search moves on from specific to generic. No template name is involved so if, for example, a snippet named 'list.html' is available it can be used in all templates. Finally, if no such file is found the tag moves on to
-6.  Check if a snippet named '_default_' is available.
+1. Check if the snippets folder contains a file named '*movies-home*' (this search is extension agnostic. You can use whatever extension you desire). Notice how the name 'movies-home' combines both the name of the template as well as the view. If, for example, a snippet named 'movies-home.html' (or 'movies-home.txt' - the extension is not important) is indeed available in the snippets folder it would be used for embedding. However if no file of such name is found the tag now moves on to
+2. Check if a snippet named '*movies-list*' is available. Notice now that the 'view' part of the name changes from 'home' to 'list' i.e. from specific to generic - home-view being a specialized view of the more generic list-view. If no such file is found the tag moves on to
+3. Check if a snippet named '*movies-default*' is available. The 'default' is a catch-all term and a snippet with this name can be used for all possible views of 'movies.php' template. If no such file is found the tag moves on to
+4. Check if a snippet named '*home*' is available. Notice now that the template name is dropped from the search. This makes it possible to use a single snippet that is common across all the templates. If no such file is found the tag moves on to
+5. Check if a snippet named '*list*' is available. Once again the search moves on from specific to generic. No template name is involved so if, for example, a snippet named 'list.html' is available it can be used in all templates. Finally, if no such file is found the tag moves on to
+6. Check if a snippet named '*default*' is available.
 
 </Steps>
 
@@ -267,7 +267,7 @@ Let us take one other template - `about.php`. Place the following within it:
 ```
 
 Notice how this differs from our first template only in the editable regions it defines.
-What we are concerned with is that it uses _exactly_ the same `smart_embed` statements.
+What we are concerned with is that it uses *exactly* the same `smart_embed` statements.
 Run this template and you'll find that it shows exactly the same content as index.php.
 Please bear with me if you find this insipid. The real meat of the discussion comes now.
 
