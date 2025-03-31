@@ -1,11 +1,17 @@
 ---
-title: Users and Access Control
-description: Learn about CouchCMS user accounts, access levels, and how to implement access control in your website
-keywords: [users, access control, permissions, authentication, super admin, administrator]
+title: "Users and Access Control"
+description: "Learn about CouchCMS user accounts, access levels, and how to implement access control in your website"
+keywords:
+    - users
+    - access control
+    - permissions
+    - authentication
+    - super admin
+    - administrator
 category: concept
 sidebar:
     order: 16
-author: Kamran Kashif
+author: "Kamran Kashif"
 lastUpdated: 2025-03-20
 ---
 
@@ -24,12 +30,12 @@ A Super Admin can do everything that a user possibly can in Couch. Specifically,
 - Create/manage any number of lower level user accounts
 - Access the website
 
-Usually it is the designer/coder building the site that uses this _super-admin_ account. If you've gone through the creation of [**editable regions**](../editable-regions/) and some other tags like the [**folder**](../../tags-reference/folder/) tag, you'll recall that persisting the changes made to the template using these tags requires visiting the web-page while logged in as this super-admin account.
+Usually it is the designer/coder building the site that uses this **super-admin** account. If you've gone through the creation of [**editable regions**](../editable-regions/) and some other tags like the [**folder**](../../tags-reference/folder/) tag, you'll recall that persisting the changes made to the template using these tags requires visiting the web-page while logged in as this super-admin account.
 Hence this account is used by someone who makes structural changes to the web-site.
 
 ### 2. Administrator
 
-The _super-admin_ can create any number of administrator level accounts.
+The *super-admin* can create any number of administrator level accounts.
 These accounts are meant to be used by the web-site owners who will be responsible for managing the contents and day to day operations of the web-site.
 An Administrator can:
 
@@ -42,12 +48,14 @@ All the users belonging to the Administrator group have identical access permiss
 ### 3. Registered Users
 
 The super-admin/administrators can create registered users by placing them in either of these two lower-level accounts:
-- _Authenticated User (Special)_
-- _Authenticated User_
+
+- *Authenticated User (Special)*
+- *Authenticated User*
 
 These two accounts are meant for visitors who are registered with the website.
 
 Registered users can:
+
 - Only access the website
 
 ### 4. Unauthenticated
@@ -56,9 +64,10 @@ Every visitor to the website who is not logged-in is automatically placed in thi
 Thus unregistered users as well as registered users who have not yet logged-in by providing their username/password are placed in this group.
 
 Unauthenticated users can:
+
 - Only access the website
 
-Only users belonging to the _Super Admin_ and the _Administrator_ groups can access the Couch's Admin panel.
+Only users belonging to the *Super Admin* and the *Administrator* groups can access the Couch's Admin panel.
 All users, as far as Couch is concerned, can equally access the website.
 It is you, who as the designer/coder decides which pages or portion of the pages within the website these users can access. Couch will simply, by setting relevant variables, indicate the group of the visitor so that your code can take appropriate action.
 
@@ -70,21 +79,21 @@ Before we see how, we need to know a few facts that we'll use.
 
 Upon the execution of every page, the following variables are set by Couch to give information about the visitor accessing the page:
 
-- _k_logged_in_
-- _k_logged_out_
-- _k_user_id_
-- _k_user_name_
-- _k_user_title_
-- _k_user_email_
-- _k_user_access_level_
-- _k_user_disabled_
-- _k_login_link_
-- _k_logout_link_
+- `k_logged_in`
+- `k_logged_out`
+- `k_user_id`
+- `k_user_name`
+- `k_user_title`
+- `k_user_email`
+- `k_user_access_level`
+- `k_user_disabled`
+- `k_login_link`
+- `k_logout_link`
 
-The _k_logged_in_ or _k_logged_out_ variable can be used to figure out if the visitor is currently logged in and hence possesses an account on the website.
-If they are logged-in, the _k_user_id_, _k_user_name_, _k_user_title_, _k_user_email_ and _k_user_access_level_ can be used to get details about them.
+The `k_logged_in` or `k_logged_out` variable can be used to figure out if the visitor is currently logged in and hence possesses an account on the website.
+If they are logged-in, the `k_user_id`, `k_user_name`, `k_user_title`, `k_user_email` and `k_user_access_level` can be used to get details about them.
 
-The _k_user_access_level_ is an important variable and indicates the 'group' of the user by the following numeric values:
+The `k_user_access_level` is an important variable and indicates the 'group' of the user by the following numeric values:
 
 - Super Admin: 10
 - Administrator: 7
@@ -96,7 +105,7 @@ As can be seen, the higher the number, the more powerful an account is deemed to
 
 ### Template Level Access
 
-All the pages cloned from a particular template can be configured to be accessible by only users of a certain level by simply setting the _access_level_ parameter of the [**template**](../../tags-reference/template/) tag to the minimum level required. Thus:
+All the pages cloned from a particular template can be configured to be accessible by only users of a certain level by simply setting the `access_level` parameter of the [**template**](../../tags-reference/template/) tag to the minimum level required. Thus:
 
 ```php
 <cms:template title='News' clonable='1' access_level='2'>
@@ -104,7 +113,7 @@ All the pages cloned from a particular template can be configured to be accessib
 </cms:template>
 ```
 
-To access any of the pages cloned from the template above the user must at least be an _Authenticated User_. None of the pages would be accessible without being logged in.
+To access any of the pages cloned from the template above the user must at least be an *Authenticated User*. None of the pages would be accessible without being logged in.
 
 ### Page Level Access
 
@@ -148,8 +157,8 @@ The most fine-grained access control can be achieved by restricting access to ce
 
 In the snippet given above, we first check if the access level of the current visitor is sufficient for them to see the text.
 If it is not, it could either be that the user is not logged-in or that they are logged-in but the access level of their account is lesser than the required level.
-We check this by the _k_logged_out_ variable and then show the appropriate message.
-Note how we use the _k_login_link_ and _k_logout_link_ to display the links that the user can click to either login or logout.
+We check this by the `k_logged_out` variable and then show the appropriate message.
+Note how we use the `k_login_link` and `k_logout_link` to display the links that the user can click to either login or logout.
 
 ### Access Control of Discrete Files
 
