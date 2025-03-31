@@ -2,17 +2,23 @@
 title: type = 'checkbox'
 category: tag
 subCategory: editable
-description: Editable region of checkbox type is used to allow the user to choose multiple options from several presented to him in the form of check boxes.
-keywords: [checkbox, CouchCMS, Couch, tags, PHP, editable]
+description: "Editable region of checkbox type is used to allow the user to choose multiple options from several presented to them in the form of check boxes."
+keywords:
+    - checkbox
+    - CouchCMS
+    - Couch
+    - tags
+    - PHP
+    - editable
 author: Kamran Kashif
 lastUpdated: 2025-03-27
 ---
 
-Editable region of _checkbox_ type is used to allow the user to choose multiple options from several presented to him in the form of check boxes.
+Editable region of `checkbox` type is used to allow the user to choose multiple options from several presented to them in the form of check boxes.
 
-An editable region of _checkbox_ type can be defined this way -
+An editable region of `checkbox` type can be defined this way:
 
-```php
+```php title="Basic Checkbox Example"
 <cms:editable
     name="my_categories"
     label="Categories" desc="Check all applicable"
@@ -21,148 +27,147 @@ An editable region of _checkbox_ type can be defined this way -
 />
 ```
 
-The code above will result in -
+The code above will result in:
 
 ![](../../../../assets/img/contents/editable-checkbox-1.gif)
 
 The options selected in this region can be accessed, as with all other editable regions, by using the variable named after it.
-Unlike its counterparts, [_dropdown_](../dropdown/) and [_radio_](../radio/) types, _checkbox_ type can contain multiple selected options. In the example given above, if the user selected _Entertainment_, _Sports_ and _Health_, the following code -
+Unlike its counterparts, [`dropdown`](../dropdown/) and [`radio`](../radio/) types, `checkbox` type can contain multiple selected options. In the example given above, if the user selected *Entertainment*, *Sports* and *Health*, the following code:
 
-```php
+```php title="Displaying Selected Values"
 <cms:show my_categories />
 ```
 
-will output -
+will output:
 
-```
+```txt title="Output"
 Entertainment|Sports|Health
 ```
 
-As you can see, the value consists of all the three selected options clubbed together with a '|' (pipe) character separating them.
+As you can see, the value consists of all the three selected options clubbed together with a `|` (pipe) character separating them.
 
 :::tip
-To access each of the individual selected option, you can use the [**Each**](../../each/) tag -
+To access each of the individual selected option, you can use the [**Each**](../../each/) tag:
 
-```php
+```php title="Iterating Through Selected Values"
 <cms:each my_categories as='cat'>
     <cms:show cat /><br>
 </cms:each>
 ```
-
 :::
 
 ## Parameters
 
-In addition to the parameters common to all the types of editable regions, _checkbox_ accepts the following parameters
+In addition to the parameters common to all the types of editable regions, `checkbox` accepts the following parameters:
 
-- opt_values
-- opt_selected
-- separator
-- val_separator
+- `opt_values`
+- `opt_selected`
+- `separator`
+- `val_separator`
 
 ### opt_values
 
-This parameter takes a list of all the options that are displayed as check boxes.
+This parameter takes a list of all the options that are displayed as check boxes:
 
-```php
+```php title="Setting Checkbox Options"
 <cms:editable name="my_categories" label="Categories" desc="Check all applicable"
     opt_values='Entertainment | Computers | Sports | Health'
     type='checkbox'
 />
 ```
 
-The selected options will get saved as the value of the editable region. For example, if the user selected _Sports_, the following code -
+The selected options will get saved as the value of the editable region. For example, if the user selected *Sports*, the following code:
 
-```php
+```php title="Displaying Single Selection"
 <cms:show my_categories />
 ```
 
-\- will output 'Sports'.
+will output *Sports*.
 
-As can be seen, the saved value is the same as the option's name. However we can a specify a different value that can get saved into the editable region by using the following syntax -
+As can be seen, the saved value is the same as the option's name. However we can specify a different value that can get saved into the editable region by using the following syntax:
 
-```php
+```php title="Setting Custom Values"
 opt_values='Entertainment=0 | Computers=1 | Sports=2 | Health=3'
 ```
 
-Printing out the value contained within the editable region -
+Printing out the value contained within the editable region:
 
-```php
+```php title="Displaying Custom Value"
 <cms:show my_categories />
 ```
 
-\- will now output '2'
+will now output `2`.
 
 :::note
 Multiple selections have been discussed above.
 :::
 
 :::tip
-**TIP:** Specifying an empty option makes Couch generate a break '`<br>`'. e.g.
+Specifying an empty option makes Couch generate a break `<br>`:
 
-```php
+```php title="Adding Line Breaks"
 opt_values='Entertainment=0 | | Computers=1 | | Sports=2 | | Health=3'
 ```
 
 In the code above, actually seven options have been specified - three are empty (nothing between the pipes).
-This results in -
+This results in:
 
-![](../../../../assets/img/contents/editable-checkbox-2.gif)
+![Checkbox Options Example](../../../../assets/img/contents/editable-checkbox-2.gif)
 :::
 
 ### opt_selected
 
-You can show any option as selected by setting _opt_selected_ to the value of that option. For example -
+You can show any option as selected by setting `opt_selected` to the value of that option:
 
-```php
+```php title="Setting Default Selection"
 <cms:editable name="my_categories" label="Categories" desc="Check all applicable"
     opt_values='Entertainment | Computers | Sports | Health'
-    opt_selected = 'Sports'
+    opt_selected='Sports'
     type='checkbox'
 />
 ```
 
-\- or -
+Or with custom values:
 
-```php
+```php title="Setting Default Selection with Custom Values"
 <cms:editable name="my_categories" label="Categories" desc="Check all applicable"
     opt_values='Entertainment=0 | Computers=1 | Sports=2 | Health=3'
-    opt_selected = '2'
+    opt_selected='2'
     type='checkbox'
 />
 ```
 
-\- will show _Sports_ as the option selected by default.
+will show *Sports* as the option selected by default.
 
-Multiple options can be shown as selected by separating the values by a '|' (pipe character) -
+Multiple options can be shown as selected by separating the values by a `|` (pipe character):
 
-```php
-opt_selected = '0 | 2'
+```php title="Setting Multiple Default Selections"
+opt_selected='0 | 2'
 ```
 
-The above will show _Entertainment_ and _Sports_ selected by default.
+The above will show *Entertainment* and *Sports* selected by default.
 
 ### separator
 
-As seen in the examples above, the list provided to _opt_values_ parameter consists of the options separated by a '|' (pipe) character and so are the values provided to _opt_selected_.
-This is the default separator used by Couch. For some reason if you do not wish to have a pipe as separator (e.g. if any of the options contains the pipe character within itself, obviously the same character cannot be used as the separator), any other character can be designated as the separator by setting this parameter. For example as in follows -
+As seen in the examples above, the list provided to `opt_values` parameter consists of the options separated by a `|` (pipe) character and so are the values provided to `opt_selected`.
+This is the default separator used by Couch. If you do not wish to have a pipe as separator (e.g. if any of the options contains the pipe character within itself), any other character can be designated as the separator by setting this parameter:
 
-```php
+```php title="Using Custom Separator"
 <cms:editable name="my_categories" label="Categories" desc="Check all applicable"
     opt_values='Entertainment=0 * Computers=1 * Sports=2 * Health=3'
-    opt_selected = '1 * 3'
+    opt_selected='1 * 3'
     separator='*'
     type='checkbox'
 />
 ```
 
-Note how the _opt_values_ and _opt_selected_ are separated by '\*'.
+Note how the `opt_values` and `opt_selected` are separated by `*`.
 
 ### val_separator
 
-Similar to the problem outlined above, sometimes the options in the list contain the '=' (equals to) character. This makes it imposible to use '=' between the option's name and value. You can set any other character for this purpose by setting this parameter. For example -
+Similar to the problem outlined above, sometimes the options in the list contain the `=` (equals to) character. This makes it impossible to use `=` between the option's name and value. You can set any other character for this purpose by setting this parameter:
 
-```php
+```php title="Using Custom Value Separator"
 val_separator=':'
 ```
 
