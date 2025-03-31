@@ -9,7 +9,7 @@ author: Kamran Kashif
 lastUpdated: 2025-03-20
 ---
 
-[__*Pages*__](../../tags-reference/pages/), [__*search*__](../../tags-reference/search/) and [__*comments*__](../../tags-reference/comments/) tags can fetch many more items than that set by the _limit_ parameter.
+[***Pages***](../../tags-reference/pages/), [***search***](../../tags-reference/search/) and [***comments***](../../tags-reference/comments/) tags can fetch many more items than that set by the `limit` parameter.
 In such cases, it is normal to display the items in a paginated manner i.e. split across several pages with navigational buttons provided to access the pages.
 These tags, apart from the variables set to describe the current item being iterated through, set several variables that provide information about the current status of the tag's loop. Many of these variables can be used to display the fetched items in a paginated fashion.
 
@@ -22,7 +22,7 @@ To explain these variables, we'll use the following snippet:
 ```
 
 :::note
-Although we are using the example of a [__*pages*__](../../tags-reference/pages/) tag to explain pagination, please keep in mind that the following discussion holds equally good for the [__*search*__](../../tags-reference/search/) and [__*comments*__](../../tags-reference/comments/) tags as well.
+Although we are using the example of a [***pages***](../../tags-reference/pages/) tag to explain pagination, please keep in mind that the following discussion holds equally good for the [***search***](../../tags-reference/search/) and [***comments***](../../tags-reference/comments/) tags as well.
 :::
 
 Suppose a total of 23 records have been fetched by the given snippet.
@@ -40,26 +40,26 @@ Total records fetched - 23 in our example
 
 Will range from 1 to 10 on each page. Thus it points to the relative position of the current record on the page.
 Can be changed by setting 'startcount' parameter.
-Thus if 'startcount' is set to 0, *k_count* will range from 0-9 on each page.
+Thus if 'startcount' is set to 0, `k_count` will range from 0-9 on each page.
 
 #### k_record_from
 
 First record on page. Thus it will be 1 for page 1, 11 for page 2 and 21 for page 3.
 Can be changed by setting 'startcount' parameter.
-Thus if 'startcount' is set to 0, *k_record_from* will be 0 for page 1, 10 for page 2 and 20 for page 3.
+Thus if 'startcount' is set to 0, `k_record_from` will be 0 for page 1, 10 for page 2 and 20 for page 3.
 
 #### k_current_record
 
 Will range from 1-10 for page 1, 11-20 for page 2 and 21-23 for page 3.
 Thus it always points to the absolute position of the current record.
 Can be changed by setting 'startcount' parameter.
-Thus if 'startcount' is set to 0, *k_current_record* will range from 0-9 for page 1, 10-19 for page 2 and 20 to 22 for page 3.
+Thus if 'startcount' is set to 0, `k_current_record` will range from 0-9 for page 1, 10-19 for page 2 and 20 to 22 for page 3.
 
 #### k_record_to
 
 Last record on page. Thus it will be 10 for page 1, 20 for page 2 and 23 for page 3.
 Can be changed by setting 'startcount' parameter.
-Thus if 'startcount' is set to 0, *k_record_to* will be 9 for page 1, 19 for page 2 and 22 for page 3.
+Thus if 'startcount' is set to 0, `k_record_to` will be 9 for page 1, 19 for page 2 and 22 for page 3.
 
 #### k_total_pages
 
@@ -72,20 +72,20 @@ Current page number - will change from 1 to 3 in our example.
 #### k_paginated_top
 
 'Pages' tag loops through 10 records on each page in our example.
-*k_paginated_top* gets set for the first record of each page.
+`k_paginated_top` gets set for the first record of each page.
 It can be used to output something at the very start of the loop.
 
 #### k_paginated_bottom
 
 'Pages' tag loops through 10 records on each page in our example.
-*k_paginated_bottom* gets set for the last record of each page.
+`k_paginated_bottom` gets set for the last record of each page.
 It can be used to output something at the very end of the loop.
 
 #### k_paginator_required
 
 When the total number of pages fetched exceeds the maximum set by the 'limit' parameter,
 (and 'paginate' parameter is also set), the fetched set of pages is split across pages and
-*k_paginator_required* gets set to indicate this.
+`k_paginator_required` gets set to indicate this.
 It can be used to figure out when to display text that makes sense only in such situation
 for example - the 'next' and 'forward' links or the 'Page 1 of 3'.
 
@@ -97,7 +97,7 @@ Link to the next page (if any)
 
 Link to the previous page (if any)
 
-### Examples:
+### Examples
 
 ```php
 <cms:pages masterpage='blog.php' limit='10' paginate='1'>
@@ -122,7 +122,7 @@ Link to the previous page (if any)
 </cms:pages>
 ```
 
-Instead of manually coding the 'next' and 'prev' buttons for navigating through the pages, the [__*paginator*__](../../tags-reference/paginator.html) tag can be used instead:
+Instead of manually coding the 'next' and 'prev' buttons for navigating through the pages, the [***paginator***](../../tags-reference/paginator.html) tag can be used instead:
 
 ```php
 <cms:pages masterpage='blog.php' limit='10' paginate='1'>
@@ -140,7 +140,7 @@ Instead of manually coding the 'next' and 'prev' buttons for navigating through 
 </cms:pages>
 ```
 
-If the [__*paginator*__](../../tags-reference/paginator.html) tag is used to generate the navigation buttons, the following CSS code may be used to properly style the buttons -
+If the [***paginator***](../../tags-reference/paginator.html) tag is used to generate the navigation buttons, the following CSS code may be used to properly style the buttons -
 
 ```css
 /*
@@ -190,6 +190,6 @@ div.pagination span.page_disabled {
 * span.elipsis {zoom:100%}
 ```
 
-The following is a sample output of the [__*paginator*__](../../tags-reference/paginator/) tag
+The following is a sample output of the [***paginator***](../../tags-reference/paginator/) tag
 
 ![Pagination](../../../assets/img/contents/pagination.png)
