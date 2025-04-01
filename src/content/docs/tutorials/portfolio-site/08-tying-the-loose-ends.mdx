@@ -1,5 +1,5 @@
 ---
-title: "Tying the Loose Ends"
+title: Tying the Loose Ends
 description: "Learn how to finalize your CouchCMS portfolio site by implementing global settings, menu navigation, and PrettyURLs."
 keywords:
     - global settings
@@ -46,12 +46,12 @@ A look at the HTML code of our templates will reveal that they all have this pie
 
 The only little difference in each is the part highlighted above. The `class="current"` string appears only on the menu item that corresponds to the template this menu appears in. This causes a little arrow to appear below the current section.
 
-We can easily replace the static links in the menu by those of our new templates by using the Couch `link` tag.
-We have already encountered the `link` tag while configuring a previous section and know that we should always use this instead of hard coding links ourselves because it takes into account the `prettyurls` setting of the site and outputs links accordingly.
+We can easily replace the static links in the menu by those of our new templates by using the Couch [**link**](../../tags-reference/link/) tag.
+We have already encountered the [**link**](../../tags-reference/link/) tag while configuring a previous section and know that we should always use this instead of hard coding links ourselves because it takes into account the `prettyurls` setting of the site and outputs links accordingly.
 
 Thus the modified code of the menu (we are modifying `blog.php`) will become:
 
-```diff lang="php" "<cms:link 'contact.php' />" "<cms:link 'blog.php' />" "<cms:link 'portfolio.php' />" "<cms:link 'about.php' />" "<cms:link 'index.php' />"
+```diff lang="php" ins="<cms:link 'contact.php' />" ins="<cms:link 'blog.php' />" ins="<cms:link 'portfolio.php' />" ins="<cms:link 'about.php' />" ins="<cms:link 'index.php' />"
 <!-- Text Logo -->
 <h1 id="logo" class="grid_4">Aurelius</h1>
 
@@ -65,29 +65,23 @@ Thus the modified code of the menu (we are modifying `blog.php`) will become:
 </ul>
 ```
 
-That is a straightforward change. The **blog** section will now display the correct menu.
+That is a straightforward change. The **Blog** section will now display the correct menu.
 To make all the other templates do the same, we need to make the same modifications in all of them.
 That is a total of 7 places to do so (the five templates and the two embedded list-views - `blog_list.html` and `portfolio_list.html`).
 
-A cleaner approach would be to place the code for menu in a separate snippet and then embed the snippet at all the required places.
-We'll take this approach.
+A cleaner approach would be to place the code for menu in a separate snippet and then embed the snippet at all the required places. We'll take this approach.
 
-Cut the code we have been working on above, paste it into a file and save the file as `header.html` in the `snippets` folder of Couch.
-Embed the following code at all the seven locations we mentioned:
+Cut the code we have been working on above, paste it into a file and save the file as `header.html` in the `snippets` folder of Couch. Embed the following code at all the seven locations we mentioned:
 
-```php
+```php title="Using Embedded Header"
 <cms:embed 'header.html' />
 ```
 
-Access the various sections. The menu links should work now but regardless of the section we might be currently in, the menu will show **blog** as the current section.
-That is not surprising as the code we embedded had the `class="current"` string in the **blog** menu item.
+Access the various sections. The menu links should work now but regardless of the section we might be currently in, the menu will show **Blog** as the current section. That is not surprising as the code we embedded had the `class="current"` string in the **Blog** menu item.
 
-To rectify the situation, let us now modify the embedded `header.html`.
-We'll place some simple conditional tags to check for the current template and then output the `class="current"` within the right menu item.
-The variable to check is the `k_template_name` that is always set by Couch to indicate the template being used.
-The modified code:
+To rectify the situation, let us now modify the embedded `header.html`. We'll place some simple conditional tags to check for the current template and then output the `class="current"` within the right menu item. The variable to check is the `k_template_name` that is always set by Couch to indicate the template being used. The modified code:
 
-```diff lang="php" "<cms:if k_template_name=='contact.php'>"
+```diff lang="php" title="Dynamic Menu Highlighting" "<cms:if k_template_name=='contact.php'>"
 <!-- Text Logo -->
 <h1 id="logo" class="grid_4">Aurelius</h1>
 
@@ -101,33 +95,25 @@ The modified code:
 </ul>
 ```
 
-Visit all the sections again and the menu should work fine.
-The usefulness of embedded snippets is that you need to make modifications only at a single place for the changes to appear at all the places the embed was used on.
+Visit all the sections again and the menu should work fine. The usefulness of embedded snippets is that you need to make modifications only at a single place for the changes to appear at all the places the [**embed**](../../tags-reference/embed/) was used on.
 
-The code we placed in the `header.html` also contained the name of the site as a Text Logo **Aurelius**.
-This name appears on every page of our web site.
+The code we placed in the `header.html` also contained the name of the site as a Text Logo **Aurelius**. This name appears on every page of our web site.
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-194.png)
+![Site name displayed as text logo in menu](../../../../assets/img/contents/portfolio-site-194.png "Text logo showing 'Aurelius' as the site name")
 
 Change that to whatever you wish and all the templates will show the modified name.
 
-Instead of hard-coding the site's name ourselves, a better option would be to give the client a way to do so.
-The question is how.
-Creating an editable region for it, the way we have done so far, will not work because this item belongs to multiple templates and not to single one.
-A similar problem will arise if we were to make, for example, the highlighted region in the portfolio template below, editable by the client.
+Instead of hard-coding the site's name ourselves, a better option would be to give the client a way to do so. Creating an editable region for it, the way we have done so far, will not work because this item belongs to multiple templates and not to a single one. A similar problem will arise if we were to make, for example, the highlighted region in the portfolio template below, editable by the client.
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-195.png)
+![Portfolio page heading with caption text](../../../../assets/img/contents/portfolio-site-195.png "Portfolio page caption that could be made editable globally")
 
 We cannot do so by creating an editable region for it in `portfolio.php` because in that case any changes made to it would belong to any one single portfolio item - not globally to the template itself.
 
 ### Global values
 
-The solution to these global items is creating a separate template for then altogether.
-We'll define the editable regions for all globally required values in this template. The user can edit the values here and then we can simply fetch these values and use them anywhere we desire.
-Since this template will only be used to hold editable values and will never be accessed directly through a URL, we can declare it to be non-executable (we have covered this in a previous tutorial).
+The solution to these global items is to create a separate template for them altogether, define the editable regions for all globally required values in this template, allow the user to edit the values here, and then fetch these values to use them anywhere we desire. Since this template will only be used to hold editable values and will never be accessed directly through a URL, we can declare it to be non-executable (we have covered this in a previous tutorial).
 
-Create and add a new file named `globals.php` to our existing templates.
-Add the mandatory PHP code to it to attach Couch to it -
+Create and add a new file named `globals.php` to our existing templates. Add the mandatory PHP code to it to attach Couch to it:
 
 ```php title="globals.php"
 <?php require_once( 'couch/cms.php' ); ?>
@@ -137,16 +123,13 @@ Add the mandatory PHP code to it to attach Couch to it -
 <?php COUCH::invoke(); ?>
 ```
 
-Access `https://www.mytestsite.com/globals.php` as super-admin and then visit the admin section.
-Our new template should now be available.
+Access `https://www.mytestsite.com/globals.php` as super-admin and then visit the admin section. Our new template should now be available.
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-197.png)
+![Global Settings template in admin panel](../../../../assets/img/contents/portfolio-site-197.png "Admin panel showing the new Global Settings template")
 
 #### Setting global values
 
-We can now define all the editable regions that will hold the global values.
-We have already discussed the site's name. We'll create one to hold a one-line site's description. Each of the five templates has a catch-line each. We'll create editable regions for these too.
-The finished code should look like this:
+We can now define all the editable regions that will hold the global values, including the site's name, a one-line site description, and catch-lines for each of the five templates. The finished code should look like this:
 
 ```diff lang="php" title="globals.php"
 <?php require_once( 'couch/cms.php' ); ?>
@@ -183,7 +166,7 @@ The finished code should look like this:
 Refresh `https://www.mytestsite.com/globals.php` still logged-in as the super-admin to make Couch pick up the changes.
 Visiting the admin panel should reveal the following editable regions -
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-199.png)
+![Global settings editable regions in admin panel](../../../../assets/img/contents/portfolio-site-199.png "Admin interface showing editable regions for global settings")
 
 That is half of our work done. We can now get the values in. Let us see how to get those values out and use them in the templates.
 
@@ -191,8 +174,7 @@ That is half of our work done. We can now get the values in. Let us see how to g
 
 There are two different methods of fetching in the global values, We'll describe both:
 
-- **a.** The first method uses the regular Couch `pages` tag that we have used several times so far.
-Somewhere at the start of a template, use the `pages` tag and specify `globals.php` as the `masterpage`. `globals.php` is non-clonable, so the `pages` tag will fetch in the values of all the editable regions defined for the template.
+- **a.** The first method uses the regular Couch [**pages**](../../tags-reference/pages/) tag. At the start of a template, use the [**pages**](../../tags-reference/pages/) tag and specify `globals.php` as the `masterpage`. Since `globals.php` is non-clonable, the [**pages**](../../tags-reference/pages/) tag will fetch the values of all the editable regions defined for the template.
 
 ```diff lang="php" "g_site_name" "site_name"
 <cms:pages masterpage='globals.php' >
@@ -206,12 +188,11 @@ Somewhere at the start of a template, use the `pages` tag and specify `globals.p
 </cms:pages>
 ```
 
-The variables set by the `pages` tag are available for use only within the opening and closing components of the `pages` tag. We want to use them at other parts of the template and hence we copy their values to new variables. These new variables are specified to have a global scope, which makes them available everywhere on the page.
+The variables set by the [**pages**](../../tags-reference/pages/) tag are available for use only within the opening and closing components of the [**pages**](../../tags-reference/pages/) tag. We want to use them at other parts of the template and hence we copy their values to new variables. These new variables are specified to have a global scope, which makes them available everywhere on the page.
 
-Notice in the code above how we are copying the value of the variable `site_name`, containing the value of the editable region by the same name, into a variable named `g_site_name` (we can use any arbitrary name). The `g_site_name` has been specified to have a global scope hence, unlike variable `site_name`, can be used even outside the `pages` tag anywhere in the template.
+Notice in the code above how we are copying the value of the variable `site_name`, containing the value of the editable region by the same name, into a variable named `g_site_name` (we can use any arbitrary name). The `g_site_name` has been specified to have a global scope hence, unlike variable `site_name`, can be used even outside the [**pages**](../../tags-reference/pages/) tag anywhere in the template.
 
-The new global variable can now be in the regular manner.
-For example, the following code in the embedded `header.html`
+The new global variable can now be in the regular manner. For example, the following code in the embedded `header.html`:
 
 ```html title="header.html"
 <!-- Text Logo -->
@@ -225,9 +206,7 @@ becomes:
 <h1 id="logo" class="grid_4"><cms:show g_site_name /></h1>
 ```
 
-- **b.** The first method given above is good to fetch in all global values in one fell sweep but has the drawback of having to place the code using the `pages` tag somewhere at the start of every template where the values are to be used.
-Sometimes you need to show only a few values from the global template. For such cases you can use the Couch `get_custom_field` tag to directly fetch the variable's value. This tag takes as parameters the name of the variable to be fetched, the template's name and the page's name if the template is clonable.
-Since our `globals.php` template is non-clonable, we can skip the cloned page's name and simply state:
+- **b.** The first method given above is good to fetch in all global values in one fell sweep but has the drawback of having to place the code using the [**pages**](../../tags-reference/pages/) tag somewhere at the start of every template where the values are to be used. Sometimes you need to show only a few values from the global template. For such cases you can use the Couch [**get_custom_field**](../../tags-reference/get_custom_field/) tag to directly fetch the variable's value. This tag takes as parameters the name of the variable to be fetched, the template's name and the page's name if the template is clonable. Since our `globals.php` template is non-clonable, we can skip the cloned page's name and simply state:
 
 ```php
 <cms:get_custom_field 'site_name' masterpage='globals.php' />
@@ -295,21 +274,14 @@ You can similarly modify the rest of the templates.
 
 ### PrettyURLs
 
-With this, all the templates in **Aurelius** are finally fully configured.
-Before handing this site over to the client, however, you'd want to turn on the `prettyurls` for it.
-Please see Couch's documentation that shows you in detail how to do so.
-Once you complete the steps detailed in the documentation, visit all the templates again to see how the URLs have changed.
-You'll immediately notice a problem - except for the home page, in all the other templates the CSS files do not load properly with the new `prettyurls`.
-The reason lies in the original code of **Aurelius**:
+With this, all the templates in **Aurelius** are finally fully configured. Before handing this site over to the client, however, you'd want to turn on the `prettyurls` for it. Please see Couch's documentation that shows you in detail how to do so. Once you complete the steps detailed in the documentation, visit all the templates again to see how the URLs have changed. You'll immediately notice a problem - except for the **Home Page**, in all the other templates the CSS files do not load properly with the new `prettyurls`. The reason lies in the original code of **Aurelius**:
 
-```php
+```php title="Original Stylesheet Links"
 <!-- Stylesheets -->
 <link rel="stylesheet" href="css/reset.css" />
 <link rel="stylesheet" href="css/styles.css" />
 ```
-
-As you can see, the `hrefs` of the stylesheets are given in relative format. With `prettyurls` turned on, once the URL of any containing page changes, so do these links.
-We need to make the `hrefs` absolute. To do so, modify the code shown above to the following in all the templates (don't forget the embedded `blog_list.html` and `portfolio_list.html`):
+As you can see, the `hrefs` of the stylesheets are given in relative format. With `prettyurls` turned on, once the URL of any containing page changes, so do these links. We need to make the `hrefs` absolute. To do so, modify the code shown above to the following in all the templates (don't forget the embedded `blog_list.html` and `portfolio_list.html`):
 
 ```diff lang="php" ins="<cms:show k_site_link />"
 <!-- Stylesheets -->
@@ -335,9 +307,10 @@ With these changes, the CSS files should now load properly in all the templates.
 
 ### Parting words
 
-This brings us finally to the end of this tutorial ([Download the finished code](https://www.couchcms.com/docs/code/final.zip)).
-We started with a plain HTML template and transformed it into a dynamic, fully CMS enabled site that even the most tech-challenged client should be able to manage easily.
-The real beauty of all this was that we were able to accomplish it without writing any PHP at all (except for the two lines that remain the same for every template).
-There is a lot more that you can do with Couch. It is a highly flexible system and there are several ways of accomplishing the same thing in it. Please take a look at the [documentation](../../../) for a fuller treatment of all its features.
+This brings us finally to the end of this tutorial ([Download the finished code](https://www.couchcms.com/docs/code/final.zip)). We started with a plain HTML template and transformed it into a dynamic, fully CMS enabled site that even the most tech-challenged client should be able to manage easily. The real beauty of all this was that we were able to accomplish it without writing any PHP at all (except for the two lines that remain the same for every template). There is a lot more that you can do with Couch. It is a highly flexible system and there are several ways of accomplishing the same thing in it. Please take a look at the [documentation](../../../) for a fuller treatment of all its features.
 
-Good-bye and relax! You are on the Couch now!
+I hope this tutorial has given you a good overview of how **CouchCMS** can help you convert static HTML templates into dynamic, content-managed websites with minimal effort.
+
+If you have any questions or comments, please feel free to visit our [forum](https://www.couchcms.com/forum/) where a vibrant community is always ready to help.
+
+Good-bye and relax! You are on the Couch now! Happy coding!

@@ -1,5 +1,5 @@
 ---
-title: "The Contact Form"
+title: The Contact Form
 description: "Learn how to implement a contact form in CouchCMS, including form validation, email notifications, and social media integration."
 keywords:
     - contact form
@@ -48,19 +48,19 @@ Add the two lines of boilerplate PHP code to enclose the contents of this file a
 <?php COUCH::invoke(); ?>
 ```
 
-Access `http://www.mytestsite.com/contact.php` while logged on as the super-admin.
+Access `https://www.mytestsite.com/contact.php` while logged on as the super-admin.
 This will hook up Couch to the template.
 
 ### Defining editable regions
 
-As can be seen, there are three distinct parts to this template - An introductory paragraph at the top, the contact form and a sidebar containing several contact details.
+As can be seen, there are three distinct parts to this template - An introductory paragraph at the top, the **Contact Form** and a sidebar containing several contact details.
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-150.png)
+![Contact form with introductory paragraph and sidebar sections](../../../../assets/img/contents/portfolio-site-150.png "Contact Us page showing form and sidebar layout")
 
-Of these three, the contact form will be handled by the Couch form and input tags. The introductory top paragraph can be easily made into an editable region. The sidebar too can be turned into an editable region - we only need to decide how granular the division needs to be. We can, if needed, create an editable region each for the *Address*, *Email* and *Social Profiles* sections or create one single region for the entire sidebar.
-For the purpose of this tutorial, we'll create one editable region that will span both the *Address* as well as the *Email* section and will sub-divide the *Social Profiles* section into one editable region for each social site.
+Of these three, the **Contact Form** will be handled by the Couch [**form**](../../tags-reference/form/) and [**input**](../../tags-reference/input/) tags. The introductory top paragraph can be easily made into an editable region. The sidebar too can be turned into an editable region - we only need to decide how granular the division needs to be. We can, if needed, create an editable region each for the **Address**, **Email** and **Social Profiles** sections or create one single region for the entire sidebar.
+For the purpose of this tutorial, we'll create one editable region that will span both the **Address** as well as the **Email** section and will sub-divide the **Social Profiles** section into one editable region for each social site.
 
-Let us define the editable regions for the introductory paragraph and the address and email in the sidebar by directly enclosing these parts by Couch editable tags:
+Let us define the editable regions for the introductory paragraph and the address and email in the sidebar by directly enclosing these parts by Couch [**editable**](../../tags-reference/editable/) tags:
 
 ```php title="contact.php" ins="<cms:editable name='contact_intro' label='Introductory text' type='richtext'>" ins="</cms:editable>"
 <!-- Column 1 / Content -->
@@ -103,11 +103,11 @@ Let us define the editable regions for the introductory paragraph and the addres
 
 Refreshing `https://www.mytestsite.com/contact.php` by revisiting it as super-admin will yield the following results for the changes made so far:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-153.png)
+![Contact form admin interface showing editable regions](../../../../assets/img/contents/portfolio-site-153.png "Couch admin panel with contact form editable regions")
 
 Editing any of these regions and saving the changes will cause the modifications to appear on the page immediately.
 
-As for the *Social Profiles* section, instead of defining its editable regions by enclosing the actual elements with the editable tags in-situ (the way we did for the previous sections), we'll define them within the template tag (the way we did in *blog* and *portfolio* sections) and use variables to display them.
+As for the **Social Profiles** section, instead of defining its editable regions by enclosing the actual elements with the editable tags in-situ (the way we did for the previous sections), we'll define them within the [**template**](../../tags-reference/template/) tag (the way we did in **Blog** and **Portfolio** sections) and use variables to display them.
 The reason for this is that, as you'll soon see, we'll be outputting these social links conditionally (i.e. only under certain circumstances). If we place the definition of the editable regions within conditional tags, the condition where an editable region will not be output will also cause the region to be deleted.
 
 Make the following changes to the template tag at the top:
@@ -128,10 +128,10 @@ Make the following changes to the template tag at the top:
     <title>Aurelius | Contact Us</title>
 ```
 
-Note how we have grouped the five text type editable regions by creating an editable region of type group and linking the other regions to it.
+Note how we have grouped the five text type editable regions by creating an editable region of type [**group**](../../tags-reference/editable/) and linking the other regions to it.
 Refresh `https://www.mytestsite.com/contact.php` and then visit the admin section. The following regions should appear:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-155.png)
+![Contact form admin showing social profile fields](../../../../assets/img/contents/portfolio-site-155.png "Social profiles editable regions in admin panel")
 
 Since we have defined these editable regions in the template tag, for their contents to appear on the web page we need to use the variables representing them at the required places.
 The original HTML code for the profiles section is:
@@ -327,7 +327,7 @@ What is left to configure now is the contact form itself.
 
 ### Form
 
-Couch has two tags that are used for building forms - the form tag and the input tag.
+Couch has two tags that are used for building forms - the [**form**](../../tags-reference/form/) tag and the [**input**](../../tags-reference/input/) tag.
 If you already have an existing form, it is straightforward to port it to Couch, as we'll soon see. But first we must ask the question that if we already have an HTML form, why would we want to port it to Couch at all?
 The reason is that having a HTML form is only half the story. The other half is processing the submitted form. This includes validating all submitted values, reporting errors if any and taking the desired action after successful form submission.
 This processing of a form normally requires a custom coded PHP script, which usually is a painful task for a web-designer.
@@ -477,14 +477,14 @@ We need to make these error-reporting paragraphs visible by default so add the f
 
 The inline style will override the existing styles and all the error-reporting paragraphs will now become permanently visible, regardless of any validation:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-172.png)
+![Contact form with visible error messages](../../../../assets/img/contents/portfolio-site-172.png "Contact form showing all validation errors")
 
 Don't worry though. We'll now make Couch display these messages upon validation failures.
 
 ### Validating submitted values
 
 To make Couch validate the submitted values, the input tags need to have validation constrains placed upon them.
-The most common constrain is to make sure an input is not left empty. This can be enforced by setting the `required` parameter of input tag to 1.
+The most common constrain is to make sure an input is not left empty. This can be enforced by setting the `required` parameter of [**input**](../../tags-reference/input/) tag to `1`.
 There are several other kinds of validations available (e.g. `min_len`, `max_len` etc.) which are set using the `validator` parameter (see Forms).
 We'll use the `validator='email'` with the input meant for email address.
 The modified code with the validation constrains in place:
@@ -598,7 +598,7 @@ In the case of this form, we'd wish to send an email to the site owner, informin
 </cms:if>
 ```
 
-We'll use the Couch email tag to send an email to the site owner. Anything enclosed within the email tags will form the body of the email to be sent. Notice how we are using the `k_success` variable (contains submitted values of all the inputs) to inform him of the submitted values.
+We'll use the Couch [**send_mail**](../../tags-reference/send_mail/) tag to send an email to the site owner. Anything enclosed within the email tags will form the body of the email to be sent. Notice how we are using the `k_success` variable (contains submitted values of all the inputs) to inform him of the submitted values.
 
 The `k_email_from` and the `k_email_to` contain these values set in `config.php`:
 
@@ -612,6 +612,8 @@ define( 'K_EMAIL_TO', 'contact@yourdomain.com' );
 define( 'K_EMAIL_FROM', 'contact@yourdomain.com' );
 ```
 
-This wraps up the contact form section. The last template that now remains to be configured is the `index.html` - the home page.
+This wraps up the **Contact Form** section. The last template that now remains to be configured is the `index.html` - the home page.
 
-[That is next.](../home-page/)
+---
+
+[Next Chapter: **Creating the Home Page**](../07-home-page/)

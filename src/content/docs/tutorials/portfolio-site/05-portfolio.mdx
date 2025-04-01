@@ -1,14 +1,12 @@
 ---
-title: 'The Portfolio Section'
-description:
-  'Learn how to implement the portfolio section in CouchCMS, including
-  categories, image galleries, and dynamic content management.'
+title: The Portfolio Section
+description: "Learn how to implement the portfolio section in CouchCMS, including categories, image galleries, and dynamic content management."
 keywords:
-  - portfolio
-  - categories
-  - image gallery
-  - content management
-  - CouchCMS
+  - portfolio management
+  - image galleries
+  - category filtering
+  - content organization
+  - CouchCMS portfolio
 category: tutorial
 subCategory: portfolio-site
 author: Kamran Kashif
@@ -25,13 +23,13 @@ import { Card, CardGrid, Steps } from '@astrojs/starlight/components';
     [Download Couchified Code](https://www.couchcms.com/docs/code/portfolio.zip)
 </Card>
 
-Having already built the *blog* section, building the *portfolio* section will see us only repeating what we have already done. As such, we'll go into the details of only those steps that are new for this section.
+Having already built the **Blog** section, building the **Portfolio** section will see us only repeating what we have already done. As such, we'll go into the details of only those steps that are new for this section.
 
 Aurelius provides us with two files: `portfolio.html` and `portfolio_single.html`. The `portfolio_single.html` file represents a single portfolio entry, while `portfolio.html` lists all existing portfolio entries. It is clear that `portfolio_single.html` will serve as the page-view for this section, and `portfolio.html` will serve as the list-view. Similar to the blog section, we will use `portfolio_single.html` as the main template for the portfolio section. This is because this view will define all the editable regions needed to capture all relevant information about a single portfolio entry.
 
 First, rename the file `portfolio.html` to `portfolio_list.html`. Then, rename the file `portfolio_single.html` to `portfolio.php`.
 
-After renaming, open `portfolio.php` and wrap its entire content with the CouchCMS boilerplate PHP code. This means adding the following line at the very top of the file:
+After renaming, open `portfolio.php` and wrap its entire content with the Couch boilerplate PHP code. This means adding the following line at the very top of the file:
 
 ```php
 <?php require_once( 'couch/cms.php' ); ?>
@@ -49,7 +47,7 @@ Access `https://www.mytestsite.com/portfolio.php` while logged on as the super-a
 
 Let us take a look at one portfolio entry to decide which editable regions will be required to capture all its data.
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-122.png)
+![Portfolio entry with website, name, content, images, and captions](../../../../assets/img/contents/portfolio-site-122.png "Example portfolio entry showing the layout structure")
 
 The following regions can be identified:
 
@@ -94,7 +92,7 @@ The final list of the editable regions required and their types:
   12. Image 3's caption (text)
 </Card>
 
-As we did in the *blog* section, define all these editable regions within a template tag as follows:
+As we did in the **Blog** section, define all these editable regions within a [**template**](../../tags-reference/template/) tag as follows:
 
 ```php title="portfolio.php" {2-6} {8-14} {16} {18-27} {29-39} {41-46} {48} {50-59} {61-66} {68} {70-79} {81-86}
 <cms:template title='Portfolio' clonable='1'>
@@ -191,11 +189,11 @@ Notice that we have also declared the template as clonable.
 
 Refresh `https://www.mytestsite.com/portfolio.php` by visiting it again logged in as super-admin. Visit the admin section to find the first default page created for you. Clicking on it should reveal that Couch has created the following editable regions as instructed:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-124.png)
+![Portfolio admin interface showing editable regions](../../../../assets/img/contents/portfolio-site-124.png "Couch admin panel with portfolio editable regions")
 
 Edit the default page to create the first portfolio item. Once you have entered and saved all data, click on 'view' to see the page. The page-view of `portfolio.php` should load with the URL of the cloned page being similar to:
 
-```txt "?p="
+```txt title="Portfolio URL with page parameter" "?p="
 https://www.mytestsite.com/portfolio.php?p=7
 ```
 
@@ -203,7 +201,7 @@ where the number after `?p=` will be the unique id of this portfolio item.
 
 Of course, none of the data we entered in the editable regions of this page should be visible because we have not used the variables representing the editable regions in the template yet. Let us do so now. The original HTML code:
 
-```php title="portfolio_single.html"
+```html title="portfolio_single.html"
 <!-- Column 1 / Project Information -->
 <div class="grid_4">
     <a class="meta" href="#">www.siteurlgoeshere.com</a>
@@ -312,15 +310,15 @@ If we take a look at the static listing shown above, it can be seen that Aureliu
 
 ```php title="portfolio.php" {8-10}
     <cms:editable
-        name='image_3_title'
-        label='Image Title'
-        desc='Enter image\'s title here'
-        group='group_img3'
-        type='text'/>
+        name="image_3_title"
+        label="Image Title"
+        desc="Enter image's title here"
+        group="group_img3"
+        type="text"/>
 
-        <cms:folder name='cat_1' title='First Category' />
-        <cms:folder name='cat_2' title='Second Category' />
-        <cms:folder name='cat_3' title='Third Category' />
+        <cms:folder name="cat_1" title="First Category" />
+        <cms:folder name="cat_2" title="Second Category" />
+        <cms:folder name="cat_3" title="Third Category" />
 </cms:template>
 
 <cms:if k_is_page >
@@ -337,7 +335,7 @@ Create some more dummy portfolio items and distribute them amongst the three fol
 
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-133.png)
 
-Time now to actually display the portfolio items grouped according to the categories. We are already familiar with the Couch tags named folders and pages, which we used to enumerate the folders and cloned pages of blog.php template respectively in the previous tutorial. We'll use both the tags for this portfolio section in much the same way. To list the portfolio items grouped together in categories, however, we'll use the pages tag nested within the folders tag. This is not something we've done so far before, so we'll go into the process in detail. Here is how we proceed - We'll tackle the categories first.
+Time now to actually display the portfolio items grouped according to the categories. We are already familiar with the Couch tags named [**folders**](../../tags-reference/folders/) and [**pages**](../../tags-reference/pages/), which we used to enumerate the folders and cloned pages of blog.php template respectively in the previous tutorial. We'll use both the tags for this portfolio section in much the same way. To list the portfolio items grouped together in categories, however, we'll use the pages tag nested within the folders tag. This is not something we've done so far before, so we'll go into the process in detail. Here is how we proceed - We'll tackle the categories first.
 
 ### Listing Categories
 
@@ -458,11 +456,11 @@ Within the category block we were working upon above, the following marked porti
 </cms:folders>
 ```
 
-By now, it's clear that the Couch tag for enumerating cloned pages is the pages tag. Before implementing it by deleting all but one of the four static page entries and enclosing it with the pages tag, note that these entries are identical except for their class attributes. The first entry has a class named alpha, the second has an empty class, and the third has a class of omega, with this pattern repeating. This pattern is crucial for wrapping pages after every third item. Since the enumerator tag needs only one entry to repeat for each cloned page, we must ensure it outputs the correct class-name based on the page's position. Couch simplifies this with the zebra tag, which helps cycle through class names like `alpha`, `''`, and `omega` for each page.
+By now, it's clear that the Couch tag for enumerating cloned pages is the [**pages**](../../tags-reference/pages/) tag. Before implementing it by deleting all but one of the four static page entries and enclosing it with the pages tag, note that these entries are identical except for their class attributes. The first entry has a class named alpha, the second has an empty class, and the third has a class of omega, with this pattern repeating. This pattern is crucial for wrapping pages after every third item. Since the enumerator tag needs only one entry to repeat for each cloned page, we must ensure it outputs the correct class-name based on the page's position. Couch simplifies this with the [**zebra**](../../tags-reference/zebra/) tag, which helps cycle through class names like `alpha`, `''`, and `omega` for each page.
 
-The zebra tag is meant to be used within any enumerator tag and will sequentially output each of its parameters at each iteration. If the numbers of iterations (i.e. objects being enumerated) are more than the number of parameters supplied to it, the zebra tag will wrap back and start from the first parameter.
+The [**zebra**](../../tags-reference/zebra/) tag is meant to be used within any enumerator tag and will sequentially output each of its parameters at each iteration. If the numbers of iterations (i.e. objects being enumerated) are more than the number of parameters supplied to it, the zebra tag will wrap back and start from the first parameter.
 
-Take the usual steps of deploying the pages tag and use the zebra tag with the three class-names as parameters (`alpha`, `''` and `delta`)
+Take the usual steps of deploying the pages tag and use the zebra tag with the three class-names as parameters (`alpha`, `''` and `omega`)
 
 ```php title="portfolio_list.html" ins="<cms:pages masterpage='portfolio.php'>" ins="</cms:pages>" ins="<cms:zebra 'alpha' '' 'omega' />" ins="<cms:show k_page_link />" ins="<cms:show k_page_title />" ins="<cms:show thumb />"
 <cms:folders masterpage='portfolio.php'>
@@ -550,7 +548,7 @@ Let's create a new file named `portfolio_desc.php`, place the mandatory Couch bo
 <?php COUCH::invoke(); ?> 
 ```
 
-:::note
+:::note[Template Configuration]
 Everything should look familiar in the code above except for the highlighted parameter that needs a little explanation.
 
 A clonable template in Couch serves three purposes:
@@ -638,8 +636,10 @@ Notice how we have used the pages tag to enclose the section highlighted previou
 
 Accessing `https://www.mytestsite.com/portfolio.php` will now show the category description and blurb as entered into `portfolio_desc.php` pages:
 
-![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-147.png)
+![Portfolio listing page showing categories with descriptions](../../../../assets/img/contents/portfolio-site-147.png "Portfolio page with categories and portfolio items")
 
 That wraps up the portfolio section.
 
-[Next we set up the Contact Us section.](../contact-form/)
+---
+
+[Next Chapter: **Setting Up the Contact Form**](../06-contact-form/)

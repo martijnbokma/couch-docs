@@ -1,6 +1,6 @@
 ---
-title: The About-Us Page
-description: Learn how to create a simple About Us page in CouchCMS by converting a static HTML template into a dynamic, editable page.
+title: The About Us Page
+description: Learn how to create a simple About Us page in Couch by converting a static HTML template into a dynamic, editable page.
 keywords:
     - about us
     - static template
@@ -20,12 +20,12 @@ banner:
 import { Steps, Card } from '@astrojs/starlight/components';
 
 <Card icon="download" title="Download">
-[Download Couchified Code](https://www.couchcms.com/docs/code/about.zip)
+[Download Couch Code](https://www.couchcms.com/docs/code/about.zip)
 </Card>
 
-Of all the five sections that Aurelius has (i.e. 'About-Us', 'Portfolio', 'Blog', 'Contact-Us' and 'Home'), the 'Portfolio' and 'Blog' sections will need the 'cloned pages' feature of Couch because they consist of multiple pages each cloned out of the same template.
+Of all the five sections that Aurelius has (i.e. **About Us**, **Portfolio**, **Blog**, **Contact Us** and **Home**), the **Portfolio** and **Blog** sections will need the cloned pages feature of Couch because they consist of multiple pages each cloned out of the same template.
 
-We'll tackle the cloned pages in the next chapter. For now let us begin with a simpler section that doesn't require cloning. The `About Us` page will serve our purpose.
+We'll tackle the cloned pages in the next chapter. For now let us begin with a simpler section that doesn't require cloning. The **About Us** page will serve our purpose.
 
 :::note
 Before proceeding further, make sure that you are logged into Couch using the super-admin account that got created during installation.
@@ -35,27 +35,27 @@ Before proceeding further, make sure that you are logged into Couch using the su
 
 1. Access `about.html` in your browser by visiting:
 
-   ```txt
+   ```txt title="Page URL"
    https://www.mytestsite.com/about.html
    ```
 
-   The `About Us` page should appear.
+   The **About Us** page should appear.
 
 2. Change the extension of the template from `.html` to `.php` so `about.html` becomes `about.php`. Access it in your browser:
 
-   ```txt
+   ```txt title="Page URL"
    https://www.mytestsite.com/about.php
    ```
 
-   The same `About Us` page should appear as before. This change is necessary before Couch can be retrofitted into a template.
+   The same **About Us** page should appear as before. This change is necessary before Couch can be retrofitted into a template.
 
 3. Open `about.php` in your text editor and add the following line at the very top:
 
-   ```php
+   ```php title="about.php"
    <?php require_once( 'couch/cms.php' ); ?>
    ```
 
-   ```diff lang="php"
+   ```diff title="Code Changes"
    +   <?php require_once( 'couch/cms.php' ); ?>
        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
        <html xmlns="http://www.w3.org/1999/xhtml">
@@ -67,19 +67,18 @@ Before proceeding further, make sure that you are logged into Couch using the su
    :::note
    If you renamed the default admin folder from `couch` to something else, update the path accordingly. For example, if renamed to `myadmin`:
 
-   ```php
+   ```php title="about.php"
    <?php require_once( 'myadmin/cms.php' ); ?>
    ```
-
    :::
 
 4. Add this line as the last line of the file (after all other content):
 
-   ```php
+   ```php title="about.php"
    <?php COUCH::invoke(); ?>
    ```
 
-   ```diff lang="php"
+   ```diff title="Code Changes"
         </div><!--end wrapper-->
    
        </body>
@@ -93,7 +92,7 @@ These two boilerplate lines of code are the only PHP that you should ever need t
 
 Refresh the template within your browser by revisiting `about.php` and now visit the admin section once again.
 
-![Admin Panel Showing About.php Template](../../../../assets/img/contents/portfolio-site-11.jpg)
+![Admin Panel Showing About Template](../../../../assets/img/contents/portfolio-site-11.jpg "Admin Panel View")
 
 Notice how `about.php` now appears in the list of templates in the sidebar on the left and how the right panel informs you that `about.php` has no editable regions defined yet.
 
@@ -104,13 +103,13 @@ These steps are all that you need to take in order to port any template to Couch
 With Couch now hooked into `about.php`, let us now decide which regions within the template should be editable by the client.
 Looking at `about.php` in the browser, it appears that these two regions are the ones that the client will want to edit:
 
-![Editable Regions in About Us Page](../../../../assets/img/contents/portfolio-site-12.png)
+![Editable Regions in About Us Page](../../../../assets/img/contents/portfolio-site-12.png "Editable Regions")
 
 ### Main Content Region
 
-Find the HTML block representing the main content region and surround it with Couch's editable tags:
+Find the HTML block representing the main content region and surround it with Couch's [**editable**](../../tags-reference/editable/) tags:
 
-```php
+```php title="Main Content Region"
 <cms:editable name='main_content' type='richtext'> original content </cms:editable>
 ```
 
@@ -137,6 +136,10 @@ Find the HTML block representing the main content region and surround it with Co
 ### Sidebar Content Region
 
 Similarly for the sidebar content:
+
+```php title="Sidebar Content Region"
+<cms:editable name='sidebar_content' type='richtext'> original content </cms:editable>
+```
 
 ```diff lang="php"
     <!-- Column 2 / Sidebar -->
@@ -167,13 +170,13 @@ Similarly for the sidebar content:
 Refresh `about.php` by revisiting it in your browser. Go to the admin section and click on `about.php` in the list on the left.
 The right panel should now display:
 
-![Admin Panel with Editable Regions](../../../../assets/img/contents/portfolio-site-17.png)
+![Admin Panel with Editable Regions](../../../../assets/img/contents/portfolio-site-17.png "Admin Panel View")
 
 As you can see, Couch has now created the two editable regions for you.
 Try editing the contents in them and revisit `about.php` after saving your changes. Your changes should now appear on the website.
 
 :::note
-The editable tag, particularly the richtext type, has a plethora of options that you can set to tailor the created editable region to your client's need. Please consult the [documentation](../../../../concepts/editable-regions/) for details.
+The [**editable**](../../tags-reference/editable/) tag, particularly the richtext type, has a plethora of options that you can set to tailor the created editable region to your client's need. Please refer to the [**Editable Regions**](../../../../concepts/editable-regions/) for more information.
 :::
 
 ## Enhancing the Admin Experience
@@ -183,10 +186,10 @@ To further refine the experience for your client, a few minor enhancements can b
 
 ### Customizing Template Name
 
-The name of the template appears as `about.php` in the admin panel. Let's make it appear as `About Us`.
-Add the following line containing the template tag somewhere at the top of the page (below the boilerplate PHP include code):
+The name of the template appears as `about.php` in the admin panel. Let's make it appear as **About Us**.
+Add the following line containing the [**template**](../../tags-reference/template/) tag somewhere at the top of the page (below the boilerplate PHP include code):
 
-```php
+```php title="Template Configuration"
 <cms:template title='About Us' />
 ```
 
@@ -199,12 +202,14 @@ Add the following line containing the template tag somewhere at the top of the p
 Repeat the mandatory step of refreshing the template in browser and then revisit the admin panel.
 The template should now be listed as 'About Us' instead of its file-name.
 
-![Template Listed as About Us](../../../../assets/img/contents/portfolio-site-19.png)
+![Template Listed as About Us](../../../../assets/img/contents/portfolio-site-19.png "Updated Admin Panel")
 
 In the next chapter we'll tackle the templates that will be used to create multiple cloned pages.
 
 <Card icon="download" title="Download">
-[Download Couchified Code](https://www.couchcms.com/docs/code/about.zip)
+[Download Couch Code](https://www.couchcms.com/docs/code/about.zip)
 </Card>
 
-[Next Chapter: Diving Deep - The Blog (Part 1)](../blog-part-1/)
+___
+
+[Next Chapter: **Diving Deep - The Blog (Part 1)**](../03-blog-part-1/)

@@ -1,6 +1,6 @@
 ---
 title: The Blog (Part 2)
-description: Learn how to implement advanced blog features in CouchCMS, including pagination, categories, archives, and comments functionality.
+description: Learn how to implement advanced blog features in Couch, including pagination, categories, archives, and comments functionality.
 keywords:
     - blog
     - pagination
@@ -33,17 +33,17 @@ We are going to change that now to make it display pages cloned from `blog.php` 
 The way we have configured it, template `blog.php` is using an embedded template `blog_list.html` to render the list-view.
 File `blog_list.html` is where we'll make the changes now. Open it up in your text editor.
 
-Couch has a tag named *pages* that is used to enumerate or list pages belonging to a particular template.
+Couch has a tag named [**pages**](../../../tags-reference/pages/) that is used to enumerate or list pages belonging to a particular template.
 Let us take a little overview of how this tag works before putting it into real use.
 The syntax of pages tag is pretty simple.
 
-```php
+```php title="Pages Tag Example"
 <cms:pages masterpage='blog.php' >
 
 </cms:pages>
 ```
 
-As you can see, the pages tag consists of a pair of opening and closing tags. The *masterpage* attribute specifies the template we wish to enumerate the cloned pages of. This attribute can be skipped if we want to enumerate pages cloned from the template this code is placed in but we'll use it for the sake of clarity.
+As you can see, the pages tag consists of a pair of opening and closing tags. The `masterpage` parameter specifies the template we wish to enumerate the cloned pages of. This parameter can be skipped if we want to enumerate pages cloned from the template this code is placed in but we'll use it for the sake of clarity.
 
 The tag fetches all the relevant cloned pages of the specified template and then loops through them selecting one page at a time sequentially.
 At each iteration, all the variables normally available for the selected page, had it been accessed directly in page-view, are made accessible by the tag. These variables, of course, include all the editable regions too.
@@ -57,9 +57,9 @@ As a quick and dirty test, place the following code:
 </cms:pages>
 ```
 
-anywhere within `blog_list.html` (I chose just after the `<body>` tag) and access `https://www.mytestsite.com/blog.php`.
+anywhere within `blog_list.html` (I chose just after the `<body>` tag) and access `blog.php`.
 
-You'll see that the heading '*Hi, I am a page!*' appears twice.
+You'll see that the heading _Hi, I am a page!_ appears twice.
 
 ![Portfolio Site Example](../../../../assets/img/contents/portfolio-site-74.png)
 
@@ -84,7 +84,7 @@ will display:
 As you can see we can access all variables belonging to each cloned pages just the way we did when the page was accessed in its page-view.
 
 :::note
-The [pages](../../../tags-reference/pages/) tag, in a way, is one of the most powerful tags in Couch and supports several parameters that you can use to fine-tune the cloned pages that are fetched and the way they are fetched. Please consult the [documentation](../../../tags-reference/pages/) for a full discussion.
+The [**pages**](../../../tags-reference/pages/) tag, in a way, is one of the most powerful tags in Couch and supports several parameters that you can use to fine-tune the cloned pages that are fetched and the way they are fetched. Please consult the [documentation](../../../tags-reference/pages/) for a full discussion.
 :::
 
 With this ability to list cloned pages and access their data, we can now make changes to the `blog_list.html` snippet to display the cloned pages instead of its hard coded content.
@@ -906,4 +906,6 @@ and change it to:
 
 Congratulations. The blog section is finally complete.
 
-Next: [The portfolio section](../portfolio/)
+---
+
+[Next Chapter: **The Portfolio Section**](../05-portfolio/)
