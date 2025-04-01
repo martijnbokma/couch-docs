@@ -18,6 +18,8 @@ lastUpdated: 2025-03-20
 
 import { Steps } from '@astrojs/starlight/components';
 
+Views in CouchCMS determine how your content is displayed based on the URL and context. Understanding these different views is crucial for creating dynamic content presentations.
+
 ## List View and Page View
 
 As discussed in the [**Cloned Pages**](../cloned-pages/) section, a clonable template acquires a 'split personality'.
@@ -26,7 +28,7 @@ Suppose we have a template named `blog.php`.
 
 The simplest case is when this template has not yet been set as clonable (i.e. having similar pages created out of it). No views are associated with this page. The only possible way to execute this page is:
 
-```txt
+```txt title="Basic URL"
 https://www.yoursite.com/blog.php
 ```
 
@@ -37,23 +39,25 @@ Obviously, we now have at least two scenarios `blog.php` may be executed in:
 
 1. `blog.php` itself is executed:
 
-    ```txt "blog.php"
+    ```txt title="Direct Template Access"
     https://www.mysite.com/blog.php
     ```
+
     or with pretty-urls activated:
-    ```txt "blog/"
+
+    ```txt title="Pretty URL Format"
     https://www.mysite.com/blog/
     ```
 
 2. A page created out of `blog.php` is executed:
 
-    ```txt "blog.php?p=12"
+    ```txt title="Page Access with ID"
     https://www.mysite.com/blog.php?p=12
     ```
 
     or with pretty-urls activated:
 
-    ```txt "blog/some_page_name.html"
+    ```txt title="Pretty URL with Page Name"
     https://www.mysite.com/blog/some_page_name.html
     ```
 
@@ -76,23 +80,25 @@ Thus the *list view* can be further categorized into two final views:
 
 1. **Folder view** - while listing pages belonging to a particular folder:
 
-    ```txt "blog.php?f=3"
+    ```txt title="Folder View with ID"
     https://www.mysite.com/blog.php?f=3
     ```
+
     or with pretty-urls activated:
-    ```txt "blog/some_subfolder/"
+
+    ```txt title="Pretty URL Folder View"
     https://www.mysite.com/blog/some_subfolder/
     ```
 
 2. **Archive view** - while listing pages belonging to a particular time period:
 
-    ```txt "blog.php?d=201005"
+    ```txt title="Archive View with Date"
     https://www.mysite.com/blog.php?d=201005
     ```
 
     or with pretty-urls activated:
 
-    ```txt "blog/2010/05/"
+    ```txt title="Pretty URL Archive View"
     https://www.mysite.com/blog/2010/05/
     ```
 
@@ -110,27 +116,27 @@ The following variables are set by Couch for your script to know the view it is 
 
 ### Page View
 
-```php
+```php title="Page View Variables"
 $k_is_page = '1';
 ```
 
 ### List View
 
-```php
+```php title="List View Variables"
 $k_is_list = '1';
 $k_is_home = '1';
 ```
 
 ### Folder View
 
-```php
+```php title="Folder View Variables"
 $k_is_list = '1';
 $k_is_folder = '1';
 ```
 
 ### Archive View
 
-```php
+```php title="Archive View Variables"
 $k_is_list = '1';
 $k_is_archive = '1';
 $k_is_day = '1';    // if daily archive
@@ -148,44 +154,44 @@ Taking the example of `blog.php`, notice how the views and variables change acco
 
 ### Home View
 
-```txt "blog/"
+```txt title="Home View URL"
 https://www.mysite.com/blog/
 ```
 
-```php
+```php title="Home View Variables"
 $k_is_list = 1;
 $k_is_home = 1;
 ```
 
 ### Folder View
 
-```txt "blog/some_subfolder/"
+```txt title="Folder View URL"
 https://www.mysite.com/blog/some_subfolder/
 ```
 
-```php
+```php title="Folder View Variables"
 $k_is_list = 1;
 $k_is_folder = 1;
 ```
 
 ### Archive View
 
-```txt "blog/2010/05/"
+```txt title="Archive View URL"
 https://www.mysite.com/blog/2010/05/
 ```
 
-```php
+```php title="Archive View Variables"
 $k_is_list = 1;
 $k_is_archive = 1;
 ```
 
 ### Page View
 
-```txt "blog/some_page_name.html"
+```txt title="Page View URL"
 https://www.mysite.com/blog/some_page_name.html
 ```
 
-```php
+```php title="Page View Variables"
 $k_is_page = 1;
 ```
 
@@ -194,7 +200,7 @@ $k_is_page = 1;
 For clonable templates, you'll have to recognize which view the template is being executed in (by testing the variables given above) and then display the relevant data.
 It could be something like the following:
 
-```php
+```php title="Complete View Implementation"
 <cms:if k_is_page >
     <!-- Page view - display current page here -->
 <cms:else />
@@ -215,7 +221,7 @@ It could be something like the following:
 
 Or a simpler version:
 
-```php
+```php title="Simple View Implementation"
 <cms:if k_is_list >
     <!-- List view - display list of pages here -->
 <cms:else />
