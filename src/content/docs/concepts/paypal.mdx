@@ -86,13 +86,15 @@ Make this template clonable and define in it all [**editable regions**](../edita
 Two fields are mandatory and need your special attention:
 
 <Steps>
+
 1. **Item's name** - every saleable item needs to have a name. However, you don't have to create a separate editable region for this because Couch expects the _Title_ field (present by default in all clonable pages and accessible via `k_page_title` variable) to be the item's name. Hence always input the item's name as the title of the page representing the item.
 
 2. **Item's price** - this is an important one.
    PayPal does not allow zero value transactions, hence it is mandatory for each saleable item to have a non-zero price.
    We'll have to create an editable region to hold the item's price.
    The important point is that - Couch requires this editable region to be named `pp_price`.
-     </Steps>
+
+</Steps>
 
 As an example, the following snippet can be used to create such a field (as a good practice, we have added the validations normally required for a price field):
 
