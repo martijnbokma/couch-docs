@@ -6,594 +6,237 @@ alwaysApply: true
 
 # CouchCMS Documentation Style Guide
 
-This comprehensive style guide outlines all rules for writing CouchCMS documentation.  
+This comprehensive style guide outlines all rules for writing CouchCMS documentation.
 The primary goals are consistency, readability, maintainability, and accessibility.
-
----
 
 ## 1. Document Structure
 
 ### 1.1 Required Frontmatter
 
-Every document MUST begin with frontmatter containing these required fields:
+Every document MUST begin with frontmatter:
 
-```markdown title="Required Frontmatter Structure"
+```yaml title="Required Frontmatter"
 ---
-title: Document Title
-description: "A clear, concise description of the document"
-keywords:
-    - keyword 1
-    - keyword 2
-    - keyword 3
+title: Document Title # 50-60 chars
+description: "A clear, concise description" # 150-160 chars
+keywords: # 3-5 relevant terms
+    - keyword1
+    - keyword2
+    - keyword3
 category: tag
-subCategory: editable
+subCategory: editable # Required for tutorials
 author: First Last
 lastUpdated: YYYY-MM-DD
 sidebar:
-    order: N
+    order: N # Lower numbers appear first
+    badge:
+        text: New|Beta|Deprecated
+        variant: tip|caution|danger
 ---
 ```
 
-#### Notes
+SEO Requirements:
 
-- Use quotes ONLY for values that:
-    - Contain special characters (`:`, `-`, `=`, `'`, etc.)
-    - Contain multiple sentences or punctuation
-- Do NOT use quotes for:
-    - Simple titles (e.g., content_type)
-    - Keywords in the list
-    - Category and subCategory values
-    - Author names
-    - Dates
-    - Numbers
-    - Boolean values
-- For tag references:
-    - Simple tag names should be unquoted (e.g., content_type)
-    - Complex tag syntax must be quoted (e.g., "type = 'thumbnail'")
-- Indent nested properties with 4 spaces for consistency
-- List `keywords` as individual items with 4 space indentation
-- `subCategory` is required for tutorials, optional for other categories
-- `sidebar.order` determines the position in navigation (lower numbers appear first)
-- Description must be 50-160 characters
-- Include at least 3 relevant keywords
-- Author must be in First Last format
-- Date must be in YYYY-MM-DD format
+- Title: 50-60 characters, include main keyword
+- Description: 150-160 characters, clear and descriptive
+- Keywords: 3-5 relevant terms
+- Use descriptive slugs for URLs
+- Include meta descriptions
 
-### 1.2 Import Statements
-
-#### Required Components
-
-Import necessary components immediately after the frontmatter:
-
-```astro title="Required Component Import"
-import { Steps } from '@astrojs/starlight/components';
-```
-
-#### Import Rules
-
-- Place imports directly after frontmatter
-- Leave one blank line after imports
-- Use single quotes for import paths
-- Sort imports alphabetically when multiple
-- Group imports by type (components, utilities, etc.)
-
-Example of multiple imports:
-
-```astro title="Multiple Component Imports"
-import { CardGrid } from '@astrojs/starlight/components';
-import { Steps } from '@astrojs/starlight/components';
-import { Tabs, TabItem } from '@astrojs/starlight/components';
-
-import '../styles/custom.css';
-```
-
-### 1.3 Document Layout
-
-Follow this order in your documents:
+### 1.2 Document Layout
 
 1. Frontmatter
 2. Import statements
 3. Brief introduction
 4. Main content
-5. Navigation links
+5. Related content links
 
-Leave appropriate spacing:
+Spacing:
 
-- One blank line after frontmatter
-- One blank line after imports
-- Two blank lines between major sections
-- One blank line between subsections
-
----
+- Two blank lines between major sections (H2)
+- One blank line between subsections (H3, H4)
+- One blank line before/after code blocks and admonitions
 
 ## 2. Content Formatting
 
-### 2.1 Text Formatting
+### 2.1 Text Elements
 
-Use consistent formatting for text emphasis and code references:
+Use consistent formatting:
 
-- Use backticks (`) for:
-    - Variable names: `my_variable`
-    - System variables: `rt_id`
-    - Parameter names: `my_current_pad`
-    - File paths: `views/notes/create_view.html`
-    - File names: `create_view.html`
-    - Code snippets: `echo "Hello"`
-    - Technical terms and tag names: `dropdown`, `embed`
+- Backticks (`) for:
+    - Variables: `my_variable`
+    - Parameters: `type`, `name`
+    - File paths: `views/template.php` (use forward slashes)
+    - Code snippets: `echo $value`
     - HTML tags: `<div>`
-- Use asterisks (\*) for italic text:
-    - Output values: *Rental*, *2*
-    - Emphasis in regular text: *important*
-    - Quoted values in text: The value *true* means...
-- Use double asterisks (\*\*) for bold text:
-    - Section headers in tables
+    - Technical terms: `dropdown`
+    - Boolean values: `true`, `false`
+    - Filenames: `file.php`
+- Underscores (\_) for italic text:
+    - Output values: _Rental_
+    - Emphasis: _important_
+    - Quoted values: The value _true_
+- Double asterisks (\*\*) for bold text:
+    - Section headers
     - Critical warnings
-    - Very important notes
-- Never use underscores (\_) for emphasis
-- Never mix formatting styles (e.g., don't use both \* and ` for same term)
+    - Important notes
+- Never mix styles (e.g., don't use both \* and ` for same term)
 
-### 2.2 Code and Output Examples
+### 2.2 Code Examples
 
-When showing code examples and their output:
+- Include complete, working examples
+- Add descriptive titles
+- Use proper syntax highlighting
+- Add comments for complex code
+- Show changes with diff syntax when relevant:
 
-- Use backticks for code and technical elements
-- Use italics for the actual output values
-- Use proper titles for code blocks
-- Keep examples concise but complete
-
-Example:
-
-```php title="Code Example"
-<cms:show my_variable />
+```diff title="Code Changes"
+- old code
++ new code
 ```
 
-will output *Hello World*.
+For partial code, use language-appropriate markers:
 
-### 2.3 Headings
-
-- Use **Title Case** for all headings
-- Leave one blank line before and after headings
-- Follow proper hierarchy without skipping levels
-- Start content sections with H2 (##)
-
-```markdown
-# Document Title
-
-## Overview
-
-### Key Features
-
-#### Specific Details
+```php
+// ... existing code ...
 ```
 
-### 2.4 Technical References
-
-See section 2.1 for text formatting rules.
-
-#### File References
-
-- Always use forward slashes (/) in paths
-- Include file extensions
-- Use relative paths when possible
-- For images, include size if relevant
-
-Examples:
-
-```txt title="File Path Examples"
-views/templates/default.php
-../images/logo.png (45KB)
-./styles/custom.css
+```html
+<!-- ... existing code -->
 ```
 
-### 2.5 Links and Cross-References
-
-#### Internal Links
-
-- Use relative paths for internal documentation links
-- Navigate up with `../` when needed
-- Include meaningful link text that indicates the destination
-- Never use generic phrases like "click here" or "read more"
-- Add ARIA labels for complex or technical links
-
-```markdown title="Internal Link Examples"
-<!-- Bad -->
-
-[Click here](./page) to learn more
-
-<!-- Good -->
-
-[Learn about User Authentication](../authentication/overview.md)
-{aria-label="Complete guide to user authentication"}
-
-[See Configuration Options](../config/options.md)
+```css
+/* ... existing code */
 ```
 
-#### External Links
+### 2.3 Version Documentation
 
-- Include full URLs for external links
-- Add meaningful context in link text
-- Ensure links are distinguishable within content
+Use version badges to indicate feature availability:
 
-```markdown title="External Link Example"
-[CouchCMS Documentation](https://docs.couchcms.com)
-```
+```markdown title="Version Example"
+:::version[v2.0+]
+Feature available from v2.0 onwards
+:::
 
-#### Related Content
+:::caution[Breaking Changes]
+Version 2.1 changes:
 
-End documents with related content section:
-
-```markdown title="Related Content Section"
----
-
-## Related Content
-
-:::related
-
-- [Topic One](../topic-one/) - Brief description of the first related topic
-- [Topic Two](../topic-two/) - Brief description of the second related topic
+- Change 1
+- Change 2
   :::
 ```
 
-### 2.6 Images
+### 2.4 Components
 
-#### Image Requirements
+Import components at the top after frontmatter:
 
-- Use descriptive alt text that explains the image's content and purpose
-- Add ARIA labels for complex images or diagrams
-- Use relative paths for internal images
-- Add captions when helpful
-- Screenshots: Max width 1200px
-- Thumbnails: 300px width
-- Optimize all images for web
-- Use WebP format when possible
+```markdown title="Component Example"
+---
+title: Page Title
+---
 
-#### Image Naming
+import { Steps } from '@astrojs/starlight/components';
 
-Format: `feature-action-context.ext`
-Example: `user-login-form-validation.webp`
-
-```markdown title="Image Examples"
-![Feature Name - Action Being Shown - Context](path/to/image.webp)
-{aria-label="Detailed description for screen readers"}
-
-![User Login - Form Validation - Error State](images/user-login-validation.webp)
+<Steps>
+1. First step
+2. Second step
+</Steps>
 ```
 
-### 2.7 Punctuation and Lists
+### 2.5 Images
 
-#### Colons vs Dashes
+Requirements:
 
-- Use colons (`:`) before code blocks, examples, or lists
-- Never use dashes (`-`) before code blocks
-- Use a blank line after a colon when followed by a code block
+- Descriptive alt text explaining content/purpose
+- Caption in quotes after URL for screen readers
+- Max width: 1200px for screenshots, 300px for thumbnails
+- WebP format preferred
+- Optimize for web
+- Avoid using images for text content
+- Ensure sufficient resolution
 
-#### Example Text and Titles
+Format: `feature-action-context.webp`
 
-- Use code blocks with `txt` type for example output or titles
-- Add quotes in the text, not in code blocks
-- Always add a blank line before example blocks
-
-### 2.8 Code Block Usage
-
-#### When to Use Code Blocks
-
-Use code blocks for:
-
-- All code examples
-- Example output
-- Example titles or messages
-- URLs and file paths that need highlighting
-
-Here are the supported code block types:
-
-- Use `php` for PHP code
-- Use `txt` for plain text, URLs, and example output
-- Use `markdown` for markdown examples
-- Use `astro` for Astro component examples
-
-Examples:
-
-```php title="PHP Example"
-echo "Hello World";
+```markdown title="Image Example"
+![Login Form](./login.webp "Form showing validation error message")
 ```
 
-```txt title="Example Output"
-Hello World
+### 2.6 Links and References
+
+Internal links:
+
+- Use relative paths
+- Include meaningful text that indicates destination
+- Add context in quotes after URL
+- Never use "click here" or "read more"
+- Ensure links are distinguishable
+- Use proper hierarchy in navigation
+
+```markdown title="Link Examples"
+[User Authentication](../auth/guide.md "Complete setup guide")
+[CouchCMS Documentation](https://docs.couchcms.com)
 ```
 
-```txt title="Example File Path"
-/path/to/file.php
-```
+### 2.7 Lists and Tables
 
-### 2.9 Admonitions
-
-Use specific admonition types for different purposes:
-
-```markdown title="Note Example"
-:::note[About Feature]
-Use for additional information and context
-:::
-```
-
-```markdown title="Tip Example"
-:::tip[Best Practice]
-Use for best practices and recommendations
-:::
-```
-
-```markdown title="Caution Example"
-:::caution[Important]
-Use for important limitations or warnings
-:::
-```
-
-```markdown title="Danger Example"
-:::danger[Critical]
-Use for critical warnings that could cause data loss
-:::
-```
-
-#### Admonition Rules
-
-- Always include a descriptive title in square brackets
-- Keep content concise and focused
-- Use appropriate type for the content
-- Leave one blank line before and after
-- Don't nest admonitions
-- Use consistent formatting inside
-
-### 2.10 Whitespace and Spacing
-
-#### Between Sections
-
-- Leave 2 blank lines between major sections (H2)
-- Leave 1 blank line between subsections (H3, H4)
-- Leave 1 blank line before and after code blocks
-- Leave 1 blank line before and after admonitions
-
-Example:
-
-```markdown
-## Major Section
-
-This is content.
-
-## Next Major Section
-
-### Subsection
-
-Content here.
-
-:::note
-Note content
-:::
-
-More content.
-```
-
-### 2.11 Version Numbers
-
-When referencing CouchCMS versions:
-
-- Use `v` prefix for version numbers: `v2.0`
-- Include all version components for specific releases: `v2.1.1`
-- Use `vX.X` for generic version references
-- Highlight breaking changes between major versions
-
-Example:
-
-```markdown
-Starting from `v2.0`, this feature is available.
-This was changed in `v2.1.1` to improve performance.
-```
-
-### 2.12 Tables
-
-#### Table Formatting
-
-- Use standard markdown table syntax
-- Left-align text columns (`:---`)
-- Right-align number columns (`---:`)
-- Center-align headers (`:-:`)
-- Add blank lines before and after tables
-- Use consistent column widths where possible
-- Use backticks for code/technical terms in cells
-- Use bold (\*\*) for section headers in first column
-- Keep cells concise and readable
-- Avoid empty cells, use `-` if truly empty
-- Don't use escape characters unless necessary
-- For ranges use `x` through `y` format
-- For examples use `example:` prefix
-
-Example:
-
-```markdown title="Table Format Example"
-| Format   | Description                | Example values    |
-| :------- | :------------------------- | :---------------- |
-| **Time** |                            | -                 |
-| `%H`     | Hours in 24-hour format    | `00` through `23` |
-| `%M`     | Minutes with leading zeros | `00` through `59` |
-```
-
-### 2.13 Technical Terms
-
-When referring to technical elements:
-
-- Use backticks (`) for:
-    - Variables: `my_var`
-    - Parameters: `width`
-    - File paths: `views/template.php`
-    - Code snippets: `echo $value`
-    - HTML tags: `<div>`
-    - Attributes: `class="example"`
-    - Commands: `php -v`
-- Use bold (\*\*) for:
-    - Section headers
-    - Important notes
-    - Warnings
-- Never mix formatting styles (e.g., don't use both \* and ` for same term)
-- Be consistent with formatting throughout the document
-
-### 2.14 Code Examples
-
-For code blocks:
-
-- Always specify the language
-- Add descriptive titles
-- Keep examples concise but complete
-- Include comments where helpful
-- Use consistent indentation
-- Remove trailing whitespace
-- Format according to language conventions
-- For partial code, use language-appropriate comment style:
-
-    ```php title="PHP Comment Style"
-    // ... existing code ...
-    ```
-
-    ```html title="HTML Comment Style"
-    <!-- ... existing code ... -->
-    ```
-
-    ```css title="CSS Comment Style"
-    /* ... existing code ... */
-    ```
-
-### 2.15 Lists
-
-For all types of lists:
+Lists:
 
 - Use `-` for unordered lists
-- Use proper indentation (4 spaces)
-- Keep items parallel in structure
-- End each item with appropriate punctuation
-- Group related items together
-- Use blank lines between groups
-- For nested lists, align bullets:
+- 4 spaces indentation
+- Parallel structure
+- Group related items
+- Blank lines between groups
 
-    ```markdown
-    - Main item
-        - Sub item
-        - Another sub
-    - Next main item
-    ```
+Tables:
 
-### 2.16 Links and References
+- Left-align text (`:---`)
+- Right-align numbers (`---:`)
+- Center headers (`:-:`)
+- Use backticks for code
+- Use `-` for empty cells
 
-For links and references:
+### 2.8 Admonitions
 
-- Use descriptive link text
-- Avoid "click here" or "this link"
-- Use relative paths for internal links
-- Include file extensions
-- Group related links together
-- For external links, include protocol (https://)
-- Format:
+```markdown title="Admonition Examples"
+:::note[Info]
+Additional context
+:::
 
-    ```markdown
-    [Descriptive Text](path/to/file.html)
-    ```
+:::tip[Best Practice]
+Recommended approach
+:::
 
-### 2.17 Document Structure
+:::caution[Warning]
+Important limitation
+:::
 
-For tag reference documents:
-
-- Start with a clear description of the tag's functionality
-- No "Overview" section needed - the opening paragraph serves this purpose
-- Include "Basic Usage" section with practical examples
-- Group related parameters and variables logically
-- End with related tags or resources
-
-Example structure:
-
-```markdown
----
-frontmatter
----
-
-Description of what the tag does and its main purpose.
-
-## Basic Usage
-
-Code examples and explanations.
-
-## Parameters
-
-Parameter descriptions.
-
-## Variables
-
-Variable descriptions.
-
-## Related Tags
-
-Links to related tags.
-```
-
----
-
-## 3. Technical Content
-
-### 3.1 Code Examples
-
-- Include complete, working examples
-- Add titles to all code blocks
-- Use proper syntax highlighting
-- Include comments for complex code
-
-### 3.2 Variables and Parameters
-
-- Use consistent naming throughout documentation
-- Explain all parameters and their purpose
-- Use backticks for all technical terms
-- Format system variables consistently
-
-Example:
-
-```markdown
-The `rt_id` variable contains the route parameter value.
-```
-
----
-
-## 4. Navigation
-
-### 4.1 Section Links
-
-At the end of each document, include navigation links:
-
-```markdown
----
-
-**Next: [Next Section →](./next-section)**
-```
-
-### 4.2 Related Content
-
-Use admonitions to reference related content:
-
-```markdown
-:::note[Related Content]
-See also: [Related Topic](../related-topic)
+:::danger[Critical]
+Data loss risk
 :::
 ```
 
----
+Rules:
 
-## 5. Quality Checklist
+- Include descriptive title
+- Keep focused and concise
+- Use appropriate type
+- Don't nest
+- Consistent formatting inside
 
-✅ Proper frontmatter with all required fields  
-✅ Consistent heading hierarchy  
-✅ Descriptive code block titles  
-✅ Technical terms in backticks  
-✅ Proper link formatting  
-✅ Descriptive image alt text  
-✅ Navigation links  
-✅ Proper spacing and formatting
+## 3. Quality Standards
 
----
+✅ Complete frontmatter with SEO-friendly content
+✅ Proper heading hierarchy (no skipped levels)
+✅ Descriptive titles and headings
+✅ Technical terms in backticks
+✅ Valid and meaningful links
+✅ Clear image descriptions and alt text
+✅ Consistent spacing and formatting
+✅ Working code examples
+✅ Helpful admonitions
+✅ Accessible content structure
 
-## 6. Best Practices
+## 4. Best Practices
 
 1. Keep technical terminology consistent
 2. Use clear, concise language
@@ -604,388 +247,32 @@ See also: [Related Topic](../related-topic)
 7. Use descriptive titles
 8. Include complete documentation
 
----
+## 5. Code Preservation
 
-## 7. Quality Standards
+1. Never modify code unless instructed
+2. Keep exact spacing and format
+3. Preserve attribute order in HTML
+4. Maintain original line breaks
+5. Use language-appropriate markers for partial code:
+    - PHP: `// ... existing code ...`
+    - HTML: `<!-- ... existing code ... -->`
+    - CSS: `/* ... existing code ... */`
+6. Keep original language specs and titles
+7. Preserve quote styles (single/double)
 
-### 7.1 Consistency Requirements
+Example:
 
-Ensure uniformity in the following areas:
-
-- Spacing between elements (e.g., blank lines around headings)
-- Proper indentation for nested lists and code blocks
-- Standardized naming conventions for files, variables, and components
-
-### 7.2 Documentation Checklist
-
-✅ Complete frontmatter fields  
-✅ Required components imported after frontmatter  
-✅ Headings formatted in Title Case  
-✅ Code blocks include language specification  
-✅ Links are valid and correctly formatted  
-✅ Images have descriptive alt text  
-✅ Admonitions used appropriately  
-✅ Consistent spacing throughout
-
----
-
-## 8. Technical Guidelines
-
-### 8.1 File References
-
-Follow these rules when referencing files:
-
-- Always use backticks for filenames (`file.php`)
-- Use forward slashes (`/`) for paths
-- Prefer relative internal paths over absolute ones
-- Include file sizes when relevant (e.g., "image.jpg - 45 KB")
-
-### 8.2 HTML Elements in Markdown
-
-When using HTML elements within Markdown:
-
-- Wrap HTML tags in backticks
-- Use proper attributes
-- Maintain consistent indentation
-- Follow HTML5 standards
-
-Examples:
-
-```markdown title="HTML Element Usage in Markdown"
-Use the `<div>` element for blocks.
-
-Image with alt text: `<img src="image.jpg" alt="Description">`
-
-Definition lists:
-`<dl>`
-`<dt>`Term`</dt>`
-`<dd>`Definition`</dd>`
-`</dl>`
-```
-
-## 9. Extended Features
-
-### 9.1 Accessibility Guidelines
-
-To ensure documentation is accessible:
-
-1. **Images and Alt Text**
-    - Use descriptive alt text that explains the image's content and purpose
-    - Add ARIA labels for complex images or diagrams
-    - Avoid using images for text content
-    - Ensure images have sufficient resolution
-
-```markdown title="Accessible Image Example"
-![A form with two input fields and a submit button](./form-example.png)
-{aria-label="Login form with username and password fields"}
-```
-
-2. **Heading Structure**
-    - Follow proper hierarchy (H1 > H2 > H3)
-    - No skipped heading levels
-    - Use descriptive headings that indicate content
-    - Keep headings concise
-
-```markdown title="Proper Heading Structure"
-# Main Title
-
-## Section
-
-### Subsection
-
-#### Detail
-```
-
-3. **Link Text**
-    - Use descriptive link text that indicates the destination
-    - Include ARIA labels for complex links
-    - Never use "click here" or "read more"
-    - Ensure links are distinguishable within content
-
-```markdown title="Link Text Examples"
-<!-- Bad -->
-
-[Click here](./page) to learn more
-
-<!-- Good -->
-
-[Learn more about form validation](./form-validation)
-{aria-label="Complete guide to form validation techniques"}
-```
-
-### 9.2 SEO Optimization
-
-#### Meta Requirements
-
-- Title: 50-60 characters
-- Description: 150-160 characters
-- Keywords: 3-5 relevant terms
-- Use target keywords naturally
-- Include structured data when relevant
-
-#### Content Structure
-
-- Use proper heading hierarchy (H1 > H2 > H3)
-- Structure URLs logically
-- Implement canonical URLs
-- Use descriptive slugs
-- Include meta descriptions
-
-## 10. Common Corrections
-
-Fix common spelling mistakes and maintain consistent grammar across all documentation:
-
-| Incorrect   | Correct      |
-| ----------- | ------------ |
-| neccessary  | necessary    |
-| additionaly | additionally |
-| permenantly | permanently  |
-| fidelety    | fidelity     |
-| incidently  | incidentally |
-| seperate    | separate     |
-
----
-
-## 11. Content Preservation Rules
-
-### 11.1 Code Preservation Rules
-
-1. **Absolute Preservation**
-
-    - NEVER modify ANY code content unless explicitly instructed
-    - Code blocks are considered immutable by default
-    - Form examples must remain exactly as provided
-    - HTML and PHP examples must maintain exact spacing and format
-
-2. **Form Code Examples**
-
-    - Keep all HTML attributes in their original order
-    - Preserve exact whitespace in form elements
-    - Maintain original line breaks in form examples
-    - Keep comments exactly as they appear
-    - Never reformat form structure or indentation
-
-3. **Partial Code Display**
-
-    - Use `// ... existing code ...` for PHP
-    - Use `<!-- ... existing code ... -->` for HTML
-    - Use `/* ... existing code ... */` for CSS
-    - Place these on their own line with original indentation
-    - Never modify surrounding code context
-
-4. **Code Block Formatting**
-    - Keep original language specifications
-    - Maintain existing titles if present
-    - Preserve any special formatting or highlighting
-    - Never auto-format code unless explicitly requested
-    - Keep original quote styles (single/double)
-
-Example of proper form code preservation:
-
-```html title="Original Form Structure"
+```html title="Form Example"
 <form method="post" action="contact.php">
-    Name: <input type="text" size="10" maxlength="40" name="name" /> <br />
-    Email: <input type="text" size="10" name="email" /> <br />
-
+    Name: <input type="text" name="name" />
+    <!-- ... existing code ... -->
     <input type="submit" value="Send" />
 </form>
 ```
 
-### 11.2 Special Cases
+## 6. Cross-referencing
 
-1. **Form Documentation**
-
-    - Keep exact HTML/PHP syntax as shown
-    - Preserve attribute ordering in examples
-    - Maintain original spacing around form elements
-    - Keep line breaks and indentation as is
-    - Never reformat or "prettify" form code
-
-2. **Code Comparisons**
-    - When showing before/after examples, keep both exactly as provided
-    - Do not normalize differences in style or formatting
-    - Preserve intentional variations in coding style
-
-### 11.3 Text Preservation
-
-1. Maintain original technical terminology
-2. Do not rewrite or rephrase existing sentences without explicit instruction
-3. Keep URLs and references intact
-
----
-
-## 12. Recommended Tools & Automation
-
-To streamline compliance with these guidelines:
-
-1. **Linting Tools**: Use tools like [Markdownlint](https://github.com/DavidAnson/markdownlint) to automate style checks
-2. **CI/CD Integration**: Set up automated checks in your repository to validate Markdown syntax during pull requests
-3. **Example Files**: Provide sample Markdown files that adhere to these rules as templates for contributors
-
----
-
-## 13. Version-Specific Documentation
-
-### 13.1 Version Badges
-
-Use version badges to clearly indicate feature availability:
-
-```markdown title="Version Badge Example"
-:::version[v2.0+]
-This feature is available from version 2.0 onwards
-:::
-```
-
-### 13.2 Version History
-
-- Document breaking changes
-- Include migration guides
-- List deprecated features
-- Provide upgrade paths
-
-## 14. Component Documentation
-
-### 14.1 Import Statements
-
-Always place component imports at the top of the file after frontmatter:
-
-```markdown title="Component Import Example"
----
-frontmatter: here
----
-
-import { Steps, Card } from '@astrojs/starlight/components';
-```
-
-### 14.2 Component Usage
-
-Document components with:
-
-- Required props
-- Optional props
-- Usage examples
-- Common patterns
-
-## 15. Badge Usage
-
-### 15.1 Frontmatter Badges
-
-Use consistent badge variants in frontmatter:
-
-```markdown title="Badge Examples"
-sidebar:
-badge:
-text: New
-variant: tip # or
-badge:
-text: Beta
-variant: caution # or
-badge:
-text: Deprecated
-variant: danger
-```
-
-### 15.2 Badge Rules
-
-- Use "New" for features added in the latest version
-- Use "Beta" for experimental features
-- Use "Deprecated" for features being phased out
-- Include version numbers where relevant
-
-## 16. Documentation Status
-
-### 16.1 Status Notices
-
-Use standardized status notices:
-
-```markdown title="Status Notice Examples"
-:::note[Work in Progress]
-This documentation is actively being developed.
-:::
-
-:::caution[Needs Review]
-This documentation needs technical review.
-:::
-
-:::danger[Outdated]
-This documentation is outdated and needs updating.
-:::
-```
-
-### 16.2 Status Rules
-
-- Always include status notices at the top of the document
-- Update status when content changes
-- Include last review date
-- Link to latest stable documentation when relevant
-
-## 17. Code Block Standards
-
-### 17.1 Diff Syntax
-
-Use diff syntax for showing changes:
-
-```diff title="Code Changes Example"
-- old code
-+ new code
-```
-
-### 17.2 Before/After Examples
-
-```markdown title="Before Changes"
-Original code here
-```
-
-```markdown title="After Changes"
-Modified code here
-```
-
-## 18. Image Guidelines
-
-### 18.1 Size Requirements
-
-- Screenshots: Max width 1200px
-- Thumbnails: 300px width
-- Optimize all images for web
-- Use WebP format when possible
-
-### 18.2 Naming Convention
-
-Format: `feature-action-context.ext`
-
-Example: `user-login-form-validation.webp`
-
-### 18.3 Alt Text Format
-
-```markdown title="Alt Text Examples"
-![Feature Name - Action Being Shown - Context](path/to/image.webp)
-![User Login - Form Validation - Error State](images/user-login-validation.webp)
-```
-
-## 19. Frontmatter Validation
-
-### 19.1 Required Fields
-
-```markdown title="Required Frontmatter"
----
-title: "Document Title"
-description: "50-160 character description"
-keywords: [minimum, three, keywords]
-author: "First Last"
-lastUpdated: YYYY-MM-DD
----
-```
-
-### 19.2 Validation Rules
-
-- Description: 50-160 characters
-- Keywords: Minimum 3
-- Author: First Last format
-- Date: YYYY-MM-DD format
-
-## 20. Cross-referencing
-
-### 20.1 Internal Links
+### 6.1 Internal Links
 
 Use relative paths with descriptive text:
 
@@ -994,7 +281,7 @@ Use relative paths with descriptive text:
 [See Configuration Options](../config/options.md)
 ```
 
-### 20.2 Related Content
+### 6.2 Related Content
 
 End documents with related content section:
 
@@ -1005,8 +292,20 @@ End documents with related content section:
 
 :::related
 
-- [Topic One](../topic-one/) - Brief description of the first related topic
-- [Topic Two](../topic-two/) - Brief description of the second related topic
-
-:::
+- [Topic One](../topic-one/) - Brief description
+- [Topic Two](../topic-two/) - Brief description
+  :::
 ```
+
+## 7. Common Corrections
+
+Fix common spelling mistakes:
+
+| Incorrect   | Correct      |
+| ----------- | ------------ |
+| neccessary  | necessary    |
+| additionaly | additionally |
+| permenantly | permanently  |
+| fidelety    | fidelity     |
+| incidently  | incidentally |
+| seperate    | separate     |
