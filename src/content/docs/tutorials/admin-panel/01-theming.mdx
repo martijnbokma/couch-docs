@@ -440,23 +440,23 @@ Moving ahead with the discussion - you must have noticed above that the `<cms:co
 <Steps>
 
 1. **limit**  
-   This sets the number of pages shown on a single screen when pagination is required. e.g.:
+    This sets the number of pages shown on a single screen when pagination is required. e.g.:
 
     ```php
     <cms:config_list_view limit="20" />
     ```
 
 2. **exclude**  
-   Can be set to the (comma-separated) `names` of pages that are to be excluded from the listing.  
-   One use of this feature could be to exclude the vexing `default` page that Couch automatically creates for all clonable templates.  
-   Previously we had to resort to unpublish this default page and then rename it to something like 'PLEASE DO NOT DELETE' and hope that the warning is heeded. Now we can, after unpublishing the default page, rename it to something simpler like **default-page** and then set the `exclude` parameter of `<cms:config_list_view>` to skip this page from the listing e.g.:
+    Can be set to the (comma-separated) `names` of pages that are to be excluded from the listing.  
+    One use of this feature could be to exclude the vexing `default` page that Couch automatically creates for all clonable templates.
+    Previously we had to resort to unpublish this default page and then rename it to something like 'PLEASE DO NOT DELETE' and hope that the warning is heeded. Now we can, after unpublishing the default page, rename it to something simpler like **default-page** and then set the `exclude` parameter of `<cms:config_list_view>` to skip this page from the listing e.g.:
 
     ```php
     <cms:config_list_view exclude="default-page" />
     ```
 
 3. **searchable**  
-   If this parameter is set to `1`, a search box appears above the page listing:
+    If this parameter is set to `1`, a search box appears above the page listing:
 
     ```php
     <cms:config_list_view searchable="1" />
@@ -465,7 +465,7 @@ Moving ahead with the discussion - you must have noticed above that the `<cms:co
     ![Admin panel list view with search box](./img/09.jpg)
 
     It can be useful for templates that can potentially have a large number of pages.
-
+    
 </Steps>
 
 :::caution[Important Limitation]
@@ -730,7 +730,7 @@ The process is almost the same as before (actually has become easier) except for
 Let us begin with the list screen first.
 
 **Old method of custom list screen**  
-Reiterating what the [docs](http://docs.couchcms.com/concepts/databound-forms.html#custom-admin-screens) said -
+Reiterating what the [docs](../../concepts/databound-forms.html#custom-admin-screens) said -
 To create a custom screen for the list view, create a snippet, say named `my_list.html`, and save it in the `snippets` folder of Couch (or in whichever folder you have configured to hold the snippets. If you've used the cms:embed tag this process will seem familiar).
 
 For a quick test, let us put the following in the snippet:
