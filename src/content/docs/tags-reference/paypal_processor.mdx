@@ -1,66 +1,68 @@
 ---
 title: paypal_processor
 category: tag
-description: The paypal_processor tag handles PayPal IPN (Instant Payment Notification) processing, validating transactions and providing transaction details.
-keywords: [paypal_processor, tag, PHP, PayPal, IPN, payment processing, e-commerce]
+description: "The paypal_processor tag handles PayPal IPN (Instant Payment Notification) processing, validating transactions and providing transaction details"
+keywords:
+    - paypal
+    - IPN
+    - payment
+    - processing
+    - e-commerce
+    - transactions
 author: Kamran Kashif
 lastUpdated: 2025-03-27
 ---
 
-The **paypal_processor** tag can be used to process PayPal IPN.
+The `paypal_processor` tag processes PayPal IPN (Instant Payment Notification).
 
-Please see [**Core Concepts - PayPal**](../../concepts/paypal.html) for an in-depth discussion of this tag.
+Please see [**Core Concepts - PayPal**](../../concepts/paypal) for an in-depth discussion of this tag.
 
 ## Parameters
 
-- debug
-- logfile
+- `debug`: Enable logging of processing steps
+- `logfile`: Path to the log file
 
-### debug
+### `debug`
 
-The processing of IPN by this tag is a background operation which makes it difficult to know what exactly is going on in case things don't work in the expected manner. By setting this parameter to '1', we can make this tag log into a file (specified by the _logfile_ parameter) every step it takes while processing.
+The processing of IPN by this tag is a background operation which makes it difficult to debug when issues occur. Setting this parameter to `1` enables logging of each processing step to a file (specified by the `logfile` parameter).
 
-### logfile
+### `logfile`
 
-The log file into which the steps are to be logged. If this parameter is skipped, a log file named 'log.txt' in your site's root is used (created if not already existing) for logging.
-You can specify a path with the file that is relative to the site's root.
+The log file where processing steps are recorded. If omitted, a file named `log.txt` in your site's root is used (created if not existing). You can specify a path relative to the site's root.
 
-```php
-<cms:paypal_processor debug='1' logfile='paypal.log' />
+```php title="Basic PayPal Processor"
+<cms:paypal_processor debug="1" logfile="paypal.log" />
 ```
 
-```php
-<cms:paypal_processor debug='1' logfile='couch/uploads/file/secure/paypal.log' />
+```php title="Secure Log File Location"
+<cms:paypal_processor debug="1" logfile="couch/uploads/file/secure/paypal.log" />
 ```
 
-In the last snippet we are saving the log file in a subfolder of Couch which has a .htaccess file protecting its contents from being directly downloaded.
+The second example saves the log file in a protected Couch subfolder with `.htaccess` preventing direct downloads.
 
 ## Variables
 
-PayPal provides values pertaining to the transaction being handled through the IPN. This tag makes available those values by setting variables for each. The following are the variables that give those values -
+PayPal provides transaction details through IPN. This tag makes these values available through the following variables:
 
-- pp_item_name
-- pp_item_number
-- pp_quantity
-- pp_mc_gross
-- pp_mc_currency
-- pp_txn_id
-- pp_receiver_email
-- pp_payer_email
-- pp_first_name
-- pp_last_name
-- pp_payer_business_name
+- `pp_item_name`: Name of the purchased item
+- `pp_item_number`: Item identifier
+- `pp_quantity`: Quantity purchased
+- `pp_mc_gross`: Transaction amount
+- `pp_mc_currency`: Transaction currency
+- `pp_txn_id`: PayPal transaction ID
+- `pp_receiver_email`: Merchant's PayPal email
+- `pp_payer_email`: Buyer's PayPal email
+- `pp_first_name`: Buyer's first name
+- `pp_last_name`: Buyer's last name
+- `pp_payer_business_name`: Buyer's business name (if applicable)
 
-Once this tag verifies that the transaction is valid, it sets an additional variable to notify this -
+After validation, the tag sets additional status variables:
 
-- k_paypal_success
+- `k_paypal_success`: Set when transaction is valid
+- `k_paypal_error`: Set when transaction is invalid
 
-Apart from this variable, all the variables of the page representing the item being sold, which are normally available in the page's [**page-view**](../../concepts/variables-in-views.html), are also made available.
-
-If the transaction is deemed invalid, the following variable is set to notify this -
-
-- k_paypal_error
+All variables normally available in the page's [**page-view**](../../concepts/variables-in-views) are also accessible.
 
 ## Related Tags
 
-- [paypal_button](../paypal_button.html)
+- [**paypal_button**](../paypal_button)
