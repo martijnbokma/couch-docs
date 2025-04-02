@@ -15,11 +15,11 @@ author: Kamran Kashif
 lastUpdated: 2025-03-27
 ---
 
-Please see [**Core Concepts - Editable Regions**](../../concepts/editable-regions.html) for an introduction to the Editable tag.
+Please see [**Core Concepts - Editable Regions**](../../concepts/editable-regions/) for an introduction to the Editable tag.
 
 ## Parameters
 
-The following are the parameters that are **common** to all the *types* of editable regions. The parameters that are **specific** to individual *types* are discussed along with that *type* of editable region.
+The following are the parameters that are **common** to all the _types_ of editable regions. The parameters that are **specific** to individual _types_ are discussed along with that `type` of editable region.
 
 - `name`
 - `label`
@@ -36,38 +36,38 @@ The following are the parameters that are **common** to all the *types* of edita
 - `separator`
 - `val_separator`
 
-### name
+### `name`
 
-The only mandatory attribute. It needs to be unique amongst all the editable regions within the same template. Only lowercase[a-z] alphabets, numerals[0-9] hyphen and underscore are permitted to be used within a name. For usage see discussion above.
+The only mandatory attribute. It needs to be unique amongst all the editable regions within the same template. Only lowercase `[a-z]` alphabets, numerals `[0-9]` hyphen and underscore are permitted to be used within a name. For usage see discussion above.
 
-### label
+### `label`
 
-`label` instructs Couch to display a more user friendly name than the `name` attribute above. Unlike `name`, it has no limitation of the type of characters that can be used within it. If `label` attribute is not supplied, Couch by default uses the `name` as the `label`. For usage see discussion above.
+The `label` instructs Couch to display a more user friendly name than the `name` attribute above. Unlike `name`, it has no limitation of the type of characters that can be used within it. If `label` attribute is not supplied, Couch by default uses the `name` as the `label`. For usage see discussion above.
 
-### desc
+### `desc`
 
 This can be used to provide the user some more information about the editable region. For usage see discussion above.
 
-### type
+### `type`
 
 The following are the different types of editable regions that can be created:
 
-- [checkbox](checkbox.html)
-- [dropdown](dropdown.html)
-- [file](file.html)
-- [group](group.html)
-- [image](image.html)
-- [message](message.html)
-- [nicedit](nicedit.html)
-- [password](password.html)
-- [radio](radio.html)
-- [relation](relation.html)
-- [richtext](richtext.html)
-- [text](text.html)
-- [textarea](textarea.html)
-- [thumbnail](thumbnail.html)
+- [**checkbox**](checkbox/)
+- [**dropdown**](dropdown/)
+- [**file**](file/)
+- [**group**](group/)
+- [**image**](image/)
+- [**message**](message/)
+- [**nicedit**](nicedit/)
+- [**password**](password/)
+- [**radio**](radio/)
+- [**relation**](relation/)
+- [**richtext**](richtext/)
+- [**text**](text/)
+- [**textarea**](textarea/)
+- [**thumbnail**](thumbnail/)
 
-### order
+### `order`
 
 By default, the order in which the editable regions appear in the Admin panel matches the order in which they have been created. This order can be tweaked by setting the `order` parameter:
 
@@ -79,17 +79,17 @@ The higher the order number, the lower the editable region appears on the page (
 
 The default order number given to all editable regions is `0`.
 
-### group
+### `group`
 
-Related editable regions can be grouped together by setting the `group` parameter of each region to the name of an another editable region of type [`group`](./editable/group.html):
+Related editable regions can be grouped together by setting the `group` parameter of each region to the name of an another editable region of type [**group**](group/):
 
 ```php title="Grouping Editable Regions"
 group='paypal_group'
 ```
 
-Where `paypal_group` is the name of an editable region of type [`group`](./editable/group.html).
+Where `paypal_group` is the name of an editable region of type [**group**](group/).
 
-### searchable
+### `searchable`
 
 ```php title="Disabling Search"
 searchable='0'
@@ -97,7 +97,7 @@ searchable='0'
 
 Setting the `searchable` parameter to `0` for an editable region will exclude its contents from search results.
 
-### search_type
+### `search_type`
 
 ```php title="Setting Search Type"
 search_type='decimal'
@@ -109,21 +109,21 @@ search_type='decimal'
 - `integer`
 - `decimal`
 
-The default `search_type` of all editable regions is `text`. For editable regions of type [`text`](./editable/text.html), [`radio`](./editable/radio.html) and [`dropdown`](./editable/dropdown.html), the `search_type` can be changed to `integer` or `decimal` if the values contained within them would be numeric.
+The default `search_type` of all editable regions is `text`. For editable regions of type [**text**](text/), [**radio**](radio/) and [**dropdown**](dropdown/), the `search_type` can be changed to `integer` or `decimal` if the values contained within them would be numeric.
 
 :::note
-It is necessary to set an explicit numeric type on an editable region only when you wish to use the values contained within it to make comparisons (i.e. age < 40) or to sort some output based on these values. See [`pages`](./pages.html#custom_field).
+It is necessary to set an explicit numeric type on an editable region only when you wish to use the values contained within it to make comparisons (i.e. age < 40) or to sort some output based on these values. See [**pages**](../pages/#custom_field).
 :::
 
-### hidden
+### `hidden`
 
 ```php title="Hiding an Editable Region"
 hidden='1'
 ```
 
-`hidden` parameter can be set to `1` to suppress the output of an editable region that has been defined outside the [`template`](./template.html) tag.
+`hidden` parameter can be set to `1` to suppress the output of an editable region that has been defined outside the [**template**](../template/) tag.
 
-### required
+### `required`
 
 ```php title="Making a Field Required"
 required='1'
@@ -135,35 +135,35 @@ Setting the `required` parameter to `1` for an editable region will make it mand
 If an editable region marked as required is left empty, the user is not allowed to save their changes and a default error message gets displayed. You can display your custom error message by setting the `validator_msg` parameter described below.
 :::
 
-### validator
+### `validator`
 
 Couch has several built-in validators that can be used to enforce that the user only inputs valid data into an editable region:
 
-#### min_len
+#### `min_len`
 
 ```php title="Minimum Length Validation"
 validator='min_len=6'
 ```
 
-The length of the input (i.e. the number of characters in it) cannot be less than 6.
+The length of the input (i.e. the number of characters in it) cannot be less than `6`.
 
-#### max_len
+#### `max_len`
 
 ```php title="Maximum Length Validation"
 validator='max_len=20'
 ```
 
-The length of the input (i.e. the number of characters in it) cannot be more than 20.
+The length of the input (i.e. the number of characters in it) cannot be more than `20`.
 
-#### exact_len
+#### `exact_len`
 
 ```php title="Exact Length Validation"
 validator='exact_len=10'
 ```
 
-The length of the input (i.e. the number of characters in it) has to be exactly 10.
+The length of the input (i.e. the number of characters in it) has to be exactly `10`.
 
-#### alpha
+#### `alpha`
 
 ```php title="Alphabetic Validation"
 validator='alpha'
@@ -171,7 +171,7 @@ validator='alpha'
 
 Only characters allowed in the input would be `a` to `z` and `A` to `Z`.
 
-#### alpha_num
+#### `alpha_num`
 
 ```php title="Alphanumeric Validation"
 validator='alpha_num'
@@ -179,7 +179,7 @@ validator='alpha_num'
 
 Only characters allowed in the input would be `a` to `z`, `A` to `Z` and numbers `0` to `9`.
 
-#### integer
+#### `integer`
 
 ```php title="Integer Validation"
 validator='integer'
@@ -191,7 +191,7 @@ Only numbers `0` to `9` and the negative sign `-` are allowed, for example:
 -3, -2, -1, 0, 1, 2, 3
 ```
 
-#### non_negative_integer
+#### `non_negative_integer`
 
 ```php title="Non-negative Integer Validation"
 validator='non_negative_integer'
@@ -203,7 +203,7 @@ Only numbers `0` to `9` are allowed, for example:
 0, 1, 2, 3
 ```
 
-#### non_zero_integer
+#### `non_zero_integer`
 
 ```php title="Non-zero Integer Validation"
 validator='non_zero_integer'
@@ -215,7 +215,7 @@ Only numbers `1` to `9` are allowed, for example:
 1, 2, 3
 ```
 
-#### decimal
+#### `decimal`
 
 ```php title="Decimal Validation"
 validator='decimal'
@@ -227,7 +227,7 @@ Only numeric values are allowed, for example:
 -3, -2.5, -2, -1, 0, 0.02, 1, 2, 3.45
 ```
 
-#### non_negative_decimal
+#### `non_negative_decimal`
 
 ```php title="Non-negative Decimal Validation"
 validator='non_negative_decimal'
@@ -239,7 +239,7 @@ Only non-negative numeric values are allowed, for example:
 0, 0.02, 1, 2, 3.45
 ```
 
-#### non_zero_decimal
+#### `non_zero_decimal`
 
 ```php title="Non-zero Decimal Validation"
 validator='non_zero_decimal'
@@ -251,7 +251,7 @@ Only numeric values larger than 0 are allowed, for example:
 0.02, 1, 2, 3.45
 ```
 
-#### email
+#### `email`
 
 ```php title="Email Validation"
 validator='email'
@@ -259,7 +259,7 @@ validator='email'
 
 Only a valid email address is allowed.
 
-#### url
+#### `url`
 
 ```php title="URL Validation"
 validator='url'
@@ -267,7 +267,7 @@ validator='url'
 
 Only a valid URL is allowed.
 
-#### matches_field
+#### `matches_field`
 
 This is used to ensure that the user has input identical contents into two editable regions (e.g. Password and Confirm Password).
 
@@ -277,7 +277,7 @@ validator='matches_field=my_password'
 
 Couch will allow input only if it matches that in another editable region named `my_password`.
 
-#### regex
+#### `regex`
 
 This is a very powerful option and can actually mimic all the validators described above (and much more).
 It requires a little knowledge of Regular Expressions (as understood by PHP).
@@ -296,7 +296,7 @@ validator='alpha_num | min_len=6 | max_len=14'
 ```
 :::
 
-### validator_msg
+### `validator_msg`
 
 When a validator mentioned above fails (this includes the `required` parameter too) and the input is rejected, the changes made by the user are not saved and a default error message is displayed.
 
@@ -314,9 +314,9 @@ validator_msg='required=Please enter something | min_len=Too short!'
 ```
 :::
 
-### separator
+### `separator`
 
-### val_separator
+### `val_separator`
 
 The use of `|` (pipe) character as the default separator between `validators` and `validator_msg` parameters, as well as the use of `=` (equals-to) before a value, is sometimes not possible if the same characters appear elsewhere within the expression. For example in the regex example:
 
@@ -351,17 +351,17 @@ A variable by the name of the editable region becomes available in the context t
 
 ## Related Tags
 
-- [editable (checkbox)](checkbox.html)
-- [editable (dropdown)](editable/dropdown.html)
-- [editable (file)](editable/file.html)
-- [editable (group)](editable/group.html)
-- [editable (image)](editable/image.html)
-- [editable (message)](editable/message.html)
-- [editable (nicedit)](editable/nicedit.html)
-- [editable (password)](editable/password.html)
-- [editable (radio)](editable/radio.html)
-- [editable (relation)](editable/relation.html)
-- [editable (richtext)](editable/richtext.html)
-- [editable (text)](editable/text.html)
-- [editable (textarea)](editable/textarea.html)
-- [editable (thumbnail)](editable/thumbnail.html)
+- [editable (**checkbox**)](checkbox/)
+- [editable (**dropdown**)](dropdown/)
+- [editable (**file**)](file/)
+- [editable (**group**)](group/)
+- [editable (**image**)](image/)
+- [editable (**message**)](message/)
+- [editable (**nicedit**)](nicedit/)
+- [editable (**password**)](password/)
+- [editable (**radio**)](radio/)
+- [editable (**relation**)](relation/)
+- [editable (**richtext**)](richtext/)
+- [editable (**text**)](text/)
+- [editable (**textarea**)](textarea/)
+- [editable (**thumbnail**)](thumbnail/)
