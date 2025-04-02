@@ -18,7 +18,7 @@ lastUpdated: 2025-03-27
 
 Editable region of type `thumbnail`, as the name suggests, is used to automatically create thumbnail images.
 
-*Thumbnail* type is different from all other types of editable regions in that the user does not directly edit anything within it. Instead it is attached to an existing editable region of type `image` which then becomes the source for the thumbnail. Any time the content of the `image` type is edited, the thumbnail attached to it also gets automatically updated.
+The `thumbnail` type is different from all other types of editable regions in that the user does not directly edit anything within it. Instead it is attached to an existing editable region of type `image` which then becomes the source for the thumbnail. Any time the content of the `image` type is edited, the thumbnail attached to it also gets automatically updated.
 
 
 ## Basic Usage
@@ -73,7 +73,7 @@ The contents of this region can be accessed, as with all other editable regions,
 
 ## Parameters
 
-Apart from the parameters common to all types of editable regions, the regions of `thumbnail` type can take the following parameters -
+Apart from the parameters common to all types of editable regions, the regions of `thumbnail` type can take the following parameters:
 
 - `width`
 - `height`
@@ -83,16 +83,15 @@ Apart from the parameters common to all types of editable regions, the regions o
 - `preview_width`
 - `preview_height`
 
-### width
+### `width`
 
-### height
+### `height`
 
-Parameters `width` and `height` specify the dimensions of the thumbnail.
-If neither `width` nor `height` are specified, the resulting thumbnail is of exactly the same dimensions as the associated image.
+Parameters `width` and `height` specify the dimensions of the thumbnail. If neither `width` nor `height` are specified, the resulting thumbnail is of exactly the same dimensions as the associated image.
 
 Specifying a single dimension only will create a thumbnail with that dimension of the specified value and the other dimension of a value that retains the original proportion of the image. e.g.:
 
-```php title="Width-Only Thumbnail Example"
+```php title="Width-Only Thumbnail Example" "width='100'"
 <cms:editable name='my_image_thumb' label='Image Thumbnail' desc='Thumbnail of main image'
     width='100'
     show_preview='1'
@@ -112,7 +111,7 @@ The width was made 100px and the height was proportionately scaled to 150px so t
 
 Specifying both the dimensions will create a thumbnail with each dimension of the specified values. The original proportion between the dimensions is preserved and hence this could lead to cropping off of any dimension that overshoots the specified value in the attempt to retain proportion. e.g.:
 
-```php title="Fixed Dimensions Example"
+```php title="Fixed Dimensions Example" "width='100'" "height='80'"
 <cms:editable name='my_image_thumb' label='Image Thumbnail' desc='Thumbnail of main image'
     width='100'
     height='80'
@@ -133,19 +132,19 @@ The width was made 100px and the height was proportionately scaled resulting in 
 
 As is obvious from the second example above, if both the dimensions are specified and the thumbnail's ratio does not match that of the parent image, the cropping that inevitably occurs can sometimes lead to unacceptable results. In the thumbnail above the most important part of the image has been cropped off. This can be rectified by asking Couch to recreate the thumbnail but this time aligning it to the top of the parent image instead of the default center.
 
-![](../../../../assets/img/contents/editable-thumbnail-7.jpg)
+![Cropped Thumbnail Aligned to Top](../../../../assets/img/contents/editable-thumbnail-7.jpg)
 
 The following is the resulting thumbnail:
 
-![](../../../../assets/img/contents/editable-thumbnail-8.jpg)
+![Cropped Thumbnail Aligned to Top](../../../../assets/img/contents/editable-thumbnail-8.jpg)
 
-### enforce_max
+### `enforce_max`
 
 Setting this parameter will cause Couch to simply scale (instead of cropping as in the example above) the thumbnail, ensuring that none of its two dimensions exceed those specfied by the `width` and `height` parameters.
 
-### quality
+### `quality`
 
-```php title="Quality Parameter Example"
+```php title="Quality Parameter Example" "quality='50'"
 <cms:editable name='my_image_thumb' label='Image Thumbnail' desc='Thumbnail of main image'
     width='100'
     show_preview='1'
@@ -156,9 +155,9 @@ Setting this parameter will cause Couch to simply scale (instead of cropping as 
 
 You can set `quality` from `0` (worst quality, smaller file) to `100` (best quality, biggest file). The default value is `80`.
 
-### show_preview
+### `show_preview`
 
-```php title="Preview Parameter Example"
+```php title="Preview Parameter Example" "show_preview='1'"
 <cms:editable name='my_image_thumb' label='Image Thumbnail' desc='Thumbnail of main image'
     width='100'
     show_preview='1'
@@ -171,13 +170,13 @@ Setting show_preview to `1` makes Couch display a preview of the created thumbna
 ![Preview Display Option](../../../../assets/img/contents/editable-thumbnail-9.gif)
 > Preview Display Option
 
-### preview_width
+### `preview_width`
 
-### preview_height
+### `preview_height`
 
 As noted above, setting `show_preview` to `1` causes a preview of the thumbnail to appear. The dimensions of this preview can be set by using `preview_width` and `preview_height` (needless to say, these two parameters take effect only with `show_preview` set to `1`).
 
-```php title="Preview Size Example"
+```php title="Preview Size Example" "show_preview='1'" "preview_width='80'"
 <cms:editable name='my_image_thumb' label='Image Thumbnail' desc='Thumbnail of main image'
     width='100'
     show_preview='1'
@@ -193,17 +192,17 @@ If both `preview_width` and `preview_height` are omitted, the thumbnail preview 
 ## Related Tags
 
 - [editable](../../editable/)
-- [editable (checkbox)](../checkbox/)
-- [editable (dropdown)](../dropdown/)
-- [editable (file)](../file/)
-- [editable (group)](../group/)
-- [editable (image)](../image/)
-- [editable (message)](../message/)
-- [editable (nicedit)](../nicedit/)
-- [editable (password)](../password/)
-- [editable (radio)](../radio/)
-- [editable (relation)](../relation/)
-- [editable (richtext)](../richtext/)
-- [editable (text)](../text/)
-- [editable (textarea)](../textarea/)
-- [editable (thumbnail)](../thumbnail/)
+- [editable (**checkbox**)](../checkbox/)
+- [editable (**dropdown**)](../dropdown/)
+- [editable (**file**)](../file/)
+- [editable (**group**)](../group/)
+- [editable (**image**)](../image/)
+- [editable (**message**)](../message/)
+- [editable (**nicedit**)](../nicedit/)
+- [editable (**password**)](../password/)
+- [editable (**radio**)](../radio/)
+- [editable (**relation**)](../relation/)
+- [editable (**richtext**)](../richtext/)
+- [editable (**text**)](../text/)
+- [editable (**textarea**)](../textarea/)
+- [editable (**thumbnail**)](../thumbnail/)
