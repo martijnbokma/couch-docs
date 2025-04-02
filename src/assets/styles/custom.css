@@ -28,3 +28,57 @@
     --sl-color-gray-7: #f5f6f8;
     --sl-color-black: #ffffff;
 }
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    border: 1px solid #ddd;
+    padding: 4px;
+}
+
+/* Image comparison tables */
+.table-50 {
+    margin: 2em 0;
+}
+
+.table-50 table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 1em;
+    border: none;
+    min-width: 100%;
+}
+
+.table-50 th,
+.table-50 td {
+    width: 50%;
+    text-align: left;
+    padding: 0;
+    border: none;
+    min-width: 50%;
+}
+
+.table-50 tr:last-child td {
+    font-size: 0.9em;
+}
+
+.table-50 img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    border: 1px solid #ddd;
+    padding: 4px;
+}
+
+/* Force equal column widths */
+.table-50 colgroup col {
+    width: 50%;
+}
+
+.table-50 table {
+    table-layout: fixed;
+}
