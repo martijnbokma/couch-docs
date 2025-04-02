@@ -148,7 +148,7 @@ Note how the `opt_values` are separated by `*`.
 
 ### `val_separator`
 
-Similar to `separator`, you can change the `=` character used between option names and values:
+Similar to the problem outlined above, sometimes the options in the list contain the `=` (equals to) character. This makes it imposible to use `=` between the option's name and value. You can set any other character for this purpose by setting this parameter. For example:
 
 ```php title="Custom Value Separator" "val_separator=':'"
 <cms:editable 
