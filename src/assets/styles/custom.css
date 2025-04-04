@@ -29,7 +29,24 @@
     --sl-color-black: #ffffff;
 }
 
-img {
+/* Markdown blockquote styling */
+blockquote {
+    font-size: 0.9em;
+    color: var(--sl-color-gray-3);
+    border-left: 3px solid var(--sl-color-gray-4);
+    padding-left: 1em;
+    margin: 1em 0;
+}
+
+/* Splash page specific styling - must come before general image styling */
+article[data-pagefind-body][data-page-type="splash"] img {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Target documentation and content images */
+main img:not(.site-title img):not([data-page-type="splash"] img) {
     max-width: 100%;
     height: auto;
     display: block;
@@ -81,4 +98,12 @@ img {
 
 .table-50 table {
     table-layout: fixed;
+}
+
+/* Remove borders from splash page images */
+.card-grid img,
+.hero img {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
