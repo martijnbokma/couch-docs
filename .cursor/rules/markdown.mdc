@@ -315,18 +315,97 @@ The FileTree component has specific formatting rules:
 Requirements:
 
 - Descriptive alt text explaining content/purpose
-- Caption in quotes after URL for screen readers
+- Caption using blockquote syntax on the next line
 - Max width: 1200px for screenshots, 300px for thumbnails
 - WebP format preferred
 - Optimize for web
 - Avoid using images for text content
 - Ensure sufficient resolution
+- Use meaningful filenames that describe content
+- Place images in appropriate directories:
+  - `/assets/img/contents/` for content images
+  - `/assets/img/ui/` for UI elements
+  - `/assets/img/diagrams/` for flowcharts and diagrams
 
-Format: `feature-action-context.webp`
+Format:
 
-```markdown title="Image Example"
-![Login Form](./login.webp "Form showing validation error message")
+- Filename: `feature-action-context.webp`
+- Alt text: Brief description of image content
+- Caption: Detailed explanation if needed
+
+```markdown title="Image Examples"
+// Basic image with caption
+![Login Form](./login.webp)
+
+> Form showing validation error message
+
+// Screenshot with detailed caption
+![Dashboard Overview](../../../assets/img/contents/dashboard-main.webp)
+
+> Main dashboard showing recent activity, user statistics and system status
+
+// UI element
+![Save Button](../../../assets/img/ui/button-save.webp)
+
+> Primary save button in hover state
 ```
+
+Guidelines:
+
+1. **Alt Text**
+
+   - Should be concise but descriptive
+   - Focus on function/purpose, not appearance
+   - Don't start with "Image of" or "Picture of"
+   - Include text content if shown in image
+
+2. **Captions**
+
+   - Place on new line after image
+   - Use blockquote syntax (>)
+   - Can be longer and more detailed than alt text
+   - Explain context or highlight important features
+   - Optional for decorative images
+
+3. **File Organization**
+
+   - Use consistent naming pattern
+   - Group related images in subdirectories
+   - Keep original files in separate directory
+   - Use relative paths from document location
+
+4. **Technical Requirements**
+
+   - Resolution: minimum 72dpi for web
+   - Format: WebP preferred, fallback to PNG/JPG if needed
+   - Size: optimize for web loading
+   - Dimensions: maintain aspect ratio
+   - Compression: use lossy for photos, lossless for UI
+
+5. **Accessibility**
+   - Always include alt text
+   - Use semantic captions
+   - Consider color contrast
+   - Avoid text in images where possible
+   - Provide transcripts for complex diagrams
+
+Example directory structure:
+
+```
+assets/
+  img/
+    contents/
+      feature-screenshots/
+      tutorial-images/
+    ui/
+      buttons/
+      icons/
+    diagrams/
+      flowcharts/
+      architecture/
+```
+
+Note: Always place the caption on a new line after the image using a blockquote (>) prefix. This ensures the caption is properly displayed and accessible to screen readers.
 
 ### 2.7 Links and References
 
