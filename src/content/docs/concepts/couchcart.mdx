@@ -1,7 +1,11 @@
 ---
 title: CouchCart
-description: CouchCart is a lightweight shopping cart component for CouchCMS that enables basic e-commerce functionality while maintaining design flexibility.
-keywords: [couchcart, shopping cart, e-commerce, paypal integration]
+description: "CouchCart is a lightweight shopping cart component for CouchCMS that enables basic e-commerce functionality while maintaining design flexibility"
+keywords:
+    - couchcart
+    - shopping cart
+    - e-commerce
+    - paypal integration
 category: concept
 sidebar:
     order: 28
@@ -13,7 +17,7 @@ import { Steps, Card } from '@astrojs/starlight/components';
 
 ## Introduction
 
-CouchCart is a lightweight shopping cart component designed specifically for CouchCMS. It's perfect for websites that need basic e-commerce functionality without the complexity of full-featured e-commerce platforms.
+CouchCart is a lightweight shopping cart component designed specifically for Couch. It's perfect for websites that need basic e-commerce functionality without the complexity of full-featured e-commerce platforms.
 
 ### Key Features
 
@@ -27,7 +31,7 @@ CouchCart is a lightweight shopping cart component designed specifically for Cou
 ## Getting Started
 
 <Card icon="star" title="Tutorial">
-The best way to learn CouchCart is through our comprehensive [tutorial](../../tutorials/shopping-cart/shopping-cart-1/) that shows how to convert a static HTML template into a fully functional e-commerce site.
+The best way to learn CouchCart is through our comprehensive [**Shopping Cart Tutorial**](../../tutorials/shopping-cart/01-shopping-cart-1/) that shows how to convert a static HTML template into a fully functional e-commerce site.
 </Card>
 
 ## Core Components
@@ -38,7 +42,7 @@ The best way to learn CouchCart is through our comprehensive [tutorial](../../tu
 
 1. **Product Form**
 
-   ```php
+   ```php title="Product Form Example"
    <cms:pp_product_form>
    ```
 
@@ -46,7 +50,7 @@ The best way to learn CouchCart is through our comprehensive [tutorial](../../tu
 
 2. **Product Options**
 
-   ```php
+   ```php title="Product Options Example"
    <cms:pp_product_options>
    ```
 
@@ -54,7 +58,7 @@ The best way to learn CouchCart is through our comprehensive [tutorial](../../tu
 
 3. **Option Values**
 
-   ```php
+   ```php title="Option Values Example"
    <cms:pp_option_values>
    ```
 
@@ -68,7 +72,7 @@ The best way to learn CouchCart is through our comprehensive [tutorial](../../tu
 
 1. **Cart Form**
 
-   ```php
+   ```php title="Cart Form Example"
    <cms:pp_cart_form>
    ```
 
@@ -76,7 +80,7 @@ The best way to learn CouchCart is through our comprehensive [tutorial](../../tu
 
 2. **Cart Items**
 
-   ```php
+   ```php title="Cart Items Example"
    <cms:pp_cart_items>
    ```
 
@@ -84,7 +88,7 @@ The best way to learn CouchCart is through our comprehensive [tutorial](../../tu
 
 3. **Selected Options**
 
-   ```php
+   ```php title="Selected Options Example"
    <cms:pp_selected_options>
    ```
 
@@ -98,7 +102,7 @@ The best way to learn CouchCart is through our comprehensive [tutorial](../../tu
 
 1. **Payment Gateway**
 
-   ```php
+   ```php title="Payment Gateway Example"
    <cms:pp_payment_gateway>
    ```
 
@@ -106,7 +110,7 @@ The best way to learn CouchCart is through our comprehensive [tutorial](../../tu
 
 2. **Checkout Link**
 
-   ```php
+   ```php title="Checkout Link Example"
    <cms:pp_checkout_link>
    ```
 
@@ -149,10 +153,9 @@ CouchCart can be configured through the `config.php` file in the `addons/cart` d
 
 ## Best Practices
 
-While dedicated scripts like osCommerce or Magento have their places, they seem overkill for sites requiring only basic e-commerce facility.
-CouchCMS now ships with a shopping cart component designed to fill this niche - CouchCart.
+While dedicated scripts like osCommerce or Magento have their places, they seem overkill for sites requiring only basic e-commerce facility. Couch now ships with a shopping cart component designed to fill this niche - CouchCart.
 
-True to CouchCMS's philosophy where it is your design that always takes center-stage (the CMS always getting 'retrofitted' within the existing HTML markup), CouchCart simply provides a set of tags that can be added to any HTML shopping cart design to convert it into a fully functional e-store in no time.
+True to Couch's philosophy where it is your design that always takes center-stage (the CMS always getting 'retrofitted' within the existing HTML markup), CouchCart simply provides a set of tags that can be added to any HTML shopping cart design to convert it into a fully functional e-store in no time.
 
 To demonstrate the use of these tags, we created a tutorial that takes a sample HTML template (kindly provided by [@cheesypoof](https://www.couchcms.com/forum/memberlist.php?mode=viewprofile&u=11919)) and converts it into a working e-commerce site.
 
@@ -160,39 +163,32 @@ The tutorial is available [here](../../tutorials/shopping-cart/shopping-cart-1/)
 
 ## Appendix
 
-A complete list all tags that come with CouchCart
+A complete list of all tags that come with CouchCart:
 
-- **pp_product_form**
-    Generates the form used to add a product to the cart
-- **pp_product_options**
-    Iterates through all product options (e.g. Size, Color etc.)
-- **pp_option_values**
-    Creates (or helps create) dropdowns or radio buttons of values of an option (e.g. Red, Green etc. for Color)
-- **pp_cart_form**
-    Generates the form used to allow updating items present in cart
-- **pp_cart_items**
-    Iterates through items present in the cart
-- **pp_selected_options**
-    Creates list of options selected for an item in cart
-- **pp_payment_gateway**
-    Dispatches cart data to PayPal
-- **pp_count_items**
-- **pp_count_unique_items**
-- **pp_count_shippable_items**
-- **pp_sub_total**
-- **pp_discount**
-- **pp_sub_total_discounted**
-- **pp_taxes**
-- **pp_shipping**
-- **pp_total**
-- **pp_custom_var**
-- **pp_currency_symbol**
-- **pp_refresh_cart**
-- **pp_config**
-- **pp_add_item_link**
-- **pp_update_item_link**
-- **pp_remove_item_link**
-- **pp_empty_cart_link**
-- **pp_checkout_link**
-- **pp_cart_link**
-- **pp_empty_cart**
+- `pp_product_form`
+- `pp_product_options`
+- `pp_option_values`
+- `pp_cart_form`
+- `pp_cart_items`
+- `pp_selected_options`
+- `pp_payment_gateway`
+- `pp_count_items`
+- `pp_count_unique_items`
+- `pp_count_shippable_items`
+- `pp_sub_total`
+- `pp_discount`
+- `pp_sub_total_discounted`
+- `pp_taxes`
+- `pp_shipping`
+- `pp_total`
+- `pp_custom_var`
+- `pp_currency_symbol`
+- `pp_refresh_cart`
+- `pp_config`
+- `pp_add_item_link`
+- `pp_update_item_link`
+- `pp_remove_item_link`
+- `pp_empty_cart_link`
+- `pp_checkout_link`
+- `pp_cart_link`
+- `pp_empty_cart`
