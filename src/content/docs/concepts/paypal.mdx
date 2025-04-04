@@ -52,11 +52,9 @@ To understand how Couch makes the process easy, let us first review how PayPal i
 
 ## How Couch Integrates with PayPal
 
-As should be evident from the discussion above, the seemingly simple procedure of delivering a digital product to a buyer upon payment requires quite a bit of work. Specifically, out of the steps outlined above, placing the appropriately coded button and (more extensively) handling the incoming IPN require custom coding.
-Couch takes away the complexity from both the steps by making it as simple as placing a Couch tag for each in your template.
+As should be evident from the discussion above, the seemingly simple procedure of delivering a digital product to a buyer upon payment requires quite a bit of work. Specifically, out of the steps outlined above, placing the appropriately coded button and (more extensively) handling the incoming IPN require custom coding. Couch takes away the complexity from both the steps by making it as simple as placing a Couch tag for each in your template.
 
-In the following paragraphs we'll discuss how we can use Couch to do all the heavy lifting for us - but before we can do that, a little groundwork needs to be done.
-First we need to inform Couch about some of our PayPal details. Open `config.php` and set the following three values to that of yours:
+In the following paragraphs we'll discuss how we can use Couch to do all the heavy lifting for us - but before we can do that, a little groundwork needs to be done. First we need to inform Couch about some of our PayPal details. Open `config.php` and set the following three values to that of yours:
 
 ```php title="config.php"
 // Set the following if you use PayPal buttons to sell products.
@@ -79,7 +77,7 @@ Usually while testing you'll be using PayPal's Sandbox.
 Setup a test environment (sandbox) at https://developer.paypal.com/. Generate and use the fictitious accounts for testing (make sure to set `K_PAYPAL_USE_SANDBOX` to `1` and `K_PAYPAL_EMAIL` to the fictitious seller's account, in `config.php` mentioned above).
 :::
 
-For the next step, it is necessary to understand that each saleable item in Couch is represented by a separate cloned page. For our example, let us say we use a template named `product.php` for this purpose. Make this template clonable and define in it all [**editable regions**](../editable-regions/) that are relevant to your products (e.g. ISBN number, Author, Link to the downloadable file etc.)
+For the next step, it is necessary to understand that each saleable item in Couch is represented by a separate cloned page. For our example, let us say we use a template named `product.php` for this purpose. Make this template clonable and define in it all [**Editable Regions**](../editable-regions/) that are relevant to your products (e.g. ISBN number, Author, Link to the downloadable file etc.)
 
 Two fields are mandatory and need your special attention:
 
@@ -276,6 +274,4 @@ A real world example could be:
 </cms:paypal_processor>
 ```
 
-In the snippet above, we are sending an email to the buyer on a successful transaction. Note how the variables set by [**paypal_processor**](../../tags-reference/paypal_processor/) are being used in the [**send_mail**](../../tags-reference/send_mail/) tag.
-The email contains a link to the downloadable item (the variable `downloadable_file` is an editable region of type file within the template and contains the item's link).
-The [**cloak_url**](../../tags-reference/cloak_url/) tag is used to conceal the real path of the item.
+In the snippet above, we are sending an email to the buyer on a successful transaction. Note how the variables set by [**paypal_processor**](../../tags-reference/paypal_processor/) are being used in the [**send_mail**](../../tags-reference/send_mail/) tag. The email contains a link to the downloadable item (the variable `downloadable_file` is an editable region of type file within the template and contains the item's link). The [**cloak_url**](../../tags-reference/cloak_url/) tag is used to conceal the real path of the item.
