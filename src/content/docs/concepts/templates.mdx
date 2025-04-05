@@ -68,12 +68,12 @@ After installing Couch, follow these steps to set up your templates:
     After converting the template to a `.php` file, you need to add two lines of PHP code. Open the template in a text editor (any plain text editor will work, but we recommend using [Notepad++](https://notepad-plus-plus.org/) or [VS Code](https://code.visualstudio.com/), both are free and excellent).
 
     Add at the **very top** of the file:
-    ```php title="Required Top Code"
+    ```php title="Required Top Code" ins="<?php require_once( 'couch/cms.php' ); ?>"
     <?php require_once( 'couch/cms.php' ); ?>
     ```
 
     Add at the **very bottom** of the file:
-    ```php title="Required Bottom Code"
+    ```php title="Required Bottom Code" ins="<?php COUCH::invoke(); ?>"
     <?php COUCH::invoke(); ?>
     ```
     That is it. That is all the PHP that you'll ever need to write for using Couch.
