@@ -1,6 +1,6 @@
 ---
 title: Views
-description: "Understanding the different views in Couch - List View, Page View, Folder View, and Archive View"
+description: "Understanding the different views in CouchCMS - List View, Page View, Folder View, and Archive View"
 keywords:
     - views
     - list view
@@ -12,13 +12,13 @@ keywords:
     - content display
     - url patterns
 category: concept
+author: Kamran Kashif
+lastUpdated: 2025-03-20
 sidebar:
     order: 7
     badge:
-        text: Core Concept
-        variant: tip
-author: Kamran Kashif
-lastUpdated: 2025-03-20
+        text: Updated
+        variant: caution
 ---
 
 import { Steps } from '@astrojs/starlight/components';
@@ -39,8 +39,7 @@ https://www.yoursite.com/blog.php
 ```
 :::
 
-However, once `blog.php` is set as being clonable there can be multiple pages that have been cloned out of this template.
-Obviously, we now have at least two scenarios `blog.php` may be executed in:
+However, once `blog.php` is set as being clonable there can be multiple pages that have been cloned out of this template. Obviously, we now have at least two scenarios `blog.php` may be executed in:
 
 <Steps>
 
@@ -76,14 +75,12 @@ In the first scenario, `blog.php` is said to be executing in **list view** while
 The **page view** is expected to show details relevant to the page being executed and hence makes available the pertinent variables.
 The **list view** is expected to act like a listing page (e.g. list all the pages belonging to the blog etc.) and has a different set of variables available for this purpose.
 
-When we say 'is expected to', that is exactly what we mean.
-Couch simply sets certain variables to make it known to your script which view it is executing in. It is you who decides what to display in that view. It could be some specific page, several listings of other templates or just about anything you wish (see [**Listing Pages**](../listing-pages/)).
+When we say 'is expected to', that is exactly what we mean. Couch simply sets certain variables to make it known to your script which view it is executing in. It is you who decides what to display in that view. It could be some specific page, several listings of other templates or just about anything you wish (see [**Listing Pages**](../listing-pages/)).
 :::
 
 ## Special Views
 
-Couch further supports two special URLs that are meant to list pages belonging to a particular folder or to a particular time period.
-Thus the *list view* can be further categorized into two final views:
+Couch further supports two special URLs that are meant to list pages belonging to a particular folder or to a particular time period. Thus the *list view* can be further categorized into two final views:
 
 ### Folder View
 
@@ -238,6 +235,9 @@ Or a simpler version:
 </cms:if>
 ```
 
----
+## Related Topics
 
-[Next Chapter: **Variables Available in Views**](../variables-in-views/)
+Please see:
+
+- [**Variables Available in Views**](../variables-in-views) for a comprehensive list of variables that become available during the different views
+- [**Listing Pages**](../listing-pages) for how to list pages in concordance to the views
