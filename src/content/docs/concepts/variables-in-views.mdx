@@ -1,5 +1,5 @@
 ---
-title: "Variables Available in Views"
+title: Variables Available in Views
 description: "Learn about the different variables available in CouchCMS templates based on their view type and context"
 keywords:
     - variables
@@ -9,21 +9,24 @@ keywords:
     - folder view
     - archive view
     - home view
+    - template variables
+    - context variables
 category: concept
+author: Kamran Kashif
+lastUpdated: 2025-03-20
 sidebar:
     order: 8
-author: "Kamran Kashif"
-lastUpdated: 2025-03-20
 ---
 
 import { Steps } from '@astrojs/starlight/components';
 
-From what we have read so far, we know that a template can be either *clonable* or *non-clonable*.
-A *clonable* template will necessarily have cloned pages associated with it hence it is said to be executing within a *page-view* when a cloned page of it is accessed while it is said to be executing within a *list-view* if it is accessed in a stand alone manner.
+From what we have read so far, we know that a template can be either *clonable* or *non-clonable*. A *clonable* template will necessarily have cloned pages associated with it hence it is said to be executing within a *page-view* when a cloned page of it is accessed while it is said to be executing within a *list-view* if it is accessed in a stand alone manner.
 
 A *non-clonable* template always represents one single page and hence it has no such views associated with it.
 
+:::note[Template Context]
 Depending on whether a template is clonable or non-clonable and upon the view it is being executed in, each time a template is accessed, Couch makes available certain variables that are relevant to the template's state.
+:::
 
 For example, when executed in a *page-view*, a template is used to access a cloned page and hence all that cloned page's data (including all its editable region's contents) are made available by Couch for use by your script.
 
@@ -32,6 +35,8 @@ In contrast, when executed in a *list-view*, it is not any single page that is a
 A complete list of all the variables that become available during the above mentioned conditions are listed below.
 
 For the sake of this example we make use of a template named `blog.php` that has three editable regions defined within it - *my_blog_text*, *my_blog_image* and *my_blog_author* (these will be made available as variables with the same names. They are shown highlighted below).
+
+## Global Variables
 
 The following variables are available in ALL cases, irrespective of the clonable status of the template and the current view:
 
@@ -54,7 +59,7 @@ The following variables are available in ALL cases, irrespective of the clonable
 
 If `blog.php` is non-clonable, it can only be accessed as:
 
-```txt
+```txt title="Non-Clonable URL"
 https://www.mysite.com/blog.php
 ```
 
@@ -68,7 +73,7 @@ Available variables in this case are:
 - `my_blog_image`
 - `my_blog_author`
 
-## Clonable Template
+## Clonable Template Views
 
 If `blog.php` is made clonable, different views become available, each with its own set of variables:
 
@@ -76,11 +81,13 @@ If `blog.php` is made clonable, different views become available, each with its 
 
 Example URL:
 
-```txt
-http://www.mysite.com/blog/some_page_name.html
+```txt title="Page View URL"
+https://www.mysite.com/blog/some_page_name.html
 ```
 
 In this view, variables giving information about the current page, the containing folder (if the page resides in one) and the contents of the page's editable regions are made available.
+
+#### Page Information Variables
 
 The folowing variables carry information about the page in question:
 
@@ -92,6 +99,8 @@ The folowing variables carry information about the page in question:
 - `k_page_modification_date`
 - `k_comments_count`
 
+#### Folder Information Variables
+
 The following variables carry Information about the folder, if the page resides in one:
 
 - `k_page_folderid`
@@ -100,6 +109,8 @@ The following variables carry Information about the folder, if the page resides 
 - `k_page_folderlink`
 - `k_page_folderpagecount`
 - `k_page_foldertotalpagecount`
+
+#### Editable Region Variables
 
 Finally the contents of editable regions:
 
@@ -111,11 +122,11 @@ Finally the contents of editable regions:
 
 Example URL:
 
-```txt
-http://www.mysite.com/blog/some_subfolder/
+```txt title="Folder View URL"
+https://www.mysite.com/blog/some_subfolder/
 ```
 
-In this view, variables giving information about the folder mentioned in the URL are set.
+In this view, variables giving information about the folder mentioned in the URL are set:
 
 - `k_is_list`
 - `k_is_folder`
@@ -130,11 +141,11 @@ In this view, variables giving information about the folder mentioned in the URL
 
 Example URL:
 
-```txt
-http://www.mysite.com/blog/2010/05/
+```txt title="Archive View URL"
+https://www.mysite.com/blog/2010/05/
 ```
 
-In this view, variables giving information about the archive's time period (as given in the URL) are set.
+In this view, variables giving information about the archive's time period (as given in the URL) are set:
 
 - `k_is_list`
 - `k_is_archive`
@@ -149,8 +160,8 @@ In this view, variables giving information about the archive's time period (as g
 
 Example URL:
 
-```txt
-http://www.mysite.com/blog/
+```txt title="Home View URL"
+https://www.mysite.com/blog/
 ```
 
 - `k_is_list`
@@ -162,7 +173,7 @@ http://www.mysite.com/blog/
 For clonable templates, the contents of the editable regions associated with a page are made available only in page view.
 :::
 
-:::tip
+:::tip[Debug Variables]
 You can use the Couch tags [**dump**](../../tags-reference/dump/) and [**dump_all**](../../tags-reference/dump_all/) to see for yourself all the variables with their current values.
 :::
 
