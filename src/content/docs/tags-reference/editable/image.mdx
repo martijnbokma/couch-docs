@@ -12,6 +12,10 @@ keywords:
     - editable
 author: Kamran Kashif
 lastUpdated: 2025-03-27
+sidebar:
+    badge:
+        text: Updated
+        variant: caution
 ---
 
 Editable region of type `image` is primarily used to allow the user to upload an image from his local computer onto the server. The user can also browse and select any of the previously uploaded images. Once an image has been selected, this editable region then holds a fully qualified URL of the uploaded image.
@@ -99,7 +103,7 @@ If both height and width are specified, enforcing the limit of one dimension mig
 
 #### Specifying only one dimension
 
-```php "width='150'"
+```php "width="150""
 <cms:editable 
     name="prop_image" 
     label="Image" 
@@ -141,7 +145,7 @@ If both height and width are specified, enforcing the limit of one dimension mig
 
 #### Specifying both dimensions
 
-```php "width='150'" "height='150'"
+```php "width="150"" "height="150""
 <cms:editable 
     name="prop_image" 
     label="Image" 
@@ -187,7 +191,7 @@ If both height and width are specified, enforcing the limit of one dimension mig
 
 A short discussion is necessary about what happens if `enforce_max` is explicitly set to `0` instead of implicitly doing it by setting `crop` - e.g.:
 
-```php "enforce_max='0'"
+```php "enforce_max="0""
 <cms:editable 
     name="prop_image" 
     label="Image" 
@@ -226,7 +230,7 @@ By setting this parameter to `1` we also implicitly turn off `enforce_max`.
 
 #### Specifying only one dimension
 
-```php "width='150'"
+```php "width="150""
 <cms:editable 
     name="prop_image" 
     label="Image" 
@@ -269,7 +273,7 @@ By setting this parameter to `1` we also implicitly turn off `enforce_max`.
 
 #### Specifying both dimensions
 
-```php "width='150'" "height='150'"
+```php "width="150"" "height="150""
 <cms:editable 
     name="prop_image" 
     label="Image" 
@@ -313,7 +317,7 @@ By setting this parameter to `1` we also implicitly turn off `enforce_max`.
 
 ### `quality`
 
-```php "quality='50'"
+```php "quality="50""
 <cms:editable 
     name="prop_image" 
     label="Image" 
