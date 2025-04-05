@@ -7,6 +7,8 @@ keywords:
     - syndication
     - XML
     - content distribution
+    - feed generation
+    - news feeds
 category: concept
 sidebar:
     order: 21
@@ -14,14 +16,13 @@ author: Kamran Kashif
 lastUpdated: 2025-03-20
 ---
 
-import { Steps } from '@astrojs/starlight/components';
+import { Steps } from "@astrojs/starlight/components";
 
 Let us first see how a RSS feed is created manually (i.e. without using Couch or any other CMS) and then we'll see how to automate the task by retrofitting Couch into it.
 
-For our example, we'll suppose you publish news items on your website and wish to offer these news items as a RSS feed.
-Place the following snippet within a plain text file and name it, say, `rss.xml` (make sure there is no space between the beginning of the file and the `<?xml version="1.0"?>` statement).
+For our example, we'll suppose you publish news items on your website and wish to offer these news items as a RSS feed. Place the following snippet within a plain text file and name it, say, `rss.xml` (make sure there is no space between the beginning of the file and the `<?xml version="1.0"?>` statement).
 
-```xml title="Basic RSS Feed"
+```xml title="Basic RSS Feed Structure"
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
     <channel>
@@ -38,7 +39,7 @@ In the snippet above, we are declaring one RSS channel that will carry your news
 
 Now add the individual news items to this channel:
 
-```xml title="RSS Feed with Items"
+```xml title="RSS Feed with News Items"
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
     <channel>
@@ -84,11 +85,11 @@ This conversion of the xml file to a php file is essential for Couch but it will
 The first problem can be rectified by breaking up the XML statement in a way that it does not confuse PHP.
 The following snippet using Couch's [**concat**](../../tags-reference/concat/) tag will output exactly the same statement but because the `<?` characters are now split up, PHP will have no problems:
 
-```php title="XML Declaration with Concat"
+```php title="XML Declaration Using Concat"
 <cms:concat '<' '?xml version="1.0" encoding="' k_site_charset '"?' '>' />
 ```
 
-:::note[About Character Set]
+:::note[Character Set]
 The `k_site_charset` variable contains the value set in `config.php` for the character set used by your web-site.
 :::
 
@@ -96,7 +97,7 @@ The second problem can be rectified by using Couch's [**content_type**](../../ta
 
 The modified snippet should now look like this:
 
-```php title="Complete RSS Feed Template"
+```php title="RSS Feed Template with Couch"
 <?php require_once( 'couch/cms.php' ); ?>
 <cms:content_type 'text/xml' /><cms:concat '<' '?xml version="1.0" encoding="' k_site_charset '"?' '>' />
 <rss version="2.0">
@@ -125,13 +126,13 @@ The modified snippet should now look like this:
 <?php COUCH::invoke(); ?>
 ```
 
-:::danger[Important]
+:::danger[XML Declaration]
 Do not split the [**content_type**](../../tags-reference/content_type/) statement and the [**concat**](../../tags-reference/concat/) statement into separate lines. This will cause an empty line to be output before the xml declaration and will invalidate the feed.
 :::
 
 We can now fetch the news items from the `news.php` template by using [**pages**](../../tags-reference/pages/) tag and add it to our feed to make it dynamic:
 
-```php title="Dynamic RSS Feed"
+```php title="Dynamic RSS Feed Template"
 <?php require_once( 'couch/cms.php' ); ?>
 <cms:content_type 'text/xml' /><cms:concat '<' '?xml version="1.0" encoding="' k_site_charset '"?' '>' />
 <rss version="2.0">
