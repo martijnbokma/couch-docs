@@ -94,20 +94,29 @@ Example of a complete document ending:
 Use consistent formatting:
 
 - Product Name:
+
   - Use "Couch" in regular text and documentation
   - Only use "CouchCMS" in titles, formal references, or when specifically referring to the full product name
   - Never use bold for the product name unless in headers or warnings
   - Examples:
     - Regular text: "Couch provides many features"
     - Formal: "Welcome to CouchCMS Documentation"
+
 - UI Elements and Page Names:
+
   - Use bold (\*\*) for any UI element or page name that users will see in the interface
   - Use Title Case without hyphens
   - Examples:
     - Pages: The **About Us** page contains...
     - Sections: Navigate to the **Portfolio** section
     - UI elements: Click the **Save Changes** button
-- Backticks (`) for:
+
+- Technical Terms:
+
+  - Module names: `mod_rewrite`
+  - File names: `.htaccess`, `config.php`
+  - Configuration constants: `K_PRETTY_URLS`
+  - Function names: `gen_htaccess.php`
   - Variables: `my_variable`
   - Parameters: `type`, `name`
   - File paths: `views/template.php` (use forward slashes)
@@ -116,12 +125,16 @@ Use consistent formatting:
   - Technical terms: `dropdown`
   - Boolean values: `true`, `false`
   - Filenames: `file.php`
+
 - Tag References:
+
   - Use bold and lowercase: [**editable**](../../tags-reference/editable/)
   - Never capitalize tag names in references
   - Include the link to reference documentation
   - Example: [**show**](../../tags-reference/show/), [**template**](../../tags-reference/template/)
+
 - Documentation References:
+
   - Use bold and Title Case for all documentation types except tags
   - Examples:
     - Concepts: [**Variables Available in Views**](../../concepts/variables-in-views/)
@@ -130,14 +143,19 @@ Use consistent formatting:
     - API: [**Template API**](../../api/template/)
   - Only tags-reference uses lowercase: [**editable**](../../tags-reference/editable/)
   - Include the link to documentation
+
 - Underscores (\_) for italic text:
+
   - Output values: _Rental_
   - Emphasis: _important_
   - Quoted values: The value _true_
+
 - Double asterisks (\*\*) for bold text:
+
   - Section headers
   - Critical warnings
   - Important notes
+
 - Never mix styles (e.g., don't use both \* and ` for same term)
 
 ### 2.2 Quote Usage
@@ -211,15 +229,24 @@ This ensures Prettier will:
 ### 2.3 Code Examples
 
 - Include complete, working examples
-- Add descriptive titles using these rules:
-  - For real files: Use file extension as language and filename as title
-    ```php title="index.php"
-    <cms:template title='Home'>
+- Add descriptive titles using these patterns:
+
+  - Configuration files:
+    ```php title="config.php"
+    // Configuration example
     ```
-  - For examples: Use appropriate language and descriptive title
-    ```html title="Basic Layout Example"
-    <div class="container"></div>
+  - URL examples:
+    ```txt title="Default URL"
+    https://example.com/page.php?id=1
     ```
+    ```txt title="Pretty URL"
+    https://example.com/page/title/
+    ```
+  - Code with changes:
+    ```html title="Dynamic Path"
+    <link href="<cms:show k_site_link />css/style.css" rel="stylesheet" />
+    ```
+
 - Use proper syntax highlighting
 - Add comments for complex code
 - Show changes with diff syntax when relevant:
@@ -279,7 +306,7 @@ Import components at the top after frontmatter:
 title: Page Title
 ---
 
-import { Steps } from '@astrojs/starlight/components';
+import { Steps } from "@astrojs/starlight/components";
 
 <Steps>
 
@@ -288,6 +315,13 @@ import { Steps } from '@astrojs/starlight/components';
 
 </Steps>
 ```
+
+When using the Steps component:
+
+- Keep instructions clear and concise
+- Combine related instructions into single steps
+- Use code blocks with descriptive titles within steps
+- Add empty lines before and after the component
 
 Note: Always add a blank line after opening and before closing the Steps component.
 
@@ -454,47 +488,53 @@ Note: Always include header row and alignment markers.
 
 ### 2.9 Admonitions
 
+Admonitions should always have descriptive titles that indicate their purpose:
+
 ```markdown title="Admonition Examples"
-:::note[Info]
-Additional context
+:::note[Server Requirements]
+Technical requirements or prerequisites
 :::
 
 :::tip[Best Practice]
-Recommended approach
+Recommended approach or helpful tip
 :::
 
-:::caution[Warning]
-Important limitation
+:::caution[Version Specific]
+Important limitation or version requirement
 :::
 
-:::danger[Critical]
-Data loss risk
+:::danger[Breaking Change]
+Critical warning about data loss or compatibility
 :::
 ```
 
 Rules:
 
-- Include descriptive title
-- Keep focused and concise
-- Use appropriate type
-- Don't nest
-- Consistent formatting inside
+- Use descriptive titles that explain the content
+- Choose appropriate type based on content:
+  - note: Requirements, prerequisites, context
+  - tip: Best practices, recommendations
+  - caution: Limitations, version requirements
+  - danger: Critical warnings, breaking changes
+- Keep content focused and concise
+- Don't nest admonitions
+- Maintain consistent formatting inside
 
-When to use each type:
+### 2.10 Paragraph Structure
 
-- `note`: Additional information, context, or examples
-- `tip`: Best practices, recommendations, or shortcuts
-- `caution`: Important limitations, potential issues, or version-specific notes
-- `danger`: Critical warnings about data loss, security risks, or breaking changes
-- `version`: Feature availability and version requirements
+Guidelines for clear and readable paragraphs:
 
-Formatting rules:
+- Combine related short paragraphs that form a single thought
+- Keep paragraphs focused on a single topic
+- Use line breaks between distinct topics or sections
+- Start with the main point
+- Use clear transitions between topics
 
-- Each admonition starts on a new line
-- Content starts on the line after the opening tag
-- Closing tag on its own line
-- Maintain consistent indentation inside
-- Can contain lists, code blocks, and other markdown elements
+Example:
+
+```markdown title="Good Paragraph Structure"
+Couch supports the use of Pretty URLs (aka search engine friendly - SEF URLs). This feature uses URL rewriting to transform the default Couch URLs containing querystrings into URLs that appear more friendly and relevant to the web pages. For example, a URL like this:
+```
 
 ## 3. Quality Standards
 
