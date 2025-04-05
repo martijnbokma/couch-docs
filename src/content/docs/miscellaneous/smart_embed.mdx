@@ -221,6 +221,7 @@ For **page-view**, e.g. while visting a page named `harpoon` of template `movies
 Like folders, a snippet can be used exclusively with a nested-page without making it available for the child-pages by using the `_ex` with `page` (as in the `movies-page_ex-harpoon` above).
 
 #### Non-Clonable Template (`settings.php`)
+
 Finally, while visiting a non-clonable template (for our example below let us assume it is named `settings.php`) the sequence of search is:
 
 - settings-default
@@ -279,8 +280,8 @@ Now to test out the flexibility of this feature, use a couple of templates from 
 
 Notice that the template doesn't have any HTML code in it. Instead, it uses snippets to do all the work. When you run this code, the `smart_embed` tag will output the `default.html` snippets for each section. This happens because the tag looks for files named:
 
-index-default.*
-default.*
+- index-default.*
+- default.*
 
 in the specified folders and uses the one it finds.
 
@@ -318,7 +319,7 @@ You'll appreciate this flexibility when dealing with cloned templates. Let us as
 
 In certain situations, we can also combine the `smart_embed` with the regular `embed` tag. Let us suppose the `header` chunk of `about.php` template is different from the common `header/default.html` it shared with the other templates. However, it differs in only a very minor way - say, it only adds a few HTML tags loading some additional JavaScript files. We know that we can place a snippet named `about-default.html` within the `header` folder and this snippet will be automatically picked up for `about.php`. We create this snippet but instead of putting in the entire header code (which will duplicate the one used in `default.html` snippet) we can do the following:
 
-```php
+```php title="Custom Header Example"
 <cms:embed 'header/default.html' />
 <script type="text/javascript" src="<cms:show k_site_link />js/jquery-1.7.1.min.js"></script>
 ```
@@ -331,13 +332,13 @@ One drawback of using this method is that sometimes it gets confusing to know wh
 
 As an example, the following statement:
 
-```php
+```php title="Debug Mode"
 <cms:smart_embed debug='1' />
 ```
 
 The above `smart_embed` tag will output the following for a template named `movies.php` accessed in home-view:
 
-```txt
+```txt title="Debug Output"
 Looking for files in folder snippets:
 
     * movies-home
@@ -350,10 +351,10 @@ Looking for files in folder snippets:
 Chosen file: home.html
 ```
 
-:::tip
+:::tip[Debug Variable]
 I find it tedious to flip the debug parameter if there are multiple `smart_embed` statements in my template. I use the following code to use a variable to do so. This way I need to turn on/off the debug setting at only one place:
 
-```php
+```php title="Global Debug Variable"
 <cms:set my_debug='0' 'global' />
 <cms:smart_embed 'header' debug=my_debug />
 <cms:smart_embed 'menu' debug=my_debug />
