@@ -256,10 +256,25 @@ This ensures Prettier will:
 + new code
 ```
 
+- CRITICAL: Respect and preserve original content:
+
+  - Never remove or modify ANY existing content unless ABSOLUTELY necessary
+  - Keep all original explanations, examples and context intact
+  - Preserve the author's (Kamran Kashif) writing style and voice
+  - If changes are needed, make minimal adjustments while keeping as much original text as possible
+  - When in doubt, keep the original content
+
+- IMPORTANT: Never modify any code blocks unless explicitly instructed to do so. This includes:
+
+  - Preserving all existing code comments (e.g. `<!-- Page view - display current page here -->`)
+  - Maintaining exact spacing and indentation
+  - Keeping all line breaks
+  - Preserving all syntax and formatting
+  - Not removing or changing any code unless specifically requested
+
 - IMPORTANT: Never remove lines with '+' or '-' at the beginning of lines in diff code blocks, as these characters are essential for indicating added or removed code
 - Always maintain the exact formatting of diff blocks to preserve the meaning of the changes being shown
-
-For partial code, use language-appropriate markers:
+- For partial code, use language-appropriate markers:
 
 ```php
 // ... existing code ...
