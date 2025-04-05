@@ -8,10 +8,13 @@ keywords:
     - comment moderation
     - CouchCMS comments
 category: concept
-sidebar:
-    order: 14
 author: Kamran Kashif
 lastUpdated: 2025-03-20
+sidebar:
+    order: 14
+    badge:
+        text: Updated
+        variant: caution
 ---
 
 Couch allows the submission of comments on pages created by it but this must first be permitted by you. To do so, the `commentable` parameter of the [**template**](../../tags-reference/template/) tag has to be set to `1` for each template that you wish to allow comments for. Thus if, for example, comments are to be turned on for pages cloned out of `blog.php`, the following change needs to be done to the [**template**](../../tags-reference/template/) tag (usually placed in the HTML head tag) within `blog.php`:
