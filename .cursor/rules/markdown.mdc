@@ -466,6 +466,40 @@ Internal links:
 - Never use "click here" or "read more"
 - Ensure links are distinguishable
 - Use proper hierarchy in navigation
+- ALWAYS use trailing slashes in markdown links
+- NEVER use trailing slashes in frontmatter slugs or sidebar config
+
+```markdown title="URL Best Practices"
+# ✅ In markdown links - ALWAYS use trailing slash
+
+[Next Chapter: **Installing the application**](./installing-the-application/)
+[See Documentation](../../concepts/templates/)
+
+# ❌ In markdown links - NEVER omit trailing slash
+
+[Next Chapter: **Installing the application**](./installing-the-application)
+[See Documentation](../../concepts/templates)
+
+# ✅ In frontmatter slugs - NEVER use trailing slash
+
+---
+
+slug: tutorials/advanced-tutorial
+
+# ✅ In sidebar config - NEVER use trailing slash
+
+items: [
+'tutorials/advanced-tutorial',
+'tutorials/advanced-tutorial/installing-the-application'
+]
+```
+
+This ensures:
+
+- Consistent URL structure
+- Prevents redirect requests
+- Better SEO (no duplicate content issues)
+- Follows Starlight conventions
 
 ```markdown title="Link Examples"
 [User Authentication](../auth/guide.md "Complete setup guide")
