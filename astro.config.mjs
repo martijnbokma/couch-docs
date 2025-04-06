@@ -81,42 +81,42 @@ export default defineConfig({
 							label: 'Advanced Tutorial',
 							collapsed: true,
 							items: [
-								'tutorials/advanced-tutorial/01-intro',
-								'tutorials/advanced-tutorial/02-installing-the-application',
+								'tutorials/advanced-tutorial',
+								'tutorials/advanced-tutorial/installing-the-application',
 								{
 									label: 'Code Walkthrough',
 									collapsed: true,
 									items: [
-										'tutorials/advanced-tutorial/03-code-walkthrough',
+										'tutorials/advanced-tutorial/code-walkthrough',
 										{
 											label: 'Notes',
 											collapsed: true,
 											items: [
-												'tutorials/advanced-tutorial/04-notes',
-												'tutorials/advanced-tutorial/05-routes',
-												'tutorials/advanced-tutorial/06-filters',
-												'tutorials/advanced-tutorial/07-controller',
+												'tutorials/advanced-tutorial/notes',
+												'tutorials/advanced-tutorial/routes',
+												'tutorials/advanced-tutorial/filters',
+												'tutorials/advanced-tutorial/controller',
 												{
 													label: 'Views',
 													collapsed: true,
 													items: [
-														'tutorials/advanced-tutorial/08-views',
-														'tutorials/advanced-tutorial/09-list-view',
-														'tutorials/advanced-tutorial/10-page-view',
-														'tutorials/advanced-tutorial/11-create-view',
-														'tutorials/advanced-tutorial/12-create-view-with-pad',
-														'tutorials/advanced-tutorial/13-edit-view',
-														'tutorials/advanced-tutorial/14-delete-view',
+														'tutorials/advanced-tutorial/views',
+														'tutorials/advanced-tutorial/list-view',
+														'tutorials/advanced-tutorial/page-view',
+														'tutorials/advanced-tutorial/create-view',
+														'tutorials/advanced-tutorial/create-view-with-pad',
+														'tutorials/advanced-tutorial/edit-view',
+														'tutorials/advanced-tutorial/delete-view',
 													]
 												}
 											],
 										},
-										'tutorials/advanced-tutorial/15-pads',
-										'tutorials/advanced-tutorial/16-users',
+										'tutorials/advanced-tutorial/pads',
+										'tutorials/advanced-tutorial/users',
 									],
 								},
-								'tutorials/advanced-tutorial/17-wrapping-up',
-								// 'tutorials/advanced-tutorial/18-tags-reference',
+								'tutorials/advanced-tutorial/wrapping-up',
+								// 'tutorials/advanced-tutorial/tags-reference',
 							],
 						},
 						{
@@ -131,8 +131,7 @@ export default defineConfig({
 						},
 						{
 							label: 'On-Page Editing',
-							collapsed: true,
-							autogenerate: { directory: 'tutorials/on-page-editing' }
+							link: 'tutorials/on-page-editing'
 						},
 						{
 							label: 'Admin Panel',
@@ -141,8 +140,7 @@ export default defineConfig({
 						},
 						{
 							label: 'Building a Job Application Form',
-							collapsed: true,
-							autogenerate: { directory: 'tutorials/job-application-form' }
+							link: 'tutorials/job-application-form'
 						},
 					]
 				}
